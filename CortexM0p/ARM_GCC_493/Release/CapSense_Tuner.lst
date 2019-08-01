@@ -1,0 +1,2328 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"CapSense_Tuner.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.CapSense_TuInitialize,"ax",%progbits
+  18              		.align	1
+  19              		.global	CapSense_TuInitialize
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	CapSense_TuInitialize, %function
+  23              	CapSense_TuInitialize:
+  24              	.LFB1:
+  25              		.file 1 "Generated_Source\\PSoC4\\CapSense_Tuner.c"
+   1:Generated_Source\PSoC4/CapSense_Tuner.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/CapSense_Tuner.c **** * \file CapSense_Tuner.c
+   3:Generated_Source\PSoC4/CapSense_Tuner.c **** * \version 3.10
+   4:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+   5:Generated_Source\PSoC4/CapSense_Tuner.c **** * \brief
+   6:Generated_Source\PSoC4/CapSense_Tuner.c **** * This file provides the source code for the Tuner module API of the Component.
+   7:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+   8:Generated_Source\PSoC4/CapSense_Tuner.c **** * \see CapSense P4 v3.10 Datasheet
+   9:Generated_Source\PSoC4/CapSense_Tuner.c **** * 
+  10:Generated_Source\PSoC4/CapSense_Tuner.c **** *//*****************************************************************************
+  11:Generated_Source\PSoC4/CapSense_Tuner.c **** * Copyright (2016), Cypress Semiconductor Corporation.
+  12:Generated_Source\PSoC4/CapSense_Tuner.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/CapSense_Tuner.c **** * This software is owned by Cypress Semiconductor Corporation (Cypress) and is
+  14:Generated_Source\PSoC4/CapSense_Tuner.c **** * protected by and subject to worldwide patent protection (United States and
+  15:Generated_Source\PSoC4/CapSense_Tuner.c **** * foreign), United States copyright laws and international treaty provisions.
+  16:Generated_Source\PSoC4/CapSense_Tuner.c **** * Cypress hereby grants to licensee a personal, non-exclusive, non-transferable
+  17:Generated_Source\PSoC4/CapSense_Tuner.c **** * license to copy, use, modify, create derivative works of, and compile the
+  18:Generated_Source\PSoC4/CapSense_Tuner.c **** * Cypress Source Code and derivative works for the sole purpose of creating
+  19:Generated_Source\PSoC4/CapSense_Tuner.c **** * custom software in support of licensee product to be used only in conjunction
+  20:Generated_Source\PSoC4/CapSense_Tuner.c **** * with a Cypress integrated circuit as specified in the applicable agreement.
+  21:Generated_Source\PSoC4/CapSense_Tuner.c **** * Any reproduction, modification, translation, compilation, or representation of
+  22:Generated_Source\PSoC4/CapSense_Tuner.c **** * this software except as specified above is prohibited without the express
+  23:Generated_Source\PSoC4/CapSense_Tuner.c **** * written permission of Cypress.
+  24:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  25:Generated_Source\PSoC4/CapSense_Tuner.c **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH
+  26:Generated_Source\PSoC4/CapSense_Tuner.c **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  27:Generated_Source\PSoC4/CapSense_Tuner.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  28:Generated_Source\PSoC4/CapSense_Tuner.c **** * Cypress reserves the right to make changes without further notice to the
+  29:Generated_Source\PSoC4/CapSense_Tuner.c **** * materials described herein. Cypress does not assume any liability arising out
+  30:Generated_Source\PSoC4/CapSense_Tuner.c **** * of the application or use of any product or circuit described herein. Cypress
+  31:Generated_Source\PSoC4/CapSense_Tuner.c **** * does not authorize its products for use as critical components in life-support
+  32:Generated_Source\PSoC4/CapSense_Tuner.c **** * systems where a malfunction or failure may reasonably be expected to result in
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 2
+
+
+  33:Generated_Source\PSoC4/CapSense_Tuner.c **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  34:Generated_Source\PSoC4/CapSense_Tuner.c **** * support systems application implies that the manufacturer assumes all risk of
+  35:Generated_Source\PSoC4/CapSense_Tuner.c **** * such use and in doing so indemnifies Cypress against all charges. Use may be
+  36:Generated_Source\PSoC4/CapSense_Tuner.c **** * limited by and subject to the applicable Cypress software license agreement.
+  37:Generated_Source\PSoC4/CapSense_Tuner.c **** *******************************************************************************/
+  38:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  39:Generated_Source\PSoC4/CapSense_Tuner.c **** #include "cytypes.h"
+  40:Generated_Source\PSoC4/CapSense_Tuner.c **** #include "CyLib.h"
+  41:Generated_Source\PSoC4/CapSense_Tuner.c **** #include "CapSense_Structure.h"
+  42:Generated_Source\PSoC4/CapSense_Tuner.c **** #include "CapSense_Tuner.h"
+  43:Generated_Source\PSoC4/CapSense_Tuner.c **** #include "CapSense_Control.h"
+  44:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  45:Generated_Source\PSoC4/CapSense_Tuner.c **** /* Tuner states definition */
+  46:Generated_Source\PSoC4/CapSense_Tuner.c **** #define TU_FSM_RUNNING      (0u)
+  47:Generated_Source\PSoC4/CapSense_Tuner.c **** #define TU_FSM_SUSPENDED    (1u)
+  48:Generated_Source\PSoC4/CapSense_Tuner.c **** #define TU_FSM_SNR_TEST     (2u)
+  49:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  50:Generated_Source\PSoC4/CapSense_Tuner.c **** /* Tuner state variable */
+  51:Generated_Source\PSoC4/CapSense_Tuner.c **** static uint32 tunerFsm = TU_FSM_RUNNING;
+  52:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  53:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  54:Generated_Source\PSoC4/CapSense_Tuner.c **** /*******************************************************************************
+  55:Generated_Source\PSoC4/CapSense_Tuner.c **** * Function Name: CapSense_TuInitialize
+  56:Generated_Source\PSoC4/CapSense_Tuner.c **** ****************************************************************************//**
+  57:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  58:Generated_Source\PSoC4/CapSense_Tuner.c **** * \brief
+  59:Generated_Source\PSoC4/CapSense_Tuner.c **** *   This function initializes the communication interface with the Tuner GUI.
+  60:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  61:Generated_Source\PSoC4/CapSense_Tuner.c **** * \details
+  62:Generated_Source\PSoC4/CapSense_Tuner.c **** *   This API sets the tuner state machine to the default state. It is called by
+  63:Generated_Source\PSoC4/CapSense_Tuner.c **** *   the CapSense_Start() API.
+  64:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  65:Generated_Source\PSoC4/CapSense_Tuner.c **** *******************************************************************************/
+  66:Generated_Source\PSoC4/CapSense_Tuner.c **** void CapSense_TuInitialize(void)
+  67:Generated_Source\PSoC4/CapSense_Tuner.c **** {
+  26              		.loc 1 67 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  68:Generated_Source\PSoC4/CapSense_Tuner.c ****     volatile CapSense_RAM_STRUCT *ptrDsRam = &CapSense_dsRam;
+  69:Generated_Source\PSoC4/CapSense_Tuner.c ****     
+  70:Generated_Source\PSoC4/CapSense_Tuner.c ****     ptrDsRam->tunerCmd = (uint16)CapSense_TU_CMD_NONE_E;
+  29              		.loc 1 70 0
+  30 0000 0023     		mov	r3, #0
+  31 0002 024A     		ldr	r2, .L2
+  71:Generated_Source\PSoC4/CapSense_Tuner.c ****     tunerFsm = TU_FSM_RUNNING;
+  72:Generated_Source\PSoC4/CapSense_Tuner.c **** }
+  32              		.loc 1 72 0
+  33              		@ sp needed
+  70:Generated_Source\PSoC4/CapSense_Tuner.c ****     tunerFsm = TU_FSM_RUNNING;
+  34              		.loc 1 70 0
+  35 0004 9380     		strh	r3, [r2, #4]
+  71:Generated_Source\PSoC4/CapSense_Tuner.c ****     tunerFsm = TU_FSM_RUNNING;
+  36              		.loc 1 71 0
+  37 0006 024A     		ldr	r2, .L2+4
+  38 0008 1360     		str	r3, [r2]
+  39              		.loc 1 72 0
+  40 000a 7047     		bx	lr
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 3
+
+
+  41              	.L3:
+  42              		.align	2
+  43              	.L2:
+  44 000c 00000000 		.word	CapSense_dsRam
+  45 0010 00000000 		.word	.LANCHOR0
+  46              		.cfi_endproc
+  47              	.LFE1:
+  48              		.size	CapSense_TuInitialize, .-CapSense_TuInitialize
+  49              		.section	.text.CapSense_RunTuner,"ax",%progbits
+  50              		.align	1
+  51              		.global	CapSense_RunTuner
+  52              		.code	16
+  53              		.thumb_func
+  54              		.type	CapSense_RunTuner, %function
+  55              	CapSense_RunTuner:
+  56              	.LFB2:
+  73:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+  74:Generated_Source\PSoC4/CapSense_Tuner.c **** /*******************************************************************************
+  75:Generated_Source\PSoC4/CapSense_Tuner.c **** * Function Name: CapSense_RunTuner
+  76:Generated_Source\PSoC4/CapSense_Tuner.c **** ****************************************************************************//**
+  77:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  78:Generated_Source\PSoC4/CapSense_Tuner.c **** * \brief
+  79:Generated_Source\PSoC4/CapSense_Tuner.c **** *  Establishes synchronized communication with the Tuner application.
+  80:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+  81:Generated_Source\PSoC4/CapSense_Tuner.c **** * \details
+  82:Generated_Source\PSoC4/CapSense_Tuner.c **** *  This function is used to establish synchronized communication between the 
+  83:Generated_Source\PSoC4/CapSense_Tuner.c **** *  CapSense component and Tuner application (or other host controllers).
+  84:Generated_Source\PSoC4/CapSense_Tuner.c **** *  This function should be called periodically in the application program loop 
+  85:Generated_Source\PSoC4/CapSense_Tuner.c **** *  to serve the Tuner application (or host controller) requests and commands. 
+  86:Generated_Source\PSoC4/CapSense_Tuner.c **** *  In most cases, the best place to call this function is after processing and 
+  87:Generated_Source\PSoC4/CapSense_Tuner.c **** *  before next scanning. 
+  88:Generated_Source\PSoC4/CapSense_Tuner.c **** *  
+  89:Generated_Source\PSoC4/CapSense_Tuner.c **** *  If this function is absent in the application program, then communication is 
+  90:Generated_Source\PSoC4/CapSense_Tuner.c **** *  asynchronous and the following disadvantages are applicable:
+  91:Generated_Source\PSoC4/CapSense_Tuner.c **** *    - The raw counts displayed in the tuner may be filtered and/or unfiltered 
+  92:Generated_Source\PSoC4/CapSense_Tuner.c **** *      firmware and as a result, noise and SNR measurements will not be 
+  93:Generated_Source\PSoC4/CapSense_Tuner.c **** *      accurate.
+  94:Generated_Source\PSoC4/CapSense_Tuner.c **** *    - The Tuner may read the sensor data such as raw counts from a scan 
+  95:Generated_Source\PSoC4/CapSense_Tuner.c **** *      multiple times, as a result, noise and SNR measurement will not be 
+  96:Generated_Source\PSoC4/CapSense_Tuner.c **** *      accurate.
+  97:Generated_Source\PSoC4/CapSense_Tuner.c **** *    - The Tuner and host controller should not change the component parameters 
+  98:Generated_Source\PSoC4/CapSense_Tuner.c **** *      via the tuner interface. Changing the component parameters via the tuner 
+  99:Generated_Source\PSoC4/CapSense_Tuner.c **** *      interface in the async mode will result in abnormal behavior from the 
+ 100:Generated_Source\PSoC4/CapSense_Tuner.c **** *      component.
+ 101:Generated_Source\PSoC4/CapSense_Tuner.c **** *  
+ 102:Generated_Source\PSoC4/CapSense_Tuner.c **** *  Note that calling this function is not mandatory for the application, but 
+ 103:Generated_Source\PSoC4/CapSense_Tuner.c **** *  required only to synchronize the communication with the host controller or 
+ 104:Generated_Source\PSoC4/CapSense_Tuner.c **** *  tuner application.
+ 105:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+ 106:Generated_Source\PSoC4/CapSense_Tuner.c **** * \return
+ 107:Generated_Source\PSoC4/CapSense_Tuner.c **** *  In some cases, the application program may need to know if the component was
+ 108:Generated_Source\PSoC4/CapSense_Tuner.c **** *  re-initialized. The return indicates if a restart command was executed or not: 
+ 109:Generated_Source\PSoC4/CapSense_Tuner.c **** *    - CapSense_STATUS_RESTART_DONE based on a received command, the 
+ 110:Generated_Source\PSoC4/CapSense_Tuner.c **** *      component was restarted.
+ 111:Generated_Source\PSoC4/CapSense_Tuner.c **** *    -  CapSense_STATUS_RESTART_NONE, no restart was executed by this 
+ 112:Generated_Source\PSoC4/CapSense_Tuner.c **** *      function.
+ 113:Generated_Source\PSoC4/CapSense_Tuner.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 4
+
+
+ 114:Generated_Source\PSoC4/CapSense_Tuner.c **** *******************************************************************************/
+ 115:Generated_Source\PSoC4/CapSense_Tuner.c **** uint32 CapSense_RunTuner(void)
+ 116:Generated_Source\PSoC4/CapSense_Tuner.c **** {
+  57              		.loc 1 116 0
+  58              		.cfi_startproc
+  59              	.LVL1:
+  60 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+  61              		.cfi_def_cfa_offset 32
+  62              		.cfi_offset 0, -32
+  63              		.cfi_offset 1, -28
+  64              		.cfi_offset 2, -24
+  65              		.cfi_offset 4, -20
+  66              		.cfi_offset 5, -16
+  67              		.cfi_offset 6, -12
+  68              		.cfi_offset 7, -8
+  69              		.cfi_offset 14, -4
+ 117:Generated_Source\PSoC4/CapSense_Tuner.c ****     uint8  critSect;
+ 118:Generated_Source\PSoC4/CapSense_Tuner.c ****     uint32 widgetId;
+ 119:Generated_Source\PSoC4/CapSense_Tuner.c ****     uint32 sensorId;
+ 120:Generated_Source\PSoC4/CapSense_Tuner.c ****     uint32 updateFlag = 0Lu;
+ 121:Generated_Source\PSoC4/CapSense_Tuner.c ****     CapSense_TU_CMD_ENUM command;
+ 122:Generated_Source\PSoC4/CapSense_Tuner.c ****     uint32 tunerStatus = CapSense_STATUS_RESTART_NONE;
+  70              		.loc 1 122 0
+  71 0002 0027     		mov	r7, #0
+  72              	.LVL2:
+  73              	.L12:
+ 123:Generated_Source\PSoC4/CapSense_Tuner.c ****     
+ 124:Generated_Source\PSoC4/CapSense_Tuner.c ****     volatile CapSense_RAM_STRUCT *ptrDsRam;
+ 125:Generated_Source\PSoC4/CapSense_Tuner.c ****     volatile CapSense_RAM_SNS_STRUCT *ptrSns;
+ 126:Generated_Source\PSoC4/CapSense_Tuner.c ****     
+ 127:Generated_Source\PSoC4/CapSense_Tuner.c ****     ptrDsRam = &CapSense_dsRam;
+ 128:Generated_Source\PSoC4/CapSense_Tuner.c ****     
+ 129:Generated_Source\PSoC4/CapSense_Tuner.c ****     do 
+ 130:Generated_Source\PSoC4/CapSense_Tuner.c ****     {
+ 131:Generated_Source\PSoC4/CapSense_Tuner.c ****         command = (CapSense_TU_CMD_ENUM)ptrDsRam->tunerCmd;
+  74              		.loc 1 131 0
+  75 0004 274D     		ldr	r5, .L20
+  76 0006 284E     		ldr	r6, .L20+4
+  77 0008 AB88     		ldrh	r3, [r5, #4]
+  78 000a 2C1C     		mov	r4, r5
+  79 000c DBB2     		uxtb	r3, r3
+ 132:Generated_Source\PSoC4/CapSense_Tuner.c ****         
+ 133:Generated_Source\PSoC4/CapSense_Tuner.c ****         /* Check command register */
+ 134:Generated_Source\PSoC4/CapSense_Tuner.c ****         switch (command)
+  80              		.loc 1 134 0
+  81 000e 581E     		sub	r0, r3, #1
+ 131:Generated_Source\PSoC4/CapSense_Tuner.c ****         
+  82              		.loc 1 131 0
+  83 0010 0193     		str	r3, [sp, #4]
+  84              	.LVL3:
+  85              		.loc 1 134 0
+  86 0012 0428     		cmp	r0, #4
+  87 0014 1ED8     		bhi	.L5
+  88 0016 FFF7FEFF 		bl	__gnu_thumb1_case_uqi
+  89              	.L7:
+  90 001a 03       		.byte	(.L6-.L7)/2
+  91 001b 05       		.byte	(.L8-.L7)/2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 5
+
+
+  92 001c 07       		.byte	(.L9-.L7)/2
+  93 001d 0D       		.byte	(.L10-.L7)/2
+  94 001e 0F       		.byte	(.L11-.L7)/2
+  95 001f 00       		.p2align 1
+  96              	.L6:
+ 135:Generated_Source\PSoC4/CapSense_Tuner.c ****         {
+ 136:Generated_Source\PSoC4/CapSense_Tuner.c ****         case CapSense_TU_CMD_SUSPEND_E:
+ 137:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerFsm = TU_FSM_SUSPENDED;
+  97              		.loc 1 137 0
+  98 0020 0123     		mov	r3, #1
+  99 0022 08E0     		b	.L18
+ 100              	.L8:
+ 138:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 1Lu;
+ 139:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 140:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 141:Generated_Source\PSoC4/CapSense_Tuner.c ****         case CapSense_TU_CMD_RESUME_E:    
+ 142:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerFsm = TU_FSM_RUNNING;
+ 101              		.loc 1 142 0
+ 102 0024 0023     		mov	r3, #0
+ 103 0026 06E0     		b	.L18
+ 104              	.L9:
+ 143:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 1Lu;
+ 144:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 145:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 146:Generated_Source\PSoC4/CapSense_Tuner.c ****         case CapSense_TU_CMD_RESTART_E:
+ 147:Generated_Source\PSoC4/CapSense_Tuner.c ****             (void)CapSense_Start();
+ 105              		.loc 1 147 0
+ 106 0028 FFF7FEFF 		bl	CapSense_Start
+ 107              	.LVL4:
+ 148:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerStatus = CapSense_STATUS_RESTART_DONE;
+ 149:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerFsm = TU_FSM_RUNNING;
+ 108              		.loc 1 149 0
+ 109 002c 0023     		mov	r3, #0
+ 148:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerStatus = CapSense_STATUS_RESTART_DONE;
+ 110              		.loc 1 148 0
+ 111 002e 0127     		mov	r7, #1
+ 112              		.loc 1 149 0
+ 113 0030 3360     		str	r3, [r6]
+ 114              	.LVL5:
+ 150:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 1Lu;
+ 151:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 115              		.loc 1 151 0
+ 116 0032 01E0     		b	.L11
+ 117              	.LVL6:
+ 118              	.L10:
+ 152:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 153:Generated_Source\PSoC4/CapSense_Tuner.c ****         case CapSense_TU_CMD_RUN_SNR_TEST_E:
+ 154:Generated_Source\PSoC4/CapSense_Tuner.c ****             tunerFsm = TU_FSM_SNR_TEST;
+ 119              		.loc 1 154 0
+ 120 0034 0223     		mov	r3, #2
+ 121              	.L18:
+ 122 0036 3360     		str	r3, [r6]
+ 123              	.LVL7:
+ 124              	.L11:
+ 155:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 1Lu;
+ 156:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 157:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 6
+
+
+ 158:Generated_Source\PSoC4/CapSense_Tuner.c ****         case CapSense_TU_CMD_PING_E:
+ 159:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 1Lu;
+ 160:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 161:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 162:Generated_Source\PSoC4/CapSense_Tuner.c ****         default:
+ 163:Generated_Source\PSoC4/CapSense_Tuner.c ****             break;
+ 164:Generated_Source\PSoC4/CapSense_Tuner.c ****         }
+ 165:Generated_Source\PSoC4/CapSense_Tuner.c ****         
+ 166:Generated_Source\PSoC4/CapSense_Tuner.c ****         /* Set Complete flag in command register if needed */
+ 167:Generated_Source\PSoC4/CapSense_Tuner.c ****         if (0Lu != updateFlag)
+ 168:Generated_Source\PSoC4/CapSense_Tuner.c ****         {
+ 169:Generated_Source\PSoC4/CapSense_Tuner.c ****             critSect = CyEnterCriticalSection();
+ 125              		.loc 1 169 0
+ 126 0038 FFF7FEFF 		bl	CyEnterCriticalSection
+ 127              	.LVL8:
+ 170:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 171:Generated_Source\PSoC4/CapSense_Tuner.c ****             /* Check if command wasn't overwritten with new command */
+ 172:Generated_Source\PSoC4/CapSense_Tuner.c ****             if (command == (CapSense_TU_CMD_ENUM)ptrDsRam->tunerCmd)
+ 128              		.loc 1 172 0
+ 129 003c AB88     		ldrh	r3, [r5, #4]
+ 130 003e 019A     		ldr	r2, [sp, #4]
+ 131 0040 DBB2     		uxtb	r3, r3
+ 132 0042 9A42     		cmp	r2, r3
+ 133 0044 04D1     		bne	.L15
+ 173:Generated_Source\PSoC4/CapSense_Tuner.c ****             {
+ 174:Generated_Source\PSoC4/CapSense_Tuner.c ****                 ptrDsRam->tunerCmd |= CapSense_TU_CMD_COMPLETE_BIT;
+ 134              		.loc 1 174 0
+ 135 0046 8023     		mov	r3, #128
+ 136 0048 AA88     		ldrh	r2, [r5, #4]
+ 137 004a 1B02     		lsl	r3, r3, #8
+ 138 004c 1343     		orr	r3, r2
+ 139 004e AB80     		strh	r3, [r5, #4]
+ 140              	.L15:
+ 175:Generated_Source\PSoC4/CapSense_Tuner.c ****             }
+ 176:Generated_Source\PSoC4/CapSense_Tuner.c ****             CyExitCriticalSection(critSect);
+ 141              		.loc 1 176 0
+ 142 0050 FFF7FEFF 		bl	CyExitCriticalSection
+ 143              	.LVL9:
+ 144              	.L5:
+ 177:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 178:Generated_Source\PSoC4/CapSense_Tuner.c ****             updateFlag = 0Lu;
+ 179:Generated_Source\PSoC4/CapSense_Tuner.c ****         }
+ 180:Generated_Source\PSoC4/CapSense_Tuner.c ****     } while (TU_FSM_SUSPENDED == tunerFsm);
+ 145              		.loc 1 180 0
+ 146 0054 3368     		ldr	r3, [r6]
+ 147 0056 012B     		cmp	r3, #1
+ 148 0058 D4D0     		beq	.L12
+ 181:Generated_Source\PSoC4/CapSense_Tuner.c **** 
+ 182:Generated_Source\PSoC4/CapSense_Tuner.c ****     /* Check for SNR Test mode and do appropriate actions */
+ 183:Generated_Source\PSoC4/CapSense_Tuner.c ****     if (TU_FSM_SNR_TEST == tunerFsm)
+ 149              		.loc 1 183 0
+ 150 005a 022B     		cmp	r3, #2
+ 151 005c 20D1     		bne	.L17
+ 184:Generated_Source\PSoC4/CapSense_Tuner.c ****     {
+ 185:Generated_Source\PSoC4/CapSense_Tuner.c ****         widgetId = ptrDsRam->snrTestWidgetId;
+ 152              		.loc 1 185 0
+ 153 005e 231C     		mov	r3, r4
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 7
+
+
+ 186:Generated_Source\PSoC4/CapSense_Tuner.c ****         sensorId = ptrDsRam->snrTestSensorId;
+ 154              		.loc 1 186 0
+ 155 0060 221C     		mov	r2, r4
+ 185:Generated_Source\PSoC4/CapSense_Tuner.c ****         sensorId = ptrDsRam->snrTestSensorId;
+ 156              		.loc 1 185 0
+ 157 0062 3833     		add	r3, r3, #56
+ 158              		.loc 1 186 0
+ 159 0064 3932     		add	r2, r2, #57
+ 185:Generated_Source\PSoC4/CapSense_Tuner.c ****         sensorId = ptrDsRam->snrTestSensorId;
+ 160              		.loc 1 185 0
+ 161 0066 1B78     		ldrb	r3, [r3]
+ 162              	.LVL10:
+ 163              		.loc 1 186 0
+ 164 0068 1578     		ldrb	r5, [r2]
+ 165 006a EDB2     		uxtb	r5, r5
+ 166              	.LVL11:
+ 187:Generated_Source\PSoC4/CapSense_Tuner.c ****         
+ 188:Generated_Source\PSoC4/CapSense_Tuner.c ****         /* Check if widgetId and sensorId are in range, 
+ 189:Generated_Source\PSoC4/CapSense_Tuner.c ****          * and data was updated in RAM (scan counter changed) 
+ 190:Generated_Source\PSoC4/CapSense_Tuner.c ****          */
+ 191:Generated_Source\PSoC4/CapSense_Tuner.c ****         if ((widgetId < CapSense_TOTAL_WIDGETS)              && 
+ 167              		.loc 1 191 0
+ 168 006c 002B     		cmp	r3, #0
+ 169 006e 17D1     		bne	.L17
+ 192:Generated_Source\PSoC4/CapSense_Tuner.c ****             (sensorId < CapSense_GET_SENSOR_COUNT(widgetId)) &&
+ 170              		.loc 1 192 0 discriminator 1
+ 171 0070 0E4B     		ldr	r3, .L20+8
+ 172              	.LVL12:
+ 173 0072 DA8A     		ldrh	r2, [r3, #22]
+ 191:Generated_Source\PSoC4/CapSense_Tuner.c ****             (sensorId < CapSense_GET_SENSOR_COUNT(widgetId)) &&
+ 174              		.loc 1 191 0 discriminator 1
+ 175 0074 9542     		cmp	r5, r2
+ 176 0076 13D2     		bcs	.L17
+ 193:Generated_Source\PSoC4/CapSense_Tuner.c ****             (ptrDsRam->scanCounter != ptrDsRam->snrTestScanCounter))
+ 177              		.loc 1 193 0
+ 178 0078 E188     		ldrh	r1, [r4, #6]
+ 179 007a 628F     		ldrh	r2, [r4, #58]
+ 192:Generated_Source\PSoC4/CapSense_Tuner.c ****             (sensorId < CapSense_GET_SENSOR_COUNT(widgetId)) &&
+ 180              		.loc 1 192 0
+ 181 007c 9142     		cmp	r1, r2
+ 182 007e 0FD0     		beq	.L17
+ 194:Generated_Source\PSoC4/CapSense_Tuner.c ****         {
+ 195:Generated_Source\PSoC4/CapSense_Tuner.c ****             /* Get access to the Sensor Object */
+ 196:Generated_Source\PSoC4/CapSense_Tuner.c ****             ptrSns = CapSense_dsFlash.wdgtArray[widgetId].ptr2SnsRam;
+ 183              		.loc 1 196 0
+ 184 0080 9B68     		ldr	r3, [r3, #8]
+ 185 0082 0193     		str	r3, [sp, #4]
+ 186              	.LVL13:
+ 197:Generated_Source\PSoC4/CapSense_Tuner.c ****             ptrSns += sensorId;
+ 187              		.loc 1 197 0
+ 188 0084 0A23     		mov	r3, #10
+ 189              	.LVL14:
+ 190 0086 5D43     		mul	r5, r3
+ 191              	.LVL15:
+ 192 0088 019B     		ldr	r3, [sp, #4]
+ 193 008a 5D19     		add	r5, r3, r5
+ 194              	.LVL16:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 8
+
+
+ 198:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 199:Generated_Source\PSoC4/CapSense_Tuner.c ****             /* Update data in SNR Test Object */
+ 200:Generated_Source\PSoC4/CapSense_Tuner.c ****             critSect = CyEnterCriticalSection();
+ 195              		.loc 1 200 0
+ 196 008c FFF7FEFF 		bl	CyEnterCriticalSection
+ 197              	.LVL17:
+ 201:Generated_Source\PSoC4/CapSense_Tuner.c ****             ptrDsRam->snrTestScanCounter = ptrDsRam->scanCounter;
+ 198              		.loc 1 201 0
+ 199 0090 E388     		ldrh	r3, [r4, #6]
+ 200 0092 9BB2     		uxth	r3, r3
+ 201 0094 6387     		strh	r3, [r4, #58]
+ 202:Generated_Source\PSoC4/CapSense_Tuner.c ****             ptrDsRam->snrTestRawCount[0u] = ptrSns->raw[0u];
+ 202              		.loc 1 202 0
+ 203 0096 2B88     		ldrh	r3, [r5]
+ 204 0098 9BB2     		uxth	r3, r3
+ 205 009a A387     		strh	r3, [r4, #60]
+ 203:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 204:Generated_Source\PSoC4/CapSense_Tuner.c ****             #if (0u != CapSense_MULTI_FREQ_SCAN_EN)
+ 205:Generated_Source\PSoC4/CapSense_Tuner.c ****                 ptrDsRam->snrTestRawCount[1u] = ptrSns->raw[1u];
+ 206:Generated_Source\PSoC4/CapSense_Tuner.c ****                 ptrDsRam->snrTestRawCount[2u] = ptrSns->raw[2u];
+ 207:Generated_Source\PSoC4/CapSense_Tuner.c ****             #endif
+ 208:Generated_Source\PSoC4/CapSense_Tuner.c ****             
+ 209:Generated_Source\PSoC4/CapSense_Tuner.c ****             CyExitCriticalSection(critSect);
+ 206              		.loc 1 209 0
+ 207 009c FFF7FEFF 		bl	CyExitCriticalSection
+ 208              	.LVL18:
+ 209              	.L17:
+ 210:Generated_Source\PSoC4/CapSense_Tuner.c ****         } 
+ 211:Generated_Source\PSoC4/CapSense_Tuner.c ****     }
+ 212:Generated_Source\PSoC4/CapSense_Tuner.c ****     return tunerStatus;
+ 213:Generated_Source\PSoC4/CapSense_Tuner.c **** }
+ 210              		.loc 1 213 0
+ 211 00a0 381C     		mov	r0, r7
+ 212              		@ sp needed
+ 213              	.LVL19:
+ 214 00a2 FEBD     		pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+ 215              	.L21:
+ 216              		.align	2
+ 217              	.L20:
+ 218 00a4 00000000 		.word	CapSense_dsRam
+ 219 00a8 00000000 		.word	.LANCHOR0
+ 220 00ac 00000000 		.word	CapSense_dsFlash
+ 221              		.cfi_endproc
+ 222              	.LFE2:
+ 223              		.size	CapSense_RunTuner, .-CapSense_RunTuner
+ 224              		.bss
+ 225              		.align	2
+ 226              		.set	.LANCHOR0,. + 0
+ 227              		.type	tunerFsm, %object
+ 228              		.size	tunerFsm, 4
+ 229              	tunerFsm:
+ 230 0000 00000000 		.space	4
+ 231              		.text
+ 232              	.Letext0:
+ 233              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 234              		.file 3 "Generated_Source\\PSoC4\\CapSense_Configuration.h"
+ 235              		.file 4 "Generated_Source\\PSoC4\\CapSense_SmartSense_LL.h"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 9
+
+
+ 236              		.file 5 "Generated_Source\\PSoC4\\CapSense_Structure.h"
+ 237              		.file 6 "Generated_Source\\PSoC4\\CapSense_Tuner.h"
+ 238              		.file 7 "Generated_Source\\PSoC4\\CapSense_Control.h"
+ 239              		.file 8 "Generated_Source\\PSoC4\\CyLib.h"
+ 240              		.section	.debug_info,"",%progbits
+ 241              	.Ldebug_info0:
+ 242 0000 35060000 		.4byte	0x635
+ 243 0004 0400     		.2byte	0x4
+ 244 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 245 000a 04       		.byte	0x4
+ 246 000b 01       		.uleb128 0x1
+ 247 000c 5C020000 		.4byte	.LASF101
+ 248 0010 01       		.byte	0x1
+ 249 0011 EE020000 		.4byte	.LASF102
+ 250 0015 3F040000 		.4byte	.LASF103
+ 251 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 252 001d 00000000 		.4byte	0
+ 253 0021 00000000 		.4byte	.Ldebug_line0
+ 254 0025 02       		.uleb128 0x2
+ 255 0026 01       		.byte	0x1
+ 256 0027 06       		.byte	0x6
+ 257 0028 00010000 		.4byte	.LASF0
+ 258 002c 02       		.uleb128 0x2
+ 259 002d 01       		.byte	0x1
+ 260 002e 08       		.byte	0x8
+ 261 002f 6B040000 		.4byte	.LASF1
+ 262 0033 02       		.uleb128 0x2
+ 263 0034 02       		.byte	0x2
+ 264 0035 05       		.byte	0x5
+ 265 0036 BA040000 		.4byte	.LASF2
+ 266 003a 02       		.uleb128 0x2
+ 267 003b 02       		.byte	0x2
+ 268 003c 07       		.byte	0x7
+ 269 003d 38020000 		.4byte	.LASF3
+ 270 0041 02       		.uleb128 0x2
+ 271 0042 04       		.byte	0x4
+ 272 0043 05       		.byte	0x5
+ 273 0044 30010000 		.4byte	.LASF4
+ 274 0048 02       		.uleb128 0x2
+ 275 0049 04       		.byte	0x4
+ 276 004a 07       		.byte	0x7
+ 277 004b F2010000 		.4byte	.LASF5
+ 278 004f 02       		.uleb128 0x2
+ 279 0050 08       		.byte	0x8
+ 280 0051 05       		.byte	0x5
+ 281 0052 F2000000 		.4byte	.LASF6
+ 282 0056 02       		.uleb128 0x2
+ 283 0057 08       		.byte	0x8
+ 284 0058 07       		.byte	0x7
+ 285 0059 58000000 		.4byte	.LASF7
+ 286 005d 03       		.uleb128 0x3
+ 287 005e 04       		.byte	0x4
+ 288 005f 05       		.byte	0x5
+ 289 0060 696E7400 		.ascii	"int\000"
+ 290 0064 02       		.uleb128 0x2
+ 291 0065 04       		.byte	0x4
+ 292 0066 07       		.byte	0x7
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 10
+
+
+ 293 0067 BE010000 		.4byte	.LASF8
+ 294 006b 04       		.uleb128 0x4
+ 295 006c 63010000 		.4byte	.LASF9
+ 296 0070 02       		.byte	0x2
+ 297 0071 B901     		.2byte	0x1b9
+ 298 0073 2C000000 		.4byte	0x2c
+ 299 0077 04       		.uleb128 0x4
+ 300 0078 00000000 		.4byte	.LASF10
+ 301 007c 02       		.byte	0x2
+ 302 007d BA01     		.2byte	0x1ba
+ 303 007f 3A000000 		.4byte	0x3a
+ 304 0083 04       		.uleb128 0x4
+ 305 0084 89010000 		.4byte	.LASF11
+ 306 0088 02       		.byte	0x2
+ 307 0089 BB01     		.2byte	0x1bb
+ 308 008b 48000000 		.4byte	0x48
+ 309 008f 02       		.uleb128 0x2
+ 310 0090 04       		.byte	0x4
+ 311 0091 04       		.byte	0x4
+ 312 0092 D9030000 		.4byte	.LASF12
+ 313 0096 02       		.uleb128 0x2
+ 314 0097 08       		.byte	0x8
+ 315 0098 04       		.byte	0x4
+ 316 0099 69010000 		.4byte	.LASF13
+ 317 009d 02       		.uleb128 0x2
+ 318 009e 01       		.byte	0x1
+ 319 009f 08       		.byte	0x8
+ 320 00a0 2A050000 		.4byte	.LASF14
+ 321 00a4 04       		.uleb128 0x4
+ 322 00a5 F3050000 		.4byte	.LASF15
+ 323 00a9 02       		.byte	0x2
+ 324 00aa 5B02     		.2byte	0x25b
+ 325 00ac 48000000 		.4byte	0x48
+ 326 00b0 02       		.uleb128 0x2
+ 327 00b1 04       		.byte	0x4
+ 328 00b2 07       		.byte	0x7
+ 329 00b3 65030000 		.4byte	.LASF16
+ 330 00b7 05       		.uleb128 0x5
+ 331 00b8 04       		.byte	0x4
+ 332 00b9 06       		.uleb128 0x6
+ 333 00ba CF000000 		.4byte	.LASF17
+ 334 00be 03       		.byte	0x3
+ 335 00bf D7       		.byte	0xd7
+ 336 00c0 77000000 		.4byte	0x77
+ 337 00c4 06       		.uleb128 0x6
+ 338 00c5 93000000 		.4byte	.LASF18
+ 339 00c9 03       		.byte	0x3
+ 340 00ca DB       		.byte	0xdb
+ 341 00cb 6B000000 		.4byte	0x6b
+ 342 00cf 07       		.uleb128 0x7
+ 343 00d0 04       		.byte	0x4
+ 344 00d1 6B000000 		.4byte	0x6b
+ 345 00d5 08       		.uleb128 0x8
+ 346 00d6 0C       		.byte	0xc
+ 347 00d7 04       		.byte	0x4
+ 348 00d8 6C       		.byte	0x6c
+ 349 00d9 32010000 		.4byte	0x132
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 11
+
+
+ 350 00dd 09       		.uleb128 0x9
+ 351 00de 23060000 		.4byte	.LASF19
+ 352 00e2 04       		.byte	0x4
+ 353 00e3 6E       		.byte	0x6e
+ 354 00e4 77000000 		.4byte	0x77
+ 355 00e8 00       		.byte	0
+ 356 00e9 09       		.uleb128 0x9
+ 357 00ea 79040000 		.4byte	.LASF20
+ 358 00ee 04       		.byte	0x4
+ 359 00ef 6F       		.byte	0x6f
+ 360 00f0 77000000 		.4byte	0x77
+ 361 00f4 02       		.byte	0x2
+ 362 00f5 09       		.uleb128 0x9
+ 363 00f6 80040000 		.4byte	.LASF21
+ 364 00fa 04       		.byte	0x4
+ 365 00fb 70       		.byte	0x70
+ 366 00fc 77000000 		.4byte	0x77
+ 367 0100 04       		.byte	0x4
+ 368 0101 09       		.uleb128 0x9
+ 369 0102 87040000 		.4byte	.LASF22
+ 370 0106 04       		.byte	0x4
+ 371 0107 71       		.byte	0x71
+ 372 0108 77000000 		.4byte	0x77
+ 373 010c 06       		.byte	0x6
+ 374 010d 09       		.uleb128 0x9
+ 375 010e 8E040000 		.4byte	.LASF23
+ 376 0112 04       		.byte	0x4
+ 377 0113 72       		.byte	0x72
+ 378 0114 77000000 		.4byte	0x77
+ 379 0118 08       		.byte	0x8
+ 380 0119 09       		.uleb128 0x9
+ 381 011a 95040000 		.4byte	.LASF24
+ 382 011e 04       		.byte	0x4
+ 383 011f 73       		.byte	0x73
+ 384 0120 6B000000 		.4byte	0x6b
+ 385 0124 0A       		.byte	0xa
+ 386 0125 09       		.uleb128 0x9
+ 387 0126 9C040000 		.4byte	.LASF25
+ 388 012a 04       		.byte	0x4
+ 389 012b 74       		.byte	0x74
+ 390 012c 6B000000 		.4byte	0x6b
+ 391 0130 0B       		.byte	0xb
+ 392 0131 00       		.byte	0
+ 393 0132 06       		.uleb128 0x6
+ 394 0133 DF030000 		.4byte	.LASF26
+ 395 0137 04       		.byte	0x4
+ 396 0138 75       		.byte	0x75
+ 397 0139 D5000000 		.4byte	0xd5
+ 398 013d 0A       		.uleb128 0xa
+ 399 013e 6B000000 		.4byte	0x6b
+ 400 0142 4D010000 		.4byte	0x14d
+ 401 0146 0B       		.uleb128 0xb
+ 402 0147 B0000000 		.4byte	0xb0
+ 403 014b 00       		.byte	0
+ 404 014c 00       		.byte	0
+ 405 014d 08       		.uleb128 0x8
+ 406 014e 14       		.byte	0x14
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 12
+
+
+ 407 014f 05       		.byte	0x5
+ 408 0150 CA       		.byte	0xca
+ 409 0151 03020000 		.4byte	0x203
+ 410 0155 09       		.uleb128 0x9
+ 411 0156 E0040000 		.4byte	.LASF27
+ 412 015a 05       		.byte	0x5
+ 413 015b D0       		.byte	0xd0
+ 414 015c 77000000 		.4byte	0x77
+ 415 0160 00       		.byte	0
+ 416 0161 09       		.uleb128 0x9
+ 417 0162 1A060000 		.4byte	.LASF28
+ 418 0166 05       		.byte	0x5
+ 419 0167 D5       		.byte	0xd5
+ 420 0168 B9000000 		.4byte	0xb9
+ 421 016c 02       		.byte	0x2
+ 422 016d 09       		.uleb128 0x9
+ 423 016e 59060000 		.4byte	.LASF29
+ 424 0172 05       		.byte	0x5
+ 425 0173 DA       		.byte	0xda
+ 426 0174 6B000000 		.4byte	0x6b
+ 427 0178 04       		.byte	0x4
+ 428 0179 09       		.uleb128 0x9
+ 429 017a 7B030000 		.4byte	.LASF30
+ 430 017e 05       		.byte	0x5
+ 431 017f DF       		.byte	0xdf
+ 432 0180 6B000000 		.4byte	0x6b
+ 433 0184 05       		.byte	0x5
+ 434 0185 09       		.uleb128 0x9
+ 435 0186 90010000 		.4byte	.LASF31
+ 436 018a 05       		.byte	0x5
+ 437 018b E4       		.byte	0xe4
+ 438 018c 6B000000 		.4byte	0x6b
+ 439 0190 06       		.byte	0x6
+ 440 0191 09       		.uleb128 0x9
+ 441 0192 36050000 		.4byte	.LASF32
+ 442 0196 05       		.byte	0x5
+ 443 0197 E9       		.byte	0xe9
+ 444 0198 6B000000 		.4byte	0x6b
+ 445 019c 07       		.byte	0x7
+ 446 019d 09       		.uleb128 0x9
+ 447 019e 26020000 		.4byte	.LASF33
+ 448 01a2 05       		.byte	0x5
+ 449 01a3 EF       		.byte	0xef
+ 450 01a4 C4000000 		.4byte	0xc4
+ 451 01a8 08       		.byte	0x8
+ 452 01a9 09       		.uleb128 0x9
+ 453 01aa 04040000 		.4byte	.LASF34
+ 454 01ae 05       		.byte	0x5
+ 455 01af F4       		.byte	0xf4
+ 456 01b0 6B000000 		.4byte	0x6b
+ 457 01b4 09       		.byte	0x9
+ 458 01b5 09       		.uleb128 0x9
+ 459 01b6 55030000 		.4byte	.LASF35
+ 460 01ba 05       		.byte	0x5
+ 461 01bb FB       		.byte	0xfb
+ 462 01bc 3D010000 		.4byte	0x13d
+ 463 01c0 0A       		.byte	0xa
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 13
+
+
+ 464 01c1 0C       		.uleb128 0xc
+ 465 01c2 2F050000 		.4byte	.LASF36
+ 466 01c6 05       		.byte	0x5
+ 467 01c7 0201     		.2byte	0x102
+ 468 01c9 6B000000 		.4byte	0x6b
+ 469 01cd 0B       		.byte	0xb
+ 470 01ce 0C       		.uleb128 0xc
+ 471 01cf E6050000 		.4byte	.LASF37
+ 472 01d3 05       		.byte	0x5
+ 473 01d4 0701     		.2byte	0x107
+ 474 01d6 6B000000 		.4byte	0x6b
+ 475 01da 0C       		.byte	0xc
+ 476 01db 0C       		.uleb128 0xc
+ 477 01dc 36000000 		.4byte	.LASF38
+ 478 01e0 05       		.byte	0x5
+ 479 01e1 0D01     		.2byte	0x10d
+ 480 01e3 77000000 		.4byte	0x77
+ 481 01e7 0E       		.byte	0xe
+ 482 01e8 0C       		.uleb128 0xc
+ 483 01e9 A5030000 		.4byte	.LASF39
+ 484 01ed 05       		.byte	0x5
+ 485 01ee 1201     		.2byte	0x112
+ 486 01f0 77000000 		.4byte	0x77
+ 487 01f4 10       		.byte	0x10
+ 488 01f5 0C       		.uleb128 0xc
+ 489 01f6 4E010000 		.4byte	.LASF40
+ 490 01fa 05       		.byte	0x5
+ 491 01fb 1701     		.2byte	0x117
+ 492 01fd B9000000 		.4byte	0xb9
+ 493 0201 12       		.byte	0x12
+ 494 0202 00       		.byte	0
+ 495 0203 04       		.uleb128 0x4
+ 496 0204 22030000 		.4byte	.LASF41
+ 497 0208 05       		.byte	0x5
+ 498 0209 1801     		.2byte	0x118
+ 499 020b 4D010000 		.4byte	0x14d
+ 500 020f 0D       		.uleb128 0xd
+ 501 0210 14       		.byte	0x14
+ 502 0211 05       		.byte	0x5
+ 503 0212 1E01     		.2byte	0x11e
+ 504 0214 26020000 		.4byte	0x226
+ 505 0218 0C       		.uleb128 0xc
+ 506 0219 E7000000 		.4byte	.LASF42
+ 507 021d 05       		.byte	0x5
+ 508 021e 2301     		.2byte	0x123
+ 509 0220 03020000 		.4byte	0x203
+ 510 0224 00       		.byte	0
+ 511 0225 00       		.byte	0
+ 512 0226 04       		.uleb128 0x4
+ 513 0227 2A060000 		.4byte	.LASF43
+ 514 022b 05       		.byte	0x5
+ 515 022c 2401     		.2byte	0x124
+ 516 022e 0F020000 		.4byte	0x20f
+ 517 0232 0D       		.uleb128 0xd
+ 518 0233 0A       		.byte	0xa
+ 519 0234 05       		.byte	0x5
+ 520 0235 2A01     		.2byte	0x12a
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 14
+
+
+ 521 0237 8A020000 		.4byte	0x28a
+ 522 023b 0E       		.uleb128 0xe
+ 523 023c 72617700 		.ascii	"raw\000"
+ 524 0240 05       		.byte	0x5
+ 525 0241 2F01     		.2byte	0x12f
+ 526 0243 8A020000 		.4byte	0x28a
+ 527 0247 00       		.byte	0
+ 528 0248 0C       		.uleb128 0xc
+ 529 0249 B9010000 		.4byte	.LASF44
+ 530 024d 05       		.byte	0x5
+ 531 024e 3401     		.2byte	0x134
+ 532 0250 8A020000 		.4byte	0x28a
+ 533 0254 02       		.byte	0x2
+ 534 0255 0C       		.uleb128 0xc
+ 535 0256 9B010000 		.4byte	.LASF45
+ 536 025a 05       		.byte	0x5
+ 537 025b 3A01     		.2byte	0x13a
+ 538 025d 3D010000 		.4byte	0x13d
+ 539 0261 04       		.byte	0x4
+ 540 0262 0C       		.uleb128 0xc
+ 541 0263 8E000000 		.4byte	.LASF46
+ 542 0267 05       		.byte	0x5
+ 543 0268 3F01     		.2byte	0x13f
+ 544 026a B9000000 		.4byte	0xb9
+ 545 026e 06       		.byte	0x6
+ 546 026f 0C       		.uleb128 0xc
+ 547 0270 59050000 		.4byte	.LASF47
+ 548 0274 05       		.byte	0x5
+ 549 0275 4401     		.2byte	0x144
+ 550 0277 9A020000 		.4byte	0x29a
+ 551 027b 08       		.byte	0x8
+ 552 027c 0C       		.uleb128 0xc
+ 553 027d 50050000 		.4byte	.LASF48
+ 554 0281 05       		.byte	0x5
+ 555 0282 4A01     		.2byte	0x14a
+ 556 0284 3D010000 		.4byte	0x13d
+ 557 0288 09       		.byte	0x9
+ 558 0289 00       		.byte	0
+ 559 028a 0A       		.uleb128 0xa
+ 560 028b 77000000 		.4byte	0x77
+ 561 028f 9A020000 		.4byte	0x29a
+ 562 0293 0B       		.uleb128 0xb
+ 563 0294 B0000000 		.4byte	0xb0
+ 564 0298 00       		.byte	0
+ 565 0299 00       		.byte	0
+ 566 029a 0A       		.uleb128 0xa
+ 567 029b C4000000 		.4byte	0xc4
+ 568 029f AA020000 		.4byte	0x2aa
+ 569 02a3 0B       		.uleb128 0xb
+ 570 02a4 B0000000 		.4byte	0xb0
+ 571 02a8 00       		.byte	0
+ 572 02a9 00       		.byte	0
+ 573 02aa 04       		.uleb128 0x4
+ 574 02ab 40000000 		.4byte	.LASF49
+ 575 02af 05       		.byte	0x5
+ 576 02b0 4B01     		.2byte	0x14b
+ 577 02b2 32020000 		.4byte	0x232
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 15
+
+
+ 578 02b6 0D       		.uleb128 0xd
+ 579 02b7 0A       		.byte	0xa
+ 580 02b8 05       		.byte	0x5
+ 581 02b9 5101     		.2byte	0x151
+ 582 02bb CD020000 		.4byte	0x2cd
+ 583 02bf 0C       		.uleb128 0xc
+ 584 02c0 E7000000 		.4byte	.LASF42
+ 585 02c4 05       		.byte	0x5
+ 586 02c5 5601     		.2byte	0x156
+ 587 02c7 CD020000 		.4byte	0x2cd
+ 588 02cb 00       		.byte	0
+ 589 02cc 00       		.byte	0
+ 590 02cd 0A       		.uleb128 0xa
+ 591 02ce AA020000 		.4byte	0x2aa
+ 592 02d2 DD020000 		.4byte	0x2dd
+ 593 02d6 0B       		.uleb128 0xb
+ 594 02d7 B0000000 		.4byte	0xb0
+ 595 02db 00       		.byte	0
+ 596 02dc 00       		.byte	0
+ 597 02dd 04       		.uleb128 0x4
+ 598 02de 0E040000 		.4byte	.LASF50
+ 599 02e2 05       		.byte	0x5
+ 600 02e3 5701     		.2byte	0x157
+ 601 02e5 B6020000 		.4byte	0x2b6
+ 602 02e9 0D       		.uleb128 0xd
+ 603 02ea 40       		.byte	0x40
+ 604 02eb 05       		.byte	0x5
+ 605 02ec 5E01     		.2byte	0x15e
+ 606 02ee C3030000 		.4byte	0x3c3
+ 607 02f2 0C       		.uleb128 0xc
+ 608 02f3 53020000 		.4byte	.LASF51
+ 609 02f7 05       		.byte	0x5
+ 610 02f8 6401     		.2byte	0x164
+ 611 02fa 77000000 		.4byte	0x77
+ 612 02fe 00       		.byte	0
+ 613 02ff 0C       		.uleb128 0xc
+ 614 0300 43030000 		.4byte	.LASF52
+ 615 0304 05       		.byte	0x5
+ 616 0305 6901     		.2byte	0x169
+ 617 0307 77000000 		.4byte	0x77
+ 618 030b 02       		.byte	0x2
+ 619 030c 0C       		.uleb128 0xc
+ 620 030d D0030000 		.4byte	.LASF53
+ 621 0311 05       		.byte	0x5
+ 622 0312 6F01     		.2byte	0x16f
+ 623 0314 77000000 		.4byte	0x77
+ 624 0318 04       		.byte	0x4
+ 625 0319 0C       		.uleb128 0xc
+ 626 031a B5030000 		.4byte	.LASF54
+ 627 031e 05       		.byte	0x5
+ 628 031f 7401     		.2byte	0x174
+ 629 0321 77000000 		.4byte	0x77
+ 630 0325 06       		.byte	0x6
+ 631 0326 0C       		.uleb128 0xc
+ 632 0327 A2050000 		.4byte	.LASF55
+ 633 032b 05       		.byte	0x5
+ 634 032c 7901     		.2byte	0x179
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 16
+
+
+ 635 032e 83000000 		.4byte	0x83
+ 636 0332 08       		.byte	0x8
+ 637 0333 0C       		.uleb128 0xc
+ 638 0334 04020000 		.4byte	.LASF56
+ 639 0338 05       		.byte	0x5
+ 640 0339 7E01     		.2byte	0x17e
+ 641 033b C3030000 		.4byte	0x3c3
+ 642 033f 0C       		.byte	0xc
+ 643 0340 0C       		.uleb128 0xc
+ 644 0341 AE010000 		.4byte	.LASF57
+ 645 0345 05       		.byte	0x5
+ 646 0346 8301     		.2byte	0x183
+ 647 0348 C3030000 		.4byte	0x3c3
+ 648 034c 10       		.byte	0x10
+ 649 034d 0C       		.uleb128 0xc
+ 650 034e 26010000 		.4byte	.LASF58
+ 651 0352 05       		.byte	0x5
+ 652 0353 9101     		.2byte	0x191
+ 653 0355 3D010000 		.4byte	0x13d
+ 654 0359 14       		.byte	0x14
+ 655 035a 0C       		.uleb128 0xc
+ 656 035b 84030000 		.4byte	.LASF59
+ 657 035f 05       		.byte	0x5
+ 658 0360 9601     		.2byte	0x196
+ 659 0362 77000000 		.4byte	0x77
+ 660 0366 16       		.byte	0x16
+ 661 0367 0C       		.uleb128 0xc
+ 662 0368 39010000 		.4byte	.LASF60
+ 663 036c 05       		.byte	0x5
+ 664 036d 9B01     		.2byte	0x19b
+ 665 036f 6B000000 		.4byte	0x6b
+ 666 0373 18       		.byte	0x18
+ 667 0374 0C       		.uleb128 0xc
+ 668 0375 EB040000 		.4byte	.LASF61
+ 669 0379 05       		.byte	0x5
+ 670 037a A001     		.2byte	0x1a0
+ 671 037c 26020000 		.4byte	0x226
+ 672 0380 1A       		.byte	0x1a
+ 673 0381 0C       		.uleb128 0xc
+ 674 0382 4B020000 		.4byte	.LASF62
+ 675 0386 05       		.byte	0x5
+ 676 0387 A501     		.2byte	0x1a5
+ 677 0389 DD020000 		.4byte	0x2dd
+ 678 038d 2E       		.byte	0x2e
+ 679 038e 0C       		.uleb128 0xc
+ 680 038f CB010000 		.4byte	.LASF63
+ 681 0393 05       		.byte	0x5
+ 682 0394 AA01     		.2byte	0x1aa
+ 683 0396 6B000000 		.4byte	0x6b
+ 684 039a 38       		.byte	0x38
+ 685 039b 0C       		.uleb128 0xc
+ 686 039c AE000000 		.4byte	.LASF64
+ 687 03a0 05       		.byte	0x5
+ 688 03a1 AF01     		.2byte	0x1af
+ 689 03a3 6B000000 		.4byte	0x6b
+ 690 03a7 39       		.byte	0x39
+ 691 03a8 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 17
+
+
+ 692 03a9 46060000 		.4byte	.LASF65
+ 693 03ad 05       		.byte	0x5
+ 694 03ae B401     		.2byte	0x1b4
+ 695 03b0 77000000 		.4byte	0x77
+ 696 03b4 3A       		.byte	0x3a
+ 697 03b5 0C       		.uleb128 0xc
+ 698 03b6 70010000 		.4byte	.LASF66
+ 699 03ba 05       		.byte	0x5
+ 700 03bb B901     		.2byte	0x1b9
+ 701 03bd 8A020000 		.4byte	0x28a
+ 702 03c1 3C       		.byte	0x3c
+ 703 03c2 00       		.byte	0
+ 704 03c3 0A       		.uleb128 0xa
+ 705 03c4 83000000 		.4byte	0x83
+ 706 03c8 D3030000 		.4byte	0x3d3
+ 707 03cc 0B       		.uleb128 0xb
+ 708 03cd B0000000 		.4byte	0xb0
+ 709 03d1 00       		.byte	0
+ 710 03d2 00       		.byte	0
+ 711 03d3 04       		.uleb128 0x4
+ 712 03d4 2B040000 		.4byte	.LASF67
+ 713 03d8 05       		.byte	0x5
+ 714 03d9 BA01     		.2byte	0x1ba
+ 715 03db E9020000 		.4byte	0x2e9
+ 716 03df 0D       		.uleb128 0xd
+ 717 03e0 20       		.byte	0x20
+ 718 03e1 05       		.byte	0x5
+ 719 03e2 1902     		.2byte	0x219
+ 720 03e4 6B040000 		.4byte	0x46b
+ 721 03e8 0C       		.uleb128 0xc
+ 722 03e9 81000000 		.4byte	.LASF68
+ 723 03ed 05       		.byte	0x5
+ 724 03ee 2202     		.2byte	0x222
+ 725 03f0 6B040000 		.4byte	0x46b
+ 726 03f4 00       		.byte	0
+ 727 03f5 0C       		.uleb128 0xc
+ 728 03f6 16030000 		.4byte	.LASF69
+ 729 03fa 05       		.byte	0x5
+ 730 03fb 2802     		.2byte	0x228
+ 731 03fd B7000000 		.4byte	0xb7
+ 732 0401 04       		.byte	0x4
+ 733 0402 0C       		.uleb128 0xc
+ 734 0403 43010000 		.4byte	.LASF70
+ 735 0407 05       		.byte	0x5
+ 736 0408 2E02     		.2byte	0x22e
+ 737 040a 72040000 		.4byte	0x472
+ 738 040e 08       		.byte	0x8
+ 739 040f 0C       		.uleb128 0xc
+ 740 0410 C4040000 		.4byte	.LASF71
+ 741 0414 05       		.byte	0x5
+ 742 0415 3302     		.2byte	0x233
+ 743 0417 B7000000 		.4byte	0xb7
+ 744 041b 0C       		.byte	0xc
+ 745 041c 0C       		.uleb128 0xc
+ 746 041d 73050000 		.4byte	.LASF72
+ 747 0421 05       		.byte	0x5
+ 748 0422 3A02     		.2byte	0x23a
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 18
+
+
+ 749 0424 CF000000 		.4byte	0xcf
+ 750 0428 10       		.byte	0x10
+ 751 0429 0C       		.uleb128 0xc
+ 752 042a 6E030000 		.4byte	.LASF73
+ 753 042e 05       		.byte	0x5
+ 754 042f 3F02     		.2byte	0x23f
+ 755 0431 77000000 		.4byte	0x77
+ 756 0435 14       		.byte	0x14
+ 757 0436 0C       		.uleb128 0xc
+ 758 0437 67050000 		.4byte	.LASF74
+ 759 043b 05       		.byte	0x5
+ 760 043c 4602     		.2byte	0x246
+ 761 043e 77000000 		.4byte	0x77
+ 762 0442 16       		.byte	0x16
+ 763 0443 0C       		.uleb128 0xc
+ 764 0444 AC030000 		.4byte	.LASF75
+ 765 0448 05       		.byte	0x5
+ 766 0449 5102     		.2byte	0x251
+ 767 044b 6B000000 		.4byte	0x6b
+ 768 044f 18       		.byte	0x18
+ 769 0450 0C       		.uleb128 0xc
+ 770 0451 5D030000 		.4byte	.LASF76
+ 771 0455 05       		.byte	0x5
+ 772 0456 5902     		.2byte	0x259
+ 773 0458 6B000000 		.4byte	0x6b
+ 774 045c 19       		.byte	0x19
+ 775 045d 0C       		.uleb128 0xc
+ 776 045e E3010000 		.4byte	.LASF77
+ 777 0462 05       		.byte	0x5
+ 778 0463 6102     		.2byte	0x261
+ 779 0465 78040000 		.4byte	0x478
+ 780 0469 1C       		.byte	0x1c
+ 781 046a 00       		.byte	0
+ 782 046b 07       		.uleb128 0x7
+ 783 046c 04       		.byte	0x4
+ 784 046d 71040000 		.4byte	0x471
+ 785 0471 0F       		.uleb128 0xf
+ 786 0472 07       		.uleb128 0x7
+ 787 0473 04       		.byte	0x4
+ 788 0474 AA020000 		.4byte	0x2aa
+ 789 0478 07       		.uleb128 0x7
+ 790 0479 04       		.byte	0x4
+ 791 047a 32010000 		.4byte	0x132
+ 792 047e 04       		.uleb128 0x4
+ 793 047f 1D000000 		.4byte	.LASF78
+ 794 0483 05       		.byte	0x5
+ 795 0484 6202     		.2byte	0x262
+ 796 0486 DF030000 		.4byte	0x3df
+ 797 048a 0D       		.uleb128 0xd
+ 798 048b 20       		.byte	0x20
+ 799 048c 05       		.byte	0x5
+ 800 048d 6802     		.2byte	0x268
+ 801 048f A1040000 		.4byte	0x4a1
+ 802 0493 0C       		.uleb128 0xc
+ 803 0494 A9050000 		.4byte	.LASF79
+ 804 0498 05       		.byte	0x5
+ 805 0499 6D02     		.2byte	0x26d
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 19
+
+
+ 806 049b A1040000 		.4byte	0x4a1
+ 807 049f 00       		.byte	0
+ 808 04a0 00       		.byte	0
+ 809 04a1 0A       		.uleb128 0xa
+ 810 04a2 7E040000 		.4byte	0x47e
+ 811 04a6 B1040000 		.4byte	0x4b1
+ 812 04aa 0B       		.uleb128 0xb
+ 813 04ab B0000000 		.4byte	0xb0
+ 814 04af 00       		.byte	0
+ 815 04b0 00       		.byte	0
+ 816 04b1 04       		.uleb128 0x4
+ 817 04b2 83050000 		.4byte	.LASF80
+ 818 04b6 05       		.byte	0x5
+ 819 04b7 6E02     		.2byte	0x26e
+ 820 04b9 8A040000 		.4byte	0x48a
+ 821 04bd 10       		.uleb128 0x10
+ 822 04be 01       		.byte	0x1
+ 823 04bf 06       		.byte	0x6
+ 824 04c0 2E       		.byte	0x2e
+ 825 04c1 EA040000 		.4byte	0x4ea
+ 826 04c5 11       		.uleb128 0x11
+ 827 04c6 13050000 		.4byte	.LASF81
+ 828 04ca 00       		.sleb128 0
+ 829 04cb 11       		.uleb128 0x11
+ 830 04cc 0C010000 		.4byte	.LASF82
+ 831 04d0 01       		.sleb128 1
+ 832 04d1 11       		.uleb128 0x11
+ 833 04d2 CD050000 		.4byte	.LASF83
+ 834 04d6 02       		.sleb128 2
+ 835 04d7 11       		.uleb128 0x11
+ 836 04d8 B3050000 		.4byte	.LASF84
+ 837 04dc 03       		.sleb128 3
+ 838 04dd 11       		.uleb128 0x11
+ 839 04de F4040000 		.4byte	.LASF85
+ 840 04e2 04       		.sleb128 4
+ 841 04e3 11       		.uleb128 0x11
+ 842 04e4 A3040000 		.4byte	.LASF86
+ 843 04e8 05       		.sleb128 5
+ 844 04e9 00       		.byte	0
+ 845 04ea 06       		.uleb128 0x6
+ 846 04eb 05060000 		.4byte	.LASF87
+ 847 04ef 06       		.byte	0x6
+ 848 04f0 35       		.byte	0x35
+ 849 04f1 BD040000 		.4byte	0x4bd
+ 850 04f5 12       		.uleb128 0x12
+ 851 04f6 8F030000 		.4byte	.LASF104
+ 852 04fa 01       		.byte	0x1
+ 853 04fb 42       		.byte	0x42
+ 854 04fc 00000000 		.4byte	.LFB1
+ 855 0500 14000000 		.4byte	.LFE1-.LFB1
+ 856 0504 01       		.uleb128 0x1
+ 857 0505 9C       		.byte	0x9c
+ 858 0506 16050000 		.4byte	0x516
+ 859 050a 13       		.uleb128 0x13
+ 860 050b FC050000 		.4byte	.LASF94
+ 861 050f 01       		.byte	0x1
+ 862 0510 44       		.byte	0x44
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 20
+
+
+ 863 0511 16050000 		.4byte	0x516
+ 864 0515 00       		.byte	0
+ 865 0516 07       		.uleb128 0x7
+ 866 0517 04       		.byte	0x4
+ 867 0518 1C050000 		.4byte	0x51c
+ 868 051c 14       		.uleb128 0x14
+ 869 051d D3030000 		.4byte	0x3d3
+ 870 0521 15       		.uleb128 0x15
+ 871 0522 6F000000 		.4byte	.LASF105
+ 872 0526 01       		.byte	0x1
+ 873 0527 73       		.byte	0x73
+ 874 0528 83000000 		.4byte	0x83
+ 875 052c 00000000 		.4byte	.LFB2
+ 876 0530 B0000000 		.4byte	.LFE2-.LFB2
+ 877 0534 01       		.uleb128 0x1
+ 878 0535 9C       		.byte	0x9c
+ 879 0536 DC050000 		.4byte	0x5dc
+ 880 053a 16       		.uleb128 0x16
+ 881 053b 5A010000 		.4byte	.LASF88
+ 882 053f 01       		.byte	0x1
+ 883 0540 75       		.byte	0x75
+ 884 0541 6B000000 		.4byte	0x6b
+ 885 0545 00000000 		.4byte	.LLST0
+ 886 0549 16       		.uleb128 0x16
+ 887 054a 4C030000 		.4byte	.LASF89
+ 888 054e 01       		.byte	0x1
+ 889 054f 76       		.byte	0x76
+ 890 0550 83000000 		.4byte	0x83
+ 891 0554 1E000000 		.4byte	.LLST1
+ 892 0558 16       		.uleb128 0x16
+ 893 0559 80010000 		.4byte	.LASF90
+ 894 055d 01       		.byte	0x1
+ 895 055e 77       		.byte	0x77
+ 896 055f 83000000 		.4byte	0x83
+ 897 0563 31000000 		.4byte	.LLST2
+ 898 0567 16       		.uleb128 0x16
+ 899 0568 A3010000 		.4byte	.LASF91
+ 900 056c 01       		.byte	0x1
+ 901 056d 78       		.byte	0x78
+ 902 056e 83000000 		.4byte	0x83
+ 903 0572 49000000 		.4byte	.LLST3
+ 904 0576 16       		.uleb128 0x16
+ 905 0577 DB010000 		.4byte	.LASF92
+ 906 057b 01       		.byte	0x1
+ 907 057c 79       		.byte	0x79
+ 908 057d EA040000 		.4byte	0x4ea
+ 909 0581 8D000000 		.4byte	.LLST4
+ 910 0585 16       		.uleb128 0x16
+ 911 0586 D4040000 		.4byte	.LASF93
+ 912 058a 01       		.byte	0x1
+ 913 058b 7A       		.byte	0x7a
+ 914 058c 83000000 		.4byte	0x83
+ 915 0590 A1000000 		.4byte	.LLST5
+ 916 0594 13       		.uleb128 0x13
+ 917 0595 FC050000 		.4byte	.LASF94
+ 918 0599 01       		.byte	0x1
+ 919 059a 7C       		.byte	0x7c
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 21
+
+
+ 920 059b 16050000 		.4byte	0x516
+ 921 059f 16       		.uleb128 0x16
+ 922 05a0 31020000 		.4byte	.LASF95
+ 923 05a4 01       		.byte	0x1
+ 924 05a5 7D       		.byte	0x7d
+ 925 05a6 DC050000 		.4byte	0x5dc
+ 926 05aa E2000000 		.4byte	.LLST6
+ 927 05ae 17       		.uleb128 0x17
+ 928 05af 2C000000 		.4byte	.LVL4
+ 929 05b3 15060000 		.4byte	0x615
+ 930 05b7 17       		.uleb128 0x17
+ 931 05b8 3C000000 		.4byte	.LVL8
+ 932 05bc 20060000 		.4byte	0x620
+ 933 05c0 17       		.uleb128 0x17
+ 934 05c1 54000000 		.4byte	.LVL9
+ 935 05c5 2B060000 		.4byte	0x62b
+ 936 05c9 17       		.uleb128 0x17
+ 937 05ca 90000000 		.4byte	.LVL17
+ 938 05ce 20060000 		.4byte	0x620
+ 939 05d2 17       		.uleb128 0x17
+ 940 05d3 A0000000 		.4byte	.LVL18
+ 941 05d7 2B060000 		.4byte	0x62b
+ 942 05db 00       		.byte	0
+ 943 05dc 07       		.uleb128 0x7
+ 944 05dd 04       		.byte	0x4
+ 945 05de E2050000 		.4byte	0x5e2
+ 946 05e2 14       		.uleb128 0x14
+ 947 05e3 AA020000 		.4byte	0x2aa
+ 948 05e7 18       		.uleb128 0x18
+ 949 05e8 99050000 		.4byte	.LASF96
+ 950 05ec 01       		.byte	0x1
+ 951 05ed 33       		.byte	0x33
+ 952 05ee 83000000 		.4byte	0x83
+ 953 05f2 05       		.uleb128 0x5
+ 954 05f3 03       		.byte	0x3
+ 955 05f4 00000000 		.4byte	tunerFsm
+ 956 05f8 19       		.uleb128 0x19
+ 957 05f9 C1030000 		.4byte	.LASF97
+ 958 05fd 05       		.byte	0x5
+ 959 05fe C303     		.2byte	0x3c3
+ 960 0600 D3030000 		.4byte	0x3d3
+ 961 0604 19       		.uleb128 0x19
+ 962 0605 BE000000 		.4byte	.LASF98
+ 963 0609 05       		.byte	0x5
+ 964 060a C403     		.2byte	0x3c4
+ 965 060c 10060000 		.4byte	0x610
+ 966 0610 1A       		.uleb128 0x1a
+ 967 0611 B1040000 		.4byte	0x4b1
+ 968 0615 1B       		.uleb128 0x1b
+ 969 0616 41050000 		.4byte	.LASF99
+ 970 061a 07       		.byte	0x7
+ 971 061b 39       		.byte	0x39
+ 972 061c A4000000 		.4byte	0xa4
+ 973 0620 1B       		.uleb128 0x1b
+ 974 0621 0F020000 		.4byte	.LASF100
+ 975 0625 08       		.byte	0x8
+ 976 0626 E5       		.byte	0xe5
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 22
+
+
+ 977 0627 6B000000 		.4byte	0x6b
+ 978 062b 1C       		.uleb128 0x1c
+ 979 062c 07000000 		.4byte	.LASF106
+ 980 0630 08       		.byte	0x8
+ 981 0631 E6       		.byte	0xe6
+ 982 0632 1D       		.uleb128 0x1d
+ 983 0633 6B000000 		.4byte	0x6b
+ 984 0637 00       		.byte	0
+ 985 0638 00       		.byte	0
+ 986              		.section	.debug_abbrev,"",%progbits
+ 987              	.Ldebug_abbrev0:
+ 988 0000 01       		.uleb128 0x1
+ 989 0001 11       		.uleb128 0x11
+ 990 0002 01       		.byte	0x1
+ 991 0003 25       		.uleb128 0x25
+ 992 0004 0E       		.uleb128 0xe
+ 993 0005 13       		.uleb128 0x13
+ 994 0006 0B       		.uleb128 0xb
+ 995 0007 03       		.uleb128 0x3
+ 996 0008 0E       		.uleb128 0xe
+ 997 0009 1B       		.uleb128 0x1b
+ 998 000a 0E       		.uleb128 0xe
+ 999 000b 55       		.uleb128 0x55
+ 1000 000c 17       		.uleb128 0x17
+ 1001 000d 11       		.uleb128 0x11
+ 1002 000e 01       		.uleb128 0x1
+ 1003 000f 10       		.uleb128 0x10
+ 1004 0010 17       		.uleb128 0x17
+ 1005 0011 00       		.byte	0
+ 1006 0012 00       		.byte	0
+ 1007 0013 02       		.uleb128 0x2
+ 1008 0014 24       		.uleb128 0x24
+ 1009 0015 00       		.byte	0
+ 1010 0016 0B       		.uleb128 0xb
+ 1011 0017 0B       		.uleb128 0xb
+ 1012 0018 3E       		.uleb128 0x3e
+ 1013 0019 0B       		.uleb128 0xb
+ 1014 001a 03       		.uleb128 0x3
+ 1015 001b 0E       		.uleb128 0xe
+ 1016 001c 00       		.byte	0
+ 1017 001d 00       		.byte	0
+ 1018 001e 03       		.uleb128 0x3
+ 1019 001f 24       		.uleb128 0x24
+ 1020 0020 00       		.byte	0
+ 1021 0021 0B       		.uleb128 0xb
+ 1022 0022 0B       		.uleb128 0xb
+ 1023 0023 3E       		.uleb128 0x3e
+ 1024 0024 0B       		.uleb128 0xb
+ 1025 0025 03       		.uleb128 0x3
+ 1026 0026 08       		.uleb128 0x8
+ 1027 0027 00       		.byte	0
+ 1028 0028 00       		.byte	0
+ 1029 0029 04       		.uleb128 0x4
+ 1030 002a 16       		.uleb128 0x16
+ 1031 002b 00       		.byte	0
+ 1032 002c 03       		.uleb128 0x3
+ 1033 002d 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 23
+
+
+ 1034 002e 3A       		.uleb128 0x3a
+ 1035 002f 0B       		.uleb128 0xb
+ 1036 0030 3B       		.uleb128 0x3b
+ 1037 0031 05       		.uleb128 0x5
+ 1038 0032 49       		.uleb128 0x49
+ 1039 0033 13       		.uleb128 0x13
+ 1040 0034 00       		.byte	0
+ 1041 0035 00       		.byte	0
+ 1042 0036 05       		.uleb128 0x5
+ 1043 0037 0F       		.uleb128 0xf
+ 1044 0038 00       		.byte	0
+ 1045 0039 0B       		.uleb128 0xb
+ 1046 003a 0B       		.uleb128 0xb
+ 1047 003b 00       		.byte	0
+ 1048 003c 00       		.byte	0
+ 1049 003d 06       		.uleb128 0x6
+ 1050 003e 16       		.uleb128 0x16
+ 1051 003f 00       		.byte	0
+ 1052 0040 03       		.uleb128 0x3
+ 1053 0041 0E       		.uleb128 0xe
+ 1054 0042 3A       		.uleb128 0x3a
+ 1055 0043 0B       		.uleb128 0xb
+ 1056 0044 3B       		.uleb128 0x3b
+ 1057 0045 0B       		.uleb128 0xb
+ 1058 0046 49       		.uleb128 0x49
+ 1059 0047 13       		.uleb128 0x13
+ 1060 0048 00       		.byte	0
+ 1061 0049 00       		.byte	0
+ 1062 004a 07       		.uleb128 0x7
+ 1063 004b 0F       		.uleb128 0xf
+ 1064 004c 00       		.byte	0
+ 1065 004d 0B       		.uleb128 0xb
+ 1066 004e 0B       		.uleb128 0xb
+ 1067 004f 49       		.uleb128 0x49
+ 1068 0050 13       		.uleb128 0x13
+ 1069 0051 00       		.byte	0
+ 1070 0052 00       		.byte	0
+ 1071 0053 08       		.uleb128 0x8
+ 1072 0054 13       		.uleb128 0x13
+ 1073 0055 01       		.byte	0x1
+ 1074 0056 0B       		.uleb128 0xb
+ 1075 0057 0B       		.uleb128 0xb
+ 1076 0058 3A       		.uleb128 0x3a
+ 1077 0059 0B       		.uleb128 0xb
+ 1078 005a 3B       		.uleb128 0x3b
+ 1079 005b 0B       		.uleb128 0xb
+ 1080 005c 01       		.uleb128 0x1
+ 1081 005d 13       		.uleb128 0x13
+ 1082 005e 00       		.byte	0
+ 1083 005f 00       		.byte	0
+ 1084 0060 09       		.uleb128 0x9
+ 1085 0061 0D       		.uleb128 0xd
+ 1086 0062 00       		.byte	0
+ 1087 0063 03       		.uleb128 0x3
+ 1088 0064 0E       		.uleb128 0xe
+ 1089 0065 3A       		.uleb128 0x3a
+ 1090 0066 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 24
+
+
+ 1091 0067 3B       		.uleb128 0x3b
+ 1092 0068 0B       		.uleb128 0xb
+ 1093 0069 49       		.uleb128 0x49
+ 1094 006a 13       		.uleb128 0x13
+ 1095 006b 38       		.uleb128 0x38
+ 1096 006c 0B       		.uleb128 0xb
+ 1097 006d 00       		.byte	0
+ 1098 006e 00       		.byte	0
+ 1099 006f 0A       		.uleb128 0xa
+ 1100 0070 01       		.uleb128 0x1
+ 1101 0071 01       		.byte	0x1
+ 1102 0072 49       		.uleb128 0x49
+ 1103 0073 13       		.uleb128 0x13
+ 1104 0074 01       		.uleb128 0x1
+ 1105 0075 13       		.uleb128 0x13
+ 1106 0076 00       		.byte	0
+ 1107 0077 00       		.byte	0
+ 1108 0078 0B       		.uleb128 0xb
+ 1109 0079 21       		.uleb128 0x21
+ 1110 007a 00       		.byte	0
+ 1111 007b 49       		.uleb128 0x49
+ 1112 007c 13       		.uleb128 0x13
+ 1113 007d 2F       		.uleb128 0x2f
+ 1114 007e 0B       		.uleb128 0xb
+ 1115 007f 00       		.byte	0
+ 1116 0080 00       		.byte	0
+ 1117 0081 0C       		.uleb128 0xc
+ 1118 0082 0D       		.uleb128 0xd
+ 1119 0083 00       		.byte	0
+ 1120 0084 03       		.uleb128 0x3
+ 1121 0085 0E       		.uleb128 0xe
+ 1122 0086 3A       		.uleb128 0x3a
+ 1123 0087 0B       		.uleb128 0xb
+ 1124 0088 3B       		.uleb128 0x3b
+ 1125 0089 05       		.uleb128 0x5
+ 1126 008a 49       		.uleb128 0x49
+ 1127 008b 13       		.uleb128 0x13
+ 1128 008c 38       		.uleb128 0x38
+ 1129 008d 0B       		.uleb128 0xb
+ 1130 008e 00       		.byte	0
+ 1131 008f 00       		.byte	0
+ 1132 0090 0D       		.uleb128 0xd
+ 1133 0091 13       		.uleb128 0x13
+ 1134 0092 01       		.byte	0x1
+ 1135 0093 0B       		.uleb128 0xb
+ 1136 0094 0B       		.uleb128 0xb
+ 1137 0095 3A       		.uleb128 0x3a
+ 1138 0096 0B       		.uleb128 0xb
+ 1139 0097 3B       		.uleb128 0x3b
+ 1140 0098 05       		.uleb128 0x5
+ 1141 0099 01       		.uleb128 0x1
+ 1142 009a 13       		.uleb128 0x13
+ 1143 009b 00       		.byte	0
+ 1144 009c 00       		.byte	0
+ 1145 009d 0E       		.uleb128 0xe
+ 1146 009e 0D       		.uleb128 0xd
+ 1147 009f 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 25
+
+
+ 1148 00a0 03       		.uleb128 0x3
+ 1149 00a1 08       		.uleb128 0x8
+ 1150 00a2 3A       		.uleb128 0x3a
+ 1151 00a3 0B       		.uleb128 0xb
+ 1152 00a4 3B       		.uleb128 0x3b
+ 1153 00a5 05       		.uleb128 0x5
+ 1154 00a6 49       		.uleb128 0x49
+ 1155 00a7 13       		.uleb128 0x13
+ 1156 00a8 38       		.uleb128 0x38
+ 1157 00a9 0B       		.uleb128 0xb
+ 1158 00aa 00       		.byte	0
+ 1159 00ab 00       		.byte	0
+ 1160 00ac 0F       		.uleb128 0xf
+ 1161 00ad 26       		.uleb128 0x26
+ 1162 00ae 00       		.byte	0
+ 1163 00af 00       		.byte	0
+ 1164 00b0 00       		.byte	0
+ 1165 00b1 10       		.uleb128 0x10
+ 1166 00b2 04       		.uleb128 0x4
+ 1167 00b3 01       		.byte	0x1
+ 1168 00b4 0B       		.uleb128 0xb
+ 1169 00b5 0B       		.uleb128 0xb
+ 1170 00b6 3A       		.uleb128 0x3a
+ 1171 00b7 0B       		.uleb128 0xb
+ 1172 00b8 3B       		.uleb128 0x3b
+ 1173 00b9 0B       		.uleb128 0xb
+ 1174 00ba 01       		.uleb128 0x1
+ 1175 00bb 13       		.uleb128 0x13
+ 1176 00bc 00       		.byte	0
+ 1177 00bd 00       		.byte	0
+ 1178 00be 11       		.uleb128 0x11
+ 1179 00bf 28       		.uleb128 0x28
+ 1180 00c0 00       		.byte	0
+ 1181 00c1 03       		.uleb128 0x3
+ 1182 00c2 0E       		.uleb128 0xe
+ 1183 00c3 1C       		.uleb128 0x1c
+ 1184 00c4 0D       		.uleb128 0xd
+ 1185 00c5 00       		.byte	0
+ 1186 00c6 00       		.byte	0
+ 1187 00c7 12       		.uleb128 0x12
+ 1188 00c8 2E       		.uleb128 0x2e
+ 1189 00c9 01       		.byte	0x1
+ 1190 00ca 3F       		.uleb128 0x3f
+ 1191 00cb 19       		.uleb128 0x19
+ 1192 00cc 03       		.uleb128 0x3
+ 1193 00cd 0E       		.uleb128 0xe
+ 1194 00ce 3A       		.uleb128 0x3a
+ 1195 00cf 0B       		.uleb128 0xb
+ 1196 00d0 3B       		.uleb128 0x3b
+ 1197 00d1 0B       		.uleb128 0xb
+ 1198 00d2 27       		.uleb128 0x27
+ 1199 00d3 19       		.uleb128 0x19
+ 1200 00d4 11       		.uleb128 0x11
+ 1201 00d5 01       		.uleb128 0x1
+ 1202 00d6 12       		.uleb128 0x12
+ 1203 00d7 06       		.uleb128 0x6
+ 1204 00d8 40       		.uleb128 0x40
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 26
+
+
+ 1205 00d9 18       		.uleb128 0x18
+ 1206 00da 9742     		.uleb128 0x2117
+ 1207 00dc 19       		.uleb128 0x19
+ 1208 00dd 01       		.uleb128 0x1
+ 1209 00de 13       		.uleb128 0x13
+ 1210 00df 00       		.byte	0
+ 1211 00e0 00       		.byte	0
+ 1212 00e1 13       		.uleb128 0x13
+ 1213 00e2 34       		.uleb128 0x34
+ 1214 00e3 00       		.byte	0
+ 1215 00e4 03       		.uleb128 0x3
+ 1216 00e5 0E       		.uleb128 0xe
+ 1217 00e6 3A       		.uleb128 0x3a
+ 1218 00e7 0B       		.uleb128 0xb
+ 1219 00e8 3B       		.uleb128 0x3b
+ 1220 00e9 0B       		.uleb128 0xb
+ 1221 00ea 49       		.uleb128 0x49
+ 1222 00eb 13       		.uleb128 0x13
+ 1223 00ec 00       		.byte	0
+ 1224 00ed 00       		.byte	0
+ 1225 00ee 14       		.uleb128 0x14
+ 1226 00ef 35       		.uleb128 0x35
+ 1227 00f0 00       		.byte	0
+ 1228 00f1 49       		.uleb128 0x49
+ 1229 00f2 13       		.uleb128 0x13
+ 1230 00f3 00       		.byte	0
+ 1231 00f4 00       		.byte	0
+ 1232 00f5 15       		.uleb128 0x15
+ 1233 00f6 2E       		.uleb128 0x2e
+ 1234 00f7 01       		.byte	0x1
+ 1235 00f8 3F       		.uleb128 0x3f
+ 1236 00f9 19       		.uleb128 0x19
+ 1237 00fa 03       		.uleb128 0x3
+ 1238 00fb 0E       		.uleb128 0xe
+ 1239 00fc 3A       		.uleb128 0x3a
+ 1240 00fd 0B       		.uleb128 0xb
+ 1241 00fe 3B       		.uleb128 0x3b
+ 1242 00ff 0B       		.uleb128 0xb
+ 1243 0100 27       		.uleb128 0x27
+ 1244 0101 19       		.uleb128 0x19
+ 1245 0102 49       		.uleb128 0x49
+ 1246 0103 13       		.uleb128 0x13
+ 1247 0104 11       		.uleb128 0x11
+ 1248 0105 01       		.uleb128 0x1
+ 1249 0106 12       		.uleb128 0x12
+ 1250 0107 06       		.uleb128 0x6
+ 1251 0108 40       		.uleb128 0x40
+ 1252 0109 18       		.uleb128 0x18
+ 1253 010a 9742     		.uleb128 0x2117
+ 1254 010c 19       		.uleb128 0x19
+ 1255 010d 01       		.uleb128 0x1
+ 1256 010e 13       		.uleb128 0x13
+ 1257 010f 00       		.byte	0
+ 1258 0110 00       		.byte	0
+ 1259 0111 16       		.uleb128 0x16
+ 1260 0112 34       		.uleb128 0x34
+ 1261 0113 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 27
+
+
+ 1262 0114 03       		.uleb128 0x3
+ 1263 0115 0E       		.uleb128 0xe
+ 1264 0116 3A       		.uleb128 0x3a
+ 1265 0117 0B       		.uleb128 0xb
+ 1266 0118 3B       		.uleb128 0x3b
+ 1267 0119 0B       		.uleb128 0xb
+ 1268 011a 49       		.uleb128 0x49
+ 1269 011b 13       		.uleb128 0x13
+ 1270 011c 02       		.uleb128 0x2
+ 1271 011d 17       		.uleb128 0x17
+ 1272 011e 00       		.byte	0
+ 1273 011f 00       		.byte	0
+ 1274 0120 17       		.uleb128 0x17
+ 1275 0121 898201   		.uleb128 0x4109
+ 1276 0124 00       		.byte	0
+ 1277 0125 11       		.uleb128 0x11
+ 1278 0126 01       		.uleb128 0x1
+ 1279 0127 31       		.uleb128 0x31
+ 1280 0128 13       		.uleb128 0x13
+ 1281 0129 00       		.byte	0
+ 1282 012a 00       		.byte	0
+ 1283 012b 18       		.uleb128 0x18
+ 1284 012c 34       		.uleb128 0x34
+ 1285 012d 00       		.byte	0
+ 1286 012e 03       		.uleb128 0x3
+ 1287 012f 0E       		.uleb128 0xe
+ 1288 0130 3A       		.uleb128 0x3a
+ 1289 0131 0B       		.uleb128 0xb
+ 1290 0132 3B       		.uleb128 0x3b
+ 1291 0133 0B       		.uleb128 0xb
+ 1292 0134 49       		.uleb128 0x49
+ 1293 0135 13       		.uleb128 0x13
+ 1294 0136 02       		.uleb128 0x2
+ 1295 0137 18       		.uleb128 0x18
+ 1296 0138 00       		.byte	0
+ 1297 0139 00       		.byte	0
+ 1298 013a 19       		.uleb128 0x19
+ 1299 013b 34       		.uleb128 0x34
+ 1300 013c 00       		.byte	0
+ 1301 013d 03       		.uleb128 0x3
+ 1302 013e 0E       		.uleb128 0xe
+ 1303 013f 3A       		.uleb128 0x3a
+ 1304 0140 0B       		.uleb128 0xb
+ 1305 0141 3B       		.uleb128 0x3b
+ 1306 0142 05       		.uleb128 0x5
+ 1307 0143 49       		.uleb128 0x49
+ 1308 0144 13       		.uleb128 0x13
+ 1309 0145 3F       		.uleb128 0x3f
+ 1310 0146 19       		.uleb128 0x19
+ 1311 0147 3C       		.uleb128 0x3c
+ 1312 0148 19       		.uleb128 0x19
+ 1313 0149 00       		.byte	0
+ 1314 014a 00       		.byte	0
+ 1315 014b 1A       		.uleb128 0x1a
+ 1316 014c 26       		.uleb128 0x26
+ 1317 014d 00       		.byte	0
+ 1318 014e 49       		.uleb128 0x49
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 28
+
+
+ 1319 014f 13       		.uleb128 0x13
+ 1320 0150 00       		.byte	0
+ 1321 0151 00       		.byte	0
+ 1322 0152 1B       		.uleb128 0x1b
+ 1323 0153 2E       		.uleb128 0x2e
+ 1324 0154 00       		.byte	0
+ 1325 0155 3F       		.uleb128 0x3f
+ 1326 0156 19       		.uleb128 0x19
+ 1327 0157 03       		.uleb128 0x3
+ 1328 0158 0E       		.uleb128 0xe
+ 1329 0159 3A       		.uleb128 0x3a
+ 1330 015a 0B       		.uleb128 0xb
+ 1331 015b 3B       		.uleb128 0x3b
+ 1332 015c 0B       		.uleb128 0xb
+ 1333 015d 27       		.uleb128 0x27
+ 1334 015e 19       		.uleb128 0x19
+ 1335 015f 49       		.uleb128 0x49
+ 1336 0160 13       		.uleb128 0x13
+ 1337 0161 3C       		.uleb128 0x3c
+ 1338 0162 19       		.uleb128 0x19
+ 1339 0163 00       		.byte	0
+ 1340 0164 00       		.byte	0
+ 1341 0165 1C       		.uleb128 0x1c
+ 1342 0166 2E       		.uleb128 0x2e
+ 1343 0167 01       		.byte	0x1
+ 1344 0168 3F       		.uleb128 0x3f
+ 1345 0169 19       		.uleb128 0x19
+ 1346 016a 03       		.uleb128 0x3
+ 1347 016b 0E       		.uleb128 0xe
+ 1348 016c 3A       		.uleb128 0x3a
+ 1349 016d 0B       		.uleb128 0xb
+ 1350 016e 3B       		.uleb128 0x3b
+ 1351 016f 0B       		.uleb128 0xb
+ 1352 0170 27       		.uleb128 0x27
+ 1353 0171 19       		.uleb128 0x19
+ 1354 0172 3C       		.uleb128 0x3c
+ 1355 0173 19       		.uleb128 0x19
+ 1356 0174 00       		.byte	0
+ 1357 0175 00       		.byte	0
+ 1358 0176 1D       		.uleb128 0x1d
+ 1359 0177 05       		.uleb128 0x5
+ 1360 0178 00       		.byte	0
+ 1361 0179 49       		.uleb128 0x49
+ 1362 017a 13       		.uleb128 0x13
+ 1363 017b 00       		.byte	0
+ 1364 017c 00       		.byte	0
+ 1365 017d 00       		.byte	0
+ 1366              		.section	.debug_loc,"",%progbits
+ 1367              	.Ldebug_loc0:
+ 1368              	.LLST0:
+ 1369 0000 3C000000 		.4byte	.LVL8
+ 1370 0004 53000000 		.4byte	.LVL9-1
+ 1371 0008 0100     		.2byte	0x1
+ 1372 000a 50       		.byte	0x50
+ 1373 000b 90000000 		.4byte	.LVL17
+ 1374 000f 9F000000 		.4byte	.LVL18-1
+ 1375 0013 0100     		.2byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 29
+
+
+ 1376 0015 50       		.byte	0x50
+ 1377 0016 00000000 		.4byte	0
+ 1378 001a 00000000 		.4byte	0
+ 1379              	.LLST1:
+ 1380 001e 68000000 		.4byte	.LVL10
+ 1381 0022 72000000 		.4byte	.LVL12
+ 1382 0026 0100     		.2byte	0x1
+ 1383 0028 53       		.byte	0x53
+ 1384 0029 00000000 		.4byte	0
+ 1385 002d 00000000 		.4byte	0
+ 1386              	.LLST2:
+ 1387 0031 6C000000 		.4byte	.LVL11
+ 1388 0035 88000000 		.4byte	.LVL15
+ 1389 0039 0600     		.2byte	0x6
+ 1390 003b 75       		.byte	0x75
+ 1391 003c 00       		.sleb128 0
+ 1392 003d 08       		.byte	0x8
+ 1393 003e FF       		.byte	0xff
+ 1394 003f 1A       		.byte	0x1a
+ 1395 0040 9F       		.byte	0x9f
+ 1396 0041 00000000 		.4byte	0
+ 1397 0045 00000000 		.4byte	0
+ 1398              	.LLST3:
+ 1399 0049 00000000 		.4byte	.LVL1
+ 1400 004d 32000000 		.4byte	.LVL5
+ 1401 0051 0200     		.2byte	0x2
+ 1402 0053 30       		.byte	0x30
+ 1403 0054 9F       		.byte	0x9f
+ 1404 0055 32000000 		.4byte	.LVL5
+ 1405 0059 34000000 		.4byte	.LVL6
+ 1406 005d 0200     		.2byte	0x2
+ 1407 005f 31       		.byte	0x31
+ 1408 0060 9F       		.byte	0x9f
+ 1409 0061 34000000 		.4byte	.LVL6
+ 1410 0065 38000000 		.4byte	.LVL7
+ 1411 0069 0200     		.2byte	0x2
+ 1412 006b 30       		.byte	0x30
+ 1413 006c 9F       		.byte	0x9f
+ 1414 006d 38000000 		.4byte	.LVL7
+ 1415 0071 54000000 		.4byte	.LVL9
+ 1416 0075 0200     		.2byte	0x2
+ 1417 0077 31       		.byte	0x31
+ 1418 0078 9F       		.byte	0x9f
+ 1419 0079 54000000 		.4byte	.LVL9
+ 1420 007d B0000000 		.4byte	.LFE2
+ 1421 0081 0200     		.2byte	0x2
+ 1422 0083 30       		.byte	0x30
+ 1423 0084 9F       		.byte	0x9f
+ 1424 0085 00000000 		.4byte	0
+ 1425 0089 00000000 		.4byte	0
+ 1426              	.LLST4:
+ 1427 008d 12000000 		.4byte	.LVL3
+ 1428 0091 84000000 		.4byte	.LVL13
+ 1429 0095 0200     		.2byte	0x2
+ 1430 0097 91       		.byte	0x91
+ 1431 0098 64       		.sleb128 -28
+ 1432 0099 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 30
+
+
+ 1433 009d 00000000 		.4byte	0
+ 1434              	.LLST5:
+ 1435 00a1 00000000 		.4byte	.LVL1
+ 1436 00a5 04000000 		.4byte	.LVL2
+ 1437 00a9 0200     		.2byte	0x2
+ 1438 00ab 30       		.byte	0x30
+ 1439 00ac 9F       		.byte	0x9f
+ 1440 00ad 04000000 		.4byte	.LVL2
+ 1441 00b1 2C000000 		.4byte	.LVL4
+ 1442 00b5 0100     		.2byte	0x1
+ 1443 00b7 57       		.byte	0x57
+ 1444 00b8 2C000000 		.4byte	.LVL4
+ 1445 00bc 34000000 		.4byte	.LVL6
+ 1446 00c0 0200     		.2byte	0x2
+ 1447 00c2 31       		.byte	0x31
+ 1448 00c3 9F       		.byte	0x9f
+ 1449 00c4 34000000 		.4byte	.LVL6
+ 1450 00c8 A2000000 		.4byte	.LVL19
+ 1451 00cc 0100     		.2byte	0x1
+ 1452 00ce 57       		.byte	0x57
+ 1453 00cf A2000000 		.4byte	.LVL19
+ 1454 00d3 B0000000 		.4byte	.LFE2
+ 1455 00d7 0100     		.2byte	0x1
+ 1456 00d9 50       		.byte	0x50
+ 1457 00da 00000000 		.4byte	0
+ 1458 00de 00000000 		.4byte	0
+ 1459              	.LLST6:
+ 1460 00e2 84000000 		.4byte	.LVL13
+ 1461 00e6 86000000 		.4byte	.LVL14
+ 1462 00ea 0100     		.2byte	0x1
+ 1463 00ec 53       		.byte	0x53
+ 1464 00ed 86000000 		.4byte	.LVL14
+ 1465 00f1 8C000000 		.4byte	.LVL16
+ 1466 00f5 0200     		.2byte	0x2
+ 1467 00f7 91       		.byte	0x91
+ 1468 00f8 64       		.sleb128 -28
+ 1469 00f9 8C000000 		.4byte	.LVL16
+ 1470 00fd A0000000 		.4byte	.LVL18
+ 1471 0101 0100     		.2byte	0x1
+ 1472 0103 55       		.byte	0x55
+ 1473 0104 00000000 		.4byte	0
+ 1474 0108 00000000 		.4byte	0
+ 1475              		.section	.debug_aranges,"",%progbits
+ 1476 0000 24000000 		.4byte	0x24
+ 1477 0004 0200     		.2byte	0x2
+ 1478 0006 00000000 		.4byte	.Ldebug_info0
+ 1479 000a 04       		.byte	0x4
+ 1480 000b 00       		.byte	0
+ 1481 000c 0000     		.2byte	0
+ 1482 000e 0000     		.2byte	0
+ 1483 0010 00000000 		.4byte	.LFB1
+ 1484 0014 14000000 		.4byte	.LFE1-.LFB1
+ 1485 0018 00000000 		.4byte	.LFB2
+ 1486 001c B0000000 		.4byte	.LFE2-.LFB2
+ 1487 0020 00000000 		.4byte	0
+ 1488 0024 00000000 		.4byte	0
+ 1489              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 31
+
+
+ 1490              	.Ldebug_ranges0:
+ 1491 0000 00000000 		.4byte	.LFB1
+ 1492 0004 14000000 		.4byte	.LFE1
+ 1493 0008 00000000 		.4byte	.LFB2
+ 1494 000c B0000000 		.4byte	.LFE2
+ 1495 0010 00000000 		.4byte	0
+ 1496 0014 00000000 		.4byte	0
+ 1497              		.section	.debug_line,"",%progbits
+ 1498              	.Ldebug_line0:
+ 1499 0000 2C010000 		.section	.debug_str,"MS",%progbits,1
+ 1499      0200D000 
+ 1499      00000201 
+ 1499      FB0E0D00 
+ 1499      01010101 
+ 1500              	.LASF10:
+ 1501 0000 75696E74 		.ascii	"uint16\000"
+ 1501      313600
+ 1502              	.LASF106:
+ 1503 0007 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1503      69744372 
+ 1503      69746963 
+ 1503      616C5365 
+ 1503      6374696F 
+ 1504              	.LASF78:
+ 1505 001d 43617053 		.ascii	"CapSense_FLASH_WD_STRUCT\000"
+ 1505      656E7365 
+ 1505      5F464C41 
+ 1505      53485F57 
+ 1505      445F5354 
+ 1506              	.LASF38:
+ 1507 0036 66696E67 		.ascii	"fingerCap\000"
+ 1507      65724361 
+ 1507      7000
+ 1508              	.LASF49:
+ 1509 0040 43617053 		.ascii	"CapSense_RAM_SNS_STRUCT\000"
+ 1509      656E7365 
+ 1509      5F52414D 
+ 1509      5F534E53 
+ 1509      5F535452 
+ 1510              	.LASF7:
+ 1511 0058 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1511      206C6F6E 
+ 1511      6720756E 
+ 1511      7369676E 
+ 1511      65642069 
+ 1512              	.LASF105:
+ 1513 006f 43617053 		.ascii	"CapSense_RunTuner\000"
+ 1513      656E7365 
+ 1513      5F52756E 
+ 1513      54756E65 
+ 1513      7200
+ 1514              	.LASF68:
+ 1515 0081 70747232 		.ascii	"ptr2SnsFlash\000"
+ 1515      536E7346 
+ 1515      6C617368 
+ 1515      00
+ 1516              	.LASF46:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 32
+
+
+ 1517 008e 64696666 		.ascii	"diff\000"
+ 1517      00
+ 1518              	.LASF18:
+ 1519 0093 43617053 		.ascii	"CapSense_LOW_BSLN_RST_TYPE\000"
+ 1519      656E7365 
+ 1519      5F4C4F57 
+ 1519      5F42534C 
+ 1519      4E5F5253 
+ 1520              	.LASF64:
+ 1521 00ae 736E7254 		.ascii	"snrTestSensorId\000"
+ 1521      65737453 
+ 1521      656E736F 
+ 1521      72496400 
+ 1522              	.LASF98:
+ 1523 00be 43617053 		.ascii	"CapSense_dsFlash\000"
+ 1523      656E7365 
+ 1523      5F647346 
+ 1523      6C617368 
+ 1523      00
+ 1524              	.LASF17:
+ 1525 00cf 43617053 		.ascii	"CapSense_THRESHOLD_TYPE\000"
+ 1525      656E7365 
+ 1525      5F544852 
+ 1525      4553484F 
+ 1525      4C445F54 
+ 1526              	.LASF42:
+ 1527 00e7 70726F78 		.ascii	"proximity0\000"
+ 1527      696D6974 
+ 1527      793000
+ 1528              	.LASF6:
+ 1529 00f2 6C6F6E67 		.ascii	"long long int\000"
+ 1529      206C6F6E 
+ 1529      6720696E 
+ 1529      7400
+ 1530              	.LASF0:
+ 1531 0100 7369676E 		.ascii	"signed char\000"
+ 1531      65642063 
+ 1531      68617200 
+ 1532              	.LASF82:
+ 1533 010c 43617053 		.ascii	"CapSense_TU_CMD_SUSPEND_E\000"
+ 1533      656E7365 
+ 1533      5F54555F 
+ 1533      434D445F 
+ 1533      53555350 
+ 1534              	.LASF58:
+ 1535 0126 736E7353 		.ascii	"snsStatus\000"
+ 1535      74617475 
+ 1535      7300
+ 1536              	.LASF4:
+ 1537 0130 6C6F6E67 		.ascii	"long int\000"
+ 1537      20696E74 
+ 1537      00
+ 1538              	.LASF60:
+ 1539 0139 6D6F6443 		.ascii	"modCsdClk\000"
+ 1539      7364436C 
+ 1539      6B00
+ 1540              	.LASF70:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 33
+
+
+ 1541 0143 70747232 		.ascii	"ptr2SnsRam\000"
+ 1541      536E7352 
+ 1541      616D00
+ 1542              	.LASF40:
+ 1543 014e 70726F78 		.ascii	"proxTouchTh\000"
+ 1543      546F7563 
+ 1543      68546800 
+ 1544              	.LASF88:
+ 1545 015a 63726974 		.ascii	"critSect\000"
+ 1545      53656374 
+ 1545      00
+ 1546              	.LASF9:
+ 1547 0163 75696E74 		.ascii	"uint8\000"
+ 1547      3800
+ 1548              	.LASF13:
+ 1549 0169 646F7562 		.ascii	"double\000"
+ 1549      6C6500
+ 1550              	.LASF66:
+ 1551 0170 736E7254 		.ascii	"snrTestRawCount\000"
+ 1551      65737452 
+ 1551      6177436F 
+ 1551      756E7400 
+ 1552              	.LASF90:
+ 1553 0180 73656E73 		.ascii	"sensorId\000"
+ 1553      6F724964 
+ 1553      00
+ 1554              	.LASF11:
+ 1555 0189 75696E74 		.ascii	"uint32\000"
+ 1555      333200
+ 1556              	.LASF31:
+ 1557 0190 68797374 		.ascii	"hysteresis\000"
+ 1557      65726573 
+ 1557      697300
+ 1558              	.LASF45:
+ 1559 019b 62736C6E 		.ascii	"bslnExt\000"
+ 1559      45787400 
+ 1560              	.LASF91:
+ 1561 01a3 75706461 		.ascii	"updateFlag\000"
+ 1561      7465466C 
+ 1561      616700
+ 1562              	.LASF57:
+ 1563 01ae 77646774 		.ascii	"wdgtStatus\000"
+ 1563      53746174 
+ 1563      757300
+ 1564              	.LASF44:
+ 1565 01b9 62736C6E 		.ascii	"bsln\000"
+ 1565      00
+ 1566              	.LASF8:
+ 1567 01be 756E7369 		.ascii	"unsigned int\000"
+ 1567      676E6564 
+ 1567      20696E74 
+ 1567      00
+ 1568              	.LASF63:
+ 1569 01cb 736E7254 		.ascii	"snrTestWidgetId\000"
+ 1569      65737457 
+ 1569      69646765 
+ 1569      74496400 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 34
+
+
+ 1570              	.LASF92:
+ 1571 01db 636F6D6D 		.ascii	"command\000"
+ 1571      616E6400 
+ 1572              	.LASF77:
+ 1573 01e3 70747232 		.ascii	"ptr2NoiseEnvlp\000"
+ 1573      4E6F6973 
+ 1573      65456E76 
+ 1573      6C7000
+ 1574              	.LASF5:
+ 1575 01f2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1575      20756E73 
+ 1575      69676E65 
+ 1575      6420696E 
+ 1575      7400
+ 1576              	.LASF56:
+ 1577 0204 77646774 		.ascii	"wdgtEnable\000"
+ 1577      456E6162 
+ 1577      6C6500
+ 1578              	.LASF100:
+ 1579 020f 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1579      74657243 
+ 1579      72697469 
+ 1579      63616C53 
+ 1579      65637469 
+ 1580              	.LASF33:
+ 1581 0226 6C6F7742 		.ascii	"lowBslnRst\000"
+ 1581      736C6E52 
+ 1581      737400
+ 1582              	.LASF95:
+ 1583 0231 70747253 		.ascii	"ptrSns\000"
+ 1583      6E7300
+ 1584              	.LASF3:
+ 1585 0238 73686F72 		.ascii	"short unsigned int\000"
+ 1585      7420756E 
+ 1585      7369676E 
+ 1585      65642069 
+ 1585      6E7400
+ 1586              	.LASF62:
+ 1587 024b 736E734C 		.ascii	"snsList\000"
+ 1587      69737400 
+ 1588              	.LASF51:
+ 1589 0253 636F6E66 		.ascii	"configId\000"
+ 1589      69674964 
+ 1589      00
+ 1590              	.LASF101:
+ 1591 025c 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1591      4320342E 
+ 1591      392E3320 
+ 1591      32303135 
+ 1591      30333033 
+ 1592 028f 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 1592      20726576 
+ 1592      6973696F 
+ 1592      6E203232 
+ 1592      31323230 
+ 1593 02c2 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 1593      73202D66 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 35
+
+
+ 1593      66756E63 
+ 1593      74696F6E 
+ 1593      2D736563 
+ 1594              	.LASF102:
+ 1595 02ee 47656E65 		.ascii	"Generated_Source\\PSoC4\\CapSense_Tuner.c\000"
+ 1595      72617465 
+ 1595      645F536F 
+ 1595      75726365 
+ 1595      5C50536F 
+ 1596              	.LASF69:
+ 1597 0316 70747232 		.ascii	"ptr2WdgtRam\000"
+ 1597      57646774 
+ 1597      52616D00 
+ 1598              	.LASF41:
+ 1599 0322 43617053 		.ascii	"CapSense_RAM_WD_PROXIMITY_STRUCT\000"
+ 1599      656E7365 
+ 1599      5F52414D 
+ 1599      5F57445F 
+ 1599      50524F58 
+ 1600              	.LASF52:
+ 1601 0343 64657669 		.ascii	"deviceId\000"
+ 1601      63654964 
+ 1601      00
+ 1602              	.LASF89:
+ 1603 034c 77696467 		.ascii	"widgetId\000"
+ 1603      65744964 
+ 1603      00
+ 1604              	.LASF35:
+ 1605 0355 69646163 		.ascii	"idacMod\000"
+ 1605      4D6F6400 
+ 1606              	.LASF76:
+ 1607 035d 6E756D43 		.ascii	"numCols\000"
+ 1607      6F6C7300 
+ 1608              	.LASF16:
+ 1609 0365 73697A65 		.ascii	"sizetype\000"
+ 1609      74797065 
+ 1609      00
+ 1610              	.LASF73:
+ 1611 036e 73746174 		.ascii	"staticConfig\000"
+ 1611      6963436F 
+ 1611      6E666967 
+ 1611      00
+ 1612              	.LASF30:
+ 1613 037b 6E4E6F69 		.ascii	"nNoiseTh\000"
+ 1613      73655468 
+ 1613      00
+ 1614              	.LASF59:
+ 1615 0384 63736430 		.ascii	"csd0Config\000"
+ 1615      436F6E66 
+ 1615      696700
+ 1616              	.LASF104:
+ 1617 038f 43617053 		.ascii	"CapSense_TuInitialize\000"
+ 1617      656E7365 
+ 1617      5F547549 
+ 1617      6E697469 
+ 1617      616C697A 
+ 1618              	.LASF39:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 36
+
+
+ 1619 03a5 73696750 		.ascii	"sigPFC\000"
+ 1619      464300
+ 1620              	.LASF75:
+ 1621 03ac 77646774 		.ascii	"wdgtType\000"
+ 1621      54797065 
+ 1621      00
+ 1622              	.LASF54:
+ 1623 03b5 7363616E 		.ascii	"scanCounter\000"
+ 1623      436F756E 
+ 1623      74657200 
+ 1624              	.LASF97:
+ 1625 03c1 43617053 		.ascii	"CapSense_dsRam\000"
+ 1625      656E7365 
+ 1625      5F647352 
+ 1625      616D00
+ 1626              	.LASF53:
+ 1627 03d0 74756E65 		.ascii	"tunerCmd\000"
+ 1627      72436D64 
+ 1627      00
+ 1628              	.LASF12:
+ 1629 03d9 666C6F61 		.ascii	"float\000"
+ 1629      7400
+ 1630              	.LASF26:
+ 1631 03df 534D4152 		.ascii	"SMARTSENSE_CSD_NOISE_ENVELOPE_STRUCT\000"
+ 1631      5453454E 
+ 1631      53455F43 
+ 1631      53445F4E 
+ 1631      4F495345 
+ 1632              	.LASF34:
+ 1633 0404 62736C6E 		.ascii	"bslnCoeff\000"
+ 1633      436F6566 
+ 1633      6600
+ 1634              	.LASF50:
+ 1635 040e 43617053 		.ascii	"CapSense_RAM_SNS_LIST_STRUCT\000"
+ 1635      656E7365 
+ 1635      5F52414D 
+ 1635      5F534E53 
+ 1635      5F4C4953 
+ 1636              	.LASF67:
+ 1637 042b 43617053 		.ascii	"CapSense_RAM_STRUCT\000"
+ 1637      656E7365 
+ 1637      5F52414D 
+ 1637      5F535452 
+ 1637      55435400 
+ 1638              	.LASF103:
+ 1639 043f 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 1639      79707265 
+ 1639      73735C54 
+ 1639      616C6B69 
+ 1639      6E67436C 
+ 1640              	.LASF1:
+ 1641 046b 756E7369 		.ascii	"unsigned char\000"
+ 1641      676E6564 
+ 1641      20636861 
+ 1641      7200
+ 1642              	.LASF20:
+ 1643 0479 70617261 		.ascii	"param1\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 37
+
+
+ 1643      6D3100
+ 1644              	.LASF21:
+ 1645 0480 70617261 		.ascii	"param2\000"
+ 1645      6D3200
+ 1646              	.LASF22:
+ 1647 0487 70617261 		.ascii	"param3\000"
+ 1647      6D3300
+ 1648              	.LASF23:
+ 1649 048e 70617261 		.ascii	"param4\000"
+ 1649      6D3400
+ 1650              	.LASF24:
+ 1651 0495 70617261 		.ascii	"param5\000"
+ 1651      6D3500
+ 1652              	.LASF25:
+ 1653 049c 70617261 		.ascii	"param6\000"
+ 1653      6D3600
+ 1654              	.LASF86:
+ 1655 04a3 43617053 		.ascii	"CapSense_TU_CMD_PING_E\000"
+ 1655      656E7365 
+ 1655      5F54555F 
+ 1655      434D445F 
+ 1655      50494E47 
+ 1656              	.LASF2:
+ 1657 04ba 73686F72 		.ascii	"short int\000"
+ 1657      7420696E 
+ 1657      7400
+ 1658              	.LASF71:
+ 1659 04c4 70747232 		.ascii	"ptr2FltrHistory\000"
+ 1659      466C7472 
+ 1659      48697374 
+ 1659      6F727900 
+ 1660              	.LASF93:
+ 1661 04d4 74756E65 		.ascii	"tunerStatus\000"
+ 1661      72537461 
+ 1661      74757300 
+ 1662              	.LASF27:
+ 1663 04e0 7265736F 		.ascii	"resolution\000"
+ 1663      6C757469 
+ 1663      6F6E00
+ 1664              	.LASF61:
+ 1665 04eb 77646774 		.ascii	"wdgtList\000"
+ 1665      4C697374 
+ 1665      00
+ 1666              	.LASF85:
+ 1667 04f4 43617053 		.ascii	"CapSense_TU_CMD_RUN_SNR_TEST_E\000"
+ 1667      656E7365 
+ 1667      5F54555F 
+ 1667      434D445F 
+ 1667      52554E5F 
+ 1668              	.LASF81:
+ 1669 0513 43617053 		.ascii	"CapSense_TU_CMD_NONE_E\000"
+ 1669      656E7365 
+ 1669      5F54555F 
+ 1669      434D445F 
+ 1669      4E4F4E45 
+ 1670              	.LASF14:
+ 1671 052a 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 38
+
+
+ 1671      00
+ 1672              	.LASF36:
+ 1673 052f 736E7343 		.ascii	"snsClk\000"
+ 1673      6C6B00
+ 1674              	.LASF32:
+ 1675 0536 6F6E4465 		.ascii	"onDebounce\000"
+ 1675      626F756E 
+ 1675      636500
+ 1676              	.LASF99:
+ 1677 0541 43617053 		.ascii	"CapSense_Start\000"
+ 1677      656E7365 
+ 1677      5F537461 
+ 1677      727400
+ 1678              	.LASF48:
+ 1679 0550 69646163 		.ascii	"idacComp\000"
+ 1679      436F6D70 
+ 1679      00
+ 1680              	.LASF47:
+ 1681 0559 6E656742 		.ascii	"negBslnRstCnt\000"
+ 1681      736C6E52 
+ 1681      7374436E 
+ 1681      7400
+ 1682              	.LASF74:
+ 1683 0567 746F7461 		.ascii	"totalNumSns\000"
+ 1683      6C4E756D 
+ 1683      536E7300 
+ 1684              	.LASF72:
+ 1685 0573 70747232 		.ascii	"ptr2DebounceArr\000"
+ 1685      4465626F 
+ 1685      756E6365 
+ 1685      41727200 
+ 1686              	.LASF80:
+ 1687 0583 43617053 		.ascii	"CapSense_FLASH_STRUCT\000"
+ 1687      656E7365 
+ 1687      5F464C41 
+ 1687      53485F53 
+ 1687      54525543 
+ 1688              	.LASF96:
+ 1689 0599 74756E65 		.ascii	"tunerFsm\000"
+ 1689      7246736D 
+ 1689      00
+ 1690              	.LASF55:
+ 1691 05a2 73746174 		.ascii	"status\000"
+ 1691      757300
+ 1692              	.LASF79:
+ 1693 05a9 77646774 		.ascii	"wdgtArray\000"
+ 1693      41727261 
+ 1693      7900
+ 1694              	.LASF84:
+ 1695 05b3 43617053 		.ascii	"CapSense_TU_CMD_RESTART_E\000"
+ 1695      656E7365 
+ 1695      5F54555F 
+ 1695      434D445F 
+ 1695      52455354 
+ 1696              	.LASF83:
+ 1697 05cd 43617053 		.ascii	"CapSense_TU_CMD_RESUME_E\000"
+ 1697      656E7365 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cctT4vba.s 			page 39
+
+
+ 1697      5F54555F 
+ 1697      434D445F 
+ 1697      52455355 
+ 1698              	.LASF37:
+ 1699 05e6 736E7343 		.ascii	"snsClkSource\000"
+ 1699      6C6B536F 
+ 1699      75726365 
+ 1699      00
+ 1700              	.LASF15:
+ 1701 05f3 63797374 		.ascii	"cystatus\000"
+ 1701      61747573 
+ 1701      00
+ 1702              	.LASF94:
+ 1703 05fc 70747244 		.ascii	"ptrDsRam\000"
+ 1703      7352616D 
+ 1703      00
+ 1704              	.LASF87:
+ 1705 0605 43617053 		.ascii	"CapSense_TU_CMD_ENUM\000"
+ 1705      656E7365 
+ 1705      5F54555F 
+ 1705      434D445F 
+ 1705      454E554D 
+ 1706              	.LASF28:
+ 1707 061a 66696E67 		.ascii	"fingerTh\000"
+ 1707      65725468 
+ 1707      00
+ 1708              	.LASF19:
+ 1709 0623 70617261 		.ascii	"param0\000"
+ 1709      6D3000
+ 1710              	.LASF43:
+ 1711 062a 43617053 		.ascii	"CapSense_RAM_WD_LIST_STRUCT\000"
+ 1711      656E7365 
+ 1711      5F52414D 
+ 1711      5F57445F 
+ 1711      4C495354 
+ 1712              	.LASF65:
+ 1713 0646 736E7254 		.ascii	"snrTestScanCounter\000"
+ 1713      65737453 
+ 1713      63616E43 
+ 1713      6F756E74 
+ 1713      657200
+ 1714              	.LASF29:
+ 1715 0659 6E6F6973 		.ascii	"noiseTh\000"
+ 1715      65546800 
+ 1716              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

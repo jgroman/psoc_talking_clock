@@ -1,0 +1,1083 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"temperature.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.temperature_hw_init,"ax",%progbits
+  18              		.align	1
+  19              		.global	temperature_hw_init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	temperature_hw_init, %function
+  23              	temperature_hw_init:
+  24              	.LFB95:
+  25              		.file 1 "temperature.c"
+   1:temperature.c **** /***************************************************************************//**
+   2:temperature.c **** * @file    temperature.c
+   3:temperature.c **** * @version 1.0.0
+   4:temperature.c **** *
+   5:temperature.c **** * @brief Thermal sensing implementation.
+   6:temperature.c **** *
+   7:temperature.c **** * @par Target device
+   8:temperature.c **** *    CY8C4A45LQI-483
+   9:temperature.c **** *
+  10:temperature.c **** * @par Related hardware
+  11:temperature.c **** *    CY8CKIT-048
+  12:temperature.c **** *
+  13:temperature.c **** * @par Code Tested With
+  14:temperature.c **** *    1. Silicon: PSoC Analog Coprocessor
+  15:temperature.c **** *    2. IDE: PSoC Creator 4.0 (4.0.0.432)
+  16:temperature.c **** *    3. Compiler: GCC 4.9.3, ARM MDK 4.54.0.0 (armcc 4.1 b894)
+  17:temperature.c **** *
+  18:temperature.c **** * @par Source
+  19:temperature.c **** *    Code Example CE211321 - Temperature Sensing
+  20:temperature.c **** *
+  21:temperature.c **** * @par Components
+  22:temperature.c **** *    - Scan_ADC       [ADC]
+  23:temperature.c **** *    - PVref_P4       [PVref]
+  24:temperature.c **** *    - Opamp_P4       [VrefBuffer]
+  25:temperature.c **** *    - ThermistorCalc [Thermistor]
+  26:temperature.c **** *
+  27:temperature.c **** *******************************************************************************/
+  28:temperature.c **** #include "temperature.h"
+  29:temperature.c **** 
+  30:temperature.c **** /*******************************************************************************
+  31:temperature.c **** * Function Name: temperature_hw_init
+  32:temperature.c **** ****************************************************************************//**
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 2
+
+
+  33:temperature.c **** * @par Summary
+  34:temperature.c **** *     
+  35:temperature.c **** *******************************************************************************/
+  36:temperature.c **** void 
+  37:temperature.c **** temperature_hw_init(void)
+  38:temperature.c **** {
+  26              		.loc 1 38 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  39:temperature.c ****     // Start the Scanning SAR ADC Component and start conversion
+  40:temperature.c ****     ADC_Start();
+  32              		.loc 1 40 0
+  33 0002 FFF7FEFF 		bl	ADC_Start
+  34              	.LVL0:
+  41:temperature.c ****     ADC_StartConvert();
+  42:temperature.c **** 
+  43:temperature.c ****     // Start Reference buffer
+  44:temperature.c ****     VrefBuffer_Start();
+  45:temperature.c **** 
+  46:temperature.c ****     // Start and enable Programmable Voltage Reference
+  47:temperature.c ****     PVref_Start();
+  48:temperature.c ****     PVref_Enable();
+  49:temperature.c **** }
+  35              		.loc 1 49 0
+  36              		@ sp needed
+  41:temperature.c ****     ADC_StartConvert();
+  37              		.loc 1 41 0
+  38 0006 FFF7FEFF 		bl	ADC_StartConvert
+  39              	.LVL1:
+  44:temperature.c **** 
+  40              		.loc 1 44 0
+  41 000a FFF7FEFF 		bl	VrefBuffer_Start
+  42              	.LVL2:
+  47:temperature.c ****     PVref_Enable();
+  43              		.loc 1 47 0
+  44 000e FFF7FEFF 		bl	PVref_Start
+  45              	.LVL3:
+  48:temperature.c **** }
+  46              		.loc 1 48 0
+  47 0012 FFF7FEFF 		bl	PVref_Enable
+  48              	.LVL4:
+  49              		.loc 1 49 0
+  50 0016 08BD     		pop	{r3, pc}
+  51              		.cfi_endproc
+  52              	.LFE95:
+  53              		.size	temperature_hw_init, .-temperature_hw_init
+  54              		.section	.text.get_temperature,"ax",%progbits
+  55              		.align	1
+  56              		.global	get_temperature
+  57              		.code	16
+  58              		.thumb_func
+  59              		.type	get_temperature, %function
+  60              	get_temperature:
+  61              	.LFB96:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 3
+
+
+  50:temperature.c **** 
+  51:temperature.c **** 
+  52:temperature.c **** /*******************************************************************************
+  53:temperature.c **** * Function Name: get_temperature
+  54:temperature.c **** ****************************************************************************//**
+  55:temperature.c **** * @par Summary
+  56:temperature.c **** *     
+  57:temperature.c **** *
+  58:temperature.c **** *******************************************************************************/
+  59:temperature.c **** int16_t 
+  60:temperature.c **** get_temperature(void)
+  61:temperature.c **** {
+  62              		.loc 1 61 0
+  63              		.cfi_startproc
+  64 0000 38B5     		push	{r3, r4, r5, lr}
+  65              		.cfi_def_cfa_offset 16
+  66              		.cfi_offset 3, -16
+  67              		.cfi_offset 4, -12
+  68              		.cfi_offset 5, -8
+  69              		.cfi_offset 14, -4
+  62:temperature.c ****     static int16_t temperature = 0;
+  63:temperature.c **** 
+  64:temperature.c ****     // Filter input and output variables for Vref and Vth measurements
+  65:temperature.c ****     static int16_t filter_vref = 0;
+  66:temperature.c ****     static int16_t filter_vth = 0;
+  67:temperature.c ****     
+  68:temperature.c ****     if (ADC_IsEndConversion(ADC_RETURN_STATUS))
+  70              		.loc 1 68 0
+  71 0002 0120     		mov	r0, #1
+  72 0004 FFF7FEFF 		bl	ADC_IsEndConversion
+  73              	.LVL5:
+  74 0008 114C     		ldr	r4, .L8
+  75 000a 0028     		cmp	r0, #0
+  76 000c 1DD0     		beq	.L3
+  77              	.LBB2:
+  69:temperature.c ****     {
+  70:temperature.c ****         // Read the ADC result for reference and thermistor voltages
+  71:temperature.c ****         int16_t adc_vref = ADC_GetResult16(TEMP_ADC_CH_VREF);
+  78              		.loc 1 71 0
+  79 000e 0020     		mov	r0, #0
+  80 0010 FFF7FEFF 		bl	ADC_GetResult16
+  81              	.LVL6:
+  82 0014 051C     		mov	r5, r0
+  83              	.LVL7:
+  72:temperature.c ****         int16_t adc_vth  = ADC_GetResult16(TEMP_ADC_CH_VTH);
+  84              		.loc 1 72 0
+  85 0016 0120     		mov	r0, #1
+  86 0018 FFF7FEFF 		bl	ADC_GetResult16
+  87              	.LVL8:
+  73:temperature.c **** 
+  74:temperature.c ****         // Low pass filter the measured ADC counts of Vref
+  75:temperature.c ****         filter_vref = (adc_vref + (TEMP_FILTER_COEF - 1) * filter_vref) 
+  88              		.loc 1 75 0
+  89 001c 0023     		mov	r3, #0
+  90 001e E25E     		ldrsh	r2, [r4, r3]
+  91 0020 1F23     		mov	r3, #31
+  92 0022 5A43     		mul	r2, r3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 4
+
+
+  93 0024 AA18     		add	r2, r5, r2
+  76:temperature.c ****                             / TEMP_FILTER_COEF;
+  77:temperature.c **** 
+  78:temperature.c ****         // Low pass filter the measured ADC counts of Vth
+  79:temperature.c ****         filter_vth = (adc_vth + (TEMP_FILTER_COEF - 1) * filter_vth) 
+  94              		.loc 1 79 0
+  95 0026 0225     		mov	r5, #2
+  96 0028 615F     		ldrsh	r1, [r4, r5]
+  97              	.LVL9:
+  76:temperature.c ****                             / TEMP_FILTER_COEF;
+  98              		.loc 1 76 0
+  99 002a 5209     		lsr	r2, r2, #5
+ 100              		.loc 1 79 0
+ 101 002c 4B43     		mul	r3, r1
+ 102 002e C118     		add	r1, r0, r3
+  80:temperature.c ****                             / TEMP_FILTER_COEF;
+ 103              		.loc 1 80 0
+ 104 0030 4909     		lsr	r1, r1, #5
+  75:temperature.c ****                             / TEMP_FILTER_COEF;
+ 105              		.loc 1 75 0
+ 106 0032 92B2     		uxth	r2, r2
+  79:temperature.c ****                             / TEMP_FILTER_COEF;
+ 107              		.loc 1 79 0
+ 108 0034 89B2     		uxth	r1, r1
+ 109 0036 6180     		strh	r1, [r4, #2]
+  81:temperature.c **** 
+  82:temperature.c ****         int16_t thermistor_resistance = 
+  83:temperature.c ****             Thermistor_GetResistance(filter_vref, filter_vth);           
+ 110              		.loc 1 83 0
+ 111 0038 10B2     		sxth	r0, r2
+ 112              	.LVL10:
+ 113 003a 09B2     		sxth	r1, r1
+  75:temperature.c ****                             / TEMP_FILTER_COEF;
+ 114              		.loc 1 75 0
+ 115 003c 2280     		strh	r2, [r4]
+ 116              		.loc 1 83 0
+ 117 003e FFF7FEFF 		bl	Thermistor_GetResistance
+ 118              	.LVL11:
+  84:temperature.c **** 
+  85:temperature.c ****         // Calculate temperature in degrees Celsius using the Component API
+  86:temperature.c ****         temperature = Thermistor_GetTemperature(thermistor_resistance);
+ 119              		.loc 1 86 0
+ 120 0042 00B2     		sxth	r0, r0
+ 121 0044 FFF7FEFF 		bl	Thermistor_GetTemperature
+ 122              	.LVL12:
+ 123 0048 A080     		strh	r0, [r4, #4]
+ 124              	.L3:
+ 125              	.LBE2:
+  87:temperature.c ****     }
+  88:temperature.c ****     
+  89:temperature.c ****     return temperature;
+ 126              		.loc 1 89 0
+ 127 004a 0423     		mov	r3, #4
+ 128 004c E05E     		ldrsh	r0, [r4, r3]
+  90:temperature.c **** }
+ 129              		.loc 1 90 0
+ 130              		@ sp needed
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 5
+
+
+ 131 004e 38BD     		pop	{r3, r4, r5, pc}
+ 132              	.L9:
+ 133              		.align	2
+ 134              	.L8:
+ 135 0050 00000000 		.word	.LANCHOR0
+ 136              		.cfi_endproc
+ 137              	.LFE96:
+ 138              		.size	get_temperature, .-get_temperature
+ 139              		.bss
+ 140              		.align	1
+ 141              		.set	.LANCHOR0,. + 0
+ 142              		.type	filter_vref.7440, %object
+ 143              		.size	filter_vref.7440, 2
+ 144              	filter_vref.7440:
+ 145 0000 0000     		.space	2
+ 146              		.type	filter_vth.7441, %object
+ 147              		.size	filter_vth.7441, 2
+ 148              	filter_vth.7441:
+ 149 0002 0000     		.space	2
+ 150              		.type	temperature.7439, %object
+ 151              		.size	temperature.7439, 2
+ 152              	temperature.7439:
+ 153 0004 0000     		.space	2
+ 154              		.text
+ 155              	.Letext0:
+ 156              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 157              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 158              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 159              		.file 5 "Generated_Source\\PSoC4/ADC.h"
+ 160              		.file 6 "Generated_Source\\PSoC4/VrefBuffer.h"
+ 161              		.file 7 "Generated_Source\\PSoC4/PVref.h"
+ 162              		.file 8 "Generated_Source\\PSoC4/Thermistor.h"
+ 163              		.section	.debug_info,"",%progbits
+ 164              	.Ldebug_info0:
+ 165 0000 3C020000 		.4byte	0x23c
+ 166 0004 0400     		.2byte	0x4
+ 167 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 168 000a 04       		.byte	0x4
+ 169 000b 01       		.uleb128 0x1
+ 170 000c 1B000000 		.4byte	.LASF31
+ 171 0010 01       		.byte	0x1
+ 172 0011 88010000 		.4byte	.LASF32
+ 173 0015 68020000 		.4byte	.LASF33
+ 174 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 175 001d 00000000 		.4byte	0
+ 176 0021 00000000 		.4byte	.Ldebug_line0
+ 177 0025 02       		.uleb128 0x2
+ 178 0026 01       		.byte	0x1
+ 179 0027 06       		.byte	0x6
+ 180 0028 55020000 		.4byte	.LASF0
+ 181 002c 02       		.uleb128 0x2
+ 182 002d 01       		.byte	0x1
+ 183 002e 08       		.byte	0x8
+ 184 002f 00010000 		.4byte	.LASF1
+ 185 0033 03       		.uleb128 0x3
+ 186 0034 11000000 		.4byte	.LASF9
+ 187 0038 02       		.byte	0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 6
+
+
+ 188 0039 29       		.byte	0x29
+ 189 003a 3E000000 		.4byte	0x3e
+ 190 003e 02       		.uleb128 0x2
+ 191 003f 02       		.byte	0x2
+ 192 0040 05       		.byte	0x5
+ 193 0041 0D020000 		.4byte	.LASF2
+ 194 0045 02       		.uleb128 0x2
+ 195 0046 02       		.byte	0x2
+ 196 0047 07       		.byte	0x7
+ 197 0048 37010000 		.4byte	.LASF3
+ 198 004c 02       		.uleb128 0x2
+ 199 004d 04       		.byte	0x4
+ 200 004e 05       		.byte	0x5
+ 201 004f 40020000 		.4byte	.LASF4
+ 202 0053 02       		.uleb128 0x2
+ 203 0054 04       		.byte	0x4
+ 204 0055 07       		.byte	0x7
+ 205 0056 25010000 		.4byte	.LASF5
+ 206 005a 02       		.uleb128 0x2
+ 207 005b 08       		.byte	0x8
+ 208 005c 05       		.byte	0x5
+ 209 005d F3010000 		.4byte	.LASF6
+ 210 0061 02       		.uleb128 0x2
+ 211 0062 08       		.byte	0x8
+ 212 0063 07       		.byte	0x7
+ 213 0064 E9000000 		.4byte	.LASF7
+ 214 0068 04       		.uleb128 0x4
+ 215 0069 04       		.byte	0x4
+ 216 006a 05       		.byte	0x5
+ 217 006b 696E7400 		.ascii	"int\000"
+ 218 006f 02       		.uleb128 0x2
+ 219 0070 04       		.byte	0x4
+ 220 0071 07       		.byte	0x7
+ 221 0072 BD010000 		.4byte	.LASF8
+ 222 0076 03       		.uleb128 0x3
+ 223 0077 E2010000 		.4byte	.LASF10
+ 224 007b 03       		.byte	0x3
+ 225 007c 20       		.byte	0x20
+ 226 007d 33000000 		.4byte	0x33
+ 227 0081 05       		.uleb128 0x5
+ 228 0082 B6010000 		.4byte	.LASF11
+ 229 0086 04       		.byte	0x4
+ 230 0087 BB01     		.2byte	0x1bb
+ 231 0089 53000000 		.4byte	0x53
+ 232 008d 05       		.uleb128 0x5
+ 233 008e 1F010000 		.4byte	.LASF12
+ 234 0092 04       		.byte	0x4
+ 235 0093 BD01     		.2byte	0x1bd
+ 236 0095 3E000000 		.4byte	0x3e
+ 237 0099 02       		.uleb128 0x2
+ 238 009a 04       		.byte	0x4
+ 239 009b 04       		.byte	0x4
+ 240 009c E3000000 		.4byte	.LASF13
+ 241 00a0 02       		.uleb128 0x2
+ 242 00a1 08       		.byte	0x8
+ 243 00a2 04       		.byte	0x4
+ 244 00a3 61020000 		.4byte	.LASF14
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 7
+
+
+ 245 00a7 02       		.uleb128 0x2
+ 246 00a8 01       		.byte	0x1
+ 247 00a9 08       		.byte	0x8
+ 248 00aa CA010000 		.4byte	.LASF15
+ 249 00ae 02       		.uleb128 0x2
+ 250 00af 04       		.byte	0x4
+ 251 00b0 07       		.byte	0x7
+ 252 00b1 EA010000 		.4byte	.LASF16
+ 253 00b5 06       		.uleb128 0x6
+ 254 00b6 C3000000 		.4byte	.LASF34
+ 255 00ba 01       		.byte	0x1
+ 256 00bb 25       		.byte	0x25
+ 257 00bc 00000000 		.4byte	.LFB95
+ 258 00c0 18000000 		.4byte	.LFE95-.LFB95
+ 259 00c4 01       		.uleb128 0x1
+ 260 00c5 9C       		.byte	0x9c
+ 261 00c6 F8000000 		.4byte	0xf8
+ 262 00ca 07       		.uleb128 0x7
+ 263 00cb 06000000 		.4byte	.LVL0
+ 264 00cf C7010000 		.4byte	0x1c7
+ 265 00d3 07       		.uleb128 0x7
+ 266 00d4 0A000000 		.4byte	.LVL1
+ 267 00d8 CE010000 		.4byte	0x1ce
+ 268 00dc 07       		.uleb128 0x7
+ 269 00dd 0E000000 		.4byte	.LVL2
+ 270 00e1 D5010000 		.4byte	0x1d5
+ 271 00e5 07       		.uleb128 0x7
+ 272 00e6 12000000 		.4byte	.LVL3
+ 273 00ea DC010000 		.4byte	0x1dc
+ 274 00ee 07       		.uleb128 0x7
+ 275 00ef 16000000 		.4byte	.LVL4
+ 276 00f3 E3010000 		.4byte	0x1e3
+ 277 00f7 00       		.byte	0
+ 278 00f8 08       		.uleb128 0x8
+ 279 00f9 30020000 		.4byte	.LASF35
+ 280 00fd 01       		.byte	0x1
+ 281 00fe 3C       		.byte	0x3c
+ 282 00ff 76000000 		.4byte	0x76
+ 283 0103 00000000 		.4byte	.LFB96
+ 284 0107 54000000 		.4byte	.LFE96-.LFB96
+ 285 010b 01       		.uleb128 0x1
+ 286 010c 9C       		.byte	0x9c
+ 287 010d C7010000 		.4byte	0x1c7
+ 288 0111 09       		.uleb128 0x9
+ 289 0112 01020000 		.4byte	.LASF17
+ 290 0116 01       		.byte	0x1
+ 291 0117 3E       		.byte	0x3e
+ 292 0118 76000000 		.4byte	0x76
+ 293 011c 05       		.uleb128 0x5
+ 294 011d 03       		.byte	0x3
+ 295 011e 04000000 		.4byte	temperature.7439
+ 296 0122 09       		.uleb128 0x9
+ 297 0123 49020000 		.4byte	.LASF18
+ 298 0127 01       		.byte	0x1
+ 299 0128 41       		.byte	0x41
+ 300 0129 76000000 		.4byte	0x76
+ 301 012d 05       		.uleb128 0x5
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 8
+
+
+ 302 012e 03       		.byte	0x3
+ 303 012f 00000000 		.4byte	filter_vref.7440
+ 304 0133 09       		.uleb128 0x9
+ 305 0134 CF010000 		.4byte	.LASF19
+ 306 0138 01       		.byte	0x1
+ 307 0139 42       		.byte	0x42
+ 308 013a 76000000 		.4byte	0x76
+ 309 013e 05       		.uleb128 0x5
+ 310 013f 03       		.byte	0x3
+ 311 0140 02000000 		.4byte	filter_vth.7441
+ 312 0144 0A       		.uleb128 0xa
+ 313 0145 0E000000 		.4byte	.LBB2
+ 314 0149 3C000000 		.4byte	.LBE2-.LBB2
+ 315 014d B7010000 		.4byte	0x1b7
+ 316 0151 0B       		.uleb128 0xb
+ 317 0152 AD000000 		.4byte	.LASF20
+ 318 0156 01       		.byte	0x1
+ 319 0157 47       		.byte	0x47
+ 320 0158 76000000 		.4byte	0x76
+ 321 015c 00000000 		.4byte	.LLST0
+ 322 0160 0B       		.uleb128 0xb
+ 323 0161 DA010000 		.4byte	.LASF21
+ 324 0165 01       		.byte	0x1
+ 325 0166 48       		.byte	0x48
+ 326 0167 76000000 		.4byte	0x76
+ 327 016b 13000000 		.4byte	.LLST1
+ 328 016f 0B       		.uleb128 0xb
+ 329 0170 96010000 		.4byte	.LASF22
+ 330 0174 01       		.byte	0x1
+ 331 0175 52       		.byte	0x52
+ 332 0176 76000000 		.4byte	0x76
+ 333 017a 26000000 		.4byte	.LLST2
+ 334 017e 0C       		.uleb128 0xc
+ 335 017f 14000000 		.4byte	.LVL6
+ 336 0183 EA010000 		.4byte	0x1ea
+ 337 0187 91010000 		.4byte	0x191
+ 338 018b 0D       		.uleb128 0xd
+ 339 018c 01       		.uleb128 0x1
+ 340 018d 50       		.byte	0x50
+ 341 018e 01       		.uleb128 0x1
+ 342 018f 30       		.byte	0x30
+ 343 0190 00       		.byte	0
+ 344 0191 0C       		.uleb128 0xc
+ 345 0192 1C000000 		.4byte	.LVL8
+ 346 0196 EA010000 		.4byte	0x1ea
+ 347 019a A4010000 		.4byte	0x1a4
+ 348 019e 0D       		.uleb128 0xd
+ 349 019f 01       		.uleb128 0x1
+ 350 01a0 50       		.byte	0x50
+ 351 01a1 01       		.uleb128 0x1
+ 352 01a2 31       		.byte	0x31
+ 353 01a3 00       		.byte	0
+ 354 01a4 07       		.uleb128 0x7
+ 355 01a5 42000000 		.4byte	.LVL11
+ 356 01a9 FF010000 		.4byte	0x1ff
+ 357 01ad 07       		.uleb128 0x7
+ 358 01ae 48000000 		.4byte	.LVL12
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 9
+
+
+ 359 01b2 19020000 		.4byte	0x219
+ 360 01b6 00       		.byte	0
+ 361 01b7 0E       		.uleb128 0xe
+ 362 01b8 08000000 		.4byte	.LVL5
+ 363 01bc 2E020000 		.4byte	0x22e
+ 364 01c0 0D       		.uleb128 0xd
+ 365 01c1 01       		.uleb128 0x1
+ 366 01c2 50       		.byte	0x50
+ 367 01c3 01       		.uleb128 0x1
+ 368 01c4 31       		.byte	0x31
+ 369 01c5 00       		.byte	0
+ 370 01c6 00       		.byte	0
+ 371 01c7 0F       		.uleb128 0xf
+ 372 01c8 AC010000 		.4byte	.LASF23
+ 373 01cc 05       		.byte	0x5
+ 374 01cd B1       		.byte	0xb1
+ 375 01ce 0F       		.uleb128 0xf
+ 376 01cf 0E010000 		.4byte	.LASF24
+ 377 01d3 05       		.byte	0x5
+ 378 01d4 B4       		.byte	0xb4
+ 379 01d5 0F       		.uleb128 0xf
+ 380 01d6 00000000 		.4byte	.LASF25
+ 381 01da 06       		.byte	0x6
+ 382 01db 29       		.byte	0x29
+ 383 01dc 0F       		.uleb128 0xf
+ 384 01dd D7000000 		.4byte	.LASF26
+ 385 01e1 07       		.byte	0x7
+ 386 01e2 37       		.byte	0x37
+ 387 01e3 0F       		.uleb128 0xf
+ 388 01e4 B6000000 		.4byte	.LASF27
+ 389 01e8 07       		.byte	0x7
+ 390 01e9 36       		.byte	0x36
+ 391 01ea 10       		.uleb128 0x10
+ 392 01eb 64010000 		.4byte	.LASF28
+ 393 01ef 05       		.byte	0x5
+ 394 01f0 B9       		.byte	0xb9
+ 395 01f1 8D000000 		.4byte	0x8d
+ 396 01f5 FF010000 		.4byte	0x1ff
+ 397 01f9 11       		.uleb128 0x11
+ 398 01fa 81000000 		.4byte	0x81
+ 399 01fe 00       		.byte	0
+ 400 01ff 10       		.uleb128 0x10
+ 401 0200 17020000 		.4byte	.LASF29
+ 402 0204 08       		.byte	0x8
+ 403 0205 30       		.byte	0x30
+ 404 0206 81000000 		.4byte	0x81
+ 405 020a 19020000 		.4byte	0x219
+ 406 020e 11       		.uleb128 0x11
+ 407 020f 8D000000 		.4byte	0x8d
+ 408 0213 11       		.uleb128 0x11
+ 409 0214 8D000000 		.4byte	0x8d
+ 410 0218 00       		.byte	0
+ 411 0219 10       		.uleb128 0x10
+ 412 021a 4A010000 		.4byte	.LASF30
+ 413 021e 08       		.byte	0x8
+ 414 021f 32       		.byte	0x32
+ 415 0220 8D000000 		.4byte	0x8d
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 10
+
+
+ 416 0224 2E020000 		.4byte	0x22e
+ 417 0228 11       		.uleb128 0x11
+ 418 0229 81000000 		.4byte	0x81
+ 419 022d 00       		.byte	0
+ 420 022e 12       		.uleb128 0x12
+ 421 022f 74010000 		.4byte	.LASF36
+ 422 0233 05       		.byte	0x5
+ 423 0234 B8       		.byte	0xb8
+ 424 0235 81000000 		.4byte	0x81
+ 425 0239 11       		.uleb128 0x11
+ 426 023a 81000000 		.4byte	0x81
+ 427 023e 00       		.byte	0
+ 428 023f 00       		.byte	0
+ 429              		.section	.debug_abbrev,"",%progbits
+ 430              	.Ldebug_abbrev0:
+ 431 0000 01       		.uleb128 0x1
+ 432 0001 11       		.uleb128 0x11
+ 433 0002 01       		.byte	0x1
+ 434 0003 25       		.uleb128 0x25
+ 435 0004 0E       		.uleb128 0xe
+ 436 0005 13       		.uleb128 0x13
+ 437 0006 0B       		.uleb128 0xb
+ 438 0007 03       		.uleb128 0x3
+ 439 0008 0E       		.uleb128 0xe
+ 440 0009 1B       		.uleb128 0x1b
+ 441 000a 0E       		.uleb128 0xe
+ 442 000b 55       		.uleb128 0x55
+ 443 000c 17       		.uleb128 0x17
+ 444 000d 11       		.uleb128 0x11
+ 445 000e 01       		.uleb128 0x1
+ 446 000f 10       		.uleb128 0x10
+ 447 0010 17       		.uleb128 0x17
+ 448 0011 00       		.byte	0
+ 449 0012 00       		.byte	0
+ 450 0013 02       		.uleb128 0x2
+ 451 0014 24       		.uleb128 0x24
+ 452 0015 00       		.byte	0
+ 453 0016 0B       		.uleb128 0xb
+ 454 0017 0B       		.uleb128 0xb
+ 455 0018 3E       		.uleb128 0x3e
+ 456 0019 0B       		.uleb128 0xb
+ 457 001a 03       		.uleb128 0x3
+ 458 001b 0E       		.uleb128 0xe
+ 459 001c 00       		.byte	0
+ 460 001d 00       		.byte	0
+ 461 001e 03       		.uleb128 0x3
+ 462 001f 16       		.uleb128 0x16
+ 463 0020 00       		.byte	0
+ 464 0021 03       		.uleb128 0x3
+ 465 0022 0E       		.uleb128 0xe
+ 466 0023 3A       		.uleb128 0x3a
+ 467 0024 0B       		.uleb128 0xb
+ 468 0025 3B       		.uleb128 0x3b
+ 469 0026 0B       		.uleb128 0xb
+ 470 0027 49       		.uleb128 0x49
+ 471 0028 13       		.uleb128 0x13
+ 472 0029 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 11
+
+
+ 473 002a 00       		.byte	0
+ 474 002b 04       		.uleb128 0x4
+ 475 002c 24       		.uleb128 0x24
+ 476 002d 00       		.byte	0
+ 477 002e 0B       		.uleb128 0xb
+ 478 002f 0B       		.uleb128 0xb
+ 479 0030 3E       		.uleb128 0x3e
+ 480 0031 0B       		.uleb128 0xb
+ 481 0032 03       		.uleb128 0x3
+ 482 0033 08       		.uleb128 0x8
+ 483 0034 00       		.byte	0
+ 484 0035 00       		.byte	0
+ 485 0036 05       		.uleb128 0x5
+ 486 0037 16       		.uleb128 0x16
+ 487 0038 00       		.byte	0
+ 488 0039 03       		.uleb128 0x3
+ 489 003a 0E       		.uleb128 0xe
+ 490 003b 3A       		.uleb128 0x3a
+ 491 003c 0B       		.uleb128 0xb
+ 492 003d 3B       		.uleb128 0x3b
+ 493 003e 05       		.uleb128 0x5
+ 494 003f 49       		.uleb128 0x49
+ 495 0040 13       		.uleb128 0x13
+ 496 0041 00       		.byte	0
+ 497 0042 00       		.byte	0
+ 498 0043 06       		.uleb128 0x6
+ 499 0044 2E       		.uleb128 0x2e
+ 500 0045 01       		.byte	0x1
+ 501 0046 3F       		.uleb128 0x3f
+ 502 0047 19       		.uleb128 0x19
+ 503 0048 03       		.uleb128 0x3
+ 504 0049 0E       		.uleb128 0xe
+ 505 004a 3A       		.uleb128 0x3a
+ 506 004b 0B       		.uleb128 0xb
+ 507 004c 3B       		.uleb128 0x3b
+ 508 004d 0B       		.uleb128 0xb
+ 509 004e 27       		.uleb128 0x27
+ 510 004f 19       		.uleb128 0x19
+ 511 0050 11       		.uleb128 0x11
+ 512 0051 01       		.uleb128 0x1
+ 513 0052 12       		.uleb128 0x12
+ 514 0053 06       		.uleb128 0x6
+ 515 0054 40       		.uleb128 0x40
+ 516 0055 18       		.uleb128 0x18
+ 517 0056 9742     		.uleb128 0x2117
+ 518 0058 19       		.uleb128 0x19
+ 519 0059 01       		.uleb128 0x1
+ 520 005a 13       		.uleb128 0x13
+ 521 005b 00       		.byte	0
+ 522 005c 00       		.byte	0
+ 523 005d 07       		.uleb128 0x7
+ 524 005e 898201   		.uleb128 0x4109
+ 525 0061 00       		.byte	0
+ 526 0062 11       		.uleb128 0x11
+ 527 0063 01       		.uleb128 0x1
+ 528 0064 31       		.uleb128 0x31
+ 529 0065 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 12
+
+
+ 530 0066 00       		.byte	0
+ 531 0067 00       		.byte	0
+ 532 0068 08       		.uleb128 0x8
+ 533 0069 2E       		.uleb128 0x2e
+ 534 006a 01       		.byte	0x1
+ 535 006b 3F       		.uleb128 0x3f
+ 536 006c 19       		.uleb128 0x19
+ 537 006d 03       		.uleb128 0x3
+ 538 006e 0E       		.uleb128 0xe
+ 539 006f 3A       		.uleb128 0x3a
+ 540 0070 0B       		.uleb128 0xb
+ 541 0071 3B       		.uleb128 0x3b
+ 542 0072 0B       		.uleb128 0xb
+ 543 0073 27       		.uleb128 0x27
+ 544 0074 19       		.uleb128 0x19
+ 545 0075 49       		.uleb128 0x49
+ 546 0076 13       		.uleb128 0x13
+ 547 0077 11       		.uleb128 0x11
+ 548 0078 01       		.uleb128 0x1
+ 549 0079 12       		.uleb128 0x12
+ 550 007a 06       		.uleb128 0x6
+ 551 007b 40       		.uleb128 0x40
+ 552 007c 18       		.uleb128 0x18
+ 553 007d 9742     		.uleb128 0x2117
+ 554 007f 19       		.uleb128 0x19
+ 555 0080 01       		.uleb128 0x1
+ 556 0081 13       		.uleb128 0x13
+ 557 0082 00       		.byte	0
+ 558 0083 00       		.byte	0
+ 559 0084 09       		.uleb128 0x9
+ 560 0085 34       		.uleb128 0x34
+ 561 0086 00       		.byte	0
+ 562 0087 03       		.uleb128 0x3
+ 563 0088 0E       		.uleb128 0xe
+ 564 0089 3A       		.uleb128 0x3a
+ 565 008a 0B       		.uleb128 0xb
+ 566 008b 3B       		.uleb128 0x3b
+ 567 008c 0B       		.uleb128 0xb
+ 568 008d 49       		.uleb128 0x49
+ 569 008e 13       		.uleb128 0x13
+ 570 008f 02       		.uleb128 0x2
+ 571 0090 18       		.uleb128 0x18
+ 572 0091 00       		.byte	0
+ 573 0092 00       		.byte	0
+ 574 0093 0A       		.uleb128 0xa
+ 575 0094 0B       		.uleb128 0xb
+ 576 0095 01       		.byte	0x1
+ 577 0096 11       		.uleb128 0x11
+ 578 0097 01       		.uleb128 0x1
+ 579 0098 12       		.uleb128 0x12
+ 580 0099 06       		.uleb128 0x6
+ 581 009a 01       		.uleb128 0x1
+ 582 009b 13       		.uleb128 0x13
+ 583 009c 00       		.byte	0
+ 584 009d 00       		.byte	0
+ 585 009e 0B       		.uleb128 0xb
+ 586 009f 34       		.uleb128 0x34
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 13
+
+
+ 587 00a0 00       		.byte	0
+ 588 00a1 03       		.uleb128 0x3
+ 589 00a2 0E       		.uleb128 0xe
+ 590 00a3 3A       		.uleb128 0x3a
+ 591 00a4 0B       		.uleb128 0xb
+ 592 00a5 3B       		.uleb128 0x3b
+ 593 00a6 0B       		.uleb128 0xb
+ 594 00a7 49       		.uleb128 0x49
+ 595 00a8 13       		.uleb128 0x13
+ 596 00a9 02       		.uleb128 0x2
+ 597 00aa 17       		.uleb128 0x17
+ 598 00ab 00       		.byte	0
+ 599 00ac 00       		.byte	0
+ 600 00ad 0C       		.uleb128 0xc
+ 601 00ae 898201   		.uleb128 0x4109
+ 602 00b1 01       		.byte	0x1
+ 603 00b2 11       		.uleb128 0x11
+ 604 00b3 01       		.uleb128 0x1
+ 605 00b4 31       		.uleb128 0x31
+ 606 00b5 13       		.uleb128 0x13
+ 607 00b6 01       		.uleb128 0x1
+ 608 00b7 13       		.uleb128 0x13
+ 609 00b8 00       		.byte	0
+ 610 00b9 00       		.byte	0
+ 611 00ba 0D       		.uleb128 0xd
+ 612 00bb 8A8201   		.uleb128 0x410a
+ 613 00be 00       		.byte	0
+ 614 00bf 02       		.uleb128 0x2
+ 615 00c0 18       		.uleb128 0x18
+ 616 00c1 9142     		.uleb128 0x2111
+ 617 00c3 18       		.uleb128 0x18
+ 618 00c4 00       		.byte	0
+ 619 00c5 00       		.byte	0
+ 620 00c6 0E       		.uleb128 0xe
+ 621 00c7 898201   		.uleb128 0x4109
+ 622 00ca 01       		.byte	0x1
+ 623 00cb 11       		.uleb128 0x11
+ 624 00cc 01       		.uleb128 0x1
+ 625 00cd 31       		.uleb128 0x31
+ 626 00ce 13       		.uleb128 0x13
+ 627 00cf 00       		.byte	0
+ 628 00d0 00       		.byte	0
+ 629 00d1 0F       		.uleb128 0xf
+ 630 00d2 2E       		.uleb128 0x2e
+ 631 00d3 00       		.byte	0
+ 632 00d4 3F       		.uleb128 0x3f
+ 633 00d5 19       		.uleb128 0x19
+ 634 00d6 03       		.uleb128 0x3
+ 635 00d7 0E       		.uleb128 0xe
+ 636 00d8 3A       		.uleb128 0x3a
+ 637 00d9 0B       		.uleb128 0xb
+ 638 00da 3B       		.uleb128 0x3b
+ 639 00db 0B       		.uleb128 0xb
+ 640 00dc 27       		.uleb128 0x27
+ 641 00dd 19       		.uleb128 0x19
+ 642 00de 3C       		.uleb128 0x3c
+ 643 00df 19       		.uleb128 0x19
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 14
+
+
+ 644 00e0 00       		.byte	0
+ 645 00e1 00       		.byte	0
+ 646 00e2 10       		.uleb128 0x10
+ 647 00e3 2E       		.uleb128 0x2e
+ 648 00e4 01       		.byte	0x1
+ 649 00e5 3F       		.uleb128 0x3f
+ 650 00e6 19       		.uleb128 0x19
+ 651 00e7 03       		.uleb128 0x3
+ 652 00e8 0E       		.uleb128 0xe
+ 653 00e9 3A       		.uleb128 0x3a
+ 654 00ea 0B       		.uleb128 0xb
+ 655 00eb 3B       		.uleb128 0x3b
+ 656 00ec 0B       		.uleb128 0xb
+ 657 00ed 27       		.uleb128 0x27
+ 658 00ee 19       		.uleb128 0x19
+ 659 00ef 49       		.uleb128 0x49
+ 660 00f0 13       		.uleb128 0x13
+ 661 00f1 3C       		.uleb128 0x3c
+ 662 00f2 19       		.uleb128 0x19
+ 663 00f3 01       		.uleb128 0x1
+ 664 00f4 13       		.uleb128 0x13
+ 665 00f5 00       		.byte	0
+ 666 00f6 00       		.byte	0
+ 667 00f7 11       		.uleb128 0x11
+ 668 00f8 05       		.uleb128 0x5
+ 669 00f9 00       		.byte	0
+ 670 00fa 49       		.uleb128 0x49
+ 671 00fb 13       		.uleb128 0x13
+ 672 00fc 00       		.byte	0
+ 673 00fd 00       		.byte	0
+ 674 00fe 12       		.uleb128 0x12
+ 675 00ff 2E       		.uleb128 0x2e
+ 676 0100 01       		.byte	0x1
+ 677 0101 3F       		.uleb128 0x3f
+ 678 0102 19       		.uleb128 0x19
+ 679 0103 03       		.uleb128 0x3
+ 680 0104 0E       		.uleb128 0xe
+ 681 0105 3A       		.uleb128 0x3a
+ 682 0106 0B       		.uleb128 0xb
+ 683 0107 3B       		.uleb128 0x3b
+ 684 0108 0B       		.uleb128 0xb
+ 685 0109 27       		.uleb128 0x27
+ 686 010a 19       		.uleb128 0x19
+ 687 010b 49       		.uleb128 0x49
+ 688 010c 13       		.uleb128 0x13
+ 689 010d 3C       		.uleb128 0x3c
+ 690 010e 19       		.uleb128 0x19
+ 691 010f 00       		.byte	0
+ 692 0110 00       		.byte	0
+ 693 0111 00       		.byte	0
+ 694              		.section	.debug_loc,"",%progbits
+ 695              	.Ldebug_loc0:
+ 696              	.LLST0:
+ 697 0000 16000000 		.4byte	.LVL7
+ 698 0004 2A000000 		.4byte	.LVL9
+ 699 0008 0100     		.2byte	0x1
+ 700 000a 55       		.byte	0x55
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 15
+
+
+ 701 000b 00000000 		.4byte	0
+ 702 000f 00000000 		.4byte	0
+ 703              	.LLST1:
+ 704 0013 1C000000 		.4byte	.LVL8
+ 705 0017 3A000000 		.4byte	.LVL10
+ 706 001b 0100     		.2byte	0x1
+ 707 001d 50       		.byte	0x50
+ 708 001e 00000000 		.4byte	0
+ 709 0022 00000000 		.4byte	0
+ 710              	.LLST2:
+ 711 0026 42000000 		.4byte	.LVL11
+ 712 002a 47000000 		.4byte	.LVL12-1
+ 713 002e 0100     		.2byte	0x1
+ 714 0030 50       		.byte	0x50
+ 715 0031 00000000 		.4byte	0
+ 716 0035 00000000 		.4byte	0
+ 717              		.section	.debug_aranges,"",%progbits
+ 718 0000 24000000 		.4byte	0x24
+ 719 0004 0200     		.2byte	0x2
+ 720 0006 00000000 		.4byte	.Ldebug_info0
+ 721 000a 04       		.byte	0x4
+ 722 000b 00       		.byte	0
+ 723 000c 0000     		.2byte	0
+ 724 000e 0000     		.2byte	0
+ 725 0010 00000000 		.4byte	.LFB95
+ 726 0014 18000000 		.4byte	.LFE95-.LFB95
+ 727 0018 00000000 		.4byte	.LFB96
+ 728 001c 54000000 		.4byte	.LFE96-.LFB96
+ 729 0020 00000000 		.4byte	0
+ 730 0024 00000000 		.4byte	0
+ 731              		.section	.debug_ranges,"",%progbits
+ 732              	.Ldebug_ranges0:
+ 733 0000 00000000 		.4byte	.LFB95
+ 734 0004 18000000 		.4byte	.LFE95
+ 735 0008 00000000 		.4byte	.LFB96
+ 736 000c 54000000 		.4byte	.LFE96
+ 737 0010 00000000 		.4byte	0
+ 738 0014 00000000 		.4byte	0
+ 739              		.section	.debug_line,"",%progbits
+ 740              	.Ldebug_line0:
+ 741 0000 B5010000 		.section	.debug_str,"MS",%progbits,1
+ 741      02007401 
+ 741      00000201 
+ 741      FB0E0D00 
+ 741      01010101 
+ 742              	.LASF25:
+ 743 0000 56726566 		.ascii	"VrefBuffer_Start\000"
+ 743      42756666 
+ 743      65725F53 
+ 743      74617274 
+ 743      00
+ 744              	.LASF9:
+ 745 0011 5F5F696E 		.ascii	"__int16_t\000"
+ 745      7431365F 
+ 745      7400
+ 746              	.LASF31:
+ 747 001b 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 16
+
+
+ 747      4320342E 
+ 747      392E3320 
+ 747      32303135 
+ 747      30333033 
+ 748 004e 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 748      20726576 
+ 748      6973696F 
+ 748      6E203232 
+ 748      31323230 
+ 749 0081 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 749      73202D66 
+ 749      66756E63 
+ 749      74696F6E 
+ 749      2D736563 
+ 750              	.LASF20:
+ 751 00ad 6164635F 		.ascii	"adc_vref\000"
+ 751      76726566 
+ 751      00
+ 752              	.LASF27:
+ 753 00b6 50567265 		.ascii	"PVref_Enable\000"
+ 753      665F456E 
+ 753      61626C65 
+ 753      00
+ 754              	.LASF34:
+ 755 00c3 74656D70 		.ascii	"temperature_hw_init\000"
+ 755      65726174 
+ 755      7572655F 
+ 755      68775F69 
+ 755      6E697400 
+ 756              	.LASF26:
+ 757 00d7 50567265 		.ascii	"PVref_Start\000"
+ 757      665F5374 
+ 757      61727400 
+ 758              	.LASF13:
+ 759 00e3 666C6F61 		.ascii	"float\000"
+ 759      7400
+ 760              	.LASF7:
+ 761 00e9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 761      206C6F6E 
+ 761      6720756E 
+ 761      7369676E 
+ 761      65642069 
+ 762              	.LASF1:
+ 763 0100 756E7369 		.ascii	"unsigned char\000"
+ 763      676E6564 
+ 763      20636861 
+ 763      7200
+ 764              	.LASF24:
+ 765 010e 4144435F 		.ascii	"ADC_StartConvert\000"
+ 765      53746172 
+ 765      74436F6E 
+ 765      76657274 
+ 765      00
+ 766              	.LASF12:
+ 767 011f 696E7431 		.ascii	"int16\000"
+ 767      3600
+ 768              	.LASF5:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 17
+
+
+ 769 0125 6C6F6E67 		.ascii	"long unsigned int\000"
+ 769      20756E73 
+ 769      69676E65 
+ 769      6420696E 
+ 769      7400
+ 770              	.LASF3:
+ 771 0137 73686F72 		.ascii	"short unsigned int\000"
+ 771      7420756E 
+ 771      7369676E 
+ 771      65642069 
+ 771      6E7400
+ 772              	.LASF30:
+ 773 014a 54686572 		.ascii	"Thermistor_GetTemperature\000"
+ 773      6D697374 
+ 773      6F725F47 
+ 773      65745465 
+ 773      6D706572 
+ 774              	.LASF28:
+ 775 0164 4144435F 		.ascii	"ADC_GetResult16\000"
+ 775      47657452 
+ 775      6573756C 
+ 775      74313600 
+ 776              	.LASF36:
+ 777 0174 4144435F 		.ascii	"ADC_IsEndConversion\000"
+ 777      4973456E 
+ 777      64436F6E 
+ 777      76657273 
+ 777      696F6E00 
+ 778              	.LASF32:
+ 779 0188 74656D70 		.ascii	"temperature.c\000"
+ 779      65726174 
+ 779      7572652E 
+ 779      6300
+ 780              	.LASF22:
+ 781 0196 74686572 		.ascii	"thermistor_resistance\000"
+ 781      6D697374 
+ 781      6F725F72 
+ 781      65736973 
+ 781      74616E63 
+ 782              	.LASF23:
+ 783 01ac 4144435F 		.ascii	"ADC_Start\000"
+ 783      53746172 
+ 783      7400
+ 784              	.LASF11:
+ 785 01b6 75696E74 		.ascii	"uint32\000"
+ 785      333200
+ 786              	.LASF8:
+ 787 01bd 756E7369 		.ascii	"unsigned int\000"
+ 787      676E6564 
+ 787      20696E74 
+ 787      00
+ 788              	.LASF15:
+ 789 01ca 63686172 		.ascii	"char\000"
+ 789      00
+ 790              	.LASF19:
+ 791 01cf 66696C74 		.ascii	"filter_vth\000"
+ 791      65725F76 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 18
+
+
+ 791      746800
+ 792              	.LASF21:
+ 793 01da 6164635F 		.ascii	"adc_vth\000"
+ 793      76746800 
+ 794              	.LASF10:
+ 795 01e2 696E7431 		.ascii	"int16_t\000"
+ 795      365F7400 
+ 796              	.LASF16:
+ 797 01ea 73697A65 		.ascii	"sizetype\000"
+ 797      74797065 
+ 797      00
+ 798              	.LASF6:
+ 799 01f3 6C6F6E67 		.ascii	"long long int\000"
+ 799      206C6F6E 
+ 799      6720696E 
+ 799      7400
+ 800              	.LASF17:
+ 801 0201 74656D70 		.ascii	"temperature\000"
+ 801      65726174 
+ 801      75726500 
+ 802              	.LASF2:
+ 803 020d 73686F72 		.ascii	"short int\000"
+ 803      7420696E 
+ 803      7400
+ 804              	.LASF29:
+ 805 0217 54686572 		.ascii	"Thermistor_GetResistance\000"
+ 805      6D697374 
+ 805      6F725F47 
+ 805      65745265 
+ 805      73697374 
+ 806              	.LASF35:
+ 807 0230 6765745F 		.ascii	"get_temperature\000"
+ 807      74656D70 
+ 807      65726174 
+ 807      75726500 
+ 808              	.LASF4:
+ 809 0240 6C6F6E67 		.ascii	"long int\000"
+ 809      20696E74 
+ 809      00
+ 810              	.LASF18:
+ 811 0249 66696C74 		.ascii	"filter_vref\000"
+ 811      65725F76 
+ 811      72656600 
+ 812              	.LASF0:
+ 813 0255 7369676E 		.ascii	"signed char\000"
+ 813      65642063 
+ 813      68617200 
+ 814              	.LASF14:
+ 815 0261 646F7562 		.ascii	"double\000"
+ 815      6C6500
+ 816              	.LASF33:
+ 817 0268 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 817      79707265 
+ 817      73735C54 
+ 817      616C6B69 
+ 817      6E67436C 
+ 818              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccjlWiHi.s 			page 19
+
+

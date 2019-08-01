@@ -1,0 +1,1659 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"VDAC_Synth_UAB_CyUAB.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.CyUAB_SetClock,"ax",%progbits
+  18              		.align	1
+  19              		.global	CyUAB_SetClock
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	CyUAB_SetClock, %function
+  23              	CyUAB_SetClock:
+  24              	.LFB1:
+  25              		.file 1 "Generated_Source\\PSoC4\\VDAC_Synth_UAB_CyUAB.c"
+   1:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /*!*****************************************************************************
+   2:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * \file VDAC_Synth_UAB_CyUAB.c
+   3:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * \version 1.10
+   4:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+   5:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * \brief 
+   6:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *   API for Universal Analog Block (UAB)
+   7:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+   8:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * \copyright
+  10:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * (c) 2014-2016, Cypress Semiconductor Corporation. All rights reserved.
+  11:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * This software, including source code, documentation and related
+  12:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * materials ("Software"), is owned by Cypress Semiconductor
+  13:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Corporation ("Cypress") and is protected by and subject to worldwide
+  14:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * patent protection (United States and foreign), United States copyright
+  15:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * laws and international treaty provisions. Therefore, you may use this
+  16:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Software only as provided in the license agreement accompanying the
+  17:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * software package from which you obtained this Software ("EULA").
+  18:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
+  19:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * non-transferable license to copy, modify, and compile the
+  20:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Software source code solely for use in connection with Cypress's
+  21:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * integrated circuit products. Any reproduction, modification, translation,
+  22:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * compilation, or representation of this Software except as specified
+  23:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * above is prohibited without the express written permission of Cypress.
+  24:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO
+  25:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING,
+  26:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+  27:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  28:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * PARTICULAR PURPOSE. Cypress reserves the right to make
+  29:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * changes to the Software without notice. Cypress does not assume any
+  30:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * liability arising out of the application or use of the Software or any
+  31:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * product or circuit described in the Software. Cypress does not
+  32:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * authorize its products for use in any products where a malfunction or
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 2
+
+
+  33:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * failure of the Cypress product may reasonably be expected to result in
+  34:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * significant property damage, injury or death ("High Risk Product"). By
+  35:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * including Cypress's product in a High Risk Product, the manufacturer
+  36:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * of such system or application assumes all risk of such use and in doing
+  37:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * so agrees to indemnify Cypress against all liability.
+  38:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+  40:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** #if !defined(CyUAB_C)
+  41:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** #define CyUAB_C
+  42:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+  43:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** #include "VDAC_Synth_UAB_CyUAB.h"    
+  44:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+  45:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /******************* CyUAB_SetClock() *****************************************/
+  46:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /*!
+  47:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @brief Write clock - handles filling a bit column that spans multiple memory locations.
+  48:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+  49:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @details There are 8 non-modbit clocks (pattern only) and 
+  50:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 4 modbit clocks (pattern and modbit) - this functions can set either type.
+  51:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Set the pattern and modbit pattern of a modbit clock and just the pattern for a non-modbit clock.
+  52:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Returns @c void.
+  53:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * clocks fill columns that span multiple RAM locations.
+  54:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  55:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @c modbit is only used for modbit clocks (PHI9-PHI12)
+  56:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @c modbit is ignored for non-modbit clocks (PHI1-PHI8)
+  57:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  58:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Always write all 16 steps, because you don't know what was set previously 
+  59:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * (and keeps the parameter list down to 4 - threshold for function calling method)
+  60:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  61:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * A call to this function must be preceded by Start(), Init(), or ClearAllClocks()
+  62:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * to initialize the wavestep SRAM.
+  63:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * The UAB clocking must be presently stopped.
+  64:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Before enabling UAB clocking, as needed, modify lastStep with SetLastStep()
+  65:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *   
+  66:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @internal
+  67:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @reglist @reg VDAC_Synth_UAB_SRAM<tt>xx</tt>_REG<, where <tt>xx</tt> 
+  68:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * spans 00 to 15.
+  69:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  70:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * This function relies on several assumptions/definitions:
+  71:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @li The SRAM clocks are all stored contiguously in memory.
+  72:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @li The lowest address is VDAC_Synth_UAB_UAB0_SRAM00.
+  73:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @li The modbit clocks start at phi_m1 = 9
+  74:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @li The modbit clocks take two consecutive bit fields within a step 
+  75:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  76:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * The expression (8 + 2*(phi - 9)) This expression 
+  77:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * simplifies to the one used for field shifting
+  78:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  79:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @endinternal
+  80:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  81:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param uabSram starting address of UAB half waveform SRAM; ie VDAC_Synth_UAB_SRAM1_PTR
+  82:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param pattern clocking in LSbit to MSbit ordering for step 0 to step 15.
+  83:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * When the @p modbitPattern is high, the
+  84:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * modbit waveform (chosen by VDAC_Synth_UAB_SetModbitSource()) is used as
+  85:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * this clock.  @p pattern inverts the modbit waveform when high, doesn’t invert
+  86:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * it when low.  When the @p modbitPattern is low, this clock simply follows
+  87:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @p pattern as it would for the non-modbit clocks.
+  88:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param modbitPattern A pattern which describes when to use the modbit
+  89:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * waveform as this clock. When @p modbitPattern is high, the
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 3
+
+
+  90:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * modbit waveform (chosen by VDAC_Synth_UAB_SetModbitSource()) is used as
+  91:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * this clock.  @p pattern inverts the modbit waveform when high, doesn’t invert
+  92:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * it when low.  When the @p modbitPattern is low, this clock simply follows
+  93:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @p pattern as it would for the non-modbit clocks.
+  94:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+  95:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param phi The clock to configure.  Function ignores all other values besides valid:
+  96:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI1
+  97:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI2
+  98:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI3
+  99:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI4
+ 100:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI5
+ 101:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI6
+ 102:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI7
+ 103:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI8
+ 104:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI9
+ 105:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI10
+ 106:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI11
+ 107:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @arg @c CyUAB_CLK_PHI12
+ 108:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 109:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @see
+ 110:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+ 111:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @sideeffect None
+ 112:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *******************************************************************************/
+ 113:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** void CyUAB_SetClock( reg32 uabSram[], CyUAB_clk_enum phi, uint16 pattern, uint16 modbitPattern )
+ 114:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** {
+  26              		.loc 1 114 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  30              		.cfi_def_cfa_offset 20
+  31              		.cfi_offset 4, -20
+  32              		.cfi_offset 5, -16
+  33              		.cfi_offset 6, -12
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+ 115:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 PATTERN_SHIFT = 0UL;
+ 116:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 MODBIT_SHIFT = 1UL;
+ 117:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 PATTERN_MASK = 1UL<<PATTERN_SHIFT;
+ 118:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 MODBIT_MASK  = 1UL<<MODBIT_SHIFT;
+ 119:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 BOTH_MASK = PATTERN_MASK | MODBIT_MASK;
+ 120:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const int32 PHI9_SHIFT = ((int32)CyUAB_CLK_PHI9)-1;
+ 121:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     
+ 122:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     uint32 i;
+ 123:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     int32 shift;
+ 124:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     uint32 mask;
+ 125:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     uint32 modbitCopy;
+ 126:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     
+ 127:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     if( ( ((int32)CyUAB_CLK_PHI1) <= ((int32)phi) ) && ( ((int32)phi) <= ((int32)CyUAB_CLK_PHI12) )
+  36              		.loc 1 127 0
+  37 0002 4C1E     		sub	r4, r1, #1
+ 114:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 PATTERN_SHIFT = 0UL;
+  38              		.loc 1 114 0
+  39 0004 85B0     		sub	sp, sp, #20
+  40              		.cfi_def_cfa_offset 40
+  41              		.loc 1 127 0
+  42 0006 E5B2     		uxtb	r5, r4
+ 114:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     const uint32 PATTERN_SHIFT = 0UL;
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 4
+
+
+  43              		.loc 1 114 0
+  44 0008 0292     		str	r2, [sp, #8]
+  45              		.loc 1 127 0
+  46 000a 0B2D     		cmp	r5, #11
+  47 000c 26D8     		bhi	.L1
+ 128:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     {
+ 129:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         if( ((int32)phi) > ((int32)CyUAB_CLK_PHI8) )
+  48              		.loc 1 129 0
+  49 000e 0829     		cmp	r1, #8
+  50 0010 05D9     		bls	.L3
+ 130:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 131:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             shift = (2*((int32)phi))+(PHI9_SHIFT-(2*((int32)CyUAB_CLK_PHI9) ) ); /* ==2*phi-10==(2*
+ 132:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             mask  = BOTH_MASK<<shift;
+  51              		.loc 1 132 0
+  52 0012 0325     		mov	r5, #3
+ 131:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             mask  = BOTH_MASK<<shift;
+  53              		.loc 1 131 0
+  54 0014 0539     		sub	r1, r1, #5
+  55              	.LVL1:
+  56 0016 4900     		lsl	r1, r1, #1
+  57              	.LVL2:
+  58              		.loc 1 132 0
+  59 0018 8D40     		lsl	r5, r5, r1
+  60              	.LVL3:
+ 133:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             modbitCopy = ((uint32)modbitPattern)<<MODBIT_SHIFT; /* pre-shift, so correct for right 
+  61              		.loc 1 133 0
+  62 001a 5B00     		lsl	r3, r3, #1
+  63              	.LVL4:
+  64 001c 03E0     		b	.L4
+  65              	.LVL5:
+  66              	.L3:
+ 134:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         }
+ 135:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         else
+ 136:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 137:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             shift = phi-CyUAB_CLK_PHI1;
+ 138:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             mask = 1UL<<shift;
+  67              		.loc 1 138 0
+  68 001e 0125     		mov	r5, #1
+ 137:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             mask = 1UL<<shift;
+  69              		.loc 1 137 0
+  70 0020 211C     		mov	r1, r4
+  71              	.LVL6:
+  72              		.loc 1 138 0
+  73 0022 A540     		lsl	r5, r5, r4
+  74              	.LVL7:
+ 139:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             modbitCopy = 0UL;
+  75              		.loc 1 139 0
+  76 0024 0023     		mov	r3, #0
+  77              	.LVL8:
+  78              	.L4:
+ 140:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         }
+ 141:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         
+ 142:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         for( i=0UL; i<CyUAB_STEPS_LEN_MAX; ++i )
+  79              		.loc 1 142 0
+  80 0026 0026     		mov	r6, #0
+  81              	.LVL9:
+  82              	.L5:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 5
+
+
+ 143:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 144:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             uabSram[i] = (uabSram[i]&(~mask)) | (((((modbitCopy>>i)&MODBIT_MASK)|((((uint32)pattern
+  83              		.loc 1 144 0 discriminator 3
+  84 0028 029C     		ldr	r4, [sp, #8]
+  85 002a B700     		lsl	r7, r6, #2
+  86 002c F440     		lsr	r4, r4, r6
+  87 002e A446     		mov	ip, r4
+  88 0030 C719     		add	r7, r0, r7
+  89 0032 3A68     		ldr	r2, [r7]
+  90 0034 0124     		mov	r4, #1
+  91 0036 0192     		str	r2, [sp, #4]
+  92 0038 6246     		mov	r2, ip
+  93 003a 2240     		and	r2, r4
+  94 003c 0392     		str	r2, [sp, #12]
+  95 003e 1A1C     		mov	r2, r3
+  96 0040 F240     		lsr	r2, r2, r6
+  97 0042 2419     		add	r4, r4, r4
+  98 0044 1440     		and	r4, r2
+  99 0046 039A     		ldr	r2, [sp, #12]
+ 142:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 100              		.loc 1 142 0 discriminator 3
+ 101 0048 0136     		add	r6, r6, #1
+ 102              	.LVL10:
+ 103              		.loc 1 144 0 discriminator 3
+ 104 004a 1443     		orr	r4, r2
+ 105 004c 8C40     		lsl	r4, r4, r1
+ 106 004e 019A     		ldr	r2, [sp, #4]
+ 107 0050 2C40     		and	r4, r5
+ 108 0052 AA43     		bic	r2, r5
+ 109 0054 1443     		orr	r4, r2
+ 110 0056 3C60     		str	r4, [r7]
+ 142:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 111              		.loc 1 142 0 discriminator 3
+ 112 0058 102E     		cmp	r6, #16
+ 113 005a E5D1     		bne	.L5
+ 114              	.LVL11:
+ 115              	.L1:
+ 145:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         }
+ 146:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     }
+ 147:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** }
+ 116              		.loc 1 147 0
+ 117 005c 05B0     		add	sp, sp, #20
+ 118              		@ sp needed
+ 119 005e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 120              		.cfi_endproc
+ 121              	.LFE1:
+ 122              		.size	CyUAB_SetClock, .-CyUAB_SetClock
+ 123              		.section	.text.CyUAB_SetNSteps,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	CyUAB_SetNSteps
+ 126              		.code	16
+ 127              		.thumb_func
+ 128              		.type	CyUAB_SetNSteps, %function
+ 129              	CyUAB_SetNSteps:
+ 130              	.LFB2:
+ 148:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+ 149:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 6
+
+
+ 150:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /******************* CyUAB_SetNSteps() ****************************************/
+ 151:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /*!
+ 152:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @brief Write all clocks as a series of steps 
+ 153:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+ 154:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @details Writes stepArray of size @c n steps to memory.
+ 155:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 156:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param uabSram starting address of UAB half waveform SRAM; ie VDAC_Synth_UAB_SRAM1_PTR
+ 157:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param n number of steps to write (starting at step0)
+ 158:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param stepArray of size @c n - each elements represents a single step
+ 159:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * specification for all clocks
+ 160:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 161:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @internal
+ 162:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @reglist @reg 
+ 163:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @image html _.png 
+ 164:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * UAB SRAM locations are 32-bits in size with only the first 16 bytes populated
+ 165:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Only lower 16 bits of stepArray elements used
+ 166:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @endinternal
+ 167:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+ 168:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @sideeffect None
+ 169:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *******************************************************************************/
+ 170:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** void CyUAB_SetNSteps( reg32 uabSram[], size_t n, const uint16 stepArray[] )
+ 171:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** {
+ 131              		.loc 1 171 0
+ 132              		.cfi_startproc
+ 133              	.LVL12:
+ 134 0000 30B5     		push	{r4, r5, lr}
+ 135              		.cfi_def_cfa_offset 12
+ 136              		.cfi_offset 4, -12
+ 137              		.cfi_offset 5, -8
+ 138              		.cfi_offset 14, -4
+ 139 0002 0023     		mov	r3, #0
+ 172:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     uint32 i;
+ 173:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     if( n<=CyUAB_STEPS_LEN_MAX )
+ 140              		.loc 1 173 0
+ 141 0004 1029     		cmp	r1, #16
+ 142 0006 08D8     		bhi	.L8
+ 143              	.L9:
+ 144              	.LVL13:
+ 174:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     {
+ 175:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         for( i=0UL; i<n; i++ )
+ 145              		.loc 1 175 0 discriminator 1
+ 146 0008 8B42     		cmp	r3, r1
+ 147 000a 06D0     		beq	.L8
+ 148 000c 5D00     		lsl	r5, r3, #1
+ 149 000e 9C00     		lsl	r4, r3, #2
+ 176:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 177:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****             uabSram[i] = stepArray[i];
+ 150              		.loc 1 177 0 discriminator 3
+ 151 0010 555B     		ldrh	r5, [r2, r5]
+ 152 0012 0419     		add	r4, r0, r4
+ 153 0014 2560     		str	r5, [r4]
+ 175:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         {
+ 154              		.loc 1 175 0 discriminator 3
+ 155 0016 0133     		add	r3, r3, #1
+ 156              	.LVL14:
+ 157 0018 F6E7     		b	.L9
+ 158              	.LVL15:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 7
+
+
+ 159              	.L8:
+ 178:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         }
+ 179:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     }
+ 180:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** }
+ 160              		.loc 1 180 0
+ 161              		@ sp needed
+ 162 001a 30BD     		pop	{r4, r5, pc}
+ 163              		.cfi_endproc
+ 164              	.LFE2:
+ 165              		.size	CyUAB_SetNSteps, .-CyUAB_SetNSteps
+ 166              		.section	.text.CyUAB_SetSingleStep,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	CyUAB_SetSingleStep
+ 169              		.code	16
+ 170              		.thumb_func
+ 171              		.type	CyUAB_SetSingleStep, %function
+ 172              	CyUAB_SetSingleStep:
+ 173              	.LFB3:
+ 181:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+ 182:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /***************** CyUAB_SetSingleStep() **************************************/
+ 183:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /*!
+ 184:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @brief Write all clocks for a single step 
+ 185:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+ 186:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @details Allows patching specific steps (can use for dynamic reconfig)
+ 187:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 188:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param uabSram starting address of UAB half waveform SRAM; ie VDAC_Synth_UAB_SRAM1_PTR
+ 189:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param idx index of the targeted step
+ 190:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param stepValue all clocks specified for a single step
+ 191:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 192:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @internal
+ 193:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @reglist @reg 
+ 194:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @image html _.png 
+ 195:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * UAB SRAM locations are 32-bits in size with only the first 16 bytes populated
+ 196:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * Only lower 16 bits of stepArray elements used
+ 197:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @endinternal
+ 198:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * 
+ 199:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @sideeffect None
+ 200:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *******************************************************************************/
+ 201:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** void CyUAB_SetSingleStep(reg32 uabSram[], size_t idx, const uint16 stepValue )
+ 202:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** {
+ 174              		.loc 1 202 0
+ 175              		.cfi_startproc
+ 176              	.LVL16:
+ 203:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     if( idx<=CyUAB_STEPS_IDX_MAX )
+ 177              		.loc 1 203 0
+ 178 0000 0F29     		cmp	r1, #15
+ 179 0002 02D8     		bhi	.L13
+ 204:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     {
+ 205:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         uabSram[idx] = ((uint32)stepValue);
+ 180              		.loc 1 205 0
+ 181 0004 8900     		lsl	r1, r1, #2
+ 182              	.LVL17:
+ 183 0006 4018     		add	r0, r0, r1
+ 184              	.LVL18:
+ 185 0008 0260     		str	r2, [r0]
+ 186              	.L13:
+ 206:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     } 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 8
+
+
+ 207:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** }
+ 187              		.loc 1 207 0
+ 188              		@ sp needed
+ 189 000a 7047     		bx	lr
+ 190              		.cfi_endproc
+ 191              	.LFE3:
+ 192              		.size	CyUAB_SetSingleStep, .-CyUAB_SetSingleStep
+ 193              		.section	.text.CyUAB_wordset,"ax",%progbits
+ 194              		.align	1
+ 195              		.global	CyUAB_wordset
+ 196              		.code	16
+ 197              		.thumb_func
+ 198              		.type	CyUAB_wordset, %function
+ 199              	CyUAB_wordset:
+ 200              	.LFB4:
+ 208:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** 
+ 209:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** /*! 
+ 210:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @brief wordset is like a 32-bit aligned memset()
+ 211:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** *
+ 212:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param s pointer to memory block of 32-bit words
+ 213:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param c value to overwrite words
+ 214:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** * @param size length of memory block in bytes 
+ 215:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** */
+ 216:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** reg32* CyUAB_wordset( reg32 s[], uint32 c, size_t size )
+ 217:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** {
+ 201              		.loc 1 217 0
+ 202              		.cfi_startproc
+ 203              	.LVL19:
+ 218:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     size_t n = size/sizeof(c);
+ 204              		.loc 1 218 0
+ 205 0000 9208     		lsr	r2, r2, #2
+ 206              	.LVL20:
+ 207 0002 9200     		lsl	r2, r2, #2
+ 208              	.LVL21:
+ 209 0004 8218     		add	r2, r0, r2
+ 210              	.LVL22:
+ 211              	.L16:
+ 219:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     while( 0UL != n )
+ 212              		.loc 1 219 0
+ 213 0006 9042     		cmp	r0, r2
+ 214 0008 02D0     		beq	.L18
+ 215 000a 043A     		sub	r2, r2, #4
+ 220:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     {
+ 221:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         --n;
+ 222:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****         s[n] = c;
+ 216              		.loc 1 222 0
+ 217 000c 1160     		str	r1, [r2]
+ 218 000e FAE7     		b	.L16
+ 219              	.L18:
+ 223:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     }
+ 224:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c ****     return s;
+ 225:Generated_Source\PSoC4/VDAC_Synth_UAB_CyUAB.c **** }
+ 220              		.loc 1 225 0
+ 221              		@ sp needed
+ 222 0010 7047     		bx	lr
+ 223              		.cfi_endproc
+ 224              	.LFE4:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 9
+
+
+ 225              		.size	CyUAB_wordset, .-CyUAB_wordset
+ 226              		.text
+ 227              	.Letext0:
+ 228              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 229              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 230              		.file 4 "Generated_Source\\PSoC4\\VDAC_Synth_UAB_CyUAB_types.h"
+ 231              		.section	.debug_info,"",%progbits
+ 232              	.Ldebug_info0:
+ 233 0000 EC020000 		.4byte	0x2ec
+ 234 0004 0400     		.2byte	0x4
+ 235 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 236 000a 04       		.byte	0x4
+ 237 000b 01       		.uleb128 0x1
+ 238 000c 3F000000 		.4byte	.LASF52
+ 239 0010 01       		.byte	0x1
+ 240 0011 80010000 		.4byte	.LASF53
+ 241 0015 03030000 		.4byte	.LASF54
+ 242 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 243 001d 00000000 		.4byte	0
+ 244 0021 00000000 		.4byte	.Ldebug_line0
+ 245 0025 02       		.uleb128 0x2
+ 246 0026 01       		.byte	0x1
+ 247 0027 06       		.byte	0x6
+ 248 0028 BE020000 		.4byte	.LASF0
+ 249 002c 02       		.uleb128 0x2
+ 250 002d 01       		.byte	0x1
+ 251 002e 08       		.byte	0x8
+ 252 002f DA010000 		.4byte	.LASF1
+ 253 0033 02       		.uleb128 0x2
+ 254 0034 02       		.byte	0x2
+ 255 0035 05       		.byte	0x5
+ 256 0036 5A020000 		.4byte	.LASF2
+ 257 003a 02       		.uleb128 0x2
+ 258 003b 02       		.byte	0x2
+ 259 003c 07       		.byte	0x7
+ 260 003d 2C000000 		.4byte	.LASF3
+ 261 0041 02       		.uleb128 0x2
+ 262 0042 04       		.byte	0x4
+ 263 0043 05       		.byte	0x5
+ 264 0044 90020000 		.4byte	.LASF4
+ 265 0048 02       		.uleb128 0x2
+ 266 0049 04       		.byte	0x4
+ 267 004a 07       		.byte	0x7
+ 268 004b 6E010000 		.4byte	.LASF5
+ 269 004f 02       		.uleb128 0x2
+ 270 0050 08       		.byte	0x8
+ 271 0051 05       		.byte	0x5
+ 272 0052 38020000 		.4byte	.LASF6
+ 273 0056 02       		.uleb128 0x2
+ 274 0057 08       		.byte	0x8
+ 275 0058 07       		.byte	0x7
+ 276 0059 F5010000 		.4byte	.LASF7
+ 277 005d 03       		.uleb128 0x3
+ 278 005e 04       		.byte	0x4
+ 279 005f 05       		.byte	0x5
+ 280 0060 696E7400 		.ascii	"int\000"
+ 281 0064 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 10
+
+
+ 282 0065 04       		.byte	0x4
+ 283 0066 07       		.byte	0x7
+ 284 0067 E8010000 		.4byte	.LASF8
+ 285 006b 04       		.uleb128 0x4
+ 286 006c CC010000 		.4byte	.LASF9
+ 287 0070 02       		.byte	0x2
+ 288 0071 BA01     		.2byte	0x1ba
+ 289 0073 3A000000 		.4byte	0x3a
+ 290 0077 04       		.uleb128 0x4
+ 291 0078 D3010000 		.4byte	.LASF10
+ 292 007c 02       		.byte	0x2
+ 293 007d BB01     		.2byte	0x1bb
+ 294 007f 48000000 		.4byte	0x48
+ 295 0083 04       		.uleb128 0x4
+ 296 0084 49010000 		.4byte	.LASF11
+ 297 0088 02       		.byte	0x2
+ 298 0089 BE01     		.2byte	0x1be
+ 299 008b 41000000 		.4byte	0x41
+ 300 008f 02       		.uleb128 0x2
+ 301 0090 04       		.byte	0x4
+ 302 0091 04       		.byte	0x4
+ 303 0092 34010000 		.4byte	.LASF12
+ 304 0096 02       		.uleb128 0x2
+ 305 0097 08       		.byte	0x8
+ 306 0098 04       		.byte	0x4
+ 307 0099 0C020000 		.4byte	.LASF13
+ 308 009d 02       		.uleb128 0x2
+ 309 009e 01       		.byte	0x1
+ 310 009f 08       		.byte	0x8
+ 311 00a0 46020000 		.4byte	.LASF14
+ 312 00a4 04       		.uleb128 0x4
+ 313 00a5 99020000 		.4byte	.LASF15
+ 314 00a9 02       		.byte	0x2
+ 315 00aa 6502     		.2byte	0x265
+ 316 00ac B0000000 		.4byte	0xb0
+ 317 00b0 05       		.uleb128 0x5
+ 318 00b1 77000000 		.4byte	0x77
+ 319 00b5 06       		.uleb128 0x6
+ 320 00b6 06000000 		.4byte	.LASF16
+ 321 00ba 03       		.byte	0x3
+ 322 00bb D4       		.byte	0xd4
+ 323 00bc 64000000 		.4byte	0x64
+ 324 00c0 02       		.uleb128 0x2
+ 325 00c1 04       		.byte	0x4
+ 326 00c2 07       		.byte	0x7
+ 327 00c3 13020000 		.4byte	.LASF17
+ 328 00c7 07       		.uleb128 0x7
+ 329 00c8 04       		.byte	0x4
+ 330 00c9 A4000000 		.4byte	0xa4
+ 331 00cd 08       		.uleb128 0x8
+ 332 00ce 01       		.byte	0x1
+ 333 00cf 04       		.byte	0x4
+ 334 00d0 7001     		.2byte	0x170
+ 335 00d2 2B010000 		.4byte	0x12b
+ 336 00d6 09       		.uleb128 0x9
+ 337 00d7 BE010000 		.4byte	.LASF18
+ 338 00db 00       		.sleb128 0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 11
+
+
+ 339 00dc 09       		.uleb128 0x9
+ 340 00dd D6020000 		.4byte	.LASF19
+ 341 00e1 01       		.sleb128 1
+ 342 00e2 09       		.uleb128 0x9
+ 343 00e3 E5020000 		.4byte	.LASF20
+ 344 00e7 02       		.sleb128 2
+ 345 00e8 09       		.uleb128 0x9
+ 346 00e9 F4020000 		.4byte	.LASF21
+ 347 00ed 03       		.sleb128 3
+ 348 00ee 09       		.uleb128 0x9
+ 349 00ef 73020000 		.4byte	.LASF22
+ 350 00f3 04       		.sleb128 4
+ 351 00f4 09       		.uleb128 0x9
+ 352 00f5 2F030000 		.4byte	.LASF23
+ 353 00f9 05       		.sleb128 5
+ 354 00fa 09       		.uleb128 0x9
+ 355 00fb 9F020000 		.4byte	.LASF24
+ 356 00ff 06       		.sleb128 6
+ 357 0100 09       		.uleb128 0x9
+ 358 0101 4B020000 		.4byte	.LASF25
+ 359 0105 07       		.sleb128 7
+ 360 0106 09       		.uleb128 0x9
+ 361 0107 49030000 		.4byte	.LASF26
+ 362 010b 08       		.sleb128 8
+ 363 010c 09       		.uleb128 0x9
+ 364 010d 58030000 		.4byte	.LASF27
+ 365 0111 09       		.sleb128 9
+ 366 0112 09       		.uleb128 0x9
+ 367 0113 F0000000 		.4byte	.LASF28
+ 368 0117 0A       		.sleb128 10
+ 369 0118 09       		.uleb128 0x9
+ 370 0119 00010000 		.4byte	.LASF29
+ 371 011d 0B       		.sleb128 11
+ 372 011e 09       		.uleb128 0x9
+ 373 011f 10010000 		.4byte	.LASF30
+ 374 0123 0C       		.sleb128 12
+ 375 0124 09       		.uleb128 0x9
+ 376 0125 AE020000 		.4byte	.LASF31
+ 377 0129 0F       		.sleb128 15
+ 378 012a 00       		.byte	0
+ 379 012b 04       		.uleb128 0x4
+ 380 012c 0D000000 		.4byte	.LASF32
+ 381 0130 04       		.byte	0x4
+ 382 0131 8601     		.2byte	0x186
+ 383 0133 CD000000 		.4byte	0xcd
+ 384 0137 0A       		.uleb128 0xa
+ 385 0138 64020000 		.4byte	.LASF45
+ 386 013c 01       		.byte	0x1
+ 387 013d 71       		.byte	0x71
+ 388 013e 00000000 		.4byte	.LFB1
+ 389 0142 60000000 		.4byte	.LFE1-.LFB1
+ 390 0146 01       		.uleb128 0x1
+ 391 0147 9C       		.byte	0x9c
+ 392 0148 09020000 		.4byte	0x209
+ 393 014c 0B       		.uleb128 0xb
+ 394 014d D1000000 		.4byte	.LASF33
+ 395 0151 01       		.byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 12
+
+
+ 396 0152 71       		.byte	0x71
+ 397 0153 C7000000 		.4byte	0xc7
+ 398 0157 01       		.uleb128 0x1
+ 399 0158 50       		.byte	0x50
+ 400 0159 0C       		.uleb128 0xc
+ 401 015a 70686900 		.ascii	"phi\000"
+ 402 015e 01       		.byte	0x1
+ 403 015f 71       		.byte	0x71
+ 404 0160 2B010000 		.4byte	0x12b
+ 405 0164 00000000 		.4byte	.LLST0
+ 406 0168 0D       		.uleb128 0xd
+ 407 0169 4F010000 		.4byte	.LASF34
+ 408 016d 01       		.byte	0x1
+ 409 016e 71       		.byte	0x71
+ 410 016f 6B000000 		.4byte	0x6b
+ 411 0173 3A000000 		.4byte	.LLST1
+ 412 0177 0D       		.uleb128 0xd
+ 413 0178 1C020000 		.4byte	.LASF35
+ 414 017c 01       		.byte	0x1
+ 415 017d 71       		.byte	0x71
+ 416 017e 6B000000 		.4byte	0x6b
+ 417 0182 5B000000 		.4byte	.LLST2
+ 418 0186 0E       		.uleb128 0xe
+ 419 0187 2A020000 		.4byte	.LASF36
+ 420 018b 01       		.byte	0x1
+ 421 018c 73       		.byte	0x73
+ 422 018d 09020000 		.4byte	0x209
+ 423 0191 00       		.byte	0
+ 424 0192 0E       		.uleb128 0xe
+ 425 0193 E3000000 		.4byte	.LASF37
+ 426 0197 01       		.byte	0x1
+ 427 0198 74       		.byte	0x74
+ 428 0199 09020000 		.4byte	0x209
+ 429 019d 01       		.byte	0x1
+ 430 019e 0E       		.uleb128 0xe
+ 431 019f 61010000 		.4byte	.LASF38
+ 432 01a3 01       		.byte	0x1
+ 433 01a4 75       		.byte	0x75
+ 434 01a5 09020000 		.4byte	0x209
+ 435 01a9 01       		.byte	0x1
+ 436 01aa 0E       		.uleb128 0xe
+ 437 01ab CA020000 		.4byte	.LASF39
+ 438 01af 01       		.byte	0x1
+ 439 01b0 76       		.byte	0x76
+ 440 01b1 09020000 		.4byte	0x209
+ 441 01b5 02       		.byte	0x2
+ 442 01b6 0E       		.uleb128 0xe
+ 443 01b7 57010000 		.4byte	.LASF40
+ 444 01bb 01       		.byte	0x1
+ 445 01bc 77       		.byte	0x77
+ 446 01bd 09020000 		.4byte	0x209
+ 447 01c1 03       		.byte	0x3
+ 448 01c2 0E       		.uleb128 0xe
+ 449 01c3 1C000000 		.4byte	.LASF41
+ 450 01c7 01       		.byte	0x1
+ 451 01c8 78       		.byte	0x78
+ 452 01c9 0E020000 		.4byte	0x20e
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 13
+
+
+ 453 01cd 08       		.byte	0x8
+ 454 01ce 0F       		.uleb128 0xf
+ 455 01cf 6900     		.ascii	"i\000"
+ 456 01d1 01       		.byte	0x1
+ 457 01d2 7A       		.byte	0x7a
+ 458 01d3 77000000 		.4byte	0x77
+ 459 01d7 95000000 		.4byte	.LLST3
+ 460 01db 10       		.uleb128 0x10
+ 461 01dc 00000000 		.4byte	.LASF42
+ 462 01e0 01       		.byte	0x1
+ 463 01e1 7B       		.byte	0x7b
+ 464 01e2 83000000 		.4byte	0x83
+ 465 01e6 B4000000 		.4byte	.LLST4
+ 466 01ea 10       		.uleb128 0x10
+ 467 01eb 27000000 		.4byte	.LASF43
+ 468 01ef 01       		.byte	0x1
+ 469 01f0 7C       		.byte	0x7c
+ 470 01f1 77000000 		.4byte	0x77
+ 471 01f5 D2000000 		.4byte	.LLST5
+ 472 01f9 10       		.uleb128 0x10
+ 473 01fa 3E030000 		.4byte	.LASF44
+ 474 01fe 01       		.byte	0x1
+ 475 01ff 7D       		.byte	0x7d
+ 476 0200 77000000 		.4byte	0x77
+ 477 0204 F0000000 		.4byte	.LLST6
+ 478 0208 00       		.byte	0
+ 479 0209 11       		.uleb128 0x11
+ 480 020a 77000000 		.4byte	0x77
+ 481 020e 11       		.uleb128 0x11
+ 482 020f 83000000 		.4byte	0x83
+ 483 0213 0A       		.uleb128 0xa
+ 484 0214 AE010000 		.4byte	.LASF46
+ 485 0218 01       		.byte	0x1
+ 486 0219 AA       		.byte	0xaa
+ 487 021a 00000000 		.4byte	.LFB2
+ 488 021e 1C000000 		.4byte	.LFE2-.LFB2
+ 489 0222 01       		.uleb128 0x1
+ 490 0223 9C       		.byte	0x9c
+ 491 0224 5B020000 		.4byte	0x25b
+ 492 0228 0B       		.uleb128 0xb
+ 493 0229 D1000000 		.4byte	.LASF33
+ 494 022d 01       		.byte	0x1
+ 495 022e AA       		.byte	0xaa
+ 496 022f C7000000 		.4byte	0xc7
+ 497 0233 01       		.uleb128 0x1
+ 498 0234 50       		.byte	0x50
+ 499 0235 12       		.uleb128 0x12
+ 500 0236 6E00     		.ascii	"n\000"
+ 501 0238 01       		.byte	0x1
+ 502 0239 AA       		.byte	0xaa
+ 503 023a B5000000 		.4byte	0xb5
+ 504 023e 01       		.uleb128 0x1
+ 505 023f 51       		.byte	0x51
+ 506 0240 0B       		.uleb128 0xb
+ 507 0241 3F010000 		.4byte	.LASF47
+ 508 0245 01       		.byte	0x1
+ 509 0246 AA       		.byte	0xaa
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 14
+
+
+ 510 0247 5B020000 		.4byte	0x25b
+ 511 024b 01       		.uleb128 0x1
+ 512 024c 52       		.byte	0x52
+ 513 024d 0F       		.uleb128 0xf
+ 514 024e 6900     		.ascii	"i\000"
+ 515 0250 01       		.byte	0x1
+ 516 0251 AC       		.byte	0xac
+ 517 0252 77000000 		.4byte	0x77
+ 518 0256 1A010000 		.4byte	.LLST7
+ 519 025a 00       		.byte	0
+ 520 025b 07       		.uleb128 0x7
+ 521 025c 04       		.byte	0x4
+ 522 025d 61020000 		.4byte	0x261
+ 523 0261 11       		.uleb128 0x11
+ 524 0262 6B000000 		.4byte	0x6b
+ 525 0266 0A       		.uleb128 0xa
+ 526 0267 20010000 		.4byte	.LASF48
+ 527 026b 01       		.byte	0x1
+ 528 026c C9       		.byte	0xc9
+ 529 026d 00000000 		.4byte	.LFB3
+ 530 0271 0C000000 		.4byte	.LFE3-.LFB3
+ 531 0275 01       		.uleb128 0x1
+ 532 0276 9C       		.byte	0x9c
+ 533 0277 A7020000 		.4byte	0x2a7
+ 534 027b 0D       		.uleb128 0xd
+ 535 027c D1000000 		.4byte	.LASF33
+ 536 0280 01       		.byte	0x1
+ 537 0281 C9       		.byte	0xc9
+ 538 0282 C7000000 		.4byte	0xc7
+ 539 0286 2D010000 		.4byte	.LLST8
+ 540 028a 0C       		.uleb128 0xc
+ 541 028b 69647800 		.ascii	"idx\000"
+ 542 028f 01       		.byte	0x1
+ 543 0290 C9       		.byte	0xc9
+ 544 0291 B5000000 		.4byte	0xb5
+ 545 0295 4E010000 		.4byte	.LLST9
+ 546 0299 0B       		.uleb128 0xb
+ 547 029a D9000000 		.4byte	.LASF49
+ 548 029e 01       		.byte	0x1
+ 549 029f C9       		.byte	0xc9
+ 550 02a0 61020000 		.4byte	0x261
+ 551 02a4 01       		.uleb128 0x1
+ 552 02a5 52       		.byte	0x52
+ 553 02a6 00       		.byte	0
+ 554 02a7 13       		.uleb128 0x13
+ 555 02a8 82020000 		.4byte	.LASF50
+ 556 02ac 01       		.byte	0x1
+ 557 02ad D8       		.byte	0xd8
+ 558 02ae C7000000 		.4byte	0xc7
+ 559 02b2 00000000 		.4byte	.LFB4
+ 560 02b6 12000000 		.4byte	.LFE4-.LFB4
+ 561 02ba 01       		.uleb128 0x1
+ 562 02bb 9C       		.byte	0x9c
+ 563 02bc 12       		.uleb128 0x12
+ 564 02bd 7300     		.ascii	"s\000"
+ 565 02bf 01       		.byte	0x1
+ 566 02c0 D8       		.byte	0xd8
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 15
+
+
+ 567 02c1 C7000000 		.4byte	0xc7
+ 568 02c5 01       		.uleb128 0x1
+ 569 02c6 50       		.byte	0x50
+ 570 02c7 12       		.uleb128 0x12
+ 571 02c8 6300     		.ascii	"c\000"
+ 572 02ca 01       		.byte	0x1
+ 573 02cb D8       		.byte	0xd8
+ 574 02cc 77000000 		.4byte	0x77
+ 575 02d0 01       		.uleb128 0x1
+ 576 02d1 51       		.byte	0x51
+ 577 02d2 0D       		.uleb128 0xd
+ 578 02d3 3A010000 		.4byte	.LASF51
+ 579 02d7 01       		.byte	0x1
+ 580 02d8 D8       		.byte	0xd8
+ 581 02d9 B5000000 		.4byte	0xb5
+ 582 02dd 6F010000 		.4byte	.LLST10
+ 583 02e1 0F       		.uleb128 0xf
+ 584 02e2 6E00     		.ascii	"n\000"
+ 585 02e4 01       		.byte	0x1
+ 586 02e5 DA       		.byte	0xda
+ 587 02e6 B5000000 		.4byte	0xb5
+ 588 02ea 90010000 		.4byte	.LLST11
+ 589 02ee 00       		.byte	0
+ 590 02ef 00       		.byte	0
+ 591              		.section	.debug_abbrev,"",%progbits
+ 592              	.Ldebug_abbrev0:
+ 593 0000 01       		.uleb128 0x1
+ 594 0001 11       		.uleb128 0x11
+ 595 0002 01       		.byte	0x1
+ 596 0003 25       		.uleb128 0x25
+ 597 0004 0E       		.uleb128 0xe
+ 598 0005 13       		.uleb128 0x13
+ 599 0006 0B       		.uleb128 0xb
+ 600 0007 03       		.uleb128 0x3
+ 601 0008 0E       		.uleb128 0xe
+ 602 0009 1B       		.uleb128 0x1b
+ 603 000a 0E       		.uleb128 0xe
+ 604 000b 55       		.uleb128 0x55
+ 605 000c 17       		.uleb128 0x17
+ 606 000d 11       		.uleb128 0x11
+ 607 000e 01       		.uleb128 0x1
+ 608 000f 10       		.uleb128 0x10
+ 609 0010 17       		.uleb128 0x17
+ 610 0011 00       		.byte	0
+ 611 0012 00       		.byte	0
+ 612 0013 02       		.uleb128 0x2
+ 613 0014 24       		.uleb128 0x24
+ 614 0015 00       		.byte	0
+ 615 0016 0B       		.uleb128 0xb
+ 616 0017 0B       		.uleb128 0xb
+ 617 0018 3E       		.uleb128 0x3e
+ 618 0019 0B       		.uleb128 0xb
+ 619 001a 03       		.uleb128 0x3
+ 620 001b 0E       		.uleb128 0xe
+ 621 001c 00       		.byte	0
+ 622 001d 00       		.byte	0
+ 623 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 16
+
+
+ 624 001f 24       		.uleb128 0x24
+ 625 0020 00       		.byte	0
+ 626 0021 0B       		.uleb128 0xb
+ 627 0022 0B       		.uleb128 0xb
+ 628 0023 3E       		.uleb128 0x3e
+ 629 0024 0B       		.uleb128 0xb
+ 630 0025 03       		.uleb128 0x3
+ 631 0026 08       		.uleb128 0x8
+ 632 0027 00       		.byte	0
+ 633 0028 00       		.byte	0
+ 634 0029 04       		.uleb128 0x4
+ 635 002a 16       		.uleb128 0x16
+ 636 002b 00       		.byte	0
+ 637 002c 03       		.uleb128 0x3
+ 638 002d 0E       		.uleb128 0xe
+ 639 002e 3A       		.uleb128 0x3a
+ 640 002f 0B       		.uleb128 0xb
+ 641 0030 3B       		.uleb128 0x3b
+ 642 0031 05       		.uleb128 0x5
+ 643 0032 49       		.uleb128 0x49
+ 644 0033 13       		.uleb128 0x13
+ 645 0034 00       		.byte	0
+ 646 0035 00       		.byte	0
+ 647 0036 05       		.uleb128 0x5
+ 648 0037 35       		.uleb128 0x35
+ 649 0038 00       		.byte	0
+ 650 0039 49       		.uleb128 0x49
+ 651 003a 13       		.uleb128 0x13
+ 652 003b 00       		.byte	0
+ 653 003c 00       		.byte	0
+ 654 003d 06       		.uleb128 0x6
+ 655 003e 16       		.uleb128 0x16
+ 656 003f 00       		.byte	0
+ 657 0040 03       		.uleb128 0x3
+ 658 0041 0E       		.uleb128 0xe
+ 659 0042 3A       		.uleb128 0x3a
+ 660 0043 0B       		.uleb128 0xb
+ 661 0044 3B       		.uleb128 0x3b
+ 662 0045 0B       		.uleb128 0xb
+ 663 0046 49       		.uleb128 0x49
+ 664 0047 13       		.uleb128 0x13
+ 665 0048 00       		.byte	0
+ 666 0049 00       		.byte	0
+ 667 004a 07       		.uleb128 0x7
+ 668 004b 0F       		.uleb128 0xf
+ 669 004c 00       		.byte	0
+ 670 004d 0B       		.uleb128 0xb
+ 671 004e 0B       		.uleb128 0xb
+ 672 004f 49       		.uleb128 0x49
+ 673 0050 13       		.uleb128 0x13
+ 674 0051 00       		.byte	0
+ 675 0052 00       		.byte	0
+ 676 0053 08       		.uleb128 0x8
+ 677 0054 04       		.uleb128 0x4
+ 678 0055 01       		.byte	0x1
+ 679 0056 0B       		.uleb128 0xb
+ 680 0057 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 17
+
+
+ 681 0058 3A       		.uleb128 0x3a
+ 682 0059 0B       		.uleb128 0xb
+ 683 005a 3B       		.uleb128 0x3b
+ 684 005b 05       		.uleb128 0x5
+ 685 005c 01       		.uleb128 0x1
+ 686 005d 13       		.uleb128 0x13
+ 687 005e 00       		.byte	0
+ 688 005f 00       		.byte	0
+ 689 0060 09       		.uleb128 0x9
+ 690 0061 28       		.uleb128 0x28
+ 691 0062 00       		.byte	0
+ 692 0063 03       		.uleb128 0x3
+ 693 0064 0E       		.uleb128 0xe
+ 694 0065 1C       		.uleb128 0x1c
+ 695 0066 0D       		.uleb128 0xd
+ 696 0067 00       		.byte	0
+ 697 0068 00       		.byte	0
+ 698 0069 0A       		.uleb128 0xa
+ 699 006a 2E       		.uleb128 0x2e
+ 700 006b 01       		.byte	0x1
+ 701 006c 3F       		.uleb128 0x3f
+ 702 006d 19       		.uleb128 0x19
+ 703 006e 03       		.uleb128 0x3
+ 704 006f 0E       		.uleb128 0xe
+ 705 0070 3A       		.uleb128 0x3a
+ 706 0071 0B       		.uleb128 0xb
+ 707 0072 3B       		.uleb128 0x3b
+ 708 0073 0B       		.uleb128 0xb
+ 709 0074 27       		.uleb128 0x27
+ 710 0075 19       		.uleb128 0x19
+ 711 0076 11       		.uleb128 0x11
+ 712 0077 01       		.uleb128 0x1
+ 713 0078 12       		.uleb128 0x12
+ 714 0079 06       		.uleb128 0x6
+ 715 007a 40       		.uleb128 0x40
+ 716 007b 18       		.uleb128 0x18
+ 717 007c 9742     		.uleb128 0x2117
+ 718 007e 19       		.uleb128 0x19
+ 719 007f 01       		.uleb128 0x1
+ 720 0080 13       		.uleb128 0x13
+ 721 0081 00       		.byte	0
+ 722 0082 00       		.byte	0
+ 723 0083 0B       		.uleb128 0xb
+ 724 0084 05       		.uleb128 0x5
+ 725 0085 00       		.byte	0
+ 726 0086 03       		.uleb128 0x3
+ 727 0087 0E       		.uleb128 0xe
+ 728 0088 3A       		.uleb128 0x3a
+ 729 0089 0B       		.uleb128 0xb
+ 730 008a 3B       		.uleb128 0x3b
+ 731 008b 0B       		.uleb128 0xb
+ 732 008c 49       		.uleb128 0x49
+ 733 008d 13       		.uleb128 0x13
+ 734 008e 02       		.uleb128 0x2
+ 735 008f 18       		.uleb128 0x18
+ 736 0090 00       		.byte	0
+ 737 0091 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 18
+
+
+ 738 0092 0C       		.uleb128 0xc
+ 739 0093 05       		.uleb128 0x5
+ 740 0094 00       		.byte	0
+ 741 0095 03       		.uleb128 0x3
+ 742 0096 08       		.uleb128 0x8
+ 743 0097 3A       		.uleb128 0x3a
+ 744 0098 0B       		.uleb128 0xb
+ 745 0099 3B       		.uleb128 0x3b
+ 746 009a 0B       		.uleb128 0xb
+ 747 009b 49       		.uleb128 0x49
+ 748 009c 13       		.uleb128 0x13
+ 749 009d 02       		.uleb128 0x2
+ 750 009e 17       		.uleb128 0x17
+ 751 009f 00       		.byte	0
+ 752 00a0 00       		.byte	0
+ 753 00a1 0D       		.uleb128 0xd
+ 754 00a2 05       		.uleb128 0x5
+ 755 00a3 00       		.byte	0
+ 756 00a4 03       		.uleb128 0x3
+ 757 00a5 0E       		.uleb128 0xe
+ 758 00a6 3A       		.uleb128 0x3a
+ 759 00a7 0B       		.uleb128 0xb
+ 760 00a8 3B       		.uleb128 0x3b
+ 761 00a9 0B       		.uleb128 0xb
+ 762 00aa 49       		.uleb128 0x49
+ 763 00ab 13       		.uleb128 0x13
+ 764 00ac 02       		.uleb128 0x2
+ 765 00ad 17       		.uleb128 0x17
+ 766 00ae 00       		.byte	0
+ 767 00af 00       		.byte	0
+ 768 00b0 0E       		.uleb128 0xe
+ 769 00b1 34       		.uleb128 0x34
+ 770 00b2 00       		.byte	0
+ 771 00b3 03       		.uleb128 0x3
+ 772 00b4 0E       		.uleb128 0xe
+ 773 00b5 3A       		.uleb128 0x3a
+ 774 00b6 0B       		.uleb128 0xb
+ 775 00b7 3B       		.uleb128 0x3b
+ 776 00b8 0B       		.uleb128 0xb
+ 777 00b9 49       		.uleb128 0x49
+ 778 00ba 13       		.uleb128 0x13
+ 779 00bb 1C       		.uleb128 0x1c
+ 780 00bc 0B       		.uleb128 0xb
+ 781 00bd 00       		.byte	0
+ 782 00be 00       		.byte	0
+ 783 00bf 0F       		.uleb128 0xf
+ 784 00c0 34       		.uleb128 0x34
+ 785 00c1 00       		.byte	0
+ 786 00c2 03       		.uleb128 0x3
+ 787 00c3 08       		.uleb128 0x8
+ 788 00c4 3A       		.uleb128 0x3a
+ 789 00c5 0B       		.uleb128 0xb
+ 790 00c6 3B       		.uleb128 0x3b
+ 791 00c7 0B       		.uleb128 0xb
+ 792 00c8 49       		.uleb128 0x49
+ 793 00c9 13       		.uleb128 0x13
+ 794 00ca 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 19
+
+
+ 795 00cb 17       		.uleb128 0x17
+ 796 00cc 00       		.byte	0
+ 797 00cd 00       		.byte	0
+ 798 00ce 10       		.uleb128 0x10
+ 799 00cf 34       		.uleb128 0x34
+ 800 00d0 00       		.byte	0
+ 801 00d1 03       		.uleb128 0x3
+ 802 00d2 0E       		.uleb128 0xe
+ 803 00d3 3A       		.uleb128 0x3a
+ 804 00d4 0B       		.uleb128 0xb
+ 805 00d5 3B       		.uleb128 0x3b
+ 806 00d6 0B       		.uleb128 0xb
+ 807 00d7 49       		.uleb128 0x49
+ 808 00d8 13       		.uleb128 0x13
+ 809 00d9 02       		.uleb128 0x2
+ 810 00da 17       		.uleb128 0x17
+ 811 00db 00       		.byte	0
+ 812 00dc 00       		.byte	0
+ 813 00dd 11       		.uleb128 0x11
+ 814 00de 26       		.uleb128 0x26
+ 815 00df 00       		.byte	0
+ 816 00e0 49       		.uleb128 0x49
+ 817 00e1 13       		.uleb128 0x13
+ 818 00e2 00       		.byte	0
+ 819 00e3 00       		.byte	0
+ 820 00e4 12       		.uleb128 0x12
+ 821 00e5 05       		.uleb128 0x5
+ 822 00e6 00       		.byte	0
+ 823 00e7 03       		.uleb128 0x3
+ 824 00e8 08       		.uleb128 0x8
+ 825 00e9 3A       		.uleb128 0x3a
+ 826 00ea 0B       		.uleb128 0xb
+ 827 00eb 3B       		.uleb128 0x3b
+ 828 00ec 0B       		.uleb128 0xb
+ 829 00ed 49       		.uleb128 0x49
+ 830 00ee 13       		.uleb128 0x13
+ 831 00ef 02       		.uleb128 0x2
+ 832 00f0 18       		.uleb128 0x18
+ 833 00f1 00       		.byte	0
+ 834 00f2 00       		.byte	0
+ 835 00f3 13       		.uleb128 0x13
+ 836 00f4 2E       		.uleb128 0x2e
+ 837 00f5 01       		.byte	0x1
+ 838 00f6 3F       		.uleb128 0x3f
+ 839 00f7 19       		.uleb128 0x19
+ 840 00f8 03       		.uleb128 0x3
+ 841 00f9 0E       		.uleb128 0xe
+ 842 00fa 3A       		.uleb128 0x3a
+ 843 00fb 0B       		.uleb128 0xb
+ 844 00fc 3B       		.uleb128 0x3b
+ 845 00fd 0B       		.uleb128 0xb
+ 846 00fe 27       		.uleb128 0x27
+ 847 00ff 19       		.uleb128 0x19
+ 848 0100 49       		.uleb128 0x49
+ 849 0101 13       		.uleb128 0x13
+ 850 0102 11       		.uleb128 0x11
+ 851 0103 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 20
+
+
+ 852 0104 12       		.uleb128 0x12
+ 853 0105 06       		.uleb128 0x6
+ 854 0106 40       		.uleb128 0x40
+ 855 0107 18       		.uleb128 0x18
+ 856 0108 9742     		.uleb128 0x2117
+ 857 010a 19       		.uleb128 0x19
+ 858 010b 00       		.byte	0
+ 859 010c 00       		.byte	0
+ 860 010d 00       		.byte	0
+ 861              		.section	.debug_loc,"",%progbits
+ 862              	.Ldebug_loc0:
+ 863              	.LLST0:
+ 864 0000 00000000 		.4byte	.LVL0
+ 865 0004 16000000 		.4byte	.LVL1
+ 866 0008 0100     		.2byte	0x1
+ 867 000a 51       		.byte	0x51
+ 868 000b 16000000 		.4byte	.LVL1
+ 869 000f 1E000000 		.4byte	.LVL5
+ 870 0013 0400     		.2byte	0x4
+ 871 0015 F3       		.byte	0xf3
+ 872 0016 01       		.uleb128 0x1
+ 873 0017 51       		.byte	0x51
+ 874 0018 9F       		.byte	0x9f
+ 875 0019 1E000000 		.4byte	.LVL5
+ 876 001d 22000000 		.4byte	.LVL6
+ 877 0021 0100     		.2byte	0x1
+ 878 0023 51       		.byte	0x51
+ 879 0024 22000000 		.4byte	.LVL6
+ 880 0028 60000000 		.4byte	.LFE1
+ 881 002c 0400     		.2byte	0x4
+ 882 002e F3       		.byte	0xf3
+ 883 002f 01       		.uleb128 0x1
+ 884 0030 51       		.byte	0x51
+ 885 0031 9F       		.byte	0x9f
+ 886 0032 00000000 		.4byte	0
+ 887 0036 00000000 		.4byte	0
+ 888              	.LLST1:
+ 889 003a 00000000 		.4byte	.LVL0
+ 890 003e 28000000 		.4byte	.LVL9
+ 891 0042 0100     		.2byte	0x1
+ 892 0044 52       		.byte	0x52
+ 893 0045 28000000 		.4byte	.LVL9
+ 894 0049 60000000 		.4byte	.LFE1
+ 895 004d 0400     		.2byte	0x4
+ 896 004f F3       		.byte	0xf3
+ 897 0050 01       		.uleb128 0x1
+ 898 0051 52       		.byte	0x52
+ 899 0052 9F       		.byte	0x9f
+ 900 0053 00000000 		.4byte	0
+ 901 0057 00000000 		.4byte	0
+ 902              	.LLST2:
+ 903 005b 00000000 		.4byte	.LVL0
+ 904 005f 1C000000 		.4byte	.LVL4
+ 905 0063 0100     		.2byte	0x1
+ 906 0065 53       		.byte	0x53
+ 907 0066 1C000000 		.4byte	.LVL4
+ 908 006a 1E000000 		.4byte	.LVL5
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 21
+
+
+ 909 006e 0400     		.2byte	0x4
+ 910 0070 F3       		.byte	0xf3
+ 911 0071 01       		.uleb128 0x1
+ 912 0072 53       		.byte	0x53
+ 913 0073 9F       		.byte	0x9f
+ 914 0074 1E000000 		.4byte	.LVL5
+ 915 0078 26000000 		.4byte	.LVL8
+ 916 007c 0100     		.2byte	0x1
+ 917 007e 53       		.byte	0x53
+ 918 007f 26000000 		.4byte	.LVL8
+ 919 0083 60000000 		.4byte	.LFE1
+ 920 0087 0400     		.2byte	0x4
+ 921 0089 F3       		.byte	0xf3
+ 922 008a 01       		.uleb128 0x1
+ 923 008b 53       		.byte	0x53
+ 924 008c 9F       		.byte	0x9f
+ 925 008d 00000000 		.4byte	0
+ 926 0091 00000000 		.4byte	0
+ 927              	.LLST3:
+ 928 0095 26000000 		.4byte	.LVL8
+ 929 0099 28000000 		.4byte	.LVL9
+ 930 009d 0200     		.2byte	0x2
+ 931 009f 30       		.byte	0x30
+ 932 00a0 9F       		.byte	0x9f
+ 933 00a1 28000000 		.4byte	.LVL9
+ 934 00a5 5C000000 		.4byte	.LVL11
+ 935 00a9 0100     		.2byte	0x1
+ 936 00ab 56       		.byte	0x56
+ 937 00ac 00000000 		.4byte	0
+ 938 00b0 00000000 		.4byte	0
+ 939              	.LLST4:
+ 940 00b4 18000000 		.4byte	.LVL2
+ 941 00b8 1E000000 		.4byte	.LVL5
+ 942 00bc 0100     		.2byte	0x1
+ 943 00be 51       		.byte	0x51
+ 944 00bf 22000000 		.4byte	.LVL6
+ 945 00c3 5C000000 		.4byte	.LVL11
+ 946 00c7 0100     		.2byte	0x1
+ 947 00c9 51       		.byte	0x51
+ 948 00ca 00000000 		.4byte	0
+ 949 00ce 00000000 		.4byte	0
+ 950              	.LLST5:
+ 951 00d2 1A000000 		.4byte	.LVL3
+ 952 00d6 1E000000 		.4byte	.LVL5
+ 953 00da 0100     		.2byte	0x1
+ 954 00dc 55       		.byte	0x55
+ 955 00dd 24000000 		.4byte	.LVL7
+ 956 00e1 5C000000 		.4byte	.LVL11
+ 957 00e5 0100     		.2byte	0x1
+ 958 00e7 55       		.byte	0x55
+ 959 00e8 00000000 		.4byte	0
+ 960 00ec 00000000 		.4byte	0
+ 961              	.LLST6:
+ 962 00f0 1C000000 		.4byte	.LVL4
+ 963 00f4 1E000000 		.4byte	.LVL5
+ 964 00f8 0100     		.2byte	0x1
+ 965 00fa 53       		.byte	0x53
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 22
+
+
+ 966 00fb 24000000 		.4byte	.LVL7
+ 967 00ff 26000000 		.4byte	.LVL8
+ 968 0103 0200     		.2byte	0x2
+ 969 0105 30       		.byte	0x30
+ 970 0106 9F       		.byte	0x9f
+ 971 0107 26000000 		.4byte	.LVL8
+ 972 010b 5C000000 		.4byte	.LVL11
+ 973 010f 0100     		.2byte	0x1
+ 974 0111 53       		.byte	0x53
+ 975 0112 00000000 		.4byte	0
+ 976 0116 00000000 		.4byte	0
+ 977              	.LLST7:
+ 978 011a 08000000 		.4byte	.LVL13
+ 979 011e 1A000000 		.4byte	.LVL15
+ 980 0122 0100     		.2byte	0x1
+ 981 0124 53       		.byte	0x53
+ 982 0125 00000000 		.4byte	0
+ 983 0129 00000000 		.4byte	0
+ 984              	.LLST8:
+ 985 012d 00000000 		.4byte	.LVL16
+ 986 0131 08000000 		.4byte	.LVL18
+ 987 0135 0100     		.2byte	0x1
+ 988 0137 50       		.byte	0x50
+ 989 0138 08000000 		.4byte	.LVL18
+ 990 013c 0C000000 		.4byte	.LFE3
+ 991 0140 0400     		.2byte	0x4
+ 992 0142 F3       		.byte	0xf3
+ 993 0143 01       		.uleb128 0x1
+ 994 0144 50       		.byte	0x50
+ 995 0145 9F       		.byte	0x9f
+ 996 0146 00000000 		.4byte	0
+ 997 014a 00000000 		.4byte	0
+ 998              	.LLST9:
+ 999 014e 00000000 		.4byte	.LVL16
+ 1000 0152 06000000 		.4byte	.LVL17
+ 1001 0156 0100     		.2byte	0x1
+ 1002 0158 51       		.byte	0x51
+ 1003 0159 06000000 		.4byte	.LVL17
+ 1004 015d 0C000000 		.4byte	.LFE3
+ 1005 0161 0400     		.2byte	0x4
+ 1006 0163 F3       		.byte	0xf3
+ 1007 0164 01       		.uleb128 0x1
+ 1008 0165 51       		.byte	0x51
+ 1009 0166 9F       		.byte	0x9f
+ 1010 0167 00000000 		.4byte	0
+ 1011 016b 00000000 		.4byte	0
+ 1012              	.LLST10:
+ 1013 016f 00000000 		.4byte	.LVL19
+ 1014 0173 02000000 		.4byte	.LVL20
+ 1015 0177 0100     		.2byte	0x1
+ 1016 0179 52       		.byte	0x52
+ 1017 017a 02000000 		.4byte	.LVL20
+ 1018 017e 12000000 		.4byte	.LFE4
+ 1019 0182 0400     		.2byte	0x4
+ 1020 0184 F3       		.byte	0xf3
+ 1021 0185 01       		.uleb128 0x1
+ 1022 0186 52       		.byte	0x52
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 23
+
+
+ 1023 0187 9F       		.byte	0x9f
+ 1024 0188 00000000 		.4byte	0
+ 1025 018c 00000000 		.4byte	0
+ 1026              	.LLST11:
+ 1027 0190 00000000 		.4byte	.LVL19
+ 1028 0194 02000000 		.4byte	.LVL20
+ 1029 0198 0500     		.2byte	0x5
+ 1030 019a 72       		.byte	0x72
+ 1031 019b 00       		.sleb128 0
+ 1032 019c 32       		.byte	0x32
+ 1033 019d 25       		.byte	0x25
+ 1034 019e 9F       		.byte	0x9f
+ 1035 019f 02000000 		.4byte	.LVL20
+ 1036 01a3 04000000 		.4byte	.LVL21
+ 1037 01a7 0100     		.2byte	0x1
+ 1038 01a9 52       		.byte	0x52
+ 1039 01aa 04000000 		.4byte	.LVL21
+ 1040 01ae 06000000 		.4byte	.LVL22
+ 1041 01b2 0600     		.2byte	0x6
+ 1042 01b4 F3       		.byte	0xf3
+ 1043 01b5 01       		.uleb128 0x1
+ 1044 01b6 52       		.byte	0x52
+ 1045 01b7 32       		.byte	0x32
+ 1046 01b8 25       		.byte	0x25
+ 1047 01b9 9F       		.byte	0x9f
+ 1048 01ba 00000000 		.4byte	0
+ 1049 01be 00000000 		.4byte	0
+ 1050              		.section	.debug_aranges,"",%progbits
+ 1051 0000 34000000 		.4byte	0x34
+ 1052 0004 0200     		.2byte	0x2
+ 1053 0006 00000000 		.4byte	.Ldebug_info0
+ 1054 000a 04       		.byte	0x4
+ 1055 000b 00       		.byte	0
+ 1056 000c 0000     		.2byte	0
+ 1057 000e 0000     		.2byte	0
+ 1058 0010 00000000 		.4byte	.LFB1
+ 1059 0014 60000000 		.4byte	.LFE1-.LFB1
+ 1060 0018 00000000 		.4byte	.LFB2
+ 1061 001c 1C000000 		.4byte	.LFE2-.LFB2
+ 1062 0020 00000000 		.4byte	.LFB3
+ 1063 0024 0C000000 		.4byte	.LFE3-.LFB3
+ 1064 0028 00000000 		.4byte	.LFB4
+ 1065 002c 12000000 		.4byte	.LFE4-.LFB4
+ 1066 0030 00000000 		.4byte	0
+ 1067 0034 00000000 		.4byte	0
+ 1068              		.section	.debug_ranges,"",%progbits
+ 1069              	.Ldebug_ranges0:
+ 1070 0000 00000000 		.4byte	.LFB1
+ 1071 0004 60000000 		.4byte	.LFE1
+ 1072 0008 00000000 		.4byte	.LFB2
+ 1073 000c 1C000000 		.4byte	.LFE2
+ 1074 0010 00000000 		.4byte	.LFB3
+ 1075 0014 0C000000 		.4byte	.LFE3
+ 1076 0018 00000000 		.4byte	.LFB4
+ 1077 001c 12000000 		.4byte	.LFE4
+ 1078 0020 00000000 		.4byte	0
+ 1079 0024 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 24
+
+
+ 1080              		.section	.debug_line,"",%progbits
+ 1081              	.Ldebug_line0:
+ 1082 0000 7F010000 		.section	.debug_str,"MS",%progbits,1
+ 1082      0200F300 
+ 1082      00000201 
+ 1082      FB0E0D00 
+ 1082      01010101 
+ 1083              	.LASF42:
+ 1084 0000 73686966 		.ascii	"shift\000"
+ 1084      7400
+ 1085              	.LASF16:
+ 1086 0006 73697A65 		.ascii	"size_t\000"
+ 1086      5F7400
+ 1087              	.LASF32:
+ 1088 000d 43795541 		.ascii	"CyUAB_clk_enum\000"
+ 1088      425F636C 
+ 1088      6B5F656E 
+ 1088      756D00
+ 1089              	.LASF41:
+ 1090 001c 50484939 		.ascii	"PHI9_SHIFT\000"
+ 1090      5F534849 
+ 1090      465400
+ 1091              	.LASF43:
+ 1092 0027 6D61736B 		.ascii	"mask\000"
+ 1092      00
+ 1093              	.LASF3:
+ 1094 002c 73686F72 		.ascii	"short unsigned int\000"
+ 1094      7420756E 
+ 1094      7369676E 
+ 1094      65642069 
+ 1094      6E7400
+ 1095              	.LASF52:
+ 1096 003f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1096      4320342E 
+ 1096      392E3320 
+ 1096      32303135 
+ 1096      30333033 
+ 1097 0072 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 1097      20726576 
+ 1097      6973696F 
+ 1097      6E203232 
+ 1097      31323230 
+ 1098 00a5 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 1098      73202D66 
+ 1098      66756E63 
+ 1098      74696F6E 
+ 1098      2D736563 
+ 1099              	.LASF33:
+ 1100 00d1 75616253 		.ascii	"uabSram\000"
+ 1100      72616D00 
+ 1101              	.LASF49:
+ 1102 00d9 73746570 		.ascii	"stepValue\000"
+ 1102      56616C75 
+ 1102      6500
+ 1103              	.LASF37:
+ 1104 00e3 4D4F4442 		.ascii	"MODBIT_SHIFT\000"
+ 1104      49545F53 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 25
+
+
+ 1104      48494654 
+ 1104      00
+ 1105              	.LASF28:
+ 1106 00f0 43795541 		.ascii	"CyUAB_CLK_PHI10\000"
+ 1106      425F434C 
+ 1106      4B5F5048 
+ 1106      49313000 
+ 1107              	.LASF29:
+ 1108 0100 43795541 		.ascii	"CyUAB_CLK_PHI11\000"
+ 1108      425F434C 
+ 1108      4B5F5048 
+ 1108      49313100 
+ 1109              	.LASF30:
+ 1110 0110 43795541 		.ascii	"CyUAB_CLK_PHI12\000"
+ 1110      425F434C 
+ 1110      4B5F5048 
+ 1110      49313200 
+ 1111              	.LASF48:
+ 1112 0120 43795541 		.ascii	"CyUAB_SetSingleStep\000"
+ 1112      425F5365 
+ 1112      7453696E 
+ 1112      676C6553 
+ 1112      74657000 
+ 1113              	.LASF12:
+ 1114 0134 666C6F61 		.ascii	"float\000"
+ 1114      7400
+ 1115              	.LASF51:
+ 1116 013a 73697A65 		.ascii	"size\000"
+ 1116      00
+ 1117              	.LASF47:
+ 1118 013f 73746570 		.ascii	"stepArray\000"
+ 1118      41727261 
+ 1118      7900
+ 1119              	.LASF11:
+ 1120 0149 696E7433 		.ascii	"int32\000"
+ 1120      3200
+ 1121              	.LASF34:
+ 1122 014f 70617474 		.ascii	"pattern\000"
+ 1122      65726E00 
+ 1123              	.LASF40:
+ 1124 0157 424F5448 		.ascii	"BOTH_MASK\000"
+ 1124      5F4D4153 
+ 1124      4B00
+ 1125              	.LASF38:
+ 1126 0161 50415454 		.ascii	"PATTERN_MASK\000"
+ 1126      45524E5F 
+ 1126      4D41534B 
+ 1126      00
+ 1127              	.LASF5:
+ 1128 016e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1128      20756E73 
+ 1128      69676E65 
+ 1128      6420696E 
+ 1128      7400
+ 1129              	.LASF53:
+ 1130 0180 47656E65 		.ascii	"Generated_Source\\PSoC4\\VDAC_Synth_UAB_CyUAB.c\000"
+ 1130      72617465 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 26
+
+
+ 1130      645F536F 
+ 1130      75726365 
+ 1130      5C50536F 
+ 1131              	.LASF46:
+ 1132 01ae 43795541 		.ascii	"CyUAB_SetNSteps\000"
+ 1132      425F5365 
+ 1132      744E5374 
+ 1132      65707300 
+ 1133              	.LASF18:
+ 1134 01be 43795541 		.ascii	"CyUAB_SW_OPEN\000"
+ 1134      425F5357 
+ 1134      5F4F5045 
+ 1134      4E00
+ 1135              	.LASF9:
+ 1136 01cc 75696E74 		.ascii	"uint16\000"
+ 1136      313600
+ 1137              	.LASF10:
+ 1138 01d3 75696E74 		.ascii	"uint32\000"
+ 1138      333200
+ 1139              	.LASF1:
+ 1140 01da 756E7369 		.ascii	"unsigned char\000"
+ 1140      676E6564 
+ 1140      20636861 
+ 1140      7200
+ 1141              	.LASF8:
+ 1142 01e8 756E7369 		.ascii	"unsigned int\000"
+ 1142      676E6564 
+ 1142      20696E74 
+ 1142      00
+ 1143              	.LASF7:
+ 1144 01f5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1144      206C6F6E 
+ 1144      6720756E 
+ 1144      7369676E 
+ 1144      65642069 
+ 1145              	.LASF13:
+ 1146 020c 646F7562 		.ascii	"double\000"
+ 1146      6C6500
+ 1147              	.LASF17:
+ 1148 0213 73697A65 		.ascii	"sizetype\000"
+ 1148      74797065 
+ 1148      00
+ 1149              	.LASF35:
+ 1150 021c 6D6F6462 		.ascii	"modbitPattern\000"
+ 1150      69745061 
+ 1150      74746572 
+ 1150      6E00
+ 1151              	.LASF36:
+ 1152 022a 50415454 		.ascii	"PATTERN_SHIFT\000"
+ 1152      45524E5F 
+ 1152      53484946 
+ 1152      5400
+ 1153              	.LASF6:
+ 1154 0238 6C6F6E67 		.ascii	"long long int\000"
+ 1154      206C6F6E 
+ 1154      6720696E 
+ 1154      7400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 27
+
+
+ 1155              	.LASF14:
+ 1156 0246 63686172 		.ascii	"char\000"
+ 1156      00
+ 1157              	.LASF25:
+ 1158 024b 43795541 		.ascii	"CyUAB_CLK_PHI7\000"
+ 1158      425F434C 
+ 1158      4B5F5048 
+ 1158      493700
+ 1159              	.LASF2:
+ 1160 025a 73686F72 		.ascii	"short int\000"
+ 1160      7420696E 
+ 1160      7400
+ 1161              	.LASF45:
+ 1162 0264 43795541 		.ascii	"CyUAB_SetClock\000"
+ 1162      425F5365 
+ 1162      74436C6F 
+ 1162      636B00
+ 1163              	.LASF22:
+ 1164 0273 43795541 		.ascii	"CyUAB_CLK_PHI4\000"
+ 1164      425F434C 
+ 1164      4B5F5048 
+ 1164      493400
+ 1165              	.LASF50:
+ 1166 0282 43795541 		.ascii	"CyUAB_wordset\000"
+ 1166      425F776F 
+ 1166      72647365 
+ 1166      7400
+ 1167              	.LASF4:
+ 1168 0290 6C6F6E67 		.ascii	"long int\000"
+ 1168      20696E74 
+ 1168      00
+ 1169              	.LASF15:
+ 1170 0299 72656733 		.ascii	"reg32\000"
+ 1170      3200
+ 1171              	.LASF24:
+ 1172 029f 43795541 		.ascii	"CyUAB_CLK_PHI6\000"
+ 1172      425F434C 
+ 1172      4B5F5048 
+ 1172      493600
+ 1173              	.LASF31:
+ 1174 02ae 43795541 		.ascii	"CyUAB_SW_CLOSED\000"
+ 1174      425F5357 
+ 1174      5F434C4F 
+ 1174      53454400 
+ 1175              	.LASF0:
+ 1176 02be 7369676E 		.ascii	"signed char\000"
+ 1176      65642063 
+ 1176      68617200 
+ 1177              	.LASF39:
+ 1178 02ca 4D4F4442 		.ascii	"MODBIT_MASK\000"
+ 1178      49545F4D 
+ 1178      41534B00 
+ 1179              	.LASF19:
+ 1180 02d6 43795541 		.ascii	"CyUAB_CLK_PHI1\000"
+ 1180      425F434C 
+ 1180      4B5F5048 
+ 1180      493100
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccahGxHn.s 			page 28
+
+
+ 1181              	.LASF20:
+ 1182 02e5 43795541 		.ascii	"CyUAB_CLK_PHI2\000"
+ 1182      425F434C 
+ 1182      4B5F5048 
+ 1182      493200
+ 1183              	.LASF21:
+ 1184 02f4 43795541 		.ascii	"CyUAB_CLK_PHI3\000"
+ 1184      425F434C 
+ 1184      4B5F5048 
+ 1184      493300
+ 1185              	.LASF54:
+ 1186 0303 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 1186      79707265 
+ 1186      73735C54 
+ 1186      616C6B69 
+ 1186      6E67436C 
+ 1187              	.LASF23:
+ 1188 032f 43795541 		.ascii	"CyUAB_CLK_PHI5\000"
+ 1188      425F434C 
+ 1188      4B5F5048 
+ 1188      493500
+ 1189              	.LASF44:
+ 1190 033e 6D6F6462 		.ascii	"modbitCopy\000"
+ 1190      6974436F 
+ 1190      707900
+ 1191              	.LASF26:
+ 1192 0349 43795541 		.ascii	"CyUAB_CLK_PHI8\000"
+ 1192      425F434C 
+ 1192      4B5F5048 
+ 1192      493800
+ 1193              	.LASF27:
+ 1194 0358 43795541 		.ascii	"CyUAB_CLK_PHI9\000"
+ 1194      425F434C 
+ 1194      4B5F5048 
+ 1194      493900
+ 1195              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

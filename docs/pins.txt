@@ -1,0 +1,12 @@
+PSoC Pin Assignment:
+
+CapSense:Cmod	5.0
+CapSense:Sns	0.3
+UART:rx		0.4
+UART:tx		0.5
+Pin_Synth_Out	2.2
+Pin_Vhi		3.7
+Pin_Vlow	3.6
+Pin_Vref	1.3
+Pin_Vtherm	3.5
+

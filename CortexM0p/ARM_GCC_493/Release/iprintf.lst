@@ -1,0 +1,1592 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"iprintf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_uidivmod
+  18              		.global	__aeabi_uidiv
+  19              		.section	.text.iprintf,"ax",%progbits
+  20              		.align	1
+  21              		.global	iprintf
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	iprintf, %function
+  25              	iprintf:
+  26              	.LFB96:
+  27              		.file 1 "iprintf.c"
+   1:iprintf.c     **** /***************************************************************************//**
+   2:iprintf.c     **** * @file    iprintf.c
+   3:iprintf.c     **** * @version 1.0.0
+   4:iprintf.c     **** *
+   5:iprintf.c     **** * @brief Low resource printf() replacement.
+   6:iprintf.c     **** *
+   7:iprintf.c     **** * @par Description
+   8:iprintf.c     **** *    Simplified low resource printf() function replacement. Outputs directly
+   9:iprintf.c     **** * to UART. Available format modifiers: \%s, \%d, \%c, \%x.
+  10:iprintf.c     **** *
+  11:iprintf.c     **** * @warning
+  12:iprintf.c     **** *    - Modify function iputc() according to current UART name.
+  13:iprintf.c     **** *
+  14:iprintf.c     **** * @par Source
+  15:iprintf.c     **** *    http://www.cypress.com/knowledge-base-article/alternate-printf-function-psoc-4-kba87093
+  16:iprintf.c     **** *
+  17:iprintf.c     **** * @par Components
+  18:iprintf.c     **** *    - SCB_P4         [UART]
+  19:iprintf.c     **** *
+  20:iprintf.c     **** *******************************************************************************/
+  21:iprintf.c     **** #include "iprintf.h"
+  22:iprintf.c     **** 
+  23:iprintf.c     **** /// @var static const uint8_t NUM_CHARS[]
+  24:iprintf.c     **** /// @brief Character table for decimal and hexadecimal conversion
+  25:iprintf.c     **** static const uint8_t NUM_CHARS[16] = "0123456789ABCDEF";
+  26:iprintf.c     **** 
+  27:iprintf.c     **** /// @brief Customized single character output function.
+  28:iprintf.c     **** /// @param ch Character to output
+  29:iprintf.c     **** /// @return none
+  30:iprintf.c     **** static void iputc(char8 ch);
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 2
+
+
+  31:iprintf.c     **** 
+  32:iprintf.c     **** /*******************************************************************************
+  33:iprintf.c     **** * Function Name: iputc
+  34:iprintf.c     **** ****************************************************************************//**
+  35:iprintf.c     **** * @par Summary
+  36:iprintf.c     **** *    Outputs single character to UART specified by UartPutChar() function
+  37:iprintf.c     **** * prefix.
+  38:iprintf.c     **** *******************************************************************************/
+  39:iprintf.c     **** static void 
+  40:iprintf.c     **** iputc(char8 ch)
+  41:iprintf.c     **** {
+  42:iprintf.c     **** 	// !! MODIFY HERE function prefix according to current UART name
+  43:iprintf.c     **** 	UART_UartPutChar(ch);
+  44:iprintf.c     **** }
+  45:iprintf.c     **** 
+  46:iprintf.c     **** /*******************************************************************************
+  47:iprintf.c     **** * Function Name: iprintf
+  48:iprintf.c     **** ****************************************************************************//**
+  49:iprintf.c     **** * @par Summary
+  50:iprintf.c     **** *    This is a drop-in printf() function replacement which outputs straight 
+  51:iprintf.c     **** * to UART. It supports only a subset of printf format specifiers. Supported
+  52:iprintf.c     **** * format specifiers are \%s, \%d, \%c and \%x.
+  53:iprintf.c     **** *******************************************************************************/
+  54:iprintf.c     **** void 
+  55:iprintf.c     **** iprintf(char8 *pszFmt, ...)
+  56:iprintf.c     **** {
+  28              		.loc 1 56 0
+  29              		.cfi_startproc
+  30              	.LVL0:
+  31 0000 0FB4     		push	{r0, r1, r2, r3}
+  32              		.cfi_def_cfa_offset 16
+  33 0002 F0B5     		push	{r4, r5, r6, r7, lr}
+  34              		.cfi_def_cfa_offset 36
+  35              		.cfi_offset 4, -36
+  36              		.cfi_offset 5, -32
+  37              		.cfi_offset 6, -28
+  38              		.cfi_offset 7, -24
+  39              		.cfi_offset 14, -20
+  57:iprintf.c     ****     uint8 *pszVal;
+  58:iprintf.c     ****     uint32  index = 1;
+  40              		.loc 1 58 0
+  41 0004 0125     		mov	r5, #1
+  56:iprintf.c     ****     uint8 *pszVal;
+  42              		.loc 1 56 0
+  43 0006 87B0     		sub	sp, sp, #28
+  44              		.cfi_def_cfa_offset 64
+  45              	.LVL1:
+  46              	.L2:
+  59:iprintf.c     ****     uint32  num_cnt;
+  60:iprintf.c     ****     uint8_t buffer[12];
+  61:iprintf.c     ****     uint32 *p_arg;
+  62:iprintf.c     **** 
+  63:iprintf.c     ****     p_arg = (uint32 *)&pszFmt;
+  64:iprintf.c     **** 
+  65:iprintf.c     ****     while (*pszFmt)
+  47              		.loc 1 65 0
+  48 0008 0C9C     		ldr	r4, [sp, #48]
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 3
+
+
+  49 000a 2078     		ldrb	r0, [r4]
+  50 000c 0028     		cmp	r0, #0
+  51 000e 6ED0     		beq	.L1
+  52 0010 661C     		add	r6, r4, #1
+  66:iprintf.c     ****     {
+  67:iprintf.c     ****         if('%' != *pszFmt)
+  53              		.loc 1 67 0
+  54 0012 2528     		cmp	r0, #37
+  55 0014 03D0     		beq	.L3
+  56              	.LVL2:
+  57              	.LBB14:
+  58              	.LBB15:
+  43:iprintf.c     **** }
+  59              		.loc 1 43 0
+  60 0016 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+  61              	.LVL3:
+  62              	.LBE15:
+  63              	.LBE14:
+  68:iprintf.c     ****         {
+  69:iprintf.c     ****             iputc(*pszFmt);
+  70:iprintf.c     ****             pszFmt++;
+  64              		.loc 1 70 0
+  65 001a 0C96     		str	r6, [sp, #48]
+  71:iprintf.c     ****             continue;
+  66              		.loc 1 71 0
+  67 001c F4E7     		b	.L2
+  68              	.L3:
+  72:iprintf.c     ****         }
+  73:iprintf.c     **** 
+  74:iprintf.c     ****         pszFmt++;
+  75:iprintf.c     **** 
+  76:iprintf.c     ****         if ('s' == *pszFmt)
+  69              		.loc 1 76 0
+  70 001e 6378     		ldrb	r3, [r4, #1]
+  74:iprintf.c     **** 
+  71              		.loc 1 74 0
+  72 0020 0C96     		str	r6, [sp, #48]
+  73              		.loc 1 76 0
+  74 0022 732B     		cmp	r3, #115
+  75 0024 0BD1     		bne	.L5
+  77:iprintf.c     ****         {
+  78:iprintf.c     ****             pszVal = (uint8*)p_arg[index++];
+  76              		.loc 1 78 0
+  77 0026 6E1C     		add	r6, r5, #1
+  78              	.LVL4:
+  79 0028 0CAB     		add	r3, sp, #48
+  80              	.LVL5:
+  81 002a AD00     		lsl	r5, r5, #2
+  82 002c 5D19     		add	r5, r3, r5
+  83 002e 2D68     		ldr	r5, [r5]
+  84              	.LVL6:
+  85              	.L6:
+  79:iprintf.c     ****             for (; *pszVal != '\0'; pszVal++)
+  86              		.loc 1 79 0 discriminator 1
+  87 0030 2878     		ldrb	r0, [r5]
+  88 0032 0028     		cmp	r0, #0
+  89 0034 55D0     		beq	.L19
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 4
+
+
+  90              	.LVL7:
+  91              	.LBB16:
+  92              	.LBB17:
+  43:iprintf.c     **** }
+  93              		.loc 1 43 0 discriminator 2
+  94 0036 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+  95              	.LVL8:
+  96              	.LBE17:
+  97              	.LBE16:
+  98              		.loc 1 79 0 discriminator 2
+  99 003a 0135     		add	r5, r5, #1
+ 100              	.LVL9:
+ 101 003c F8E7     		b	.L6
+ 102              	.LVL10:
+ 103              	.L5:
+  80:iprintf.c     ****             {
+  81:iprintf.c     ****                 iputc(*pszVal);
+  82:iprintf.c     ****             }
+  83:iprintf.c     ****             pszFmt++;
+  84:iprintf.c     ****             continue;
+  85:iprintf.c     ****         }
+  86:iprintf.c     **** 
+  87:iprintf.c     ****         if ('d' == *pszFmt)
+ 104              		.loc 1 87 0
+ 105 003e 642B     		cmp	r3, #100
+ 106 0040 22D1     		bne	.L8
+ 107              	.LBB18:
+  88:iprintf.c     ****         {
+  89:iprintf.c     ****             uint32_t i_val = p_arg[index++];
+  90:iprintf.c     ****             num_cnt = 0;
+ 108              		.loc 1 90 0
+ 109 0042 0026     		mov	r6, #0
+  89:iprintf.c     ****             num_cnt = 0;
+ 110              		.loc 1 89 0
+ 111 0044 6B1C     		add	r3, r5, #1
+ 112 0046 0193     		str	r3, [sp, #4]
+ 113              	.LVL11:
+ 114 0048 AD00     		lsl	r5, r5, #2
+ 115 004a 0CAB     		add	r3, sp, #48
+ 116              	.LVL12:
+ 117 004c 5D19     		add	r5, r3, r5
+ 118 004e 2F68     		ldr	r7, [r5]
+ 119              	.LVL13:
+ 120              	.L9:
+ 121 0050 03AB     		add	r3, sp, #12
+  91:iprintf.c     ****             do
+  92:iprintf.c     ****             {
+  93:iprintf.c     ****                 buffer[num_cnt++] = i_val % 10;
+ 122              		.loc 1 93 0 discriminator 1
+ 123 0052 381C     		mov	r0, r7
+ 124 0054 0A21     		mov	r1, #10
+ 125 0056 751C     		add	r5, r6, #1
+ 126              	.LVL14:
+ 127 0058 9E19     		add	r6, r3, r6
+ 128 005a FFF7FEFF 		bl	__aeabi_uidivmod
+ 129              	.LVL15:
+  94:iprintf.c     ****                 i_val /= 10;
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 5
+
+
+ 130              		.loc 1 94 0 discriminator 1
+ 131 005e 381C     		mov	r0, r7
+  93:iprintf.c     ****                 i_val /= 10;
+ 132              		.loc 1 93 0 discriminator 1
+ 133 0060 3170     		strb	r1, [r6]
+ 134              		.loc 1 94 0 discriminator 1
+ 135 0062 0A21     		mov	r1, #10
+ 136 0064 FFF7FEFF 		bl	__aeabi_uidiv
+ 137              	.LVL16:
+  93:iprintf.c     ****                 i_val /= 10;
+ 138              		.loc 1 93 0 discriminator 1
+ 139 0068 2E1C     		mov	r6, r5
+ 140              		.loc 1 94 0 discriminator 1
+ 141 006a 071E     		sub	r7, r0, #0
+ 142              	.LVL17:
+  95:iprintf.c     ****             }
+  96:iprintf.c     ****             while (i_val);
+ 143              		.loc 1 96 0 discriminator 1
+ 144 006c F0D1     		bne	.L9
+ 145              	.LVL18:
+ 146              	.L10:
+  97:iprintf.c     ****             
+  98:iprintf.c     ****             while (num_cnt > 0)
+  99:iprintf.c     ****             {
+ 100:iprintf.c     ****                 num_cnt--;
+ 147              		.loc 1 100 0
+ 148 006e 013D     		sub	r5, r5, #1
+ 149              	.LVL19:
+ 101:iprintf.c     ****                 iputc(NUM_CHARS[buffer[num_cnt]]);
+ 150              		.loc 1 101 0
+ 151 0070 03AB     		add	r3, sp, #12
+ 152 0072 5B5D     		ldrb	r3, [r3, r5]
+ 153              	.LBB19:
+ 154              	.LBB20:
+  43:iprintf.c     **** }
+ 155              		.loc 1 43 0
+ 156 0074 204A     		ldr	r2, .L21
+ 157 0076 D05C     		ldrb	r0, [r2, r3]
+ 158 0078 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 159              	.LVL20:
+ 160              	.LBE20:
+ 161              	.LBE19:
+  98:iprintf.c     ****             {
+ 162              		.loc 1 98 0
+ 163 007c 002D     		cmp	r5, #0
+ 164 007e F6D1     		bne	.L10
+ 102:iprintf.c     ****             }
+ 103:iprintf.c     ****             pszFmt++;
+ 165              		.loc 1 103 0
+ 166 0080 0234     		add	r4, r4, #2
+ 167 0082 0C94     		str	r4, [sp, #48]
+  89:iprintf.c     ****             num_cnt = 0;
+ 168              		.loc 1 89 0
+ 169 0084 019D     		ldr	r5, [sp, #4]
+ 170              	.LVL21:
+ 104:iprintf.c     ****             continue;
+ 171              		.loc 1 104 0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 6
+
+
+ 172 0086 BFE7     		b	.L2
+ 173              	.LVL22:
+ 174              	.L8:
+ 175              	.LBE18:
+ 105:iprintf.c     ****         }
+ 106:iprintf.c     **** 
+ 107:iprintf.c     ****         if ('c' == *pszFmt)
+ 176              		.loc 1 107 0
+ 177 0088 632B     		cmp	r3, #99
+ 178 008a 08D1     		bne	.L11
+ 108:iprintf.c     ****         {
+ 109:iprintf.c     ****             iputc((uint8_t)p_arg[index++]);
+ 179              		.loc 1 109 0
+ 180 008c 6E1C     		add	r6, r5, #1
+ 181              	.LVL23:
+ 182 008e 0CAB     		add	r3, sp, #48
+ 183              	.LVL24:
+ 184 0090 AD00     		lsl	r5, r5, #2
+ 185              	.LVL25:
+ 186 0092 5D19     		add	r5, r3, r5
+ 187              	.LBB21:
+ 188              	.LBB22:
+  43:iprintf.c     **** }
+ 189              		.loc 1 43 0
+ 190 0094 2868     		ldr	r0, [r5]
+ 191 0096 C0B2     		uxtb	r0, r0
+ 192 0098 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 193              	.LVL26:
+ 194 009c 21E0     		b	.L19
+ 195              	.LVL27:
+ 196              	.L11:
+ 197              	.LBE22:
+ 198              	.LBE21:
+ 110:iprintf.c     ****             pszFmt++;
+ 111:iprintf.c     ****             continue;
+ 112:iprintf.c     ****         }
+ 113:iprintf.c     **** 
+ 114:iprintf.c     ****         if ('x' == *pszFmt)
+ 199              		.loc 1 114 0
+ 200 009e 782B     		cmp	r3, #120
+ 201 00a0 23D1     		bne	.L12
+ 202              	.LBB23:
+ 115:iprintf.c     ****         {
+ 116:iprintf.c     ****             uint32_t x_val = p_arg[index++];
+ 203              		.loc 1 116 0
+ 204 00a2 0CAB     		add	r3, sp, #48
+ 205              	.LVL28:
+ 206 00a4 6E1C     		add	r6, r5, #1
+ 207              	.LVL29:
+ 208 00a6 AD00     		lsl	r5, r5, #2
+ 209 00a8 5D19     		add	r5, r3, r5
+ 117:iprintf.c     ****             num_cnt = 0;
+ 210              		.loc 1 117 0
+ 211 00aa 0023     		mov	r3, #0
+ 212              	.LVL30:
+ 116:iprintf.c     ****             num_cnt = 0;
+ 213              		.loc 1 116 0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 7
+
+
+ 214 00ac 2A68     		ldr	r2, [r5]
+ 215              	.LVL31:
+ 216              	.L13:
+ 118:iprintf.c     ****             do
+ 119:iprintf.c     ****             {
+ 120:iprintf.c     ****                 buffer[num_cnt++] = x_val % 16;
+ 217              		.loc 1 120 0 discriminator 1
+ 218 00ae 0F21     		mov	r1, #15
+ 219 00b0 5D1C     		add	r5, r3, #1
+ 220              	.LVL32:
+ 221 00b2 1140     		and	r1, r2
+ 222 00b4 03AF     		add	r7, sp, #12
+ 223 00b6 F954     		strb	r1, [r7, r3]
+ 121:iprintf.c     ****                 x_val /= 16;
+ 224              		.loc 1 121 0 discriminator 1
+ 225 00b8 1209     		lsr	r2, r2, #4
+ 226              	.LVL33:
+ 120:iprintf.c     ****                 x_val /= 16;
+ 227              		.loc 1 120 0 discriminator 1
+ 228 00ba 2B1C     		mov	r3, r5
+ 122:iprintf.c     ****             } 
+ 123:iprintf.c     ****             while (x_val);
+ 229              		.loc 1 123 0 discriminator 1
+ 230 00bc 002A     		cmp	r2, #0
+ 231 00be F6D1     		bne	.L13
+ 124:iprintf.c     **** 
+ 125:iprintf.c     ****             if (0 != (num_cnt % 2))
+ 232              		.loc 1 125 0
+ 233 00c0 E907     		lsl	r1, r5, #31
+ 234 00c2 02D5     		bpl	.L14
+ 126:iprintf.c     ****             {
+ 127:iprintf.c     ****                 buffer[num_cnt++] = 0;
+ 235              		.loc 1 127 0
+ 236 00c4 0135     		add	r5, r5, #1
+ 237              	.LVL34:
+ 238 00c6 FA54     		strb	r2, [r7, r3]
+ 239 00c8 03E0     		b	.L16
+ 240              	.LVL35:
+ 241              	.L14:
+ 128:iprintf.c     ****             }
+ 129:iprintf.c     **** 
+ 130:iprintf.c     ****             if (2 > num_cnt)
+ 242              		.loc 1 130 0
+ 243 00ca 012D     		cmp	r5, #1
+ 244 00cc 01D1     		bne	.L16
+ 245              	.LVL36:
+ 131:iprintf.c     ****             {
+ 132:iprintf.c     ****                 buffer[num_cnt++] = 0;
+ 246              		.loc 1 132 0
+ 247 00ce 0225     		mov	r5, #2
+ 248              	.LVL37:
+ 249 00d0 7A70     		strb	r2, [r7, #1]
+ 250              	.LVL38:
+ 251              	.L16:
+ 133:iprintf.c     ****             }
+ 134:iprintf.c     **** 
+ 135:iprintf.c     ****             while (0 < num_cnt)
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 8
+
+
+ 136:iprintf.c     ****             {
+ 137:iprintf.c     ****                 num_cnt--;
+ 252              		.loc 1 137 0
+ 253 00d2 013D     		sub	r5, r5, #1
+ 254              	.LVL39:
+ 138:iprintf.c     ****                 iputc(NUM_CHARS[buffer[num_cnt]]);
+ 255              		.loc 1 138 0
+ 256 00d4 7B5D     		ldrb	r3, [r7, r5]
+ 257              	.LBB24:
+ 258              	.LBB25:
+  43:iprintf.c     **** }
+ 259              		.loc 1 43 0
+ 260 00d6 084A     		ldr	r2, .L21
+ 261 00d8 D05C     		ldrb	r0, [r2, r3]
+ 262 00da FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 263              	.LVL40:
+ 264              	.LBE25:
+ 265              	.LBE24:
+ 135:iprintf.c     ****             {
+ 266              		.loc 1 135 0
+ 267 00de 002D     		cmp	r5, #0
+ 268 00e0 F7D1     		bne	.L16
+ 269              	.LVL41:
+ 270              	.L19:
+ 139:iprintf.c     ****             }
+ 140:iprintf.c     **** 
+ 141:iprintf.c     ****             pszFmt++;
+ 271              		.loc 1 141 0
+ 272 00e2 0234     		add	r4, r4, #2
+ 273 00e4 0C94     		str	r4, [sp, #48]
+ 116:iprintf.c     ****             num_cnt = 0;
+ 274              		.loc 1 116 0
+ 275 00e6 351C     		mov	r5, r6
+ 142:iprintf.c     ****             continue;
+ 276              		.loc 1 142 0
+ 277 00e8 8EE7     		b	.L2
+ 278              	.LVL42:
+ 279              	.L12:
+ 280              	.LBE23:
+ 143:iprintf.c     ****         }
+ 144:iprintf.c     ****         
+ 145:iprintf.c     ****         if ('\0' == pszFmt)
+ 281              		.loc 1 145 0
+ 282 00ea 002E     		cmp	r6, #0
+ 283 00ec 8CD1     		bne	.L2
+ 284              	.L1:
+ 146:iprintf.c     ****         {
+ 147:iprintf.c     ****             break;
+ 148:iprintf.c     ****         }
+ 149:iprintf.c     ****     }
+ 150:iprintf.c     **** }
+ 285              		.loc 1 150 0
+ 286 00ee 07B0     		add	sp, sp, #28
+ 287              		@ sp needed
+ 288              	.LVL43:
+ 289 00f0 F0BC     		pop	{r4, r5, r6, r7}
+ 290 00f2 08BC     		pop	{r3}
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 9
+
+
+ 291 00f4 04B0     		add	sp, sp, #16
+ 292 00f6 1847     		bx	r3
+ 293              	.L22:
+ 294              		.align	2
+ 295              	.L21:
+ 296 00f8 00000000 		.word	.LANCHOR0
+ 297              		.cfi_endproc
+ 298              	.LFE96:
+ 299              		.size	iprintf, .-iprintf
+ 300              		.section	.rodata
+ 301              		.set	.LANCHOR0,. + 0
+ 302              		.type	NUM_CHARS, %object
+ 303              		.size	NUM_CHARS, 16
+ 304              	NUM_CHARS:
+ 305 0000 30313233 		.ascii	"0123456789ABCDEF"
+ 305      34353637 
+ 305      38394142 
+ 305      43444546 
+ 306              		.text
+ 307              	.Letext0:
+ 308              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 309              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 310              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 311              		.file 5 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 312              		.section	.debug_info,"",%progbits
+ 313              	.Ldebug_info0:
+ 314 0000 A8020000 		.4byte	0x2a8
+ 315 0004 0400     		.2byte	0x4
+ 316 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 317 000a 04       		.byte	0x4
+ 318 000b 01       		.uleb128 0x1
+ 319 000c 37000000 		.4byte	.LASF29
+ 320 0010 01       		.byte	0x1
+ 321 0011 20010000 		.4byte	.LASF30
+ 322 0015 D9010000 		.4byte	.LASF31
+ 323 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 324 001d 00000000 		.4byte	0
+ 325 0021 00000000 		.4byte	.Ldebug_line0
+ 326 0025 02       		.uleb128 0x2
+ 327 0026 01       		.byte	0x1
+ 328 0027 06       		.byte	0x6
+ 329 0028 BA010000 		.4byte	.LASF0
+ 330 002c 03       		.uleb128 0x3
+ 331 002d 08000000 		.4byte	.LASF5
+ 332 0031 02       		.byte	0x2
+ 333 0032 1D       		.byte	0x1d
+ 334 0033 37000000 		.4byte	0x37
+ 335 0037 02       		.uleb128 0x2
+ 336 0038 01       		.byte	0x1
+ 337 0039 08       		.byte	0x8
+ 338 003a F3000000 		.4byte	.LASF1
+ 339 003e 02       		.uleb128 0x2
+ 340 003f 02       		.byte	0x2
+ 341 0040 05       		.byte	0x5
+ 342 0041 98010000 		.4byte	.LASF2
+ 343 0045 02       		.uleb128 0x2
+ 344 0046 02       		.byte	0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 10
+
+
+ 345 0047 07       		.byte	0x7
+ 346 0048 C6010000 		.4byte	.LASF3
+ 347 004c 02       		.uleb128 0x2
+ 348 004d 04       		.byte	0x4
+ 349 004e 05       		.byte	0x5
+ 350 004f B1010000 		.4byte	.LASF4
+ 351 0053 03       		.uleb128 0x3
+ 352 0054 37010000 		.4byte	.LASF6
+ 353 0058 02       		.byte	0x2
+ 354 0059 41       		.byte	0x41
+ 355 005a 5E000000 		.4byte	0x5e
+ 356 005e 02       		.uleb128 0x2
+ 357 005f 04       		.byte	0x4
+ 358 0060 07       		.byte	0x7
+ 359 0061 0E010000 		.4byte	.LASF7
+ 360 0065 02       		.uleb128 0x2
+ 361 0066 08       		.byte	0x8
+ 362 0067 05       		.byte	0x5
+ 363 0068 72010000 		.4byte	.LASF8
+ 364 006c 02       		.uleb128 0x2
+ 365 006d 08       		.byte	0x8
+ 366 006e 07       		.byte	0x7
+ 367 006f D6000000 		.4byte	.LASF9
+ 368 0073 04       		.uleb128 0x4
+ 369 0074 04       		.byte	0x4
+ 370 0075 05       		.byte	0x5
+ 371 0076 696E7400 		.ascii	"int\000"
+ 372 007a 02       		.uleb128 0x2
+ 373 007b 04       		.byte	0x4
+ 374 007c 07       		.byte	0x7
+ 375 007d 49010000 		.4byte	.LASF10
+ 376 0081 03       		.uleb128 0x3
+ 377 0082 5B010000 		.4byte	.LASF11
+ 378 0086 03       		.byte	0x3
+ 379 0087 15       		.byte	0x15
+ 380 0088 2C000000 		.4byte	0x2c
+ 381 008c 03       		.uleb128 0x3
+ 382 008d A8010000 		.4byte	.LASF12
+ 383 0091 03       		.byte	0x3
+ 384 0092 2D       		.byte	0x2d
+ 385 0093 53000000 		.4byte	0x53
+ 386 0097 05       		.uleb128 0x5
+ 387 0098 2A010000 		.4byte	.LASF13
+ 388 009c 04       		.byte	0x4
+ 389 009d B901     		.2byte	0x1b9
+ 390 009f 37000000 		.4byte	0x37
+ 391 00a3 05       		.uleb128 0x5
+ 392 00a4 42010000 		.4byte	.LASF14
+ 393 00a8 04       		.byte	0x4
+ 394 00a9 BB01     		.2byte	0x1bb
+ 395 00ab 5E000000 		.4byte	0x5e
+ 396 00af 05       		.uleb128 0x5
+ 397 00b0 63010000 		.4byte	.LASF15
+ 398 00b4 04       		.byte	0x4
+ 399 00b5 BE01     		.2byte	0x1be
+ 400 00b7 4C000000 		.4byte	0x4c
+ 401 00bb 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 11
+
+
+ 402 00bc 04       		.byte	0x4
+ 403 00bd 04       		.byte	0x4
+ 404 00be D0000000 		.4byte	.LASF16
+ 405 00c2 02       		.uleb128 0x2
+ 406 00c3 08       		.byte	0x8
+ 407 00c4 04       		.byte	0x4
+ 408 00c5 30010000 		.4byte	.LASF17
+ 409 00c9 05       		.uleb128 0x5
+ 410 00ca 01010000 		.4byte	.LASF18
+ 411 00ce 04       		.byte	0x4
+ 412 00cf CA01     		.2byte	0x1ca
+ 413 00d1 D5000000 		.4byte	0xd5
+ 414 00d5 02       		.uleb128 0x2
+ 415 00d6 01       		.byte	0x1
+ 416 00d7 08       		.byte	0x8
+ 417 00d8 56010000 		.4byte	.LASF19
+ 418 00dc 02       		.uleb128 0x2
+ 419 00dd 04       		.byte	0x4
+ 420 00de 07       		.byte	0x7
+ 421 00df 69010000 		.4byte	.LASF20
+ 422 00e3 06       		.uleb128 0x6
+ 423 00e4 04       		.byte	0x4
+ 424 00e5 97000000 		.4byte	0x97
+ 425 00e9 07       		.uleb128 0x7
+ 426 00ea A2010000 		.4byte	.LASF32
+ 427 00ee 01       		.byte	0x1
+ 428 00ef 28       		.byte	0x28
+ 429 00f0 01       		.byte	0x1
+ 430 00f1 00010000 		.4byte	0x100
+ 431 00f5 08       		.uleb128 0x8
+ 432 00f6 636800   		.ascii	"ch\000"
+ 433 00f9 01       		.byte	0x1
+ 434 00fa 28       		.byte	0x28
+ 435 00fb C9000000 		.4byte	0xc9
+ 436 00ff 00       		.byte	0
+ 437 0100 09       		.uleb128 0x9
+ 438 0101 00000000 		.4byte	.LASF33
+ 439 0105 01       		.byte	0x1
+ 440 0106 37       		.byte	0x37
+ 441 0107 00000000 		.4byte	.LFB96
+ 442 010b FC000000 		.4byte	.LFE96-.LFB96
+ 443 010f 01       		.uleb128 0x1
+ 444 0110 9C       		.byte	0x9c
+ 445 0111 5B020000 		.4byte	0x25b
+ 446 0115 0A       		.uleb128 0xa
+ 447 0116 C9000000 		.4byte	.LASF34
+ 448 011a 01       		.byte	0x1
+ 449 011b 37       		.byte	0x37
+ 450 011c 5B020000 		.4byte	0x25b
+ 451 0120 02       		.uleb128 0x2
+ 452 0121 91       		.byte	0x91
+ 453 0122 70       		.sleb128 -16
+ 454 0123 0B       		.uleb128 0xb
+ 455 0124 0C       		.uleb128 0xc
+ 456 0125 07010000 		.4byte	.LASF21
+ 457 0129 01       		.byte	0x1
+ 458 012a 39       		.byte	0x39
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 12
+
+
+ 459 012b E3000000 		.4byte	0xe3
+ 460 012f 00000000 		.4byte	.LLST0
+ 461 0133 0C       		.uleb128 0xc
+ 462 0134 8A010000 		.4byte	.LASF22
+ 463 0138 01       		.byte	0x1
+ 464 0139 3A       		.byte	0x3a
+ 465 013a A3000000 		.4byte	0xa3
+ 466 013e 13000000 		.4byte	.LLST1
+ 467 0142 0C       		.uleb128 0xc
+ 468 0143 90010000 		.4byte	.LASF23
+ 469 0147 01       		.byte	0x1
+ 470 0148 3B       		.byte	0x3b
+ 471 0149 A3000000 		.4byte	0xa3
+ 472 014d 97000000 		.4byte	.LLST2
+ 473 0151 0D       		.uleb128 0xd
+ 474 0152 12000000 		.4byte	.LASF24
+ 475 0156 01       		.byte	0x1
+ 476 0157 3C       		.byte	0x3c
+ 477 0158 61020000 		.4byte	0x261
+ 478 015c 02       		.uleb128 0x2
+ 479 015d 91       		.byte	0x91
+ 480 015e 4C       		.sleb128 -52
+ 481 015f 0C       		.uleb128 0xc
+ 482 0160 05020000 		.4byte	.LASF25
+ 483 0164 01       		.byte	0x1
+ 484 0165 3D       		.byte	0x3d
+ 485 0166 71020000 		.4byte	0x271
+ 486 016a ED000000 		.4byte	.LLST3
+ 487 016e 0E       		.uleb128 0xe
+ 488 016f E9000000 		.4byte	0xe9
+ 489 0173 16000000 		.4byte	.LBB14
+ 490 0177 04000000 		.4byte	.LBE14-.LBB14
+ 491 017b 01       		.byte	0x1
+ 492 017c 45       		.byte	0x45
+ 493 017d 94010000 		.4byte	0x194
+ 494 0181 0F       		.uleb128 0xf
+ 495 0182 F5000000 		.4byte	0xf5
+ 496 0186 62010000 		.4byte	.LLST4
+ 497 018a 10       		.uleb128 0x10
+ 498 018b 1A000000 		.4byte	.LVL3
+ 499 018f 9D020000 		.4byte	0x29d
+ 500 0193 00       		.byte	0
+ 501 0194 0E       		.uleb128 0xe
+ 502 0195 E9000000 		.4byte	0xe9
+ 503 0199 36000000 		.4byte	.LBB16
+ 504 019d 04000000 		.4byte	.LBE16-.LBB16
+ 505 01a1 01       		.byte	0x1
+ 506 01a2 51       		.byte	0x51
+ 507 01a3 BA010000 		.4byte	0x1ba
+ 508 01a7 0F       		.uleb128 0xf
+ 509 01a8 F5000000 		.4byte	0xf5
+ 510 01ac 75010000 		.4byte	.LLST5
+ 511 01b0 10       		.uleb128 0x10
+ 512 01b1 3A000000 		.4byte	.LVL8
+ 513 01b5 9D020000 		.4byte	0x29d
+ 514 01b9 00       		.byte	0
+ 515 01ba 11       		.uleb128 0x11
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 13
+
+
+ 516 01bb 42000000 		.4byte	.LBB18
+ 517 01bf 46000000 		.4byte	.LBE18-.LBB18
+ 518 01c3 F9010000 		.4byte	0x1f9
+ 519 01c7 0C       		.uleb128 0xc
+ 520 01c8 ED000000 		.4byte	.LASF26
+ 521 01cc 01       		.byte	0x1
+ 522 01cd 59       		.byte	0x59
+ 523 01ce 8C000000 		.4byte	0x8c
+ 524 01d2 88010000 		.4byte	.LLST6
+ 525 01d6 12       		.uleb128 0x12
+ 526 01d7 E9000000 		.4byte	0xe9
+ 527 01db 74000000 		.4byte	.LBB19
+ 528 01df 08000000 		.4byte	.LBE19-.LBB19
+ 529 01e3 01       		.byte	0x1
+ 530 01e4 65       		.byte	0x65
+ 531 01e5 0F       		.uleb128 0xf
+ 532 01e6 F5000000 		.4byte	0xf5
+ 533 01ea B1010000 		.4byte	.LLST7
+ 534 01ee 10       		.uleb128 0x10
+ 535 01ef 7C000000 		.4byte	.LVL20
+ 536 01f3 9D020000 		.4byte	0x29d
+ 537 01f7 00       		.byte	0
+ 538 01f8 00       		.byte	0
+ 539 01f9 0E       		.uleb128 0xe
+ 540 01fa E9000000 		.4byte	0xe9
+ 541 01fe 94000000 		.4byte	.LBB21
+ 542 0202 0A000000 		.4byte	.LBE21-.LBB21
+ 543 0206 01       		.byte	0x1
+ 544 0207 6D       		.byte	0x6d
+ 545 0208 1F020000 		.4byte	0x21f
+ 546 020c 0F       		.uleb128 0xf
+ 547 020d F5000000 		.4byte	0xf5
+ 548 0211 D6010000 		.4byte	.LLST8
+ 549 0215 10       		.uleb128 0x10
+ 550 0216 9C000000 		.4byte	.LVL26
+ 551 021a 9D020000 		.4byte	0x29d
+ 552 021e 00       		.byte	0
+ 553 021f 13       		.uleb128 0x13
+ 554 0220 A2000000 		.4byte	.LBB23
+ 555 0224 48000000 		.4byte	.LBE23-.LBB23
+ 556 0228 0C       		.uleb128 0xc
+ 557 0229 19000000 		.4byte	.LASF27
+ 558 022d 01       		.byte	0x1
+ 559 022e 74       		.byte	0x74
+ 560 022f 8C000000 		.4byte	0x8c
+ 561 0233 06020000 		.4byte	.LLST9
+ 562 0237 12       		.uleb128 0x12
+ 563 0238 E9000000 		.4byte	0xe9
+ 564 023c D6000000 		.4byte	.LBB24
+ 565 0240 08000000 		.4byte	.LBE24-.LBB24
+ 566 0244 01       		.byte	0x1
+ 567 0245 8A       		.byte	0x8a
+ 568 0246 0F       		.uleb128 0xf
+ 569 0247 F5000000 		.4byte	0xf5
+ 570 024b 19020000 		.4byte	.LLST10
+ 571 024f 10       		.uleb128 0x10
+ 572 0250 DE000000 		.4byte	.LVL40
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 14
+
+
+ 573 0254 9D020000 		.4byte	0x29d
+ 574 0258 00       		.byte	0
+ 575 0259 00       		.byte	0
+ 576 025a 00       		.byte	0
+ 577 025b 06       		.uleb128 0x6
+ 578 025c 04       		.byte	0x4
+ 579 025d C9000000 		.4byte	0xc9
+ 580 0261 14       		.uleb128 0x14
+ 581 0262 81000000 		.4byte	0x81
+ 582 0266 71020000 		.4byte	0x271
+ 583 026a 15       		.uleb128 0x15
+ 584 026b DC000000 		.4byte	0xdc
+ 585 026f 0B       		.byte	0xb
+ 586 0270 00       		.byte	0
+ 587 0271 06       		.uleb128 0x6
+ 588 0272 04       		.byte	0x4
+ 589 0273 A3000000 		.4byte	0xa3
+ 590 0277 14       		.uleb128 0x14
+ 591 0278 81000000 		.4byte	0x81
+ 592 027c 87020000 		.4byte	0x287
+ 593 0280 15       		.uleb128 0x15
+ 594 0281 DC000000 		.4byte	0xdc
+ 595 0285 0F       		.byte	0xf
+ 596 0286 00       		.byte	0
+ 597 0287 0D       		.uleb128 0xd
+ 598 0288 80010000 		.4byte	.LASF28
+ 599 028c 01       		.byte	0x1
+ 600 028d 19       		.byte	0x19
+ 601 028e 98020000 		.4byte	0x298
+ 602 0292 05       		.uleb128 0x5
+ 603 0293 03       		.byte	0x3
+ 604 0294 00000000 		.4byte	NUM_CHARS
+ 605 0298 16       		.uleb128 0x16
+ 606 0299 77020000 		.4byte	0x277
+ 607 029d 17       		.uleb128 0x17
+ 608 029e 1F000000 		.4byte	.LASF35
+ 609 02a2 05       		.byte	0x5
+ 610 02a3 3A03     		.2byte	0x33a
+ 611 02a5 18       		.uleb128 0x18
+ 612 02a6 A3000000 		.4byte	0xa3
+ 613 02aa 00       		.byte	0
+ 614 02ab 00       		.byte	0
+ 615              		.section	.debug_abbrev,"",%progbits
+ 616              	.Ldebug_abbrev0:
+ 617 0000 01       		.uleb128 0x1
+ 618 0001 11       		.uleb128 0x11
+ 619 0002 01       		.byte	0x1
+ 620 0003 25       		.uleb128 0x25
+ 621 0004 0E       		.uleb128 0xe
+ 622 0005 13       		.uleb128 0x13
+ 623 0006 0B       		.uleb128 0xb
+ 624 0007 03       		.uleb128 0x3
+ 625 0008 0E       		.uleb128 0xe
+ 626 0009 1B       		.uleb128 0x1b
+ 627 000a 0E       		.uleb128 0xe
+ 628 000b 55       		.uleb128 0x55
+ 629 000c 17       		.uleb128 0x17
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 15
+
+
+ 630 000d 11       		.uleb128 0x11
+ 631 000e 01       		.uleb128 0x1
+ 632 000f 10       		.uleb128 0x10
+ 633 0010 17       		.uleb128 0x17
+ 634 0011 00       		.byte	0
+ 635 0012 00       		.byte	0
+ 636 0013 02       		.uleb128 0x2
+ 637 0014 24       		.uleb128 0x24
+ 638 0015 00       		.byte	0
+ 639 0016 0B       		.uleb128 0xb
+ 640 0017 0B       		.uleb128 0xb
+ 641 0018 3E       		.uleb128 0x3e
+ 642 0019 0B       		.uleb128 0xb
+ 643 001a 03       		.uleb128 0x3
+ 644 001b 0E       		.uleb128 0xe
+ 645 001c 00       		.byte	0
+ 646 001d 00       		.byte	0
+ 647 001e 03       		.uleb128 0x3
+ 648 001f 16       		.uleb128 0x16
+ 649 0020 00       		.byte	0
+ 650 0021 03       		.uleb128 0x3
+ 651 0022 0E       		.uleb128 0xe
+ 652 0023 3A       		.uleb128 0x3a
+ 653 0024 0B       		.uleb128 0xb
+ 654 0025 3B       		.uleb128 0x3b
+ 655 0026 0B       		.uleb128 0xb
+ 656 0027 49       		.uleb128 0x49
+ 657 0028 13       		.uleb128 0x13
+ 658 0029 00       		.byte	0
+ 659 002a 00       		.byte	0
+ 660 002b 04       		.uleb128 0x4
+ 661 002c 24       		.uleb128 0x24
+ 662 002d 00       		.byte	0
+ 663 002e 0B       		.uleb128 0xb
+ 664 002f 0B       		.uleb128 0xb
+ 665 0030 3E       		.uleb128 0x3e
+ 666 0031 0B       		.uleb128 0xb
+ 667 0032 03       		.uleb128 0x3
+ 668 0033 08       		.uleb128 0x8
+ 669 0034 00       		.byte	0
+ 670 0035 00       		.byte	0
+ 671 0036 05       		.uleb128 0x5
+ 672 0037 16       		.uleb128 0x16
+ 673 0038 00       		.byte	0
+ 674 0039 03       		.uleb128 0x3
+ 675 003a 0E       		.uleb128 0xe
+ 676 003b 3A       		.uleb128 0x3a
+ 677 003c 0B       		.uleb128 0xb
+ 678 003d 3B       		.uleb128 0x3b
+ 679 003e 05       		.uleb128 0x5
+ 680 003f 49       		.uleb128 0x49
+ 681 0040 13       		.uleb128 0x13
+ 682 0041 00       		.byte	0
+ 683 0042 00       		.byte	0
+ 684 0043 06       		.uleb128 0x6
+ 685 0044 0F       		.uleb128 0xf
+ 686 0045 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 16
+
+
+ 687 0046 0B       		.uleb128 0xb
+ 688 0047 0B       		.uleb128 0xb
+ 689 0048 49       		.uleb128 0x49
+ 690 0049 13       		.uleb128 0x13
+ 691 004a 00       		.byte	0
+ 692 004b 00       		.byte	0
+ 693 004c 07       		.uleb128 0x7
+ 694 004d 2E       		.uleb128 0x2e
+ 695 004e 01       		.byte	0x1
+ 696 004f 03       		.uleb128 0x3
+ 697 0050 0E       		.uleb128 0xe
+ 698 0051 3A       		.uleb128 0x3a
+ 699 0052 0B       		.uleb128 0xb
+ 700 0053 3B       		.uleb128 0x3b
+ 701 0054 0B       		.uleb128 0xb
+ 702 0055 27       		.uleb128 0x27
+ 703 0056 19       		.uleb128 0x19
+ 704 0057 20       		.uleb128 0x20
+ 705 0058 0B       		.uleb128 0xb
+ 706 0059 01       		.uleb128 0x1
+ 707 005a 13       		.uleb128 0x13
+ 708 005b 00       		.byte	0
+ 709 005c 00       		.byte	0
+ 710 005d 08       		.uleb128 0x8
+ 711 005e 05       		.uleb128 0x5
+ 712 005f 00       		.byte	0
+ 713 0060 03       		.uleb128 0x3
+ 714 0061 08       		.uleb128 0x8
+ 715 0062 3A       		.uleb128 0x3a
+ 716 0063 0B       		.uleb128 0xb
+ 717 0064 3B       		.uleb128 0x3b
+ 718 0065 0B       		.uleb128 0xb
+ 719 0066 49       		.uleb128 0x49
+ 720 0067 13       		.uleb128 0x13
+ 721 0068 00       		.byte	0
+ 722 0069 00       		.byte	0
+ 723 006a 09       		.uleb128 0x9
+ 724 006b 2E       		.uleb128 0x2e
+ 725 006c 01       		.byte	0x1
+ 726 006d 3F       		.uleb128 0x3f
+ 727 006e 19       		.uleb128 0x19
+ 728 006f 03       		.uleb128 0x3
+ 729 0070 0E       		.uleb128 0xe
+ 730 0071 3A       		.uleb128 0x3a
+ 731 0072 0B       		.uleb128 0xb
+ 732 0073 3B       		.uleb128 0x3b
+ 733 0074 0B       		.uleb128 0xb
+ 734 0075 27       		.uleb128 0x27
+ 735 0076 19       		.uleb128 0x19
+ 736 0077 11       		.uleb128 0x11
+ 737 0078 01       		.uleb128 0x1
+ 738 0079 12       		.uleb128 0x12
+ 739 007a 06       		.uleb128 0x6
+ 740 007b 40       		.uleb128 0x40
+ 741 007c 18       		.uleb128 0x18
+ 742 007d 9642     		.uleb128 0x2116
+ 743 007f 19       		.uleb128 0x19
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 17
+
+
+ 744 0080 01       		.uleb128 0x1
+ 745 0081 13       		.uleb128 0x13
+ 746 0082 00       		.byte	0
+ 747 0083 00       		.byte	0
+ 748 0084 0A       		.uleb128 0xa
+ 749 0085 05       		.uleb128 0x5
+ 750 0086 00       		.byte	0
+ 751 0087 03       		.uleb128 0x3
+ 752 0088 0E       		.uleb128 0xe
+ 753 0089 3A       		.uleb128 0x3a
+ 754 008a 0B       		.uleb128 0xb
+ 755 008b 3B       		.uleb128 0x3b
+ 756 008c 0B       		.uleb128 0xb
+ 757 008d 49       		.uleb128 0x49
+ 758 008e 13       		.uleb128 0x13
+ 759 008f 02       		.uleb128 0x2
+ 760 0090 18       		.uleb128 0x18
+ 761 0091 00       		.byte	0
+ 762 0092 00       		.byte	0
+ 763 0093 0B       		.uleb128 0xb
+ 764 0094 18       		.uleb128 0x18
+ 765 0095 00       		.byte	0
+ 766 0096 00       		.byte	0
+ 767 0097 00       		.byte	0
+ 768 0098 0C       		.uleb128 0xc
+ 769 0099 34       		.uleb128 0x34
+ 770 009a 00       		.byte	0
+ 771 009b 03       		.uleb128 0x3
+ 772 009c 0E       		.uleb128 0xe
+ 773 009d 3A       		.uleb128 0x3a
+ 774 009e 0B       		.uleb128 0xb
+ 775 009f 3B       		.uleb128 0x3b
+ 776 00a0 0B       		.uleb128 0xb
+ 777 00a1 49       		.uleb128 0x49
+ 778 00a2 13       		.uleb128 0x13
+ 779 00a3 02       		.uleb128 0x2
+ 780 00a4 17       		.uleb128 0x17
+ 781 00a5 00       		.byte	0
+ 782 00a6 00       		.byte	0
+ 783 00a7 0D       		.uleb128 0xd
+ 784 00a8 34       		.uleb128 0x34
+ 785 00a9 00       		.byte	0
+ 786 00aa 03       		.uleb128 0x3
+ 787 00ab 0E       		.uleb128 0xe
+ 788 00ac 3A       		.uleb128 0x3a
+ 789 00ad 0B       		.uleb128 0xb
+ 790 00ae 3B       		.uleb128 0x3b
+ 791 00af 0B       		.uleb128 0xb
+ 792 00b0 49       		.uleb128 0x49
+ 793 00b1 13       		.uleb128 0x13
+ 794 00b2 02       		.uleb128 0x2
+ 795 00b3 18       		.uleb128 0x18
+ 796 00b4 00       		.byte	0
+ 797 00b5 00       		.byte	0
+ 798 00b6 0E       		.uleb128 0xe
+ 799 00b7 1D       		.uleb128 0x1d
+ 800 00b8 01       		.byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 18
+
+
+ 801 00b9 31       		.uleb128 0x31
+ 802 00ba 13       		.uleb128 0x13
+ 803 00bb 11       		.uleb128 0x11
+ 804 00bc 01       		.uleb128 0x1
+ 805 00bd 12       		.uleb128 0x12
+ 806 00be 06       		.uleb128 0x6
+ 807 00bf 58       		.uleb128 0x58
+ 808 00c0 0B       		.uleb128 0xb
+ 809 00c1 59       		.uleb128 0x59
+ 810 00c2 0B       		.uleb128 0xb
+ 811 00c3 01       		.uleb128 0x1
+ 812 00c4 13       		.uleb128 0x13
+ 813 00c5 00       		.byte	0
+ 814 00c6 00       		.byte	0
+ 815 00c7 0F       		.uleb128 0xf
+ 816 00c8 05       		.uleb128 0x5
+ 817 00c9 00       		.byte	0
+ 818 00ca 31       		.uleb128 0x31
+ 819 00cb 13       		.uleb128 0x13
+ 820 00cc 02       		.uleb128 0x2
+ 821 00cd 17       		.uleb128 0x17
+ 822 00ce 00       		.byte	0
+ 823 00cf 00       		.byte	0
+ 824 00d0 10       		.uleb128 0x10
+ 825 00d1 898201   		.uleb128 0x4109
+ 826 00d4 00       		.byte	0
+ 827 00d5 11       		.uleb128 0x11
+ 828 00d6 01       		.uleb128 0x1
+ 829 00d7 31       		.uleb128 0x31
+ 830 00d8 13       		.uleb128 0x13
+ 831 00d9 00       		.byte	0
+ 832 00da 00       		.byte	0
+ 833 00db 11       		.uleb128 0x11
+ 834 00dc 0B       		.uleb128 0xb
+ 835 00dd 01       		.byte	0x1
+ 836 00de 11       		.uleb128 0x11
+ 837 00df 01       		.uleb128 0x1
+ 838 00e0 12       		.uleb128 0x12
+ 839 00e1 06       		.uleb128 0x6
+ 840 00e2 01       		.uleb128 0x1
+ 841 00e3 13       		.uleb128 0x13
+ 842 00e4 00       		.byte	0
+ 843 00e5 00       		.byte	0
+ 844 00e6 12       		.uleb128 0x12
+ 845 00e7 1D       		.uleb128 0x1d
+ 846 00e8 01       		.byte	0x1
+ 847 00e9 31       		.uleb128 0x31
+ 848 00ea 13       		.uleb128 0x13
+ 849 00eb 11       		.uleb128 0x11
+ 850 00ec 01       		.uleb128 0x1
+ 851 00ed 12       		.uleb128 0x12
+ 852 00ee 06       		.uleb128 0x6
+ 853 00ef 58       		.uleb128 0x58
+ 854 00f0 0B       		.uleb128 0xb
+ 855 00f1 59       		.uleb128 0x59
+ 856 00f2 0B       		.uleb128 0xb
+ 857 00f3 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 19
+
+
+ 858 00f4 00       		.byte	0
+ 859 00f5 13       		.uleb128 0x13
+ 860 00f6 0B       		.uleb128 0xb
+ 861 00f7 01       		.byte	0x1
+ 862 00f8 11       		.uleb128 0x11
+ 863 00f9 01       		.uleb128 0x1
+ 864 00fa 12       		.uleb128 0x12
+ 865 00fb 06       		.uleb128 0x6
+ 866 00fc 00       		.byte	0
+ 867 00fd 00       		.byte	0
+ 868 00fe 14       		.uleb128 0x14
+ 869 00ff 01       		.uleb128 0x1
+ 870 0100 01       		.byte	0x1
+ 871 0101 49       		.uleb128 0x49
+ 872 0102 13       		.uleb128 0x13
+ 873 0103 01       		.uleb128 0x1
+ 874 0104 13       		.uleb128 0x13
+ 875 0105 00       		.byte	0
+ 876 0106 00       		.byte	0
+ 877 0107 15       		.uleb128 0x15
+ 878 0108 21       		.uleb128 0x21
+ 879 0109 00       		.byte	0
+ 880 010a 49       		.uleb128 0x49
+ 881 010b 13       		.uleb128 0x13
+ 882 010c 2F       		.uleb128 0x2f
+ 883 010d 0B       		.uleb128 0xb
+ 884 010e 00       		.byte	0
+ 885 010f 00       		.byte	0
+ 886 0110 16       		.uleb128 0x16
+ 887 0111 26       		.uleb128 0x26
+ 888 0112 00       		.byte	0
+ 889 0113 49       		.uleb128 0x49
+ 890 0114 13       		.uleb128 0x13
+ 891 0115 00       		.byte	0
+ 892 0116 00       		.byte	0
+ 893 0117 17       		.uleb128 0x17
+ 894 0118 2E       		.uleb128 0x2e
+ 895 0119 01       		.byte	0x1
+ 896 011a 3F       		.uleb128 0x3f
+ 897 011b 19       		.uleb128 0x19
+ 898 011c 03       		.uleb128 0x3
+ 899 011d 0E       		.uleb128 0xe
+ 900 011e 3A       		.uleb128 0x3a
+ 901 011f 0B       		.uleb128 0xb
+ 902 0120 3B       		.uleb128 0x3b
+ 903 0121 05       		.uleb128 0x5
+ 904 0122 27       		.uleb128 0x27
+ 905 0123 19       		.uleb128 0x19
+ 906 0124 3C       		.uleb128 0x3c
+ 907 0125 19       		.uleb128 0x19
+ 908 0126 00       		.byte	0
+ 909 0127 00       		.byte	0
+ 910 0128 18       		.uleb128 0x18
+ 911 0129 05       		.uleb128 0x5
+ 912 012a 00       		.byte	0
+ 913 012b 49       		.uleb128 0x49
+ 914 012c 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 20
+
+
+ 915 012d 00       		.byte	0
+ 916 012e 00       		.byte	0
+ 917 012f 00       		.byte	0
+ 918              		.section	.debug_loc,"",%progbits
+ 919              	.Ldebug_loc0:
+ 920              	.LLST0:
+ 921 0000 30000000 		.4byte	.LVL6
+ 922 0004 3E000000 		.4byte	.LVL10
+ 923 0008 0100     		.2byte	0x1
+ 924 000a 55       		.byte	0x55
+ 925 000b 00000000 		.4byte	0
+ 926 000f 00000000 		.4byte	0
+ 927              	.LLST1:
+ 928 0013 00000000 		.4byte	.LVL0
+ 929 0017 08000000 		.4byte	.LVL1
+ 930 001b 0200     		.2byte	0x2
+ 931 001d 31       		.byte	0x31
+ 932 001e 9F       		.byte	0x9f
+ 933 001f 08000000 		.4byte	.LVL1
+ 934 0023 28000000 		.4byte	.LVL4
+ 935 0027 0100     		.2byte	0x1
+ 936 0029 55       		.byte	0x55
+ 937 002a 28000000 		.4byte	.LVL4
+ 938 002e 3E000000 		.4byte	.LVL10
+ 939 0032 0100     		.2byte	0x1
+ 940 0034 56       		.byte	0x56
+ 941 0035 3E000000 		.4byte	.LVL10
+ 942 0039 48000000 		.4byte	.LVL11
+ 943 003d 0100     		.2byte	0x1
+ 944 003f 55       		.byte	0x55
+ 945 0040 48000000 		.4byte	.LVL11
+ 946 0044 4C000000 		.4byte	.LVL12
+ 947 0048 0100     		.2byte	0x1
+ 948 004a 53       		.byte	0x53
+ 949 004b 4C000000 		.4byte	.LVL12
+ 950 004f 88000000 		.4byte	.LVL22
+ 951 0053 0300     		.2byte	0x3
+ 952 0055 91       		.byte	0x91
+ 953 0056 A47F     		.sleb128 -92
+ 954 0058 88000000 		.4byte	.LVL22
+ 955 005c 8E000000 		.4byte	.LVL23
+ 956 0060 0100     		.2byte	0x1
+ 957 0062 55       		.byte	0x55
+ 958 0063 8E000000 		.4byte	.LVL23
+ 959 0067 9E000000 		.4byte	.LVL27
+ 960 006b 0100     		.2byte	0x1
+ 961 006d 56       		.byte	0x56
+ 962 006e 9E000000 		.4byte	.LVL27
+ 963 0072 A6000000 		.4byte	.LVL29
+ 964 0076 0100     		.2byte	0x1
+ 965 0078 55       		.byte	0x55
+ 966 0079 A6000000 		.4byte	.LVL29
+ 967 007d EA000000 		.4byte	.LVL42
+ 968 0081 0100     		.2byte	0x1
+ 969 0083 56       		.byte	0x56
+ 970 0084 EA000000 		.4byte	.LVL42
+ 971 0088 F0000000 		.4byte	.LVL43
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 21
+
+
+ 972 008c 0100     		.2byte	0x1
+ 973 008e 55       		.byte	0x55
+ 974 008f 00000000 		.4byte	0
+ 975 0093 00000000 		.4byte	0
+ 976              	.LLST2:
+ 977 0097 50000000 		.4byte	.LVL13
+ 978 009b 58000000 		.4byte	.LVL14
+ 979 009f 0100     		.2byte	0x1
+ 980 00a1 56       		.byte	0x56
+ 981 00a2 58000000 		.4byte	.LVL14
+ 982 00a6 86000000 		.4byte	.LVL21
+ 983 00aa 0100     		.2byte	0x1
+ 984 00ac 55       		.byte	0x55
+ 985 00ad AE000000 		.4byte	.LVL31
+ 986 00b1 B2000000 		.4byte	.LVL32
+ 987 00b5 0100     		.2byte	0x1
+ 988 00b7 53       		.byte	0x53
+ 989 00b8 B2000000 		.4byte	.LVL32
+ 990 00bc CA000000 		.4byte	.LVL35
+ 991 00c0 0100     		.2byte	0x1
+ 992 00c2 55       		.byte	0x55
+ 993 00c3 CA000000 		.4byte	.LVL35
+ 994 00c7 CE000000 		.4byte	.LVL36
+ 995 00cb 0100     		.2byte	0x1
+ 996 00cd 53       		.byte	0x53
+ 997 00ce CE000000 		.4byte	.LVL36
+ 998 00d2 D0000000 		.4byte	.LVL37
+ 999 00d6 0200     		.2byte	0x2
+ 1000 00d8 32       		.byte	0x32
+ 1001 00d9 9F       		.byte	0x9f
+ 1002 00da D0000000 		.4byte	.LVL37
+ 1003 00de E2000000 		.4byte	.LVL41
+ 1004 00e2 0100     		.2byte	0x1
+ 1005 00e4 55       		.byte	0x55
+ 1006 00e5 00000000 		.4byte	0
+ 1007 00e9 00000000 		.4byte	0
+ 1008              	.LLST3:
+ 1009 00ed 08000000 		.4byte	.LVL1
+ 1010 00f1 2A000000 		.4byte	.LVL5
+ 1011 00f5 0300     		.2byte	0x3
+ 1012 00f7 91       		.byte	0x91
+ 1013 00f8 50       		.sleb128 -48
+ 1014 00f9 9F       		.byte	0x9f
+ 1015 00fa 2A000000 		.4byte	.LVL5
+ 1016 00fe 30000000 		.4byte	.LVL6
+ 1017 0102 0100     		.2byte	0x1
+ 1018 0104 53       		.byte	0x53
+ 1019 0105 30000000 		.4byte	.LVL6
+ 1020 0109 4C000000 		.4byte	.LVL12
+ 1021 010d 0300     		.2byte	0x3
+ 1022 010f 91       		.byte	0x91
+ 1023 0110 50       		.sleb128 -48
+ 1024 0111 9F       		.byte	0x9f
+ 1025 0112 4C000000 		.4byte	.LVL12
+ 1026 0116 50000000 		.4byte	.LVL13
+ 1027 011a 0100     		.2byte	0x1
+ 1028 011c 53       		.byte	0x53
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 22
+
+
+ 1029 011d 50000000 		.4byte	.LVL13
+ 1030 0121 90000000 		.4byte	.LVL24
+ 1031 0125 0300     		.2byte	0x3
+ 1032 0127 91       		.byte	0x91
+ 1033 0128 50       		.sleb128 -48
+ 1034 0129 9F       		.byte	0x9f
+ 1035 012a 90000000 		.4byte	.LVL24
+ 1036 012e 9B000000 		.4byte	.LVL26-1
+ 1037 0132 0100     		.2byte	0x1
+ 1038 0134 53       		.byte	0x53
+ 1039 0135 9B000000 		.4byte	.LVL26-1
+ 1040 0139 A4000000 		.4byte	.LVL28
+ 1041 013d 0300     		.2byte	0x3
+ 1042 013f 91       		.byte	0x91
+ 1043 0140 50       		.sleb128 -48
+ 1044 0141 9F       		.byte	0x9f
+ 1045 0142 A4000000 		.4byte	.LVL28
+ 1046 0146 AC000000 		.4byte	.LVL30
+ 1047 014a 0100     		.2byte	0x1
+ 1048 014c 53       		.byte	0x53
+ 1049 014d AC000000 		.4byte	.LVL30
+ 1050 0151 FC000000 		.4byte	.LFE96
+ 1051 0155 0300     		.2byte	0x3
+ 1052 0157 91       		.byte	0x91
+ 1053 0158 50       		.sleb128 -48
+ 1054 0159 9F       		.byte	0x9f
+ 1055 015a 00000000 		.4byte	0
+ 1056 015e 00000000 		.4byte	0
+ 1057              	.LLST4:
+ 1058 0162 16000000 		.4byte	.LVL2
+ 1059 0166 19000000 		.4byte	.LVL3-1
+ 1060 016a 0100     		.2byte	0x1
+ 1061 016c 50       		.byte	0x50
+ 1062 016d 00000000 		.4byte	0
+ 1063 0171 00000000 		.4byte	0
+ 1064              	.LLST5:
+ 1065 0175 36000000 		.4byte	.LVL7
+ 1066 0179 39000000 		.4byte	.LVL8-1
+ 1067 017d 0100     		.2byte	0x1
+ 1068 017f 50       		.byte	0x50
+ 1069 0180 00000000 		.4byte	0
+ 1070 0184 00000000 		.4byte	0
+ 1071              	.LLST6:
+ 1072 0188 50000000 		.4byte	.LVL13
+ 1073 018c 6C000000 		.4byte	.LVL17
+ 1074 0190 0100     		.2byte	0x1
+ 1075 0192 57       		.byte	0x57
+ 1076 0193 6C000000 		.4byte	.LVL17
+ 1077 0197 6E000000 		.4byte	.LVL18
+ 1078 019b 0100     		.2byte	0x1
+ 1079 019d 50       		.byte	0x50
+ 1080 019e 6E000000 		.4byte	.LVL18
+ 1081 01a2 88000000 		.4byte	.LVL22
+ 1082 01a6 0100     		.2byte	0x1
+ 1083 01a8 57       		.byte	0x57
+ 1084 01a9 00000000 		.4byte	0
+ 1085 01ad 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 23
+
+
+ 1086              	.LLST7:
+ 1087 01b1 70000000 		.4byte	.LVL19
+ 1088 01b5 7B000000 		.4byte	.LVL20-1
+ 1089 01b9 1300     		.2byte	0x13
+ 1090 01bb 91       		.byte	0x91
+ 1091 01bc 70       		.sleb128 -16
+ 1092 01bd 75       		.byte	0x75
+ 1093 01be 00       		.sleb128 0
+ 1094 01bf 22       		.byte	0x22
+ 1095 01c0 08       		.byte	0x8
+ 1096 01c1 44       		.byte	0x44
+ 1097 01c2 1C       		.byte	0x1c
+ 1098 01c3 94       		.byte	0x94
+ 1099 01c4 01       		.byte	0x1
+ 1100 01c5 08       		.byte	0x8
+ 1101 01c6 FF       		.byte	0xff
+ 1102 01c7 1A       		.byte	0x1a
+ 1103 01c8 03       		.byte	0x3
+ 1104 01c9 00000000 		.4byte	NUM_CHARS
+ 1105 01cd 22       		.byte	0x22
+ 1106 01ce 00000000 		.4byte	0
+ 1107 01d2 00000000 		.4byte	0
+ 1108              	.LLST8:
+ 1109 01d6 8E000000 		.4byte	.LVL23
+ 1110 01da 92000000 		.4byte	.LVL25
+ 1111 01de 0A00     		.2byte	0xa
+ 1112 01e0 75       		.byte	0x75
+ 1113 01e1 00       		.sleb128 0
+ 1114 01e2 32       		.byte	0x32
+ 1115 01e3 24       		.byte	0x24
+ 1116 01e4 91       		.byte	0x91
+ 1117 01e5 70       		.sleb128 -16
+ 1118 01e6 22       		.byte	0x22
+ 1119 01e7 08       		.byte	0x8
+ 1120 01e8 20       		.byte	0x20
+ 1121 01e9 1C       		.byte	0x1c
+ 1122 01ea 92000000 		.4byte	.LVL25
+ 1123 01ee 9B000000 		.4byte	.LVL26-1
+ 1124 01f2 0A00     		.2byte	0xa
+ 1125 01f4 76       		.byte	0x76
+ 1126 01f5 7F       		.sleb128 -1
+ 1127 01f6 32       		.byte	0x32
+ 1128 01f7 24       		.byte	0x24
+ 1129 01f8 91       		.byte	0x91
+ 1130 01f9 70       		.sleb128 -16
+ 1131 01fa 22       		.byte	0x22
+ 1132 01fb 08       		.byte	0x8
+ 1133 01fc 20       		.byte	0x20
+ 1134 01fd 1C       		.byte	0x1c
+ 1135 01fe 00000000 		.4byte	0
+ 1136 0202 00000000 		.4byte	0
+ 1137              	.LLST9:
+ 1138 0206 AE000000 		.4byte	.LVL31
+ 1139 020a D2000000 		.4byte	.LVL38
+ 1140 020e 0100     		.2byte	0x1
+ 1141 0210 52       		.byte	0x52
+ 1142 0211 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 24
+
+
+ 1143 0215 00000000 		.4byte	0
+ 1144              	.LLST10:
+ 1145 0219 D4000000 		.4byte	.LVL39
+ 1146 021d DD000000 		.4byte	.LVL40-1
+ 1147 0221 1300     		.2byte	0x13
+ 1148 0223 91       		.byte	0x91
+ 1149 0224 70       		.sleb128 -16
+ 1150 0225 75       		.byte	0x75
+ 1151 0226 00       		.sleb128 0
+ 1152 0227 22       		.byte	0x22
+ 1153 0228 08       		.byte	0x8
+ 1154 0229 44       		.byte	0x44
+ 1155 022a 1C       		.byte	0x1c
+ 1156 022b 94       		.byte	0x94
+ 1157 022c 01       		.byte	0x1
+ 1158 022d 08       		.byte	0x8
+ 1159 022e FF       		.byte	0xff
+ 1160 022f 1A       		.byte	0x1a
+ 1161 0230 03       		.byte	0x3
+ 1162 0231 00000000 		.4byte	NUM_CHARS
+ 1163 0235 22       		.byte	0x22
+ 1164 0236 00000000 		.4byte	0
+ 1165 023a 00000000 		.4byte	0
+ 1166              		.section	.debug_aranges,"",%progbits
+ 1167 0000 1C000000 		.4byte	0x1c
+ 1168 0004 0200     		.2byte	0x2
+ 1169 0006 00000000 		.4byte	.Ldebug_info0
+ 1170 000a 04       		.byte	0x4
+ 1171 000b 00       		.byte	0
+ 1172 000c 0000     		.2byte	0
+ 1173 000e 0000     		.2byte	0
+ 1174 0010 00000000 		.4byte	.LFB96
+ 1175 0014 FC000000 		.4byte	.LFE96-.LFB96
+ 1176 0018 00000000 		.4byte	0
+ 1177 001c 00000000 		.4byte	0
+ 1178              		.section	.debug_ranges,"",%progbits
+ 1179              	.Ldebug_ranges0:
+ 1180 0000 00000000 		.4byte	.LFB96
+ 1181 0004 FC000000 		.4byte	.LFE96
+ 1182 0008 00000000 		.4byte	0
+ 1183 000c 00000000 		.4byte	0
+ 1184              		.section	.debug_line,"",%progbits
+ 1185              	.Ldebug_line0:
+ 1186 0000 F5010000 		.section	.debug_str,"MS",%progbits,1
+ 1186      02004F01 
+ 1186      00000201 
+ 1186      FB0E0D00 
+ 1186      01010101 
+ 1187              	.LASF33:
+ 1188 0000 69707269 		.ascii	"iprintf\000"
+ 1188      6E746600 
+ 1189              	.LASF5:
+ 1190 0008 5F5F7569 		.ascii	"__uint8_t\000"
+ 1190      6E74385F 
+ 1190      7400
+ 1191              	.LASF24:
+ 1192 0012 62756666 		.ascii	"buffer\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 25
+
+
+ 1192      657200
+ 1193              	.LASF27:
+ 1194 0019 785F7661 		.ascii	"x_val\000"
+ 1194      6C00
+ 1195              	.LASF35:
+ 1196 001f 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 1196      5F537069 
+ 1196      55617274 
+ 1196      57726974 
+ 1196      65547844 
+ 1197              	.LASF29:
+ 1198 0037 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1198      4320342E 
+ 1198      392E3320 
+ 1198      32303135 
+ 1198      30333033 
+ 1199 006a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 1199      20726576 
+ 1199      6973696F 
+ 1199      6E203232 
+ 1199      31323230 
+ 1200 009d 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 1200      73202D66 
+ 1200      66756E63 
+ 1200      74696F6E 
+ 1200      2D736563 
+ 1201              	.LASF34:
+ 1202 00c9 70737A46 		.ascii	"pszFmt\000"
+ 1202      6D7400
+ 1203              	.LASF16:
+ 1204 00d0 666C6F61 		.ascii	"float\000"
+ 1204      7400
+ 1205              	.LASF9:
+ 1206 00d6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1206      206C6F6E 
+ 1206      6720756E 
+ 1206      7369676E 
+ 1206      65642069 
+ 1207              	.LASF26:
+ 1208 00ed 695F7661 		.ascii	"i_val\000"
+ 1208      6C00
+ 1209              	.LASF1:
+ 1210 00f3 756E7369 		.ascii	"unsigned char\000"
+ 1210      676E6564 
+ 1210      20636861 
+ 1210      7200
+ 1211              	.LASF18:
+ 1212 0101 63686172 		.ascii	"char8\000"
+ 1212      3800
+ 1213              	.LASF21:
+ 1214 0107 70737A56 		.ascii	"pszVal\000"
+ 1214      616C00
+ 1215              	.LASF7:
+ 1216 010e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1216      20756E73 
+ 1216      69676E65 
+ 1216      6420696E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 26
+
+
+ 1216      7400
+ 1217              	.LASF30:
+ 1218 0120 69707269 		.ascii	"iprintf.c\000"
+ 1218      6E74662E 
+ 1218      6300
+ 1219              	.LASF13:
+ 1220 012a 75696E74 		.ascii	"uint8\000"
+ 1220      3800
+ 1221              	.LASF17:
+ 1222 0130 646F7562 		.ascii	"double\000"
+ 1222      6C6500
+ 1223              	.LASF6:
+ 1224 0137 5F5F7569 		.ascii	"__uint32_t\000"
+ 1224      6E743332 
+ 1224      5F7400
+ 1225              	.LASF14:
+ 1226 0142 75696E74 		.ascii	"uint32\000"
+ 1226      333200
+ 1227              	.LASF10:
+ 1228 0149 756E7369 		.ascii	"unsigned int\000"
+ 1228      676E6564 
+ 1228      20696E74 
+ 1228      00
+ 1229              	.LASF19:
+ 1230 0156 63686172 		.ascii	"char\000"
+ 1230      00
+ 1231              	.LASF11:
+ 1232 015b 75696E74 		.ascii	"uint8_t\000"
+ 1232      385F7400 
+ 1233              	.LASF15:
+ 1234 0163 696E7433 		.ascii	"int32\000"
+ 1234      3200
+ 1235              	.LASF20:
+ 1236 0169 73697A65 		.ascii	"sizetype\000"
+ 1236      74797065 
+ 1236      00
+ 1237              	.LASF8:
+ 1238 0172 6C6F6E67 		.ascii	"long long int\000"
+ 1238      206C6F6E 
+ 1238      6720696E 
+ 1238      7400
+ 1239              	.LASF28:
+ 1240 0180 4E554D5F 		.ascii	"NUM_CHARS\000"
+ 1240      43484152 
+ 1240      5300
+ 1241              	.LASF22:
+ 1242 018a 696E6465 		.ascii	"index\000"
+ 1242      7800
+ 1243              	.LASF23:
+ 1244 0190 6E756D5F 		.ascii	"num_cnt\000"
+ 1244      636E7400 
+ 1245              	.LASF2:
+ 1246 0198 73686F72 		.ascii	"short int\000"
+ 1246      7420696E 
+ 1246      7400
+ 1247              	.LASF32:
+ 1248 01a2 69707574 		.ascii	"iputc\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccggdixZ.s 			page 27
+
+
+ 1248      6300
+ 1249              	.LASF12:
+ 1250 01a8 75696E74 		.ascii	"uint32_t\000"
+ 1250      33325F74 
+ 1250      00
+ 1251              	.LASF4:
+ 1252 01b1 6C6F6E67 		.ascii	"long int\000"
+ 1252      20696E74 
+ 1252      00
+ 1253              	.LASF0:
+ 1254 01ba 7369676E 		.ascii	"signed char\000"
+ 1254      65642063 
+ 1254      68617200 
+ 1255              	.LASF3:
+ 1256 01c6 73686F72 		.ascii	"short unsigned int\000"
+ 1256      7420756E 
+ 1256      7369676E 
+ 1256      65642069 
+ 1256      6E7400
+ 1257              	.LASF31:
+ 1258 01d9 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 1258      79707265 
+ 1258      73735C54 
+ 1258      616C6B69 
+ 1258      6E67436C 
+ 1259              	.LASF25:
+ 1260 0205 705F6172 		.ascii	"p_arg\000"
+ 1260      6700
+ 1261              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

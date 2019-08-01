@@ -1,0 +1,904 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"VDAC_Synth_PM.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.VDAC_Synth_Sleep,"ax",%progbits
+  18              		.align	1
+  19              		.global	VDAC_Synth_Sleep
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	VDAC_Synth_Sleep, %function
+  23              	VDAC_Synth_Sleep:
+  24              	.LFB1:
+  25              		.file 1 "Generated_Source\\PSoC4\\VDAC_Synth_PM.c"
+   1:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \file VDAC_Synth_PM.c  
+   3:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \version 1.10
+   4:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+   5:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \brief
+   6:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  This file provides the power manager source code to the API for PGA 
+   7:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  Component.
+   8:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+   9:Generated_Source\PSoC4/VDAC_Synth_PM.c **** ********************************************************************************
+  10:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \copyright
+  11:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * (c) 2014-2015, Cypress Semiconductor Corporation. All rights reserved.
+  12:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * This software, including source code, documentation and related
+  13:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * materials ("Software"), is owned by Cypress Semiconductor
+  14:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Corporation ("Cypress") and is protected by and subject to worldwide
+  15:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * patent protection (United States and foreign), United States copyright
+  16:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * laws and international treaty provisions. Therefore, you may use this
+  17:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Software only as provided in the license agreement accompanying the
+  18:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * software package from which you obtained this Software ("EULA").
+  19:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
+  20:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * non-transferable license to copy, modify, and compile the
+  21:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Software source code solely for use in connection with Cypress's
+  22:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * integrated circuit products. Any reproduction, modification, translation,
+  23:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * compilation, or representation of this Software except as specified
+  24:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * above is prohibited without the express written permission of Cypress.
+  25:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO
+  26:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING,
+  27:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+  28:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  29:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * PARTICULAR PURPOSE. Cypress reserves the right to make
+  30:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * changes to the Software without notice. Cypress does not assume any
+  31:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * liability arising out of the application or use of the Software or any
+  32:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * product or circuit described in the Software. Cypress does not
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 2
+
+
+  33:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * authorize its products for use in any products where a malfunction or
+  34:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * failure of the Cypress product may reasonably be expected to result in
+  35:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * significant property damage, injury or death ("High Risk Product"). By
+  36:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * including Cypress's product in a High Risk Product, the manufacturer
+  37:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * of such system or application assumes all risk of such use and in doing
+  38:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * so agrees to indemnify Cypress against all liability.
+  39:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *******************************************************************************/
+  40:Generated_Source\PSoC4/VDAC_Synth_PM.c **** 
+  41:Generated_Source\PSoC4/VDAC_Synth_PM.c **** #include "VDAC_Synth.h" /* Need VDAC's .h */
+  42:Generated_Source\PSoC4/VDAC_Synth_PM.c **** #include "VDAC_Synth_UAB.h" /* Need sub-component's functions */
+  43:Generated_Source\PSoC4/VDAC_Synth_PM.c **** #include "VDAC_Synth_OUTBUFFER.h" 
+  44:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /**
+  45:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \addtogroup group_globals
+  46:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * @{
+  47:Generated_Source\PSoC4/VDAC_Synth_PM.c **** */
+  48:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /** Contains configuration of VDAC_Synth before sleep. Enable state is the
+  49:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *   only data required to be preserved. */
+  50:Generated_Source\PSoC4/VDAC_Synth_PM.c **** static VDAC_Synth_BACKUP_STRUCT  VDAC_Synth_backup;
+  51:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /** @} globals */
+  52:Generated_Source\PSoC4/VDAC_Synth_PM.c **** 
+  53:Generated_Source\PSoC4/VDAC_Synth_PM.c **** 
+  54:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /*******************************************************************************   
+  55:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Function Name: VDAC_Synth_Sleep
+  56:Generated_Source\PSoC4/VDAC_Synth_PM.c **** ****************************************************************************//**
+  57:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  58:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \brief
+  59:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  Disables block's operation and saves its configuration. Should be called 
+  60:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  just prior to entering sleep.
+  61:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  62:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \globalvars
+  63:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \ref VDAC_Synth_backup (W)
+  64:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  65:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \sideeffect
+  66:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  None.
+  67:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  68:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * <b>Code Snippet</b>
+  69:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \snippet main.c snippet_VDAC_Synth_Sleep
+  70:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  71:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  72:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \globalvars
+  73:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \ref VDAC_Synth_backup
+  74:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+  75:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *******************************************************************************/
+  76:Generated_Source\PSoC4/VDAC_Synth_PM.c **** void VDAC_Synth_Sleep(void) 
+  77:Generated_Source\PSoC4/VDAC_Synth_PM.c **** {
+  26              		.loc 1 77 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  78:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     /* Save UAB_VDAC enable state */
+  79:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     if( 0UL != (VDAC_Synth_UAB_SRAM_CTRL_REG & VDAC_Synth_UAB_RUN_MASK)  )
+  32              		.loc 1 79 0
+  33 0002 094B     		ldr	r3, .L9
+  34 0004 1A68     		ldr	r2, [r3]
+  35 0006 094B     		ldr	r3, .L9+4
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 3
+
+
+  36 0008 002A     		cmp	r2, #0
+  37 000a 0ADA     		bge	.L2
+  80:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     {
+  81:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         /* Component is enabled */
+  82:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         VDAC_Synth_backup.enableState = VDAC_Synth_BACKUP_BLOCKENABLED;
+  38              		.loc 1 82 0
+  39 000c 0122     		mov	r2, #1
+  40 000e 1A70     		strb	r2, [r3]
+  83:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         if (VDAC_Synth_OUTBUFFER_CHECK_PWR_MODE_OFF)
+  41              		.loc 1 83 0
+  42 0010 074A     		ldr	r2, .L9+8
+  43 0012 1168     		ldr	r1, [r2]
+  44 0014 0322     		mov	r2, #3
+  45 0016 1142     		tst	r1, r2
+  46 0018 00D0     		beq	.L3
+  84:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         {
+  85:Generated_Source\PSoC4/VDAC_Synth_PM.c ****             /* Output is not HiZ */
+  86:Generated_Source\PSoC4/VDAC_Synth_PM.c ****             VDAC_Synth_backup.enableState |= VDAC_Synth_BACKUP_OUTPUTDRIVEN;
+  47              		.loc 1 86 0
+  48 001a 1A70     		strb	r2, [r3]
+  49              	.L3:
+  87:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         }
+  88:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         /* Stop the configuration */
+  89:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         VDAC_Synth_Stop();
+  50              		.loc 1 89 0
+  51 001c FFF7FEFF 		bl	VDAC_Synth_Stop
+  52              	.LVL0:
+  53 0020 01E0     		b	.L1
+  54              	.L2:
+  90:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     }
+  91:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     else
+  92:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     {
+  93:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         /* Component is disabled */
+  94:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         VDAC_Synth_backup.enableState = 0u;
+  55              		.loc 1 94 0
+  56 0022 0022     		mov	r2, #0
+  57 0024 1A70     		strb	r2, [r3]
+  58              	.L1:
+  95:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     }
+  96:Generated_Source\PSoC4/VDAC_Synth_PM.c **** }
+  59              		.loc 1 96 0
+  60              		@ sp needed
+  61 0026 08BD     		pop	{r3, pc}
+  62              	.L10:
+  63              		.align	2
+  64              	.L9:
+  65 0028 78033440 		.word	1077150584
+  66 002c 00000000 		.word	.LANCHOR0
+  67 0030 04003040 		.word	1076887556
+  68              		.cfi_endproc
+  69              	.LFE1:
+  70              		.size	VDAC_Synth_Sleep, .-VDAC_Synth_Sleep
+  71              		.section	.text.VDAC_Synth_Wakeup,"ax",%progbits
+  72              		.align	1
+  73              		.global	VDAC_Synth_Wakeup
+  74              		.code	16
+  75              		.thumb_func
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 4
+
+
+  76              		.type	VDAC_Synth_Wakeup, %function
+  77              	VDAC_Synth_Wakeup:
+  78              	.LFB2:
+  97:Generated_Source\PSoC4/VDAC_Synth_PM.c **** 
+  98:Generated_Source\PSoC4/VDAC_Synth_PM.c **** 
+  99:Generated_Source\PSoC4/VDAC_Synth_PM.c **** /*******************************************************************************
+ 100:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * Function Name: VDAC_Synth_Wakeup
+ 101:Generated_Source\PSoC4/VDAC_Synth_PM.c **** ****************************************************************************//**
+ 102:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 103:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \brief
+ 104:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  Enables block's operation and restores its configuration. Should be called
+ 105:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  just after awaking from sleep.
+ 106:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 107:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \globalvars
+ 108:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \ref VDAC_Synth_backup (R)
+ 109:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 110:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \sideeffect
+ 111:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  None.
+ 112:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 113:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * <b>Code Snippet</b>
+ 114:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \snippet main.c snippet_VDAC_Synth_Wakeup
+ 115:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 116:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *
+ 117:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * \globalvars
+ 118:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *  \ref VDAC_Synth_backup
+ 119:Generated_Source\PSoC4/VDAC_Synth_PM.c **** * 
+ 120:Generated_Source\PSoC4/VDAC_Synth_PM.c **** *******************************************************************************/
+ 121:Generated_Source\PSoC4/VDAC_Synth_PM.c **** void VDAC_Synth_Wakeup(void)
+ 122:Generated_Source\PSoC4/VDAC_Synth_PM.c **** {
+  79              		.loc 1 122 0
+  80              		.cfi_startproc
+  81 0000 38B5     		push	{r3, r4, r5, lr}
+  82              		.cfi_def_cfa_offset 16
+  83              		.cfi_offset 3, -16
+  84              		.cfi_offset 4, -12
+  85              		.cfi_offset 5, -8
+  86              		.cfi_offset 14, -4
+ 123:Generated_Source\PSoC4/VDAC_Synth_PM.c ****      /* Enables the component operation */
+ 124:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     if((VDAC_Synth_backup.enableState & VDAC_Synth_BACKUP_BLOCKENABLED)
+  87              		.loc 1 124 0
+  88 0002 0124     		mov	r4, #1
+  89 0004 064D     		ldr	r5, .L18
+  90 0006 2B78     		ldrb	r3, [r5]
+  91 0008 2342     		tst	r3, r4
+  92 000a 08D0     		beq	.L11
+ 125:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         == VDAC_Synth_BACKUP_BLOCKENABLED) /* If block was enabled... */
+ 126:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     {
+ 127:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         /* Then enable rest of block */
+ 128:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         VDAC_Synth_Enable();
+  93              		.loc 1 128 0
+  94 000c FFF7FEFF 		bl	VDAC_Synth_Enable
+  95              	.LVL1:
+ 129:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         /* Set up output buffer first */
+ 130:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         if ((VDAC_Synth_backup.enableState & VDAC_Synth_BACKUP_OUTPUTDRIVEN) 
+  96              		.loc 1 130 0
+  97 0010 2B78     		ldrb	r3, [r5]
+ 131:Generated_Source\PSoC4/VDAC_Synth_PM.c ****              == VDAC_Synth_BACKUP_OUTPUTDRIVEN) /* If output was not HiZ */
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 5
+
+
+ 132:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         {
+ 133:Generated_Source\PSoC4/VDAC_Synth_PM.c ****             VDAC_Synth_SetHiZ(VDAC_Synth_OUTSTATE_DRIVEN);
+  98              		.loc 1 133 0
+  99 0012 0020     		mov	r0, #0
+ 130:Generated_Source\PSoC4/VDAC_Synth_PM.c ****              == VDAC_Synth_BACKUP_OUTPUTDRIVEN) /* If output was not HiZ */
+ 100              		.loc 1 130 0
+ 101 0014 9B07     		lsl	r3, r3, #30
+ 102 0016 00D4     		bmi	.L17
+ 134:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         }
+ 135:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         else
+ 136:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         {
+ 137:Generated_Source\PSoC4/VDAC_Synth_PM.c ****             VDAC_Synth_SetHiZ(VDAC_Synth_OUTSTATE_HIZ);
+ 103              		.loc 1 137 0
+ 104 0018 201C     		mov	r0, r4
+ 105              	.L17:
+ 106 001a FFF7FEFF 		bl	VDAC_Synth_SetHiZ
+ 107              	.LVL2:
+ 108              	.L11:
+ 138:Generated_Source\PSoC4/VDAC_Synth_PM.c ****         }
+ 139:Generated_Source\PSoC4/VDAC_Synth_PM.c ****     } /* Do nothing if component was disable before */
+ 140:Generated_Source\PSoC4/VDAC_Synth_PM.c **** }
+ 109              		.loc 1 140 0
+ 110              		@ sp needed
+ 111 001e 38BD     		pop	{r3, r4, r5, pc}
+ 112              	.L19:
+ 113              		.align	2
+ 114              	.L18:
+ 115 0020 00000000 		.word	.LANCHOR0
+ 116              		.cfi_endproc
+ 117              	.LFE2:
+ 118              		.size	VDAC_Synth_Wakeup, .-VDAC_Synth_Wakeup
+ 119              		.bss
+ 120              		.set	.LANCHOR0,. + 0
+ 121              		.type	VDAC_Synth_backup, %object
+ 122              		.size	VDAC_Synth_backup, 1
+ 123              	VDAC_Synth_backup:
+ 124 0000 00       		.space	1
+ 125              		.text
+ 126              	.Letext0:
+ 127              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 128              		.file 3 "Generated_Source\\PSoC4\\VDAC_Synth.h"
+ 129              		.section	.debug_info,"",%progbits
+ 130              	.Ldebug_info0:
+ 131 0000 6C010000 		.4byte	0x16c
+ 132 0004 0400     		.2byte	0x4
+ 133 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 134 000a 04       		.byte	0x4
+ 135 000b 01       		.uleb128 0x1
+ 136 000c 3C000000 		.4byte	.LASF25
+ 137 0010 01       		.byte	0x1
+ 138 0011 55010000 		.4byte	.LASF26
+ 139 0015 3D020000 		.4byte	.LASF27
+ 140 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 141 001d 00000000 		.4byte	0
+ 142 0021 00000000 		.4byte	.Ldebug_line0
+ 143 0025 02       		.uleb128 0x2
+ 144 0026 01       		.byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 6
+
+
+ 145 0027 06       		.byte	0x6
+ 146 0028 31020000 		.4byte	.LASF0
+ 147 002c 02       		.uleb128 0x2
+ 148 002d 01       		.byte	0x1
+ 149 002e 08       		.byte	0x8
+ 150 002f F4000000 		.4byte	.LASF1
+ 151 0033 02       		.uleb128 0x2
+ 152 0034 02       		.byte	0x2
+ 153 0035 05       		.byte	0x5
+ 154 0036 FB010000 		.4byte	.LASF2
+ 155 003a 02       		.uleb128 0x2
+ 156 003b 02       		.byte	0x2
+ 157 003c 07       		.byte	0x7
+ 158 003d 29000000 		.4byte	.LASF3
+ 159 0041 02       		.uleb128 0x2
+ 160 0042 04       		.byte	0x4
+ 161 0043 05       		.byte	0x5
+ 162 0044 1C020000 		.4byte	.LASF4
+ 163 0048 02       		.uleb128 0x2
+ 164 0049 04       		.byte	0x4
+ 165 004a 07       		.byte	0x7
+ 166 004b 02010000 		.4byte	.LASF5
+ 167 004f 02       		.uleb128 0x2
+ 168 0050 08       		.byte	0x8
+ 169 0051 05       		.byte	0x5
+ 170 0052 DD010000 		.4byte	.LASF6
+ 171 0056 02       		.uleb128 0x2
+ 172 0057 08       		.byte	0x8
+ 173 0058 07       		.byte	0x7
+ 174 0059 90010000 		.4byte	.LASF7
+ 175 005d 03       		.uleb128 0x3
+ 176 005e 04       		.byte	0x4
+ 177 005f 05       		.byte	0x5
+ 178 0060 696E7400 		.ascii	"int\000"
+ 179 0064 02       		.uleb128 0x2
+ 180 0065 04       		.byte	0x4
+ 181 0066 07       		.byte	0x7
+ 182 0067 83010000 		.4byte	.LASF8
+ 183 006b 04       		.uleb128 0x4
+ 184 006c 16020000 		.4byte	.LASF9
+ 185 0070 02       		.byte	0x2
+ 186 0071 B901     		.2byte	0x1b9
+ 187 0073 2C000000 		.4byte	0x2c
+ 188 0077 04       		.uleb128 0x4
+ 189 0078 7C010000 		.4byte	.LASF10
+ 190 007c 02       		.byte	0x2
+ 191 007d BB01     		.2byte	0x1bb
+ 192 007f 48000000 		.4byte	0x48
+ 193 0083 04       		.uleb128 0x4
+ 194 0084 14010000 		.4byte	.LASF11
+ 195 0088 02       		.byte	0x2
+ 196 0089 BE01     		.2byte	0x1be
+ 197 008b 41000000 		.4byte	0x41
+ 198 008f 02       		.uleb128 0x2
+ 199 0090 04       		.byte	0x4
+ 200 0091 04       		.byte	0x4
+ 201 0092 D5000000 		.4byte	.LASF12
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 7
+
+
+ 202 0096 02       		.uleb128 0x2
+ 203 0097 08       		.byte	0x8
+ 204 0098 04       		.byte	0x4
+ 205 0099 CE000000 		.4byte	.LASF13
+ 206 009d 02       		.uleb128 0x2
+ 207 009e 01       		.byte	0x1
+ 208 009f 08       		.byte	0x8
+ 209 00a0 00000000 		.4byte	.LASF14
+ 210 00a4 04       		.uleb128 0x4
+ 211 00a5 32010000 		.4byte	.LASF15
+ 212 00a9 02       		.byte	0x2
+ 213 00aa 6502     		.2byte	0x265
+ 214 00ac B0000000 		.4byte	0xb0
+ 215 00b0 05       		.uleb128 0x5
+ 216 00b1 77000000 		.4byte	0x77
+ 217 00b5 02       		.uleb128 0x2
+ 218 00b6 04       		.byte	0x4
+ 219 00b7 07       		.byte	0x7
+ 220 00b8 D4010000 		.4byte	.LASF16
+ 221 00bc 06       		.uleb128 0x6
+ 222 00bd 01       		.byte	0x1
+ 223 00be 03       		.byte	0x3
+ 224 00bf 47       		.byte	0x47
+ 225 00c0 D1000000 		.4byte	0xd1
+ 226 00c4 07       		.uleb128 0x7
+ 227 00c5 25020000 		.4byte	.LASF28
+ 228 00c9 03       		.byte	0x3
+ 229 00ca 4C       		.byte	0x4c
+ 230 00cb 6B000000 		.4byte	0x6b
+ 231 00cf 00       		.byte	0
+ 232 00d0 00       		.byte	0
+ 233 00d1 08       		.uleb128 0x8
+ 234 00d2 DB000000 		.4byte	.LASF17
+ 235 00d6 03       		.byte	0x3
+ 236 00d7 4D       		.byte	0x4d
+ 237 00d8 BC000000 		.4byte	0xbc
+ 238 00dc 09       		.uleb128 0x9
+ 239 00dd 01       		.byte	0x1
+ 240 00de 03       		.byte	0x3
+ 241 00df B0       		.byte	0xb0
+ 242 00e0 F1000000 		.4byte	0xf1
+ 243 00e4 0A       		.uleb128 0xa
+ 244 00e5 A7010000 		.4byte	.LASF18
+ 245 00e9 00       		.sleb128 0
+ 246 00ea 0A       		.uleb128 0xa
+ 247 00eb 1A010000 		.4byte	.LASF19
+ 248 00ef 01       		.sleb128 1
+ 249 00f0 00       		.byte	0
+ 250 00f1 08       		.uleb128 0x8
+ 251 00f2 38010000 		.4byte	.LASF20
+ 252 00f6 03       		.byte	0x3
+ 253 00f7 B3       		.byte	0xb3
+ 254 00f8 DC000000 		.4byte	0xdc
+ 255 00fc 0B       		.uleb128 0xb
+ 256 00fd 05020000 		.4byte	.LASF21
+ 257 0101 01       		.byte	0x1
+ 258 0102 4C       		.byte	0x4c
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 8
+
+
+ 259 0103 00000000 		.4byte	.LFB1
+ 260 0107 34000000 		.4byte	.LFE1-.LFB1
+ 261 010b 01       		.uleb128 0x1
+ 262 010c 9C       		.byte	0x9c
+ 263 010d 1B010000 		.4byte	0x11b
+ 264 0111 0C       		.uleb128 0xc
+ 265 0112 20000000 		.4byte	.LVL0
+ 266 0116 54010000 		.4byte	0x154
+ 267 011a 00       		.byte	0
+ 268 011b 0B       		.uleb128 0xb
+ 269 011c 05000000 		.4byte	.LASF22
+ 270 0120 01       		.byte	0x1
+ 271 0121 79       		.byte	0x79
+ 272 0122 00000000 		.4byte	.LFB2
+ 273 0126 24000000 		.4byte	.LFE2-.LFB2
+ 274 012a 01       		.uleb128 0x1
+ 275 012b 9C       		.byte	0x9c
+ 276 012c 43010000 		.4byte	0x143
+ 277 0130 0C       		.uleb128 0xc
+ 278 0131 10000000 		.4byte	.LVL1
+ 279 0135 5B010000 		.4byte	0x15b
+ 280 0139 0C       		.uleb128 0xc
+ 281 013a 1E000000 		.4byte	.LVL2
+ 282 013e 62010000 		.4byte	0x162
+ 283 0142 00       		.byte	0
+ 284 0143 0D       		.uleb128 0xd
+ 285 0144 69020000 		.4byte	.LASF29
+ 286 0148 01       		.byte	0x1
+ 287 0149 32       		.byte	0x32
+ 288 014a D1000000 		.4byte	0xd1
+ 289 014e 05       		.uleb128 0x5
+ 290 014f 03       		.byte	0x3
+ 291 0150 00000000 		.4byte	VDAC_Synth_backup
+ 292 0154 0E       		.uleb128 0xe
+ 293 0155 EB010000 		.4byte	.LASF23
+ 294 0159 03       		.byte	0x3
+ 295 015a CF       		.byte	0xcf
+ 296 015b 0E       		.uleb128 0xe
+ 297 015c C2010000 		.4byte	.LASF24
+ 298 0160 03       		.byte	0x3
+ 299 0161 DA       		.byte	0xda
+ 300 0162 0F       		.uleb128 0xf
+ 301 0163 17000000 		.4byte	.LASF30
+ 302 0167 03       		.byte	0x3
+ 303 0168 D7       		.byte	0xd7
+ 304 0169 10       		.uleb128 0x10
+ 305 016a F1000000 		.4byte	0xf1
+ 306 016e 00       		.byte	0
+ 307 016f 00       		.byte	0
+ 308              		.section	.debug_abbrev,"",%progbits
+ 309              	.Ldebug_abbrev0:
+ 310 0000 01       		.uleb128 0x1
+ 311 0001 11       		.uleb128 0x11
+ 312 0002 01       		.byte	0x1
+ 313 0003 25       		.uleb128 0x25
+ 314 0004 0E       		.uleb128 0xe
+ 315 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 9
+
+
+ 316 0006 0B       		.uleb128 0xb
+ 317 0007 03       		.uleb128 0x3
+ 318 0008 0E       		.uleb128 0xe
+ 319 0009 1B       		.uleb128 0x1b
+ 320 000a 0E       		.uleb128 0xe
+ 321 000b 55       		.uleb128 0x55
+ 322 000c 17       		.uleb128 0x17
+ 323 000d 11       		.uleb128 0x11
+ 324 000e 01       		.uleb128 0x1
+ 325 000f 10       		.uleb128 0x10
+ 326 0010 17       		.uleb128 0x17
+ 327 0011 00       		.byte	0
+ 328 0012 00       		.byte	0
+ 329 0013 02       		.uleb128 0x2
+ 330 0014 24       		.uleb128 0x24
+ 331 0015 00       		.byte	0
+ 332 0016 0B       		.uleb128 0xb
+ 333 0017 0B       		.uleb128 0xb
+ 334 0018 3E       		.uleb128 0x3e
+ 335 0019 0B       		.uleb128 0xb
+ 336 001a 03       		.uleb128 0x3
+ 337 001b 0E       		.uleb128 0xe
+ 338 001c 00       		.byte	0
+ 339 001d 00       		.byte	0
+ 340 001e 03       		.uleb128 0x3
+ 341 001f 24       		.uleb128 0x24
+ 342 0020 00       		.byte	0
+ 343 0021 0B       		.uleb128 0xb
+ 344 0022 0B       		.uleb128 0xb
+ 345 0023 3E       		.uleb128 0x3e
+ 346 0024 0B       		.uleb128 0xb
+ 347 0025 03       		.uleb128 0x3
+ 348 0026 08       		.uleb128 0x8
+ 349 0027 00       		.byte	0
+ 350 0028 00       		.byte	0
+ 351 0029 04       		.uleb128 0x4
+ 352 002a 16       		.uleb128 0x16
+ 353 002b 00       		.byte	0
+ 354 002c 03       		.uleb128 0x3
+ 355 002d 0E       		.uleb128 0xe
+ 356 002e 3A       		.uleb128 0x3a
+ 357 002f 0B       		.uleb128 0xb
+ 358 0030 3B       		.uleb128 0x3b
+ 359 0031 05       		.uleb128 0x5
+ 360 0032 49       		.uleb128 0x49
+ 361 0033 13       		.uleb128 0x13
+ 362 0034 00       		.byte	0
+ 363 0035 00       		.byte	0
+ 364 0036 05       		.uleb128 0x5
+ 365 0037 35       		.uleb128 0x35
+ 366 0038 00       		.byte	0
+ 367 0039 49       		.uleb128 0x49
+ 368 003a 13       		.uleb128 0x13
+ 369 003b 00       		.byte	0
+ 370 003c 00       		.byte	0
+ 371 003d 06       		.uleb128 0x6
+ 372 003e 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 10
+
+
+ 373 003f 01       		.byte	0x1
+ 374 0040 0B       		.uleb128 0xb
+ 375 0041 0B       		.uleb128 0xb
+ 376 0042 3A       		.uleb128 0x3a
+ 377 0043 0B       		.uleb128 0xb
+ 378 0044 3B       		.uleb128 0x3b
+ 379 0045 0B       		.uleb128 0xb
+ 380 0046 01       		.uleb128 0x1
+ 381 0047 13       		.uleb128 0x13
+ 382 0048 00       		.byte	0
+ 383 0049 00       		.byte	0
+ 384 004a 07       		.uleb128 0x7
+ 385 004b 0D       		.uleb128 0xd
+ 386 004c 00       		.byte	0
+ 387 004d 03       		.uleb128 0x3
+ 388 004e 0E       		.uleb128 0xe
+ 389 004f 3A       		.uleb128 0x3a
+ 390 0050 0B       		.uleb128 0xb
+ 391 0051 3B       		.uleb128 0x3b
+ 392 0052 0B       		.uleb128 0xb
+ 393 0053 49       		.uleb128 0x49
+ 394 0054 13       		.uleb128 0x13
+ 395 0055 38       		.uleb128 0x38
+ 396 0056 0B       		.uleb128 0xb
+ 397 0057 00       		.byte	0
+ 398 0058 00       		.byte	0
+ 399 0059 08       		.uleb128 0x8
+ 400 005a 16       		.uleb128 0x16
+ 401 005b 00       		.byte	0
+ 402 005c 03       		.uleb128 0x3
+ 403 005d 0E       		.uleb128 0xe
+ 404 005e 3A       		.uleb128 0x3a
+ 405 005f 0B       		.uleb128 0xb
+ 406 0060 3B       		.uleb128 0x3b
+ 407 0061 0B       		.uleb128 0xb
+ 408 0062 49       		.uleb128 0x49
+ 409 0063 13       		.uleb128 0x13
+ 410 0064 00       		.byte	0
+ 411 0065 00       		.byte	0
+ 412 0066 09       		.uleb128 0x9
+ 413 0067 04       		.uleb128 0x4
+ 414 0068 01       		.byte	0x1
+ 415 0069 0B       		.uleb128 0xb
+ 416 006a 0B       		.uleb128 0xb
+ 417 006b 3A       		.uleb128 0x3a
+ 418 006c 0B       		.uleb128 0xb
+ 419 006d 3B       		.uleb128 0x3b
+ 420 006e 0B       		.uleb128 0xb
+ 421 006f 01       		.uleb128 0x1
+ 422 0070 13       		.uleb128 0x13
+ 423 0071 00       		.byte	0
+ 424 0072 00       		.byte	0
+ 425 0073 0A       		.uleb128 0xa
+ 426 0074 28       		.uleb128 0x28
+ 427 0075 00       		.byte	0
+ 428 0076 03       		.uleb128 0x3
+ 429 0077 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 11
+
+
+ 430 0078 1C       		.uleb128 0x1c
+ 431 0079 0D       		.uleb128 0xd
+ 432 007a 00       		.byte	0
+ 433 007b 00       		.byte	0
+ 434 007c 0B       		.uleb128 0xb
+ 435 007d 2E       		.uleb128 0x2e
+ 436 007e 01       		.byte	0x1
+ 437 007f 3F       		.uleb128 0x3f
+ 438 0080 19       		.uleb128 0x19
+ 439 0081 03       		.uleb128 0x3
+ 440 0082 0E       		.uleb128 0xe
+ 441 0083 3A       		.uleb128 0x3a
+ 442 0084 0B       		.uleb128 0xb
+ 443 0085 3B       		.uleb128 0x3b
+ 444 0086 0B       		.uleb128 0xb
+ 445 0087 27       		.uleb128 0x27
+ 446 0088 19       		.uleb128 0x19
+ 447 0089 11       		.uleb128 0x11
+ 448 008a 01       		.uleb128 0x1
+ 449 008b 12       		.uleb128 0x12
+ 450 008c 06       		.uleb128 0x6
+ 451 008d 40       		.uleb128 0x40
+ 452 008e 18       		.uleb128 0x18
+ 453 008f 9742     		.uleb128 0x2117
+ 454 0091 19       		.uleb128 0x19
+ 455 0092 01       		.uleb128 0x1
+ 456 0093 13       		.uleb128 0x13
+ 457 0094 00       		.byte	0
+ 458 0095 00       		.byte	0
+ 459 0096 0C       		.uleb128 0xc
+ 460 0097 898201   		.uleb128 0x4109
+ 461 009a 00       		.byte	0
+ 462 009b 11       		.uleb128 0x11
+ 463 009c 01       		.uleb128 0x1
+ 464 009d 31       		.uleb128 0x31
+ 465 009e 13       		.uleb128 0x13
+ 466 009f 00       		.byte	0
+ 467 00a0 00       		.byte	0
+ 468 00a1 0D       		.uleb128 0xd
+ 469 00a2 34       		.uleb128 0x34
+ 470 00a3 00       		.byte	0
+ 471 00a4 03       		.uleb128 0x3
+ 472 00a5 0E       		.uleb128 0xe
+ 473 00a6 3A       		.uleb128 0x3a
+ 474 00a7 0B       		.uleb128 0xb
+ 475 00a8 3B       		.uleb128 0x3b
+ 476 00a9 0B       		.uleb128 0xb
+ 477 00aa 49       		.uleb128 0x49
+ 478 00ab 13       		.uleb128 0x13
+ 479 00ac 02       		.uleb128 0x2
+ 480 00ad 18       		.uleb128 0x18
+ 481 00ae 00       		.byte	0
+ 482 00af 00       		.byte	0
+ 483 00b0 0E       		.uleb128 0xe
+ 484 00b1 2E       		.uleb128 0x2e
+ 485 00b2 00       		.byte	0
+ 486 00b3 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 12
+
+
+ 487 00b4 19       		.uleb128 0x19
+ 488 00b5 03       		.uleb128 0x3
+ 489 00b6 0E       		.uleb128 0xe
+ 490 00b7 3A       		.uleb128 0x3a
+ 491 00b8 0B       		.uleb128 0xb
+ 492 00b9 3B       		.uleb128 0x3b
+ 493 00ba 0B       		.uleb128 0xb
+ 494 00bb 27       		.uleb128 0x27
+ 495 00bc 19       		.uleb128 0x19
+ 496 00bd 3C       		.uleb128 0x3c
+ 497 00be 19       		.uleb128 0x19
+ 498 00bf 00       		.byte	0
+ 499 00c0 00       		.byte	0
+ 500 00c1 0F       		.uleb128 0xf
+ 501 00c2 2E       		.uleb128 0x2e
+ 502 00c3 01       		.byte	0x1
+ 503 00c4 3F       		.uleb128 0x3f
+ 504 00c5 19       		.uleb128 0x19
+ 505 00c6 03       		.uleb128 0x3
+ 506 00c7 0E       		.uleb128 0xe
+ 507 00c8 3A       		.uleb128 0x3a
+ 508 00c9 0B       		.uleb128 0xb
+ 509 00ca 3B       		.uleb128 0x3b
+ 510 00cb 0B       		.uleb128 0xb
+ 511 00cc 27       		.uleb128 0x27
+ 512 00cd 19       		.uleb128 0x19
+ 513 00ce 3C       		.uleb128 0x3c
+ 514 00cf 19       		.uleb128 0x19
+ 515 00d0 00       		.byte	0
+ 516 00d1 00       		.byte	0
+ 517 00d2 10       		.uleb128 0x10
+ 518 00d3 05       		.uleb128 0x5
+ 519 00d4 00       		.byte	0
+ 520 00d5 49       		.uleb128 0x49
+ 521 00d6 13       		.uleb128 0x13
+ 522 00d7 00       		.byte	0
+ 523 00d8 00       		.byte	0
+ 524 00d9 00       		.byte	0
+ 525              		.section	.debug_aranges,"",%progbits
+ 526 0000 24000000 		.4byte	0x24
+ 527 0004 0200     		.2byte	0x2
+ 528 0006 00000000 		.4byte	.Ldebug_info0
+ 529 000a 04       		.byte	0x4
+ 530 000b 00       		.byte	0
+ 531 000c 0000     		.2byte	0
+ 532 000e 0000     		.2byte	0
+ 533 0010 00000000 		.4byte	.LFB1
+ 534 0014 34000000 		.4byte	.LFE1-.LFB1
+ 535 0018 00000000 		.4byte	.LFB2
+ 536 001c 24000000 		.4byte	.LFE2-.LFB2
+ 537 0020 00000000 		.4byte	0
+ 538 0024 00000000 		.4byte	0
+ 539              		.section	.debug_ranges,"",%progbits
+ 540              	.Ldebug_ranges0:
+ 541 0000 00000000 		.4byte	.LFB1
+ 542 0004 34000000 		.4byte	.LFE1
+ 543 0008 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 13
+
+
+ 544 000c 24000000 		.4byte	.LFE2
+ 545 0010 00000000 		.4byte	0
+ 546 0014 00000000 		.4byte	0
+ 547              		.section	.debug_line,"",%progbits
+ 548              	.Ldebug_line0:
+ 549 0000 8E000000 		.section	.debug_str,"MS",%progbits,1
+ 549      02005A00 
+ 549      00000201 
+ 549      FB0E0D00 
+ 549      01010101 
+ 550              	.LASF14:
+ 551 0000 63686172 		.ascii	"char\000"
+ 551      00
+ 552              	.LASF22:
+ 553 0005 56444143 		.ascii	"VDAC_Synth_Wakeup\000"
+ 553      5F53796E 
+ 553      74685F57 
+ 553      616B6575 
+ 553      7000
+ 554              	.LASF30:
+ 555 0017 56444143 		.ascii	"VDAC_Synth_SetHiZ\000"
+ 555      5F53796E 
+ 555      74685F53 
+ 555      65744869 
+ 555      5A00
+ 556              	.LASF3:
+ 557 0029 73686F72 		.ascii	"short unsigned int\000"
+ 557      7420756E 
+ 557      7369676E 
+ 557      65642069 
+ 557      6E7400
+ 558              	.LASF25:
+ 559 003c 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 559      4320342E 
+ 559      392E3320 
+ 559      32303135 
+ 559      30333033 
+ 560 006f 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 560      20726576 
+ 560      6973696F 
+ 560      6E203232 
+ 560      31323230 
+ 561 00a2 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 561      73202D66 
+ 561      66756E63 
+ 561      74696F6E 
+ 561      2D736563 
+ 562              	.LASF13:
+ 563 00ce 646F7562 		.ascii	"double\000"
+ 563      6C6500
+ 564              	.LASF12:
+ 565 00d5 666C6F61 		.ascii	"float\000"
+ 565      7400
+ 566              	.LASF17:
+ 567 00db 56444143 		.ascii	"VDAC_Synth_BACKUP_STRUCT\000"
+ 567      5F53796E 
+ 567      74685F42 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 14
+
+
+ 567      41434B55 
+ 567      505F5354 
+ 568              	.LASF1:
+ 569 00f4 756E7369 		.ascii	"unsigned char\000"
+ 569      676E6564 
+ 569      20636861 
+ 569      7200
+ 570              	.LASF5:
+ 571 0102 6C6F6E67 		.ascii	"long unsigned int\000"
+ 571      20756E73 
+ 571      69676E65 
+ 571      6420696E 
+ 571      7400
+ 572              	.LASF11:
+ 573 0114 696E7433 		.ascii	"int32\000"
+ 573      3200
+ 574              	.LASF19:
+ 575 011a 56444143 		.ascii	"VDAC_Synth_OUTSTATE_HIZ\000"
+ 575      5F53796E 
+ 575      74685F4F 
+ 575      55545354 
+ 575      4154455F 
+ 576              	.LASF15:
+ 577 0132 72656733 		.ascii	"reg32\000"
+ 577      3200
+ 578              	.LASF20:
+ 579 0138 56444143 		.ascii	"VDAC_Synth_output_state_enum\000"
+ 579      5F53796E 
+ 579      74685F6F 
+ 579      75747075 
+ 579      745F7374 
+ 580              	.LASF26:
+ 581 0155 47656E65 		.ascii	"Generated_Source\\PSoC4\\VDAC_Synth_PM.c\000"
+ 581      72617465 
+ 581      645F536F 
+ 581      75726365 
+ 581      5C50536F 
+ 582              	.LASF10:
+ 583 017c 75696E74 		.ascii	"uint32\000"
+ 583      333200
+ 584              	.LASF8:
+ 585 0183 756E7369 		.ascii	"unsigned int\000"
+ 585      676E6564 
+ 585      20696E74 
+ 585      00
+ 586              	.LASF7:
+ 587 0190 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 587      206C6F6E 
+ 587      6720756E 
+ 587      7369676E 
+ 587      65642069 
+ 588              	.LASF18:
+ 589 01a7 56444143 		.ascii	"VDAC_Synth_OUTSTATE_DRIVEN\000"
+ 589      5F53796E 
+ 589      74685F4F 
+ 589      55545354 
+ 589      4154455F 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 15
+
+
+ 590              	.LASF24:
+ 591 01c2 56444143 		.ascii	"VDAC_Synth_Enable\000"
+ 591      5F53796E 
+ 591      74685F45 
+ 591      6E61626C 
+ 591      6500
+ 592              	.LASF16:
+ 593 01d4 73697A65 		.ascii	"sizetype\000"
+ 593      74797065 
+ 593      00
+ 594              	.LASF6:
+ 595 01dd 6C6F6E67 		.ascii	"long long int\000"
+ 595      206C6F6E 
+ 595      6720696E 
+ 595      7400
+ 596              	.LASF23:
+ 597 01eb 56444143 		.ascii	"VDAC_Synth_Stop\000"
+ 597      5F53796E 
+ 597      74685F53 
+ 597      746F7000 
+ 598              	.LASF2:
+ 599 01fb 73686F72 		.ascii	"short int\000"
+ 599      7420696E 
+ 599      7400
+ 600              	.LASF21:
+ 601 0205 56444143 		.ascii	"VDAC_Synth_Sleep\000"
+ 601      5F53796E 
+ 601      74685F53 
+ 601      6C656570 
+ 601      00
+ 602              	.LASF9:
+ 603 0216 75696E74 		.ascii	"uint8\000"
+ 603      3800
+ 604              	.LASF4:
+ 605 021c 6C6F6E67 		.ascii	"long int\000"
+ 605      20696E74 
+ 605      00
+ 606              	.LASF28:
+ 607 0225 656E6162 		.ascii	"enableState\000"
+ 607      6C655374 
+ 607      61746500 
+ 608              	.LASF0:
+ 609 0231 7369676E 		.ascii	"signed char\000"
+ 609      65642063 
+ 609      68617200 
+ 610              	.LASF27:
+ 611 023d 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 611      79707265 
+ 611      73735C54 
+ 611      616C6B69 
+ 611      6E67436C 
+ 612              	.LASF29:
+ 613 0269 56444143 		.ascii	"VDAC_Synth_backup\000"
+ 613      5F53796E 
+ 613      74685F62 
+ 613      61636B75 
+ 613      7000
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccorziUZ.s 			page 16
+
+
+ 614              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

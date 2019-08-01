@@ -1,0 +1,8 @@
+C:/cypress/TalkingClock/Talking_Clock.cydsn/CortexM0p/ARM_GCC_493/Release/CyBootAsmGnu.o : C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/cydevicegnu_trm.inc C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/cyfittergnu.inc 
+
+C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s : 
+
+C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/cydevicegnu_trm.inc : 
+
+C:/cypress/TalkingClock/Talking_Clock.cydsn/Generated_Source/PSoC4/cyfittergnu.inc : 
+

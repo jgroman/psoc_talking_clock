@@ -1,0 +1,984 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"PVref.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.PVref_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	PVref_Init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	PVref_Init, %function
+  23              	PVref_Init:
+  24              	.LFB0:
+  25              		.file 1 "Generated_Source\\PSoC4\\PVref.c"
+   1:Generated_Source\PSoC4/PVref.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/PVref.c **** * \file PVref.c
+   3:Generated_Source\PSoC4/PVref.c **** * \version 1.0
+   4:Generated_Source\PSoC4/PVref.c **** *
+   5:Generated_Source\PSoC4/PVref.c **** * \brief
+   6:Generated_Source\PSoC4/PVref.c **** *  This file provides the source code to the API for the Programmable
+   7:Generated_Source\PSoC4/PVref.c **** *  Voltage Reference component.
+   8:Generated_Source\PSoC4/PVref.c **** *
+   9:Generated_Source\PSoC4/PVref.c **** * Note:
+  10:Generated_Source\PSoC4/PVref.c **** *  None
+  11:Generated_Source\PSoC4/PVref.c **** *
+  12:Generated_Source\PSoC4/PVref.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/PVref.c **** * \copyright
+  14:Generated_Source\PSoC4/PVref.c **** * Copyright 2016, Cypress Semiconductor Corporation. All rights reserved.
+  15:Generated_Source\PSoC4/PVref.c **** * You may use this file only in accordance with the license, terms, conditions,
+  16:Generated_Source\PSoC4/PVref.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  17:Generated_Source\PSoC4/PVref.c **** * the software package with which this file was provided.
+  18:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+  19:Generated_Source\PSoC4/PVref.c **** 
+  20:Generated_Source\PSoC4/PVref.c **** #include "PVref.h"
+  21:Generated_Source\PSoC4/PVref.c **** 
+  22:Generated_Source\PSoC4/PVref.c **** uint8 PVref_initVar = 0u;
+  23:Generated_Source\PSoC4/PVref.c **** 
+  24:Generated_Source\PSoC4/PVref.c **** 
+  25:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+  26:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_Init
+  27:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+  28:Generated_Source\PSoC4/PVref.c **** *
+  29:Generated_Source\PSoC4/PVref.c **** *  Initialize/Restore the default Voltage Reference configuration as defined
+  30:Generated_Source\PSoC4/PVref.c **** *  in the customizer. If the reference is set to Vdda, it will enable all
+  31:Generated_Source\PSoC4/PVref.c **** *  Vdda-based references.
+  32:Generated_Source\PSoC4/PVref.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 2
+
+
+  33:Generated_Source\PSoC4/PVref.c **** * \sideeffect
+  34:Generated_Source\PSoC4/PVref.c **** *  If the reference is Vdda-based, the function will enable all Vdda-based
+  35:Generated_Source\PSoC4/PVref.c **** *  references because they share the same resistor tree.
+  36:Generated_Source\PSoC4/PVref.c **** *
+  37:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+  38:Generated_Source\PSoC4/PVref.c **** void PVref_Init(void)
+  39:Generated_Source\PSoC4/PVref.c **** {
+  26              		.loc 1 39 0
+  27              		.cfi_startproc
+  40:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_CTRL_REG |= PVref_PRB_CTRL_REG_INIT;
+  28              		.loc 1 40 0
+  29 0000 8021     		mov	r1, #128
+  30 0002 044A     		ldr	r2, .L2
+  31 0004 0906     		lsl	r1, r1, #24
+  32 0006 1368     		ldr	r3, [r2]
+  41:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = PVref_PRB_REF_REG_INIT;
+  42:Generated_Source\PSoC4/PVref.c **** }
+  33              		.loc 1 42 0
+  34              		@ sp needed
+  40:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_CTRL_REG |= PVref_PRB_CTRL_REG_INIT;
+  35              		.loc 1 40 0
+  36 0008 0B43     		orr	r3, r1
+  37 000a 1360     		str	r3, [r2]
+  41:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = PVref_PRB_REF_REG_INIT;
+  38              		.loc 1 41 0
+  39 000c F022     		mov	r2, #240
+  40 000e 024B     		ldr	r3, .L2+4
+  41 0010 1A60     		str	r2, [r3]
+  42              		.loc 1 42 0
+  43 0012 7047     		bx	lr
+  44              	.L3:
+  45              		.align	2
+  46              	.L2:
+  47 0014 00023F40 		.word	1077871104
+  48 0018 08023F40 		.word	1077871112
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	PVref_Init, .-PVref_Init
+  52              		.section	.text.PVref_Enable,"ax",%progbits
+  53              		.align	1
+  54              		.global	PVref_Enable
+  55              		.code	16
+  56              		.thumb_func
+  57              		.type	PVref_Enable, %function
+  58              	PVref_Enable:
+  59              	.LFB1:
+  43:Generated_Source\PSoC4/PVref.c **** 
+  44:Generated_Source\PSoC4/PVref.c **** 
+  45:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+  46:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_Enable
+  47:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+  48:Generated_Source\PSoC4/PVref.c **** *
+  49:Generated_Source\PSoC4/PVref.c **** *  Enables the Voltage Reference.
+  50:Generated_Source\PSoC4/PVref.c **** *
+  51:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+  52:Generated_Source\PSoC4/PVref.c **** void PVref_Enable(void)
+  53:Generated_Source\PSoC4/PVref.c **** {
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 3
+
+
+  60              		.loc 1 53 0
+  61              		.cfi_startproc
+  54:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG |= PVref_VREF_ENABLE;
+  62              		.loc 1 54 0
+  63 0000 0121     		mov	r1, #1
+  64 0002 024A     		ldr	r2, .L5
+  55:Generated_Source\PSoC4/PVref.c **** }
+  65              		.loc 1 55 0
+  66              		@ sp needed
+  54:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG |= PVref_VREF_ENABLE;
+  67              		.loc 1 54 0
+  68 0004 1368     		ldr	r3, [r2]
+  69 0006 0B43     		orr	r3, r1
+  70 0008 1360     		str	r3, [r2]
+  71              		.loc 1 55 0
+  72 000a 7047     		bx	lr
+  73              	.L6:
+  74              		.align	2
+  75              	.L5:
+  76 000c 08023F40 		.word	1077871112
+  77              		.cfi_endproc
+  78              	.LFE1:
+  79              		.size	PVref_Enable, .-PVref_Enable
+  80              		.section	.text.PVref_Start,"ax",%progbits
+  81              		.align	1
+  82              		.global	PVref_Start
+  83              		.code	16
+  84              		.thumb_func
+  85              		.type	PVref_Start, %function
+  86              	PVref_Start:
+  87              	.LFB2:
+  56:Generated_Source\PSoC4/PVref.c **** 
+  57:Generated_Source\PSoC4/PVref.c **** 
+  58:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+  59:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_Start
+  60:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+  61:Generated_Source\PSoC4/PVref.c **** *
+  62:Generated_Source\PSoC4/PVref.c **** *  Initializes all parameters required to setup the component as defined in the
+  63:Generated_Source\PSoC4/PVref.c **** *  customizer. If the reference is set to Vdda, it will enable all Vdda based
+  64:Generated_Source\PSoC4/PVref.c **** *  references.
+  65:Generated_Source\PSoC4/PVref.c **** *
+  66:Generated_Source\PSoC4/PVref.c **** * \globalvars
+  67:Generated_Source\PSoC4/PVref.c **** *  \ref PVref_initVar - This variable is used to indicate the initial
+  68:Generated_Source\PSoC4/PVref.c **** *  configuration of this component. The variable is initialized to zero and
+  69:Generated_Source\PSoC4/PVref.c **** *  set to 1 the first time PVref_Start() is called. This allows
+  70:Generated_Source\PSoC4/PVref.c **** *  the component initialization without re-initialization in all subsequent
+  71:Generated_Source\PSoC4/PVref.c **** *  calls to the PVref_Start() routine.
+  72:Generated_Source\PSoC4/PVref.c **** *
+  73:Generated_Source\PSoC4/PVref.c **** * \sideeffect
+  74:Generated_Source\PSoC4/PVref.c **** *  If the reference is Vdda-based, the function will enable all Vdda-based
+  75:Generated_Source\PSoC4/PVref.c **** *  references because they share the same resistor tree.
+  76:Generated_Source\PSoC4/PVref.c **** *
+  77:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+  78:Generated_Source\PSoC4/PVref.c **** void PVref_Start(void)
+  79:Generated_Source\PSoC4/PVref.c **** {
+  88              		.loc 1 79 0
+  89              		.cfi_startproc
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 4
+
+
+  90 0000 08B5     		push	{r3, lr}
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 3, -8
+  93              		.cfi_offset 14, -4
+  80:Generated_Source\PSoC4/PVref.c ****     /* If not Initialized, then initialize all required hardware and software. */
+  81:Generated_Source\PSoC4/PVref.c ****     if (PVref_initVar == 0u)
+  94              		.loc 1 81 0
+  95 0002 054B     		ldr	r3, .L10
+  96 0004 1A78     		ldrb	r2, [r3]
+  97 0006 002A     		cmp	r2, #0
+  98 0008 03D1     		bne	.L8
+  82:Generated_Source\PSoC4/PVref.c ****     {
+  83:Generated_Source\PSoC4/PVref.c ****         PVref_initVar = 1u;
+  99              		.loc 1 83 0
+ 100 000a 0132     		add	r2, r2, #1
+ 101 000c 1A70     		strb	r2, [r3]
+  84:Generated_Source\PSoC4/PVref.c ****         PVref_Init();
+ 102              		.loc 1 84 0
+ 103 000e FFF7FEFF 		bl	PVref_Init
+ 104              	.LVL0:
+ 105              	.L8:
+  85:Generated_Source\PSoC4/PVref.c ****     }
+  86:Generated_Source\PSoC4/PVref.c **** 
+  87:Generated_Source\PSoC4/PVref.c ****     PVref_Enable();
+ 106              		.loc 1 87 0
+ 107 0012 FFF7FEFF 		bl	PVref_Enable
+ 108              	.LVL1:
+  88:Generated_Source\PSoC4/PVref.c **** }
+ 109              		.loc 1 88 0
+ 110              		@ sp needed
+ 111 0016 08BD     		pop	{r3, pc}
+ 112              	.L11:
+ 113              		.align	2
+ 114              	.L10:
+ 115 0018 00000000 		.word	.LANCHOR0
+ 116              		.cfi_endproc
+ 117              	.LFE2:
+ 118              		.size	PVref_Start, .-PVref_Start
+ 119              		.section	.text.PVref_Stop,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	PVref_Stop
+ 122              		.code	16
+ 123              		.thumb_func
+ 124              		.type	PVref_Stop, %function
+ 125              	PVref_Stop:
+ 126              	.LFB3:
+  89:Generated_Source\PSoC4/PVref.c **** 
+  90:Generated_Source\PSoC4/PVref.c **** 
+  91:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+  92:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_Stop
+  93:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+  94:Generated_Source\PSoC4/PVref.c **** *
+  95:Generated_Source\PSoC4/PVref.c **** *  Disables the Voltage Reference.
+  96:Generated_Source\PSoC4/PVref.c **** *
+  97:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+  98:Generated_Source\PSoC4/PVref.c **** void PVref_Stop(void)
+  99:Generated_Source\PSoC4/PVref.c **** {
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 5
+
+
+ 127              		.loc 1 99 0
+ 128              		.cfi_startproc
+ 100:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG &= ~PVref_VREF_ENABLE;
+ 129              		.loc 1 100 0
+ 130 0000 0121     		mov	r1, #1
+ 131 0002 024A     		ldr	r2, .L13
+ 101:Generated_Source\PSoC4/PVref.c **** }
+ 132              		.loc 1 101 0
+ 133              		@ sp needed
+ 100:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG &= ~PVref_VREF_ENABLE;
+ 134              		.loc 1 100 0
+ 135 0004 1368     		ldr	r3, [r2]
+ 136 0006 8B43     		bic	r3, r1
+ 137 0008 1360     		str	r3, [r2]
+ 138              		.loc 1 101 0
+ 139 000a 7047     		bx	lr
+ 140              	.L14:
+ 141              		.align	2
+ 142              	.L13:
+ 143 000c 08023F40 		.word	1077871112
+ 144              		.cfi_endproc
+ 145              	.LFE3:
+ 146              		.size	PVref_Stop, .-PVref_Stop
+ 147              		.section	.text.PVref_SetTap,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	PVref_SetTap
+ 150              		.code	16
+ 151              		.thumb_func
+ 152              		.type	PVref_SetTap, %function
+ 153              	PVref_SetTap:
+ 154              	.LFB4:
+ 102:Generated_Source\PSoC4/PVref.c **** 
+ 103:Generated_Source\PSoC4/PVref.c **** 
+ 104:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+ 105:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_SetTap
+ 106:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+ 107:Generated_Source\PSoC4/PVref.c **** *
+ 108:Generated_Source\PSoC4/PVref.c **** *  Selects which of the equally spaced resistor divider taps will be used for
+ 109:Generated_Source\PSoC4/PVref.c **** *  the reference. The output will range in 1/16th steps between Vref/16 to Vref.
+ 110:Generated_Source\PSoC4/PVref.c **** *
+ 111:Generated_Source\PSoC4/PVref.c **** *  \param
+ 112:Generated_Source\PSoC4/PVref.c **** *  dividerTap:    One of the 16-tap voltage dividers to select a voltage
+ 113:Generated_Source\PSoC4/PVref.c **** *                 between 1/16 of the reference source to the full reference
+ 114:Generated_Source\PSoC4/PVref.c **** *                 source in steps of 1/16.
+ 115:Generated_Source\PSoC4/PVref.c **** * * 1   :    1/16 Vref
+ 116:Generated_Source\PSoC4/PVref.c **** * * ... :    ...
+ 117:Generated_Source\PSoC4/PVref.c **** * * 16  :    Vref
+ 118:Generated_Source\PSoC4/PVref.c **** *
+ 119:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+ 120:Generated_Source\PSoC4/PVref.c **** void PVref_SetTap(uint32 dividerTap)
+ 121:Generated_Source\PSoC4/PVref.c **** {
+ 155              		.loc 1 121 0
+ 156              		.cfi_startproc
+ 157              	.LVL2:
+ 122:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = (PVref_PRB_REF_REG & ~PVref_VREF_LEVEL_SEL_MASK) |
+ 123:Generated_Source\PSoC4/PVref.c ****         (((dividerTap - 1u) << PVref_VREF_LEVEL_SEL_MASK_POS) & PVref_VREF_LEVEL_SEL_MASK);
+ 158              		.loc 1 123 0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 6
+
+
+ 159 0000 FF22     		mov	r2, #255
+ 122:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = (PVref_PRB_REF_REG & ~PVref_VREF_LEVEL_SEL_MASK) |
+ 160              		.loc 1 122 0
+ 161 0002 0549     		ldr	r1, .L16
+ 162              		.loc 1 123 0
+ 163 0004 0138     		sub	r0, r0, #1
+ 164              	.LVL3:
+ 122:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = (PVref_PRB_REF_REG & ~PVref_VREF_LEVEL_SEL_MASK) |
+ 165              		.loc 1 122 0
+ 166 0006 0B68     		ldr	r3, [r1]
+ 167              		.loc 1 123 0
+ 168 0008 0001     		lsl	r0, r0, #4
+ 169              	.LVL4:
+ 170 000a 1040     		and	r0, r2
+ 122:Generated_Source\PSoC4/PVref.c ****     PVref_PRB_REF_REG = (PVref_PRB_REF_REG & ~PVref_VREF_LEVEL_SEL_MASK) |
+ 171              		.loc 1 122 0
+ 172 000c 0F3A     		sub	r2, r2, #15
+ 173 000e 9343     		bic	r3, r2
+ 174 0010 1843     		orr	r0, r3
+ 175 0012 0860     		str	r0, [r1]
+ 124:Generated_Source\PSoC4/PVref.c **** }
+ 176              		.loc 1 124 0
+ 177              		@ sp needed
+ 178 0014 7047     		bx	lr
+ 179              	.L17:
+ 180 0016 C046     		.align	2
+ 181              	.L16:
+ 182 0018 08023F40 		.word	1077871112
+ 183              		.cfi_endproc
+ 184              	.LFE4:
+ 185              		.size	PVref_SetTap, .-PVref_SetTap
+ 186              		.section	.text.PVref_SetVRefSrc,"ax",%progbits
+ 187              		.align	1
+ 188              		.global	PVref_SetVRefSrc
+ 189              		.code	16
+ 190              		.thumb_func
+ 191              		.type	PVref_SetVRefSrc, %function
+ 192              	PVref_SetVRefSrc:
+ 193              	.LFB5:
+ 125:Generated_Source\PSoC4/PVref.c **** 
+ 126:Generated_Source\PSoC4/PVref.c **** 
+ 127:Generated_Source\PSoC4/PVref.c **** /*******************************************************************************
+ 128:Generated_Source\PSoC4/PVref.c **** * Function Name: PVref_SetVRefSrc
+ 129:Generated_Source\PSoC4/PVref.c **** ****************************************************************************//**
+ 130:Generated_Source\PSoC4/PVref.c **** *
+ 131:Generated_Source\PSoC4/PVref.c **** *  Selects whether the reference at the top of the resistor divider is based
+ 132:Generated_Source\PSoC4/PVref.c **** *  on the bandgap or Vdda.
+ 133:Generated_Source\PSoC4/PVref.c **** *
+ 134:Generated_Source\PSoC4/PVref.c **** *  \param
+ 135:Generated_Source\PSoC4/PVref.c **** *  reference:    The reference source.
+ 136:Generated_Source\PSoC4/PVref.c **** * * PVref_BANDGAP_REFERENCE :    Bandgap reference
+ 137:Generated_Source\PSoC4/PVref.c **** * * PVref_VDDA_REFERENCE    :    Vdda reference
+ 138:Generated_Source\PSoC4/PVref.c **** *
+ 139:Generated_Source\PSoC4/PVref.c **** * \sideeffect
+ 140:Generated_Source\PSoC4/PVref.c **** *  If the reference is based on Vdda, it will affect all Vdda-based references
+ 141:Generated_Source\PSoC4/PVref.c **** *  because they share the same resistor tree.
+ 142:Generated_Source\PSoC4/PVref.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 7
+
+
+ 143:Generated_Source\PSoC4/PVref.c **** *******************************************************************************/
+ 144:Generated_Source\PSoC4/PVref.c **** void PVref_SetVRefSrc(uint32 reference)
+ 145:Generated_Source\PSoC4/PVref.c **** {
+ 194              		.loc 1 145 0
+ 195              		.cfi_startproc
+ 196              	.LVL5:
+ 197 0000 084B     		ldr	r3, .L22
+ 146:Generated_Source\PSoC4/PVref.c ****     if (PVref_BANDGAP_REFERENCE == reference)
+ 198              		.loc 1 146 0
+ 199 0002 0028     		cmp	r0, #0
+ 200 0004 03D1     		bne	.L19
+ 147:Generated_Source\PSoC4/PVref.c ****     {
+ 148:Generated_Source\PSoC4/PVref.c ****         PVref_PRB_REF_REG &= ~PVref_VREF_SUPPLY_SEL;
+ 201              		.loc 1 148 0
+ 202 0006 0221     		mov	r1, #2
+ 203 0008 1A68     		ldr	r2, [r3]
+ 204 000a 8A43     		bic	r2, r1
+ 205 000c 07E0     		b	.L21
+ 206              	.L19:
+ 149:Generated_Source\PSoC4/PVref.c ****     }
+ 150:Generated_Source\PSoC4/PVref.c ****     else /* Vdda reference source */
+ 151:Generated_Source\PSoC4/PVref.c ****     {
+ 152:Generated_Source\PSoC4/PVref.c ****         PVref_PRB_CTRL_REG |= PVref_VDDA_ENABLE;
+ 207              		.loc 1 152 0
+ 208 000e 1020     		mov	r0, #16
+ 209              	.LVL6:
+ 210 0010 0549     		ldr	r1, .L22+4
+ 211 0012 0A68     		ldr	r2, [r1]
+ 212 0014 0243     		orr	r2, r0
+ 213 0016 0A60     		str	r2, [r1]
+ 153:Generated_Source\PSoC4/PVref.c ****         PVref_PRB_REF_REG |= PVref_VREF_SUPPLY_SEL;
+ 214              		.loc 1 153 0
+ 215 0018 0221     		mov	r1, #2
+ 216 001a 1A68     		ldr	r2, [r3]
+ 217 001c 0A43     		orr	r2, r1
+ 218              	.L21:
+ 219 001e 1A60     		str	r2, [r3]
+ 154:Generated_Source\PSoC4/PVref.c ****     }
+ 155:Generated_Source\PSoC4/PVref.c **** }
+ 220              		.loc 1 155 0
+ 221              		@ sp needed
+ 222 0020 7047     		bx	lr
+ 223              	.L23:
+ 224 0022 C046     		.align	2
+ 225              	.L22:
+ 226 0024 08023F40 		.word	1077871112
+ 227 0028 00023F40 		.word	1077871104
+ 228              		.cfi_endproc
+ 229              	.LFE5:
+ 230              		.size	PVref_SetVRefSrc, .-PVref_SetVRefSrc
+ 231              		.global	PVref_initVar
+ 232              		.bss
+ 233              		.set	.LANCHOR0,. + 0
+ 234              		.type	PVref_initVar, %object
+ 235              		.size	PVref_initVar, 1
+ 236              	PVref_initVar:
+ 237 0000 00       		.space	1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 8
+
+
+ 238              		.text
+ 239              	.Letext0:
+ 240              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 241              		.section	.debug_info,"",%progbits
+ 242              	.Ldebug_info0:
+ 243 0000 5C010000 		.4byte	0x15c
+ 244 0004 0400     		.2byte	0x4
+ 245 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 246 000a 04       		.byte	0x4
+ 247 000b 01       		.uleb128 0x1
+ 248 000c 10000000 		.4byte	.LASF23
+ 249 0010 01       		.byte	0x1
+ 250 0011 21010000 		.4byte	.LASF24
+ 251 0015 CA010000 		.4byte	.LASF25
+ 252 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 253 001d 00000000 		.4byte	0
+ 254 0021 00000000 		.4byte	.Ldebug_line0
+ 255 0025 02       		.uleb128 0x2
+ 256 0026 01       		.byte	0x1
+ 257 0027 06       		.byte	0x6
+ 258 0028 AD010000 		.4byte	.LASF0
+ 259 002c 02       		.uleb128 0x2
+ 260 002d 01       		.byte	0x1
+ 261 002e 08       		.byte	0x8
+ 262 002f C1000000 		.4byte	.LASF1
+ 263 0033 02       		.uleb128 0x2
+ 264 0034 02       		.byte	0x2
+ 265 0035 05       		.byte	0x5
+ 266 0036 94010000 		.4byte	.LASF2
+ 267 003a 02       		.uleb128 0x2
+ 268 003b 02       		.byte	0x2
+ 269 003c 07       		.byte	0x7
+ 270 003d E1000000 		.4byte	.LASF3
+ 271 0041 02       		.uleb128 0x2
+ 272 0042 04       		.byte	0x4
+ 273 0043 05       		.byte	0x5
+ 274 0044 A4010000 		.4byte	.LASF4
+ 275 0048 02       		.uleb128 0x2
+ 276 0049 04       		.byte	0x4
+ 277 004a 07       		.byte	0x7
+ 278 004b CF000000 		.4byte	.LASF5
+ 279 004f 02       		.uleb128 0x2
+ 280 0050 08       		.byte	0x8
+ 281 0051 05       		.byte	0x5
+ 282 0052 76010000 		.4byte	.LASF6
+ 283 0056 02       		.uleb128 0x2
+ 284 0057 08       		.byte	0x8
+ 285 0058 07       		.byte	0x7
+ 286 0059 54010000 		.4byte	.LASF7
+ 287 005d 03       		.uleb128 0x3
+ 288 005e 04       		.byte	0x4
+ 289 005f 05       		.byte	0x5
+ 290 0060 696E7400 		.ascii	"int\000"
+ 291 0064 02       		.uleb128 0x2
+ 292 0065 04       		.byte	0x4
+ 293 0066 07       		.byte	0x7
+ 294 0067 47010000 		.4byte	.LASF8
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 9
+
+
+ 295 006b 04       		.uleb128 0x4
+ 296 006c 9E010000 		.4byte	.LASF9
+ 297 0070 02       		.byte	0x2
+ 298 0071 B901     		.2byte	0x1b9
+ 299 0073 2C000000 		.4byte	0x2c
+ 300 0077 04       		.uleb128 0x4
+ 301 0078 40010000 		.4byte	.LASF10
+ 302 007c 02       		.byte	0x2
+ 303 007d BB01     		.2byte	0x1bb
+ 304 007f 48000000 		.4byte	0x48
+ 305 0083 02       		.uleb128 0x2
+ 306 0084 04       		.byte	0x4
+ 307 0085 04       		.byte	0x4
+ 308 0086 BB000000 		.4byte	.LASF11
+ 309 008a 02       		.uleb128 0x2
+ 310 008b 08       		.byte	0x8
+ 311 008c 04       		.byte	0x4
+ 312 008d 0D010000 		.4byte	.LASF12
+ 313 0091 02       		.uleb128 0x2
+ 314 0092 01       		.byte	0x1
+ 315 0093 08       		.byte	0x8
+ 316 0094 84010000 		.4byte	.LASF13
+ 317 0098 04       		.uleb128 0x4
+ 318 0099 00000000 		.4byte	.LASF14
+ 319 009d 02       		.byte	0x2
+ 320 009e 6502     		.2byte	0x265
+ 321 00a0 A4000000 		.4byte	0xa4
+ 322 00a4 05       		.uleb128 0x5
+ 323 00a5 77000000 		.4byte	0x77
+ 324 00a9 06       		.uleb128 0x6
+ 325 00aa F4000000 		.4byte	.LASF15
+ 326 00ae 01       		.byte	0x1
+ 327 00af 26       		.byte	0x26
+ 328 00b0 00000000 		.4byte	.LFB0
+ 329 00b4 1C000000 		.4byte	.LFE0-.LFB0
+ 330 00b8 01       		.uleb128 0x1
+ 331 00b9 9C       		.byte	0x9c
+ 332 00ba 06       		.uleb128 0x6
+ 333 00bb 14010000 		.4byte	.LASF16
+ 334 00bf 01       		.byte	0x1
+ 335 00c0 34       		.byte	0x34
+ 336 00c1 00000000 		.4byte	.LFB1
+ 337 00c5 10000000 		.4byte	.LFE1-.LFB1
+ 338 00c9 01       		.uleb128 0x1
+ 339 00ca 9C       		.byte	0x9c
+ 340 00cb 07       		.uleb128 0x7
+ 341 00cc AF000000 		.4byte	.LASF18
+ 342 00d0 01       		.byte	0x1
+ 343 00d1 4E       		.byte	0x4e
+ 344 00d2 00000000 		.4byte	.LFB2
+ 345 00d6 1C000000 		.4byte	.LFE2-.LFB2
+ 346 00da 01       		.uleb128 0x1
+ 347 00db 9C       		.byte	0x9c
+ 348 00dc F3000000 		.4byte	0xf3
+ 349 00e0 08       		.uleb128 0x8
+ 350 00e1 12000000 		.4byte	.LVL0
+ 351 00e5 A9000000 		.4byte	0xa9
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 10
+
+
+ 352 00e9 08       		.uleb128 0x8
+ 353 00ea 16000000 		.4byte	.LVL1
+ 354 00ee BA000000 		.4byte	0xba
+ 355 00f2 00       		.byte	0
+ 356 00f3 06       		.uleb128 0x6
+ 357 00f4 89010000 		.4byte	.LASF17
+ 358 00f8 01       		.byte	0x1
+ 359 00f9 62       		.byte	0x62
+ 360 00fa 00000000 		.4byte	.LFB3
+ 361 00fe 10000000 		.4byte	.LFE3-.LFB3
+ 362 0102 01       		.uleb128 0x1
+ 363 0103 9C       		.byte	0x9c
+ 364 0104 07       		.uleb128 0x7
+ 365 0105 A2000000 		.4byte	.LASF19
+ 366 0109 01       		.byte	0x1
+ 367 010a 78       		.byte	0x78
+ 368 010b 00000000 		.4byte	.LFB4
+ 369 010f 1C000000 		.4byte	.LFE4-.LFB4
+ 370 0113 01       		.uleb128 0x1
+ 371 0114 9C       		.byte	0x9c
+ 372 0115 29010000 		.4byte	0x129
+ 373 0119 09       		.uleb128 0x9
+ 374 011a 6B010000 		.4byte	.LASF21
+ 375 011e 01       		.byte	0x1
+ 376 011f 78       		.byte	0x78
+ 377 0120 77000000 		.4byte	0x77
+ 378 0124 00000000 		.4byte	.LLST0
+ 379 0128 00       		.byte	0
+ 380 0129 07       		.uleb128 0x7
+ 381 012a B9010000 		.4byte	.LASF20
+ 382 012e 01       		.byte	0x1
+ 383 012f 90       		.byte	0x90
+ 384 0130 00000000 		.4byte	.LFB5
+ 385 0134 2C000000 		.4byte	.LFE5-.LFB5
+ 386 0138 01       		.uleb128 0x1
+ 387 0139 9C       		.byte	0x9c
+ 388 013a 4E010000 		.4byte	0x14e
+ 389 013e 09       		.uleb128 0x9
+ 390 013f 06000000 		.4byte	.LASF22
+ 391 0143 01       		.byte	0x1
+ 392 0144 90       		.byte	0x90
+ 393 0145 77000000 		.4byte	0x77
+ 394 0149 2E000000 		.4byte	.LLST1
+ 395 014d 00       		.byte	0
+ 396 014e 0A       		.uleb128 0xa
+ 397 014f FF000000 		.4byte	.LASF26
+ 398 0153 01       		.byte	0x1
+ 399 0154 16       		.byte	0x16
+ 400 0155 6B000000 		.4byte	0x6b
+ 401 0159 05       		.uleb128 0x5
+ 402 015a 03       		.byte	0x3
+ 403 015b 00000000 		.4byte	PVref_initVar
+ 404 015f 00       		.byte	0
+ 405              		.section	.debug_abbrev,"",%progbits
+ 406              	.Ldebug_abbrev0:
+ 407 0000 01       		.uleb128 0x1
+ 408 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 11
+
+
+ 409 0002 01       		.byte	0x1
+ 410 0003 25       		.uleb128 0x25
+ 411 0004 0E       		.uleb128 0xe
+ 412 0005 13       		.uleb128 0x13
+ 413 0006 0B       		.uleb128 0xb
+ 414 0007 03       		.uleb128 0x3
+ 415 0008 0E       		.uleb128 0xe
+ 416 0009 1B       		.uleb128 0x1b
+ 417 000a 0E       		.uleb128 0xe
+ 418 000b 55       		.uleb128 0x55
+ 419 000c 17       		.uleb128 0x17
+ 420 000d 11       		.uleb128 0x11
+ 421 000e 01       		.uleb128 0x1
+ 422 000f 10       		.uleb128 0x10
+ 423 0010 17       		.uleb128 0x17
+ 424 0011 00       		.byte	0
+ 425 0012 00       		.byte	0
+ 426 0013 02       		.uleb128 0x2
+ 427 0014 24       		.uleb128 0x24
+ 428 0015 00       		.byte	0
+ 429 0016 0B       		.uleb128 0xb
+ 430 0017 0B       		.uleb128 0xb
+ 431 0018 3E       		.uleb128 0x3e
+ 432 0019 0B       		.uleb128 0xb
+ 433 001a 03       		.uleb128 0x3
+ 434 001b 0E       		.uleb128 0xe
+ 435 001c 00       		.byte	0
+ 436 001d 00       		.byte	0
+ 437 001e 03       		.uleb128 0x3
+ 438 001f 24       		.uleb128 0x24
+ 439 0020 00       		.byte	0
+ 440 0021 0B       		.uleb128 0xb
+ 441 0022 0B       		.uleb128 0xb
+ 442 0023 3E       		.uleb128 0x3e
+ 443 0024 0B       		.uleb128 0xb
+ 444 0025 03       		.uleb128 0x3
+ 445 0026 08       		.uleb128 0x8
+ 446 0027 00       		.byte	0
+ 447 0028 00       		.byte	0
+ 448 0029 04       		.uleb128 0x4
+ 449 002a 16       		.uleb128 0x16
+ 450 002b 00       		.byte	0
+ 451 002c 03       		.uleb128 0x3
+ 452 002d 0E       		.uleb128 0xe
+ 453 002e 3A       		.uleb128 0x3a
+ 454 002f 0B       		.uleb128 0xb
+ 455 0030 3B       		.uleb128 0x3b
+ 456 0031 05       		.uleb128 0x5
+ 457 0032 49       		.uleb128 0x49
+ 458 0033 13       		.uleb128 0x13
+ 459 0034 00       		.byte	0
+ 460 0035 00       		.byte	0
+ 461 0036 05       		.uleb128 0x5
+ 462 0037 35       		.uleb128 0x35
+ 463 0038 00       		.byte	0
+ 464 0039 49       		.uleb128 0x49
+ 465 003a 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 12
+
+
+ 466 003b 00       		.byte	0
+ 467 003c 00       		.byte	0
+ 468 003d 06       		.uleb128 0x6
+ 469 003e 2E       		.uleb128 0x2e
+ 470 003f 00       		.byte	0
+ 471 0040 3F       		.uleb128 0x3f
+ 472 0041 19       		.uleb128 0x19
+ 473 0042 03       		.uleb128 0x3
+ 474 0043 0E       		.uleb128 0xe
+ 475 0044 3A       		.uleb128 0x3a
+ 476 0045 0B       		.uleb128 0xb
+ 477 0046 3B       		.uleb128 0x3b
+ 478 0047 0B       		.uleb128 0xb
+ 479 0048 27       		.uleb128 0x27
+ 480 0049 19       		.uleb128 0x19
+ 481 004a 11       		.uleb128 0x11
+ 482 004b 01       		.uleb128 0x1
+ 483 004c 12       		.uleb128 0x12
+ 484 004d 06       		.uleb128 0x6
+ 485 004e 40       		.uleb128 0x40
+ 486 004f 18       		.uleb128 0x18
+ 487 0050 9742     		.uleb128 0x2117
+ 488 0052 19       		.uleb128 0x19
+ 489 0053 00       		.byte	0
+ 490 0054 00       		.byte	0
+ 491 0055 07       		.uleb128 0x7
+ 492 0056 2E       		.uleb128 0x2e
+ 493 0057 01       		.byte	0x1
+ 494 0058 3F       		.uleb128 0x3f
+ 495 0059 19       		.uleb128 0x19
+ 496 005a 03       		.uleb128 0x3
+ 497 005b 0E       		.uleb128 0xe
+ 498 005c 3A       		.uleb128 0x3a
+ 499 005d 0B       		.uleb128 0xb
+ 500 005e 3B       		.uleb128 0x3b
+ 501 005f 0B       		.uleb128 0xb
+ 502 0060 27       		.uleb128 0x27
+ 503 0061 19       		.uleb128 0x19
+ 504 0062 11       		.uleb128 0x11
+ 505 0063 01       		.uleb128 0x1
+ 506 0064 12       		.uleb128 0x12
+ 507 0065 06       		.uleb128 0x6
+ 508 0066 40       		.uleb128 0x40
+ 509 0067 18       		.uleb128 0x18
+ 510 0068 9742     		.uleb128 0x2117
+ 511 006a 19       		.uleb128 0x19
+ 512 006b 01       		.uleb128 0x1
+ 513 006c 13       		.uleb128 0x13
+ 514 006d 00       		.byte	0
+ 515 006e 00       		.byte	0
+ 516 006f 08       		.uleb128 0x8
+ 517 0070 898201   		.uleb128 0x4109
+ 518 0073 00       		.byte	0
+ 519 0074 11       		.uleb128 0x11
+ 520 0075 01       		.uleb128 0x1
+ 521 0076 31       		.uleb128 0x31
+ 522 0077 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 13
+
+
+ 523 0078 00       		.byte	0
+ 524 0079 00       		.byte	0
+ 525 007a 09       		.uleb128 0x9
+ 526 007b 05       		.uleb128 0x5
+ 527 007c 00       		.byte	0
+ 528 007d 03       		.uleb128 0x3
+ 529 007e 0E       		.uleb128 0xe
+ 530 007f 3A       		.uleb128 0x3a
+ 531 0080 0B       		.uleb128 0xb
+ 532 0081 3B       		.uleb128 0x3b
+ 533 0082 0B       		.uleb128 0xb
+ 534 0083 49       		.uleb128 0x49
+ 535 0084 13       		.uleb128 0x13
+ 536 0085 02       		.uleb128 0x2
+ 537 0086 17       		.uleb128 0x17
+ 538 0087 00       		.byte	0
+ 539 0088 00       		.byte	0
+ 540 0089 0A       		.uleb128 0xa
+ 541 008a 34       		.uleb128 0x34
+ 542 008b 00       		.byte	0
+ 543 008c 03       		.uleb128 0x3
+ 544 008d 0E       		.uleb128 0xe
+ 545 008e 3A       		.uleb128 0x3a
+ 546 008f 0B       		.uleb128 0xb
+ 547 0090 3B       		.uleb128 0x3b
+ 548 0091 0B       		.uleb128 0xb
+ 549 0092 49       		.uleb128 0x49
+ 550 0093 13       		.uleb128 0x13
+ 551 0094 3F       		.uleb128 0x3f
+ 552 0095 19       		.uleb128 0x19
+ 553 0096 02       		.uleb128 0x2
+ 554 0097 18       		.uleb128 0x18
+ 555 0098 00       		.byte	0
+ 556 0099 00       		.byte	0
+ 557 009a 00       		.byte	0
+ 558              		.section	.debug_loc,"",%progbits
+ 559              	.Ldebug_loc0:
+ 560              	.LLST0:
+ 561 0000 00000000 		.4byte	.LVL2
+ 562 0004 06000000 		.4byte	.LVL3
+ 563 0008 0100     		.2byte	0x1
+ 564 000a 50       		.byte	0x50
+ 565 000b 06000000 		.4byte	.LVL3
+ 566 000f 0A000000 		.4byte	.LVL4
+ 567 0013 0300     		.2byte	0x3
+ 568 0015 70       		.byte	0x70
+ 569 0016 01       		.sleb128 1
+ 570 0017 9F       		.byte	0x9f
+ 571 0018 0A000000 		.4byte	.LVL4
+ 572 001c 1C000000 		.4byte	.LFE4
+ 573 0020 0400     		.2byte	0x4
+ 574 0022 F3       		.byte	0xf3
+ 575 0023 01       		.uleb128 0x1
+ 576 0024 50       		.byte	0x50
+ 577 0025 9F       		.byte	0x9f
+ 578 0026 00000000 		.4byte	0
+ 579 002a 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 14
+
+
+ 580              	.LLST1:
+ 581 002e 00000000 		.4byte	.LVL5
+ 582 0032 10000000 		.4byte	.LVL6
+ 583 0036 0100     		.2byte	0x1
+ 584 0038 50       		.byte	0x50
+ 585 0039 10000000 		.4byte	.LVL6
+ 586 003d 2C000000 		.4byte	.LFE5
+ 587 0041 0400     		.2byte	0x4
+ 588 0043 F3       		.byte	0xf3
+ 589 0044 01       		.uleb128 0x1
+ 590 0045 50       		.byte	0x50
+ 591 0046 9F       		.byte	0x9f
+ 592 0047 00000000 		.4byte	0
+ 593 004b 00000000 		.4byte	0
+ 594              		.section	.debug_aranges,"",%progbits
+ 595 0000 44000000 		.4byte	0x44
+ 596 0004 0200     		.2byte	0x2
+ 597 0006 00000000 		.4byte	.Ldebug_info0
+ 598 000a 04       		.byte	0x4
+ 599 000b 00       		.byte	0
+ 600 000c 0000     		.2byte	0
+ 601 000e 0000     		.2byte	0
+ 602 0010 00000000 		.4byte	.LFB0
+ 603 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 604 0018 00000000 		.4byte	.LFB1
+ 605 001c 10000000 		.4byte	.LFE1-.LFB1
+ 606 0020 00000000 		.4byte	.LFB2
+ 607 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 608 0028 00000000 		.4byte	.LFB3
+ 609 002c 10000000 		.4byte	.LFE3-.LFB3
+ 610 0030 00000000 		.4byte	.LFB4
+ 611 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 612 0038 00000000 		.4byte	.LFB5
+ 613 003c 2C000000 		.4byte	.LFE5-.LFB5
+ 614 0040 00000000 		.4byte	0
+ 615 0044 00000000 		.4byte	0
+ 616              		.section	.debug_ranges,"",%progbits
+ 617              	.Ldebug_ranges0:
+ 618 0000 00000000 		.4byte	.LFB0
+ 619 0004 1C000000 		.4byte	.LFE0
+ 620 0008 00000000 		.4byte	.LFB1
+ 621 000c 10000000 		.4byte	.LFE1
+ 622 0010 00000000 		.4byte	.LFB2
+ 623 0014 1C000000 		.4byte	.LFE2
+ 624 0018 00000000 		.4byte	.LFB3
+ 625 001c 10000000 		.4byte	.LFE3
+ 626 0020 00000000 		.4byte	.LFB4
+ 627 0024 1C000000 		.4byte	.LFE4
+ 628 0028 00000000 		.4byte	.LFB5
+ 629 002c 2C000000 		.4byte	.LFE5
+ 630 0030 00000000 		.4byte	0
+ 631 0034 00000000 		.4byte	0
+ 632              		.section	.debug_line,"",%progbits
+ 633              	.Ldebug_line0:
+ 634 0000 C4000000 		.section	.debug_str,"MS",%progbits,1
+ 634      02004200 
+ 634      00000201 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 15
+
+
+ 634      FB0E0D00 
+ 634      01010101 
+ 635              	.LASF14:
+ 636 0000 72656733 		.ascii	"reg32\000"
+ 636      3200
+ 637              	.LASF22:
+ 638 0006 72656665 		.ascii	"reference\000"
+ 638      72656E63 
+ 638      6500
+ 639              	.LASF23:
+ 640 0010 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 640      4320342E 
+ 640      392E3320 
+ 640      32303135 
+ 640      30333033 
+ 641 0043 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 641      20726576 
+ 641      6973696F 
+ 641      6E203232 
+ 641      31323230 
+ 642 0076 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 642      73202D66 
+ 642      66756E63 
+ 642      74696F6E 
+ 642      2D736563 
+ 643              	.LASF19:
+ 644 00a2 50567265 		.ascii	"PVref_SetTap\000"
+ 644      665F5365 
+ 644      74546170 
+ 644      00
+ 645              	.LASF18:
+ 646 00af 50567265 		.ascii	"PVref_Start\000"
+ 646      665F5374 
+ 646      61727400 
+ 647              	.LASF11:
+ 648 00bb 666C6F61 		.ascii	"float\000"
+ 648      7400
+ 649              	.LASF1:
+ 650 00c1 756E7369 		.ascii	"unsigned char\000"
+ 650      676E6564 
+ 650      20636861 
+ 650      7200
+ 651              	.LASF5:
+ 652 00cf 6C6F6E67 		.ascii	"long unsigned int\000"
+ 652      20756E73 
+ 652      69676E65 
+ 652      6420696E 
+ 652      7400
+ 653              	.LASF3:
+ 654 00e1 73686F72 		.ascii	"short unsigned int\000"
+ 654      7420756E 
+ 654      7369676E 
+ 654      65642069 
+ 654      6E7400
+ 655              	.LASF15:
+ 656 00f4 50567265 		.ascii	"PVref_Init\000"
+ 656      665F496E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 16
+
+
+ 656      697400
+ 657              	.LASF26:
+ 658 00ff 50567265 		.ascii	"PVref_initVar\000"
+ 658      665F696E 
+ 658      69745661 
+ 658      7200
+ 659              	.LASF12:
+ 660 010d 646F7562 		.ascii	"double\000"
+ 660      6C6500
+ 661              	.LASF16:
+ 662 0114 50567265 		.ascii	"PVref_Enable\000"
+ 662      665F456E 
+ 662      61626C65 
+ 662      00
+ 663              	.LASF24:
+ 664 0121 47656E65 		.ascii	"Generated_Source\\PSoC4\\PVref.c\000"
+ 664      72617465 
+ 664      645F536F 
+ 664      75726365 
+ 664      5C50536F 
+ 665              	.LASF10:
+ 666 0140 75696E74 		.ascii	"uint32\000"
+ 666      333200
+ 667              	.LASF8:
+ 668 0147 756E7369 		.ascii	"unsigned int\000"
+ 668      676E6564 
+ 668      20696E74 
+ 668      00
+ 669              	.LASF7:
+ 670 0154 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 670      206C6F6E 
+ 670      6720756E 
+ 670      7369676E 
+ 670      65642069 
+ 671              	.LASF21:
+ 672 016b 64697669 		.ascii	"dividerTap\000"
+ 672      64657254 
+ 672      617000
+ 673              	.LASF6:
+ 674 0176 6C6F6E67 		.ascii	"long long int\000"
+ 674      206C6F6E 
+ 674      6720696E 
+ 674      7400
+ 675              	.LASF13:
+ 676 0184 63686172 		.ascii	"char\000"
+ 676      00
+ 677              	.LASF17:
+ 678 0189 50567265 		.ascii	"PVref_Stop\000"
+ 678      665F5374 
+ 678      6F7000
+ 679              	.LASF2:
+ 680 0194 73686F72 		.ascii	"short int\000"
+ 680      7420696E 
+ 680      7400
+ 681              	.LASF9:
+ 682 019e 75696E74 		.ascii	"uint8\000"
+ 682      3800
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccDS2Rfq.s 			page 17
+
+
+ 683              	.LASF4:
+ 684 01a4 6C6F6E67 		.ascii	"long int\000"
+ 684      20696E74 
+ 684      00
+ 685              	.LASF0:
+ 686 01ad 7369676E 		.ascii	"signed char\000"
+ 686      65642063 
+ 686      68617200 
+ 687              	.LASF20:
+ 688 01b9 50567265 		.ascii	"PVref_SetVRefSrc\000"
+ 688      665F5365 
+ 688      74565265 
+ 688      66537263 
+ 688      00
+ 689              	.LASF25:
+ 690 01ca 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 690      79707265 
+ 690      73735C54 
+ 690      616C6B69 
+ 690      6E67436C 
+ 691              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

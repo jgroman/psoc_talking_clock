@@ -1,0 +1,30 @@
+Generating LPC sound samples
+
+Download QBoxPro from http://ftp.whtech.com/pc%20utilities/qboxpro.zip
+
+  This is a 16-bit Windows application, it will work ONLY in 32-bit Windows,
+tested working in 32-bit Windows XP. This software also requires a copy 
+of BWCC.DLL library, which can be found on the internet. 
+
+  This program can be used to convert WAV files into LPC encoded data.
+WAV format MUST be 16bit PCM, 8 kHz sample rate, mono.
+
+Installing
+1. Copy QBoxPro files into C:\QBOX directory
+2. Move QBOXPRO.INI to C:\WINDOWS
+3. Find BWCC.DLL (tested with 1.3.14.1) and copy to C:\QBOX
+4. Launch QBoxPro and exit via Project.. -> Exit
+5. Edit C:\WINDOWS\QBOXPRO.INI, find LPCNB=12, change to LPCNB=10
+
+Processing samples
+1. Create new project
+2. Project Settings: Set Alignment: Byte, Sampling Frequency: 8kHz, Coding Table: 5220
+3. Add Wav file: Project... -> Add Files... 
+4. Click Process... -> Medium bitrate -> OK
+5. Click Edit... -> Concatenations -> Insert... -> Concatenation...
+6. Enter sample description -> OK
+7. Click Insert... -> Phrase... -> OK
+8. Click Format... -> LPC 10V, 4UV -> OK
+9. Optionally save project: Click Project... -> Save
+
+Generated LPC file is in the project directory with *.bin extension

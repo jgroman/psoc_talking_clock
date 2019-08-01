@@ -1,0 +1,1103 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"VDAC_Synth_OUTBUFFER.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.VDAC_Synth_OUTBUFFER_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	VDAC_Synth_OUTBUFFER_Init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	VDAC_Synth_OUTBUFFER_Init, %function
+  23              	VDAC_Synth_OUTBUFFER_Init:
+  24              	.LFB0:
+  25              		.file 1 "Generated_Source\\PSoC4\\VDAC_Synth_OUTBUFFER.c"
+   1:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * File Name: VDAC_Synth_OUTBUFFER.c
+   3:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Version 1.20
+   4:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+   5:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Description:
+   6:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  This file provides the source code to the API for the Opamp (Analog Buffer)
+   7:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Component.
+   8:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+   9:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  10:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+  11:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *******************************************************************************/
+  16:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  17:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** #include "VDAC_Synth_OUTBUFFER.h"
+  18:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  19:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** uint8 VDAC_Synth_OUTBUFFER_initVar = 0u; /* Defines if component was initialized */
+  20:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** static uint32 VDAC_Synth_OUTBUFFER_internalPower = 0u; /* Defines component Power value */
+  21:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  22:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  23:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+  24:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_Init
+  25:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+  26:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  27:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+  28:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Initializes or restores the component according to the customizer Configure 
+  29:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  dialog settings. It is not necessary to call Init() because the Start() API 
+  30:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  calls this function and is the preferred method to begin the component operation.
+  31:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  32:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 2
+
+
+  33:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  34:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  35:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+  36:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  37:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  38:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_Init(void)
+  40:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+  26              		.loc 1 40 0
+  27              		.cfi_startproc
+  41:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_internalPower = VDAC_Synth_OUTBUFFER_POWER;
+  28              		.loc 1 41 0
+  29 0000 0323     		mov	r3, #3
+  42:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_CTB_CTRL_REG = VDAC_Synth_OUTBUFFER_DEFAULT_CTB_CTRL;
+  30              		.loc 1 42 0
+  31 0002 8021     		mov	r1, #128
+  41:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_internalPower = VDAC_Synth_OUTBUFFER_POWER;
+  32              		.loc 1 41 0
+  33 0004 054A     		ldr	r2, .L2
+  34              		.loc 1 42 0
+  35 0006 0906     		lsl	r1, r1, #24
+  41:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_internalPower = VDAC_Synth_OUTBUFFER_POWER;
+  36              		.loc 1 41 0
+  37 0008 1360     		str	r3, [r2]
+  38              		.loc 1 42 0
+  39 000a 054A     		ldr	r2, .L2+4
+  43:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG = VDAC_Synth_OUTBUFFER_DEFAULT_OA_RES_CTRL;
+  44:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_COMP_TRIM_REG = VDAC_Synth_OUTBUFFER_DEFAULT_OA_COMP_TRIM_REG;
+  45:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+  40              		.loc 1 45 0
+  41              		@ sp needed
+  42:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_CTB_CTRL_REG = VDAC_Synth_OUTBUFFER_DEFAULT_CTB_CTRL;
+  42              		.loc 1 42 0
+  43 000c 1160     		str	r1, [r2]
+  43:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG = VDAC_Synth_OUTBUFFER_DEFAULT_OA_RES_CTRL;
+  44              		.loc 1 43 0
+  45 000e 0421     		mov	r1, #4
+  46 0010 044A     		ldr	r2, .L2+8
+  47 0012 1160     		str	r1, [r2]
+  44:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+  48              		.loc 1 44 0
+  49 0014 044A     		ldr	r2, .L2+12
+  50 0016 1360     		str	r3, [r2]
+  51              		.loc 1 45 0
+  52 0018 7047     		bx	lr
+  53              	.L3:
+  54 001a C046     		.align	2
+  55              	.L2:
+  56 001c 00000000 		.word	.LANCHOR0
+  57 0020 00003040 		.word	1076887552
+  58 0024 04003040 		.word	1076887556
+  59 0028 080F3040 		.word	1076891400
+  60              		.cfi_endproc
+  61              	.LFE0:
+  62              		.size	VDAC_Synth_OUTBUFFER_Init, .-VDAC_Synth_OUTBUFFER_Init
+  63              		.section	.text.VDAC_Synth_OUTBUFFER_Enable,"ax",%progbits
+  64              		.align	1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 3
+
+
+  65              		.global	VDAC_Synth_OUTBUFFER_Enable
+  66              		.code	16
+  67              		.thumb_func
+  68              		.type	VDAC_Synth_OUTBUFFER_Enable, %function
+  69              	VDAC_Synth_OUTBUFFER_Enable:
+  70              	.LFB1:
+  46:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  47:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  48:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+  49:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_Enable
+  50:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+  51:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  52:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+  53:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Activates the hardware and begins the component operation. It is not necessary to 
+  54:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  call Enable() because the Start() API calls this function, which is the 
+  55:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  preferred method to begin the component operation.
+  56:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  57:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+  58:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  59:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  60:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+  61:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  62:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  63:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *******************************************************************************/
+  64:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_Enable(void)
+  65:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+  71              		.loc 1 65 0
+  72              		.cfi_startproc
+  66:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG |= VDAC_Synth_OUTBUFFER_internalPower | \
+  73              		.loc 1 66 0
+  74 0000 044A     		ldr	r2, .L5
+  75 0002 054B     		ldr	r3, .L5+4
+  76 0004 1168     		ldr	r1, [r2]
+  77 0006 1B68     		ldr	r3, [r3]
+  67:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****                                         VDAC_Synth_OUTBUFFER_OA_PUMP_EN;
+  68:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+  78              		.loc 1 68 0
+  79              		@ sp needed
+  66:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG |= VDAC_Synth_OUTBUFFER_internalPower | \
+  80              		.loc 1 66 0
+  81 0008 0B43     		orr	r3, r1
+  82 000a 8021     		mov	r1, #128
+  83 000c 0901     		lsl	r1, r1, #4
+  84 000e 0B43     		orr	r3, r1
+  85 0010 1360     		str	r3, [r2]
+  86              		.loc 1 68 0
+  87 0012 7047     		bx	lr
+  88              	.L6:
+  89              		.align	2
+  90              	.L5:
+  91 0014 04003040 		.word	1076887556
+  92 0018 00000000 		.word	.LANCHOR0
+  93              		.cfi_endproc
+  94              	.LFE1:
+  95              		.size	VDAC_Synth_OUTBUFFER_Enable, .-VDAC_Synth_OUTBUFFER_Enable
+  96              		.section	.text.VDAC_Synth_OUTBUFFER_Start,"ax",%progbits
+  97              		.align	1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 4
+
+
+  98              		.global	VDAC_Synth_OUTBUFFER_Start
+  99              		.code	16
+ 100              		.thumb_func
+ 101              		.type	VDAC_Synth_OUTBUFFER_Start, %function
+ 102              	VDAC_Synth_OUTBUFFER_Start:
+ 103              	.LFB2:
+  69:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  70:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+  71:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+  72:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_Start
+  73:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+  74:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  75:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+  76:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Performs all of the required initialization for the component and enables power 
+  77:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  to the block. The first time the routine is executed, the Power level, Mode, 
+  78:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  and Output mode are set. When called to restart the Opamp following a Stop() call, 
+  79:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  the current component parameter settings are retained.
+  80:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  81:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+  82:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  83:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  84:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+  85:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+  86:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  87:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Global variables:
+  88:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  VDAC_Synth_OUTBUFFER_initVar: Used to check the initial configuration, modified
+  89:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  when this function is called for the first time.
+  90:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+  91:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *******************************************************************************/
+  92:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_Start(void)
+  93:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+ 104              		.loc 1 93 0
+ 105              		.cfi_startproc
+ 106 0000 10B5     		push	{r4, lr}
+ 107              		.cfi_def_cfa_offset 8
+ 108              		.cfi_offset 4, -8
+ 109              		.cfi_offset 14, -4
+  94:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     if( 0u == VDAC_Synth_OUTBUFFER_initVar)
+ 110              		.loc 1 94 0
+ 111 0002 054C     		ldr	r4, .L10
+ 112 0004 2379     		ldrb	r3, [r4, #4]
+ 113 0006 002B     		cmp	r3, #0
+ 114 0008 03D1     		bne	.L8
+  95:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     {
+  96:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****         VDAC_Synth_OUTBUFFER_Init();
+ 115              		.loc 1 96 0
+ 116 000a FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Init
+ 117              	.LVL0:
+  97:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****         VDAC_Synth_OUTBUFFER_initVar = 1u;
+ 118              		.loc 1 97 0
+ 119 000e 0123     		mov	r3, #1
+ 120 0010 2371     		strb	r3, [r4, #4]
+ 121              	.L8:
+  98:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     }
+  99:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_Enable();
+ 122              		.loc 1 99 0
+ 123 0012 FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Enable
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 5
+
+
+ 124              	.LVL1:
+ 100:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+ 125              		.loc 1 100 0
+ 126              		@ sp needed
+ 127 0016 10BD     		pop	{r4, pc}
+ 128              	.L11:
+ 129              		.align	2
+ 130              	.L10:
+ 131 0018 00000000 		.word	.LANCHOR0
+ 132              		.cfi_endproc
+ 133              	.LFE2:
+ 134              		.size	VDAC_Synth_OUTBUFFER_Start, .-VDAC_Synth_OUTBUFFER_Start
+ 135              		.section	.text.VDAC_Synth_OUTBUFFER_Stop,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	VDAC_Synth_OUTBUFFER_Stop
+ 138              		.code	16
+ 139              		.thumb_func
+ 140              		.type	VDAC_Synth_OUTBUFFER_Stop, %function
+ 141              	VDAC_Synth_OUTBUFFER_Stop:
+ 142              	.LFB3:
+ 101:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 102:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 103:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+ 104:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_Stop
+ 105:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+ 106:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 107:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+ 108:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Turn off the Opamp block.
+ 109:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 110:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+ 111:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+ 112:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 113:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+ 114:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+ 115:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 116:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *******************************************************************************/
+ 117:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_Stop(void)
+ 118:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+ 143              		.loc 1 118 0
+ 144              		.cfi_startproc
+ 119:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG &= ((uint32)~(VDAC_Synth_OUTBUFFER_OA_PWR_MODE_MASK | \
+ 145              		.loc 1 119 0
+ 146 0000 024A     		ldr	r2, .L13
+ 147 0002 034B     		ldr	r3, .L13+4
+ 148 0004 1168     		ldr	r1, [r2]
+ 120:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****                                                    VDAC_Synth_OUTBUFFER_OA_PUMP_EN));
+ 121:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+ 149              		.loc 1 121 0
+ 150              		@ sp needed
+ 119:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG &= ((uint32)~(VDAC_Synth_OUTBUFFER_OA_PWR_MODE_MASK | \
+ 151              		.loc 1 119 0
+ 152 0006 0B40     		and	r3, r1
+ 153 0008 1360     		str	r3, [r2]
+ 154              		.loc 1 121 0
+ 155 000a 7047     		bx	lr
+ 156              	.L14:
+ 157              		.align	2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 6
+
+
+ 158              	.L13:
+ 159 000c 04003040 		.word	1076887556
+ 160 0010 FCF7FFFF 		.word	-2052
+ 161              		.cfi_endproc
+ 162              	.LFE3:
+ 163              		.size	VDAC_Synth_OUTBUFFER_Stop, .-VDAC_Synth_OUTBUFFER_Stop
+ 164              		.section	.text.VDAC_Synth_OUTBUFFER_SetPower,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	VDAC_Synth_OUTBUFFER_SetPower
+ 167              		.code	16
+ 168              		.thumb_func
+ 169              		.type	VDAC_Synth_OUTBUFFER_SetPower, %function
+ 170              	VDAC_Synth_OUTBUFFER_SetPower:
+ 171              	.LFB4:
+ 122:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 123:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 124:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+ 125:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_SetPower
+ 126:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+ 127:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 128:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+ 129:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Sets the Opamp to one of the three power levels.
+ 130:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 131:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+ 132:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  power: power levels.
+ 133:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *   VDAC_Synth_OUTBUFFER_LOW_POWER - Lowest active power
+ 134:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *   VDAC_Synth_OUTBUFFER_MED_POWER - Medium power
+ 135:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *   VDAC_Synth_OUTBUFFER_HIGH_POWER - Highest active power
+ 136:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 137:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+ 138:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+ 139:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 140:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** **********************************************************************************/
+ 141:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_SetPower(uint32 power)
+ 142:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+ 172              		.loc 1 142 0
+ 173              		.cfi_startproc
+ 174              	.LVL2:
+ 143:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     uint32 tmp;
+ 144:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     
+ 145:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_internalPower = VDAC_Synth_OUTBUFFER_GET_OA_PWR_MODE(power);
+ 175              		.loc 1 145 0
+ 176 0000 0321     		mov	r1, #3
+ 177 0002 044B     		ldr	r3, .L16
+ 178 0004 0840     		and	r0, r1
+ 179              	.LVL3:
+ 146:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     tmp = VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG & \
+ 180              		.loc 1 146 0
+ 181 0006 044A     		ldr	r2, .L16+4
+ 145:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     tmp = VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG & \
+ 182              		.loc 1 145 0
+ 183 0008 1860     		str	r0, [r3]
+ 184              		.loc 1 146 0
+ 185 000a 1368     		ldr	r3, [r2]
+ 186              	.LVL4:
+ 147:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****            (uint32)~VDAC_Synth_OUTBUFFER_OA_PWR_MODE_MASK;
+ 148:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     VDAC_Synth_OUTBUFFER_OA_RES_CTRL_REG = tmp | VDAC_Synth_OUTBUFFER_internalPower;
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 7
+
+
+ 149:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+ 187              		.loc 1 149 0
+ 188              		@ sp needed
+ 146:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****            (uint32)~VDAC_Synth_OUTBUFFER_OA_PWR_MODE_MASK;
+ 189              		.loc 1 146 0
+ 190 000c 8B43     		bic	r3, r1
+ 191              	.LVL5:
+ 148:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+ 192              		.loc 1 148 0
+ 193 000e 1843     		orr	r0, r3
+ 194 0010 1060     		str	r0, [r2]
+ 195              		.loc 1 149 0
+ 196 0012 7047     		bx	lr
+ 197              	.L17:
+ 198              		.align	2
+ 199              	.L16:
+ 200 0014 00000000 		.word	.LANCHOR0
+ 201 0018 04003040 		.word	1076887556
+ 202              		.cfi_endproc
+ 203              	.LFE4:
+ 204              		.size	VDAC_Synth_OUTBUFFER_SetPower, .-VDAC_Synth_OUTBUFFER_SetPower
+ 205              		.section	.text.VDAC_Synth_OUTBUFFER_PumpControl,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	VDAC_Synth_OUTBUFFER_PumpControl
+ 208              		.code	16
+ 209              		.thumb_func
+ 210              		.type	VDAC_Synth_OUTBUFFER_PumpControl, %function
+ 211              	VDAC_Synth_OUTBUFFER_PumpControl:
+ 212              	.LFB5:
+ 150:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 151:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** 
+ 152:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** /*******************************************************************************
+ 153:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Function Name: VDAC_Synth_OUTBUFFER_PumpControl
+ 154:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** ********************************************************************************
+ 155:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 156:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Summary:
+ 157:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  Allows the user to turn the Opamp's boost pump on or off. By Default the Start() 
+ 158:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  function turns on the pump. Use this API to turn it off. The boost must be 
+ 159:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  turned on when the supply is less than 2.7 volts and off if the supply is more 
+ 160:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  than 4 volts.
+ 161:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 162:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Parameters:
+ 163:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  onOff: Control the pump.
+ 164:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *   VDAC_Synth_OUTBUFFER_PUMP_OFF - Turn off the pump
+ 165:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *   VDAC_Synth_OUTBUFFER_PUMP_ON - Turn on the pump
+ 166:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 167:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** * Return:
+ 168:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *  None
+ 169:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** *
+ 170:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** **********************************************************************************/
+ 171:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** void VDAC_Synth_OUTBUFFER_PumpControl(uint32 onOff)
+ 172:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** {
+ 213              		.loc 1 172 0
+ 214              		.cfi_startproc
+ 215              	.LVL6:
+ 216 0000 064B     		ldr	r3, .L22
+ 173:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 8
+
+
+ 174:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     if(0u != onOff)
+ 217              		.loc 1 174 0
+ 218 0002 0028     		cmp	r0, #0
+ 219 0004 04D0     		beq	.L19
+ 175:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     {
+ 176:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****         VDAC_Synth_OUTBUFFER_OA_RES_CTRL |= VDAC_Synth_OUTBUFFER_OA_PUMP_EN;    
+ 220              		.loc 1 176 0
+ 221 0006 8021     		mov	r1, #128
+ 222 0008 1A68     		ldr	r2, [r3]
+ 223 000a 0901     		lsl	r1, r1, #4
+ 224 000c 0A43     		orr	r2, r1
+ 225 000e 02E0     		b	.L21
+ 226              	.L19:
+ 177:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     }
+ 178:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     else
+ 179:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     {
+ 180:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****         VDAC_Synth_OUTBUFFER_OA_RES_CTRL &= (uint32)~VDAC_Synth_OUTBUFFER_OA_PUMP_EN;
+ 227              		.loc 1 180 0
+ 228 0010 1968     		ldr	r1, [r3]
+ 229 0012 034A     		ldr	r2, .L22+4
+ 230 0014 0A40     		and	r2, r1
+ 231              	.L21:
+ 232 0016 1A60     		str	r2, [r3]
+ 181:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c ****     }
+ 182:Generated_Source\PSoC4/VDAC_Synth_OUTBUFFER.c **** }
+ 233              		.loc 1 182 0
+ 234              		@ sp needed
+ 235 0018 7047     		bx	lr
+ 236              	.L23:
+ 237 001a C046     		.align	2
+ 238              	.L22:
+ 239 001c 04003040 		.word	1076887556
+ 240 0020 FFF7FFFF 		.word	-2049
+ 241              		.cfi_endproc
+ 242              	.LFE5:
+ 243              		.size	VDAC_Synth_OUTBUFFER_PumpControl, .-VDAC_Synth_OUTBUFFER_PumpControl
+ 244              		.global	VDAC_Synth_OUTBUFFER_initVar
+ 245              		.bss
+ 246              		.align	2
+ 247              		.set	.LANCHOR0,. + 0
+ 248              		.type	VDAC_Synth_OUTBUFFER_internalPower, %object
+ 249              		.size	VDAC_Synth_OUTBUFFER_internalPower, 4
+ 250              	VDAC_Synth_OUTBUFFER_internalPower:
+ 251 0000 00000000 		.space	4
+ 252              		.type	VDAC_Synth_OUTBUFFER_initVar, %object
+ 253              		.size	VDAC_Synth_OUTBUFFER_initVar, 1
+ 254              	VDAC_Synth_OUTBUFFER_initVar:
+ 255 0004 00       		.space	1
+ 256 0005 000000   		.text
+ 257              	.Letext0:
+ 258              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 259              		.section	.debug_info,"",%progbits
+ 260              	.Ldebug_info0:
+ 261 0000 7A010000 		.4byte	0x17a
+ 262 0004 0400     		.2byte	0x4
+ 263 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 264 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 9
+
+
+ 265 000b 01       		.uleb128 0x1
+ 266 000c 49000000 		.4byte	.LASF24
+ 267 0010 01       		.byte	0x1
+ 268 0011 FB000000 		.4byte	.LASF25
+ 269 0015 5F020000 		.4byte	.LASF26
+ 270 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 271 001d 00000000 		.4byte	0
+ 272 0021 00000000 		.4byte	.Ldebug_line0
+ 273 0025 02       		.uleb128 0x2
+ 274 0026 01       		.byte	0x1
+ 275 0027 06       		.byte	0x6
+ 276 0028 53020000 		.4byte	.LASF0
+ 277 002c 02       		.uleb128 0x2
+ 278 002d 01       		.byte	0x1
+ 279 002e 08       		.byte	0x8
+ 280 002f 44010000 		.4byte	.LASF1
+ 281 0033 02       		.uleb128 0x2
+ 282 0034 02       		.byte	0x2
+ 283 0035 05       		.byte	0x5
+ 284 0036 1D020000 		.4byte	.LASF2
+ 285 003a 02       		.uleb128 0x2
+ 286 003b 02       		.byte	0x2
+ 287 003c 07       		.byte	0x7
+ 288 003d 6A010000 		.4byte	.LASF3
+ 289 0041 02       		.uleb128 0x2
+ 290 0042 04       		.byte	0x4
+ 291 0043 05       		.byte	0x5
+ 292 0044 4A020000 		.4byte	.LASF4
+ 293 0048 02       		.uleb128 0x2
+ 294 0049 04       		.byte	0x4
+ 295 004a 07       		.byte	0x7
+ 296 004b 58010000 		.4byte	.LASF5
+ 297 004f 02       		.uleb128 0x2
+ 298 0050 08       		.byte	0x8
+ 299 0051 05       		.byte	0x5
+ 300 0052 0A020000 		.4byte	.LASF6
+ 301 0056 02       		.uleb128 0x2
+ 302 0057 08       		.byte	0x8
+ 303 0058 07       		.byte	0x7
+ 304 0059 B6010000 		.4byte	.LASF7
+ 305 005d 03       		.uleb128 0x3
+ 306 005e 04       		.byte	0x4
+ 307 005f 05       		.byte	0x5
+ 308 0060 696E7400 		.ascii	"int\000"
+ 309 0064 02       		.uleb128 0x2
+ 310 0065 04       		.byte	0x4
+ 311 0066 07       		.byte	0x7
+ 312 0067 A9010000 		.4byte	.LASF8
+ 313 006b 04       		.uleb128 0x4
+ 314 006c 44020000 		.4byte	.LASF9
+ 315 0070 02       		.byte	0x2
+ 316 0071 B901     		.2byte	0x1b9
+ 317 0073 2C000000 		.4byte	0x2c
+ 318 0077 04       		.uleb128 0x4
+ 319 0078 A2010000 		.4byte	.LASF10
+ 320 007c 02       		.byte	0x2
+ 321 007d BB01     		.2byte	0x1bb
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 10
+
+
+ 322 007f 48000000 		.4byte	0x48
+ 323 0083 02       		.uleb128 0x2
+ 324 0084 04       		.byte	0x4
+ 325 0085 04       		.byte	0x4
+ 326 0086 43000000 		.4byte	.LASF11
+ 327 008a 02       		.uleb128 0x2
+ 328 008b 08       		.byte	0x8
+ 329 008c 04       		.byte	0x4
+ 330 008d 7D010000 		.4byte	.LASF12
+ 331 0091 02       		.uleb128 0x2
+ 332 0092 01       		.byte	0x1
+ 333 0093 08       		.byte	0x8
+ 334 0094 18020000 		.4byte	.LASF13
+ 335 0098 04       		.uleb128 0x4
+ 336 0099 00000000 		.4byte	.LASF14
+ 337 009d 02       		.byte	0x2
+ 338 009e 6502     		.2byte	0x265
+ 339 00a0 A4000000 		.4byte	0xa4
+ 340 00a4 05       		.uleb128 0x5
+ 341 00a5 77000000 		.4byte	0x77
+ 342 00a9 06       		.uleb128 0x6
+ 343 00aa CD010000 		.4byte	.LASF15
+ 344 00ae 01       		.byte	0x1
+ 345 00af 27       		.byte	0x27
+ 346 00b0 00000000 		.4byte	.LFB0
+ 347 00b4 2C000000 		.4byte	.LFE0-.LFB0
+ 348 00b8 01       		.uleb128 0x1
+ 349 00b9 9C       		.byte	0x9c
+ 350 00ba 06       		.uleb128 0x6
+ 351 00bb 27000000 		.4byte	.LASF16
+ 352 00bf 01       		.byte	0x1
+ 353 00c0 40       		.byte	0x40
+ 354 00c1 00000000 		.4byte	.LFB1
+ 355 00c5 1C000000 		.4byte	.LFE1-.LFB1
+ 356 00c9 01       		.uleb128 0x1
+ 357 00ca 9C       		.byte	0x9c
+ 358 00cb 07       		.uleb128 0x7
+ 359 00cc 29010000 		.4byte	.LASF18
+ 360 00d0 01       		.byte	0x1
+ 361 00d1 5C       		.byte	0x5c
+ 362 00d2 00000000 		.4byte	.LFB2
+ 363 00d6 1C000000 		.4byte	.LFE2-.LFB2
+ 364 00da 01       		.uleb128 0x1
+ 365 00db 9C       		.byte	0x9c
+ 366 00dc F3000000 		.4byte	0xf3
+ 367 00e0 08       		.uleb128 0x8
+ 368 00e1 0E000000 		.4byte	.LVL0
+ 369 00e5 A9000000 		.4byte	0xa9
+ 370 00e9 08       		.uleb128 0x8
+ 371 00ea 16000000 		.4byte	.LVL1
+ 372 00ee BA000000 		.4byte	0xba
+ 373 00f2 00       		.byte	0
+ 374 00f3 06       		.uleb128 0x6
+ 375 00f4 DB000000 		.4byte	.LASF17
+ 376 00f8 01       		.byte	0x1
+ 377 00f9 75       		.byte	0x75
+ 378 00fa 00000000 		.4byte	.LFB3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 11
+
+
+ 379 00fe 14000000 		.4byte	.LFE3-.LFB3
+ 380 0102 01       		.uleb128 0x1
+ 381 0103 9C       		.byte	0x9c
+ 382 0104 07       		.uleb128 0x7
+ 383 0105 84010000 		.4byte	.LASF19
+ 384 0109 01       		.byte	0x1
+ 385 010a 8D       		.byte	0x8d
+ 386 010b 00000000 		.4byte	.LFB4
+ 387 010f 1C000000 		.4byte	.LFE4-.LFB4
+ 388 0113 01       		.uleb128 0x1
+ 389 0114 9C       		.byte	0x9c
+ 390 0115 38010000 		.4byte	0x138
+ 391 0119 09       		.uleb128 0x9
+ 392 011a F5000000 		.4byte	.LASF21
+ 393 011e 01       		.byte	0x1
+ 394 011f 8D       		.byte	0x8d
+ 395 0120 77000000 		.4byte	0x77
+ 396 0124 00000000 		.4byte	.LLST0
+ 397 0128 0A       		.uleb128 0xa
+ 398 0129 746D7000 		.ascii	"tmp\000"
+ 399 012d 01       		.byte	0x1
+ 400 012e 8F       		.byte	0x8f
+ 401 012f 77000000 		.4byte	0x77
+ 402 0133 21000000 		.4byte	.LLST1
+ 403 0137 00       		.byte	0
+ 404 0138 07       		.uleb128 0x7
+ 405 0139 06000000 		.4byte	.LASF20
+ 406 013d 01       		.byte	0x1
+ 407 013e AB       		.byte	0xab
+ 408 013f 00000000 		.4byte	.LFB5
+ 409 0143 24000000 		.4byte	.LFE5-.LFB5
+ 410 0147 01       		.uleb128 0x1
+ 411 0148 9C       		.byte	0x9c
+ 412 0149 5B010000 		.4byte	0x15b
+ 413 014d 0B       		.uleb128 0xb
+ 414 014e 52010000 		.4byte	.LASF22
+ 415 0152 01       		.byte	0x1
+ 416 0153 AB       		.byte	0xab
+ 417 0154 77000000 		.4byte	0x77
+ 418 0158 01       		.uleb128 0x1
+ 419 0159 50       		.byte	0x50
+ 420 015a 00       		.byte	0
+ 421 015b 0C       		.uleb128 0xc
+ 422 015c E7010000 		.4byte	.LASF23
+ 423 0160 01       		.byte	0x1
+ 424 0161 14       		.byte	0x14
+ 425 0162 77000000 		.4byte	0x77
+ 426 0166 05       		.uleb128 0x5
+ 427 0167 03       		.byte	0x3
+ 428 0168 00000000 		.4byte	VDAC_Synth_OUTBUFFER_internalPower
+ 429 016c 0D       		.uleb128 0xd
+ 430 016d 27020000 		.4byte	.LASF27
+ 431 0171 01       		.byte	0x1
+ 432 0172 13       		.byte	0x13
+ 433 0173 6B000000 		.4byte	0x6b
+ 434 0177 05       		.uleb128 0x5
+ 435 0178 03       		.byte	0x3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 12
+
+
+ 436 0179 00000000 		.4byte	VDAC_Synth_OUTBUFFER_initVar
+ 437 017d 00       		.byte	0
+ 438              		.section	.debug_abbrev,"",%progbits
+ 439              	.Ldebug_abbrev0:
+ 440 0000 01       		.uleb128 0x1
+ 441 0001 11       		.uleb128 0x11
+ 442 0002 01       		.byte	0x1
+ 443 0003 25       		.uleb128 0x25
+ 444 0004 0E       		.uleb128 0xe
+ 445 0005 13       		.uleb128 0x13
+ 446 0006 0B       		.uleb128 0xb
+ 447 0007 03       		.uleb128 0x3
+ 448 0008 0E       		.uleb128 0xe
+ 449 0009 1B       		.uleb128 0x1b
+ 450 000a 0E       		.uleb128 0xe
+ 451 000b 55       		.uleb128 0x55
+ 452 000c 17       		.uleb128 0x17
+ 453 000d 11       		.uleb128 0x11
+ 454 000e 01       		.uleb128 0x1
+ 455 000f 10       		.uleb128 0x10
+ 456 0010 17       		.uleb128 0x17
+ 457 0011 00       		.byte	0
+ 458 0012 00       		.byte	0
+ 459 0013 02       		.uleb128 0x2
+ 460 0014 24       		.uleb128 0x24
+ 461 0015 00       		.byte	0
+ 462 0016 0B       		.uleb128 0xb
+ 463 0017 0B       		.uleb128 0xb
+ 464 0018 3E       		.uleb128 0x3e
+ 465 0019 0B       		.uleb128 0xb
+ 466 001a 03       		.uleb128 0x3
+ 467 001b 0E       		.uleb128 0xe
+ 468 001c 00       		.byte	0
+ 469 001d 00       		.byte	0
+ 470 001e 03       		.uleb128 0x3
+ 471 001f 24       		.uleb128 0x24
+ 472 0020 00       		.byte	0
+ 473 0021 0B       		.uleb128 0xb
+ 474 0022 0B       		.uleb128 0xb
+ 475 0023 3E       		.uleb128 0x3e
+ 476 0024 0B       		.uleb128 0xb
+ 477 0025 03       		.uleb128 0x3
+ 478 0026 08       		.uleb128 0x8
+ 479 0027 00       		.byte	0
+ 480 0028 00       		.byte	0
+ 481 0029 04       		.uleb128 0x4
+ 482 002a 16       		.uleb128 0x16
+ 483 002b 00       		.byte	0
+ 484 002c 03       		.uleb128 0x3
+ 485 002d 0E       		.uleb128 0xe
+ 486 002e 3A       		.uleb128 0x3a
+ 487 002f 0B       		.uleb128 0xb
+ 488 0030 3B       		.uleb128 0x3b
+ 489 0031 05       		.uleb128 0x5
+ 490 0032 49       		.uleb128 0x49
+ 491 0033 13       		.uleb128 0x13
+ 492 0034 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 13
+
+
+ 493 0035 00       		.byte	0
+ 494 0036 05       		.uleb128 0x5
+ 495 0037 35       		.uleb128 0x35
+ 496 0038 00       		.byte	0
+ 497 0039 49       		.uleb128 0x49
+ 498 003a 13       		.uleb128 0x13
+ 499 003b 00       		.byte	0
+ 500 003c 00       		.byte	0
+ 501 003d 06       		.uleb128 0x6
+ 502 003e 2E       		.uleb128 0x2e
+ 503 003f 00       		.byte	0
+ 504 0040 3F       		.uleb128 0x3f
+ 505 0041 19       		.uleb128 0x19
+ 506 0042 03       		.uleb128 0x3
+ 507 0043 0E       		.uleb128 0xe
+ 508 0044 3A       		.uleb128 0x3a
+ 509 0045 0B       		.uleb128 0xb
+ 510 0046 3B       		.uleb128 0x3b
+ 511 0047 0B       		.uleb128 0xb
+ 512 0048 27       		.uleb128 0x27
+ 513 0049 19       		.uleb128 0x19
+ 514 004a 11       		.uleb128 0x11
+ 515 004b 01       		.uleb128 0x1
+ 516 004c 12       		.uleb128 0x12
+ 517 004d 06       		.uleb128 0x6
+ 518 004e 40       		.uleb128 0x40
+ 519 004f 18       		.uleb128 0x18
+ 520 0050 9742     		.uleb128 0x2117
+ 521 0052 19       		.uleb128 0x19
+ 522 0053 00       		.byte	0
+ 523 0054 00       		.byte	0
+ 524 0055 07       		.uleb128 0x7
+ 525 0056 2E       		.uleb128 0x2e
+ 526 0057 01       		.byte	0x1
+ 527 0058 3F       		.uleb128 0x3f
+ 528 0059 19       		.uleb128 0x19
+ 529 005a 03       		.uleb128 0x3
+ 530 005b 0E       		.uleb128 0xe
+ 531 005c 3A       		.uleb128 0x3a
+ 532 005d 0B       		.uleb128 0xb
+ 533 005e 3B       		.uleb128 0x3b
+ 534 005f 0B       		.uleb128 0xb
+ 535 0060 27       		.uleb128 0x27
+ 536 0061 19       		.uleb128 0x19
+ 537 0062 11       		.uleb128 0x11
+ 538 0063 01       		.uleb128 0x1
+ 539 0064 12       		.uleb128 0x12
+ 540 0065 06       		.uleb128 0x6
+ 541 0066 40       		.uleb128 0x40
+ 542 0067 18       		.uleb128 0x18
+ 543 0068 9742     		.uleb128 0x2117
+ 544 006a 19       		.uleb128 0x19
+ 545 006b 01       		.uleb128 0x1
+ 546 006c 13       		.uleb128 0x13
+ 547 006d 00       		.byte	0
+ 548 006e 00       		.byte	0
+ 549 006f 08       		.uleb128 0x8
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 14
+
+
+ 550 0070 898201   		.uleb128 0x4109
+ 551 0073 00       		.byte	0
+ 552 0074 11       		.uleb128 0x11
+ 553 0075 01       		.uleb128 0x1
+ 554 0076 31       		.uleb128 0x31
+ 555 0077 13       		.uleb128 0x13
+ 556 0078 00       		.byte	0
+ 557 0079 00       		.byte	0
+ 558 007a 09       		.uleb128 0x9
+ 559 007b 05       		.uleb128 0x5
+ 560 007c 00       		.byte	0
+ 561 007d 03       		.uleb128 0x3
+ 562 007e 0E       		.uleb128 0xe
+ 563 007f 3A       		.uleb128 0x3a
+ 564 0080 0B       		.uleb128 0xb
+ 565 0081 3B       		.uleb128 0x3b
+ 566 0082 0B       		.uleb128 0xb
+ 567 0083 49       		.uleb128 0x49
+ 568 0084 13       		.uleb128 0x13
+ 569 0085 02       		.uleb128 0x2
+ 570 0086 17       		.uleb128 0x17
+ 571 0087 00       		.byte	0
+ 572 0088 00       		.byte	0
+ 573 0089 0A       		.uleb128 0xa
+ 574 008a 34       		.uleb128 0x34
+ 575 008b 00       		.byte	0
+ 576 008c 03       		.uleb128 0x3
+ 577 008d 08       		.uleb128 0x8
+ 578 008e 3A       		.uleb128 0x3a
+ 579 008f 0B       		.uleb128 0xb
+ 580 0090 3B       		.uleb128 0x3b
+ 581 0091 0B       		.uleb128 0xb
+ 582 0092 49       		.uleb128 0x49
+ 583 0093 13       		.uleb128 0x13
+ 584 0094 02       		.uleb128 0x2
+ 585 0095 17       		.uleb128 0x17
+ 586 0096 00       		.byte	0
+ 587 0097 00       		.byte	0
+ 588 0098 0B       		.uleb128 0xb
+ 589 0099 05       		.uleb128 0x5
+ 590 009a 00       		.byte	0
+ 591 009b 03       		.uleb128 0x3
+ 592 009c 0E       		.uleb128 0xe
+ 593 009d 3A       		.uleb128 0x3a
+ 594 009e 0B       		.uleb128 0xb
+ 595 009f 3B       		.uleb128 0x3b
+ 596 00a0 0B       		.uleb128 0xb
+ 597 00a1 49       		.uleb128 0x49
+ 598 00a2 13       		.uleb128 0x13
+ 599 00a3 02       		.uleb128 0x2
+ 600 00a4 18       		.uleb128 0x18
+ 601 00a5 00       		.byte	0
+ 602 00a6 00       		.byte	0
+ 603 00a7 0C       		.uleb128 0xc
+ 604 00a8 34       		.uleb128 0x34
+ 605 00a9 00       		.byte	0
+ 606 00aa 03       		.uleb128 0x3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 15
+
+
+ 607 00ab 0E       		.uleb128 0xe
+ 608 00ac 3A       		.uleb128 0x3a
+ 609 00ad 0B       		.uleb128 0xb
+ 610 00ae 3B       		.uleb128 0x3b
+ 611 00af 0B       		.uleb128 0xb
+ 612 00b0 49       		.uleb128 0x49
+ 613 00b1 13       		.uleb128 0x13
+ 614 00b2 02       		.uleb128 0x2
+ 615 00b3 18       		.uleb128 0x18
+ 616 00b4 00       		.byte	0
+ 617 00b5 00       		.byte	0
+ 618 00b6 0D       		.uleb128 0xd
+ 619 00b7 34       		.uleb128 0x34
+ 620 00b8 00       		.byte	0
+ 621 00b9 03       		.uleb128 0x3
+ 622 00ba 0E       		.uleb128 0xe
+ 623 00bb 3A       		.uleb128 0x3a
+ 624 00bc 0B       		.uleb128 0xb
+ 625 00bd 3B       		.uleb128 0x3b
+ 626 00be 0B       		.uleb128 0xb
+ 627 00bf 49       		.uleb128 0x49
+ 628 00c0 13       		.uleb128 0x13
+ 629 00c1 3F       		.uleb128 0x3f
+ 630 00c2 19       		.uleb128 0x19
+ 631 00c3 02       		.uleb128 0x2
+ 632 00c4 18       		.uleb128 0x18
+ 633 00c5 00       		.byte	0
+ 634 00c6 00       		.byte	0
+ 635 00c7 00       		.byte	0
+ 636              		.section	.debug_loc,"",%progbits
+ 637              	.Ldebug_loc0:
+ 638              	.LLST0:
+ 639 0000 00000000 		.4byte	.LVL2
+ 640 0004 06000000 		.4byte	.LVL3
+ 641 0008 0100     		.2byte	0x1
+ 642 000a 50       		.byte	0x50
+ 643 000b 06000000 		.4byte	.LVL3
+ 644 000f 1C000000 		.4byte	.LFE4
+ 645 0013 0400     		.2byte	0x4
+ 646 0015 F3       		.byte	0xf3
+ 647 0016 01       		.uleb128 0x1
+ 648 0017 50       		.byte	0x50
+ 649 0018 9F       		.byte	0x9f
+ 650 0019 00000000 		.4byte	0
+ 651 001d 00000000 		.4byte	0
+ 652              	.LLST1:
+ 653 0021 0C000000 		.4byte	.LVL4
+ 654 0025 0E000000 		.4byte	.LVL5
+ 655 0029 0600     		.2byte	0x6
+ 656 002b 73       		.byte	0x73
+ 657 002c 00       		.sleb128 0
+ 658 002d 09       		.byte	0x9
+ 659 002e FC       		.byte	0xfc
+ 660 002f 1A       		.byte	0x1a
+ 661 0030 9F       		.byte	0x9f
+ 662 0031 00000000 		.4byte	0
+ 663 0035 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 16
+
+
+ 664              		.section	.debug_aranges,"",%progbits
+ 665 0000 44000000 		.4byte	0x44
+ 666 0004 0200     		.2byte	0x2
+ 667 0006 00000000 		.4byte	.Ldebug_info0
+ 668 000a 04       		.byte	0x4
+ 669 000b 00       		.byte	0
+ 670 000c 0000     		.2byte	0
+ 671 000e 0000     		.2byte	0
+ 672 0010 00000000 		.4byte	.LFB0
+ 673 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 674 0018 00000000 		.4byte	.LFB1
+ 675 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 676 0020 00000000 		.4byte	.LFB2
+ 677 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 678 0028 00000000 		.4byte	.LFB3
+ 679 002c 14000000 		.4byte	.LFE3-.LFB3
+ 680 0030 00000000 		.4byte	.LFB4
+ 681 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 682 0038 00000000 		.4byte	.LFB5
+ 683 003c 24000000 		.4byte	.LFE5-.LFB5
+ 684 0040 00000000 		.4byte	0
+ 685 0044 00000000 		.4byte	0
+ 686              		.section	.debug_ranges,"",%progbits
+ 687              	.Ldebug_ranges0:
+ 688 0000 00000000 		.4byte	.LFB0
+ 689 0004 2C000000 		.4byte	.LFE0
+ 690 0008 00000000 		.4byte	.LFB1
+ 691 000c 1C000000 		.4byte	.LFE1
+ 692 0010 00000000 		.4byte	.LFB2
+ 693 0014 1C000000 		.4byte	.LFE2
+ 694 0018 00000000 		.4byte	.LFB3
+ 695 001c 14000000 		.4byte	.LFE3
+ 696 0020 00000000 		.4byte	.LFB4
+ 697 0024 1C000000 		.4byte	.LFE4
+ 698 0028 00000000 		.4byte	.LFB5
+ 699 002c 24000000 		.4byte	.LFE5
+ 700 0030 00000000 		.4byte	0
+ 701 0034 00000000 		.4byte	0
+ 702              		.section	.debug_line,"",%progbits
+ 703              	.Ldebug_line0:
+ 704 0000 DA000000 		.section	.debug_str,"MS",%progbits,1
+ 704      02005100 
+ 704      00000201 
+ 704      FB0E0D00 
+ 704      01010101 
+ 705              	.LASF14:
+ 706 0000 72656733 		.ascii	"reg32\000"
+ 706      3200
+ 707              	.LASF20:
+ 708 0006 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_PumpControl\000"
+ 708      5F53796E 
+ 708      74685F4F 
+ 708      55544255 
+ 708      46464552 
+ 709              	.LASF16:
+ 710 0027 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Enable\000"
+ 710      5F53796E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 17
+
+
+ 710      74685F4F 
+ 710      55544255 
+ 710      46464552 
+ 711              	.LASF11:
+ 712 0043 666C6F61 		.ascii	"float\000"
+ 712      7400
+ 713              	.LASF24:
+ 714 0049 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 714      4320342E 
+ 714      392E3320 
+ 714      32303135 
+ 714      30333033 
+ 715 007c 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 715      20726576 
+ 715      6973696F 
+ 715      6E203232 
+ 715      31323230 
+ 716 00af 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 716      73202D66 
+ 716      66756E63 
+ 716      74696F6E 
+ 716      2D736563 
+ 717              	.LASF17:
+ 718 00db 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Stop\000"
+ 718      5F53796E 
+ 718      74685F4F 
+ 718      55544255 
+ 718      46464552 
+ 719              	.LASF21:
+ 720 00f5 706F7765 		.ascii	"power\000"
+ 720      7200
+ 721              	.LASF25:
+ 722 00fb 47656E65 		.ascii	"Generated_Source\\PSoC4\\VDAC_Synth_OUTBUFFER.c\000"
+ 722      72617465 
+ 722      645F536F 
+ 722      75726365 
+ 722      5C50536F 
+ 723              	.LASF18:
+ 724 0129 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Start\000"
+ 724      5F53796E 
+ 724      74685F4F 
+ 724      55544255 
+ 724      46464552 
+ 725              	.LASF1:
+ 726 0144 756E7369 		.ascii	"unsigned char\000"
+ 726      676E6564 
+ 726      20636861 
+ 726      7200
+ 727              	.LASF22:
+ 728 0152 6F6E4F66 		.ascii	"onOff\000"
+ 728      6600
+ 729              	.LASF5:
+ 730 0158 6C6F6E67 		.ascii	"long unsigned int\000"
+ 730      20756E73 
+ 730      69676E65 
+ 730      6420696E 
+ 730      7400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 18
+
+
+ 731              	.LASF3:
+ 732 016a 73686F72 		.ascii	"short unsigned int\000"
+ 732      7420756E 
+ 732      7369676E 
+ 732      65642069 
+ 732      6E7400
+ 733              	.LASF12:
+ 734 017d 646F7562 		.ascii	"double\000"
+ 734      6C6500
+ 735              	.LASF19:
+ 736 0184 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_SetPower\000"
+ 736      5F53796E 
+ 736      74685F4F 
+ 736      55544255 
+ 736      46464552 
+ 737              	.LASF10:
+ 738 01a2 75696E74 		.ascii	"uint32\000"
+ 738      333200
+ 739              	.LASF8:
+ 740 01a9 756E7369 		.ascii	"unsigned int\000"
+ 740      676E6564 
+ 740      20696E74 
+ 740      00
+ 741              	.LASF7:
+ 742 01b6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 742      206C6F6E 
+ 742      6720756E 
+ 742      7369676E 
+ 742      65642069 
+ 743              	.LASF15:
+ 744 01cd 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Init\000"
+ 744      5F53796E 
+ 744      74685F4F 
+ 744      55544255 
+ 744      46464552 
+ 745              	.LASF23:
+ 746 01e7 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_internalPower\000"
+ 746      5F53796E 
+ 746      74685F4F 
+ 746      55544255 
+ 746      46464552 
+ 747              	.LASF6:
+ 748 020a 6C6F6E67 		.ascii	"long long int\000"
+ 748      206C6F6E 
+ 748      6720696E 
+ 748      7400
+ 749              	.LASF13:
+ 750 0218 63686172 		.ascii	"char\000"
+ 750      00
+ 751              	.LASF2:
+ 752 021d 73686F72 		.ascii	"short int\000"
+ 752      7420696E 
+ 752      7400
+ 753              	.LASF27:
+ 754 0227 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_initVar\000"
+ 754      5F53796E 
+ 754      74685F4F 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc2UOfJC.s 			page 19
+
+
+ 754      55544255 
+ 754      46464552 
+ 755              	.LASF9:
+ 756 0244 75696E74 		.ascii	"uint8\000"
+ 756      3800
+ 757              	.LASF4:
+ 758 024a 6C6F6E67 		.ascii	"long int\000"
+ 758      20696E74 
+ 758      00
+ 759              	.LASF0:
+ 760 0253 7369676E 		.ascii	"signed char\000"
+ 760      65642063 
+ 760      68617200 
+ 761              	.LASF26:
+ 762 025f 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 762      79707265 
+ 762      73735C54 
+ 762      616C6B69 
+ 762      6E67436C 
+ 763              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

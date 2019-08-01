@@ -1,0 +1,4302 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"VDAC_Synth.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.VDAC_Synth_Stop,"ax",%progbits
+  18              		.align	1
+  19              		.global	VDAC_Synth_Stop
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	VDAC_Synth_Stop, %function
+  23              	VDAC_Synth_Stop:
+  24              	.LFB2:
+  25              		.file 1 "Generated_Source\\PSoC4\\VDAC_Synth.c"
+   1:Generated_Source\PSoC4/VDAC_Synth.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/VDAC_Synth.c **** * \file     VDAC_Synth.c
+   3:Generated_Source\PSoC4/VDAC_Synth.c **** * \version  1.10
+   4:Generated_Source\PSoC4/VDAC_Synth.c **** *
+   5:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief
+   6:Generated_Source\PSoC4/VDAC_Synth.c **** * Provides the source code to the API for the VDAC_Synth Component.
+   7:Generated_Source\PSoC4/VDAC_Synth.c **** *
+   8:Generated_Source\PSoC4/VDAC_Synth.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/VDAC_Synth.c **** * \copyright
+  10:Generated_Source\PSoC4/VDAC_Synth.c **** * (c) 2014-2015, Cypress Semiconductor Corporation. All rights reserved.
+  11:Generated_Source\PSoC4/VDAC_Synth.c **** * This software, including source code, documentation and related
+  12:Generated_Source\PSoC4/VDAC_Synth.c **** * materials ("Software"), is owned by Cypress Semiconductor
+  13:Generated_Source\PSoC4/VDAC_Synth.c **** * Corporation ("Cypress") and is protected by and subject to worldwide
+  14:Generated_Source\PSoC4/VDAC_Synth.c **** * patent protection (United States and foreign), United States copyright
+  15:Generated_Source\PSoC4/VDAC_Synth.c **** * laws and international treaty provisions. Therefore, you may use this
+  16:Generated_Source\PSoC4/VDAC_Synth.c **** * Software only as provided in the license agreement accompanying the
+  17:Generated_Source\PSoC4/VDAC_Synth.c **** * software package from which you obtained this Software ("EULA").
+  18:Generated_Source\PSoC4/VDAC_Synth.c **** * If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
+  19:Generated_Source\PSoC4/VDAC_Synth.c **** * non-transferable license to copy, modify, and compile the
+  20:Generated_Source\PSoC4/VDAC_Synth.c **** * Software source code solely for use in connection with Cypress's
+  21:Generated_Source\PSoC4/VDAC_Synth.c **** * integrated circuit products. Any reproduction, modification, translation,
+  22:Generated_Source\PSoC4/VDAC_Synth.c **** * compilation, or representation of this Software except as specified
+  23:Generated_Source\PSoC4/VDAC_Synth.c **** * above is prohibited without the express written permission of Cypress.
+  24:Generated_Source\PSoC4/VDAC_Synth.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO
+  25:Generated_Source\PSoC4/VDAC_Synth.c **** * WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING,
+  26:Generated_Source\PSoC4/VDAC_Synth.c **** * BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+  27:Generated_Source\PSoC4/VDAC_Synth.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  28:Generated_Source\PSoC4/VDAC_Synth.c **** * PARTICULAR PURPOSE. Cypress reserves the right to make
+  29:Generated_Source\PSoC4/VDAC_Synth.c **** * changes to the Software without notice. Cypress does not assume any
+  30:Generated_Source\PSoC4/VDAC_Synth.c **** * liability arising out of the application or use of the Software or any
+  31:Generated_Source\PSoC4/VDAC_Synth.c **** * product or circuit described in the Software. Cypress does not
+  32:Generated_Source\PSoC4/VDAC_Synth.c **** * authorize its products for use in any products where a malfunction or
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 2
+
+
+  33:Generated_Source\PSoC4/VDAC_Synth.c **** * failure of the Cypress product may reasonably be expected to result in
+  34:Generated_Source\PSoC4/VDAC_Synth.c **** * significant property damage, injury or death ("High Risk Product"). By
+  35:Generated_Source\PSoC4/VDAC_Synth.c **** * including Cypress's product in a High Risk Product, the manufacturer
+  36:Generated_Source\PSoC4/VDAC_Synth.c **** * of such system or application assumes all risk of such use and in doing
+  37:Generated_Source\PSoC4/VDAC_Synth.c **** * so agrees to indemnify Cypress against all liability.
+  38:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/VDAC_Synth.c **** #include "VDAC_Synth.h"
+  40:Generated_Source\PSoC4/VDAC_Synth.c **** #include "VDAC_Synth_UAB.h"
+  41:Generated_Source\PSoC4/VDAC_Synth.c **** #include "VDAC_Synth_OUTBUFFER.h"
+  42:Generated_Source\PSoC4/VDAC_Synth.c **** 
+  43:Generated_Source\PSoC4/VDAC_Synth.c **** uint8 VDAC_Synth_initVar = 0u; /**< 0 if component is uninitialized. 1 otherwise. */
+  44:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+  45:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_Start
+  46:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+  47:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  48:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Starts the component.  Must be called before using the UAB_VDAC.
+  49:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  50:Generated_Source\PSoC4/VDAC_Synth.c **** *  Invokes VDAC_Synth_Init() (the first time it is called only) and
+  51:Generated_Source\PSoC4/VDAC_Synth.c **** * VDAC_Synth_Enable().  After this function call the component is enabled
+  52:Generated_Source\PSoC4/VDAC_Synth.c **** * and ready for operation.  This is the preferred method to begin component
+  53:Generated_Source\PSoC4/VDAC_Synth.c **** * operation.
+  54:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  55:Generated_Source\PSoC4/VDAC_Synth.c **** * \globalvars
+  56:Generated_Source\PSoC4/VDAC_Synth.c **** *  \ref VDAC_Synth_initVar (RW)
+  57:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  58:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+  59:Generated_Source\PSoC4/VDAC_Synth.c **** *  None.
+  60:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  61:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+  62:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_Start
+  63:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  64:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+  65:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_Start(void)
+  66:Generated_Source\PSoC4/VDAC_Synth.c **** {
+  67:Generated_Source\PSoC4/VDAC_Synth.c ****     if (1u != VDAC_Synth_initVar)
+  68:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+  69:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_Init();
+  70:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_initVar = 1u;
+  71:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+  72:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_Enable();
+  73:Generated_Source\PSoC4/VDAC_Synth.c ****     
+  74:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+  75:Generated_Source\PSoC4/VDAC_Synth.c **** }
+  76:Generated_Source\PSoC4/VDAC_Synth.c **** 
+  77:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+  78:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_Stop
+  79:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+  80:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  81:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Stops the component.
+  82:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  83:Generated_Source\PSoC4/VDAC_Synth.c **** * Disables the component.  Output becomes high-Z, and UAB and CTB are disabled.
+  84:Generated_Source\PSoC4/VDAC_Synth.c **** * The UAB and CTB are only half of their blocks, and disabling them is not the same
+  85:Generated_Source\PSoC4/VDAC_Synth.c **** * as stopping the blocks.  This function does not stop the block power.
+  86:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  87:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+  88:Generated_Source\PSoC4/VDAC_Synth.c **** *  UAB and CTB are not fully powered-down.
+  89:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 3
+
+
+  90:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+  91:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_Stop
+  92:Generated_Source\PSoC4/VDAC_Synth.c **** *
+  93:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+  94:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_Stop(void)
+  95:Generated_Source\PSoC4/VDAC_Synth.c **** {
+  26              		.loc 1 95 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  96:Generated_Source\PSoC4/VDAC_Synth.c ****     
+  97:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Stopping the CTB first prevents output glitches. */
+  98:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_OUTBUFFER_Stop();
+  32              		.loc 1 98 0
+  33 0002 FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Stop
+  34              	.LVL0:
+  99:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 100:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Stop the UAB */
+ 101:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_UAB_Stop();
+  35              		.loc 1 101 0
+  36 0006 FFF7FEFF 		bl	VDAC_Synth_UAB_Stop
+  37              	.LVL1:
+ 102:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 103:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_initVar = 0u;
+  38              		.loc 1 103 0
+  39 000a 0022     		mov	r2, #0
+  40 000c 014B     		ldr	r3, .L2
+ 104:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 105:Generated_Source\PSoC4/VDAC_Synth.c **** }
+  41              		.loc 1 105 0
+  42              		@ sp needed
+ 103:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+  43              		.loc 1 103 0
+  44 000e 1A70     		strb	r2, [r3]
+  45              		.loc 1 105 0
+  46 0010 08BD     		pop	{r3, pc}
+  47              	.L3:
+  48 0012 C046     		.align	2
+  49              	.L2:
+  50 0014 00000000 		.word	.LANCHOR0
+  51              		.cfi_endproc
+  52              	.LFE2:
+  53              		.size	VDAC_Synth_Stop, .-VDAC_Synth_Stop
+  54              		.section	.text.VDAC_Synth_SetValue,"ax",%progbits
+  55              		.align	1
+  56              		.global	VDAC_Synth_SetValue
+  57              		.code	16
+  58              		.thumb_func
+  59              		.type	VDAC_Synth_SetValue, %function
+  60              	VDAC_Synth_SetValue:
+  61              	.LFB3:
+ 106:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 107:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 108:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SetValue
+ 109:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 4
+
+
+ 110:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 111:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief This sets the next value for the DAC to output.
+ 112:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 113:Generated_Source\PSoC4/VDAC_Synth.c **** * The value is assumed to be correctly formatted according to the DAC mode 
+ 114:Generated_Source\PSoC4/VDAC_Synth.c **** * (ie 13bit 2's complement, 13bit sign magnitude, or 12bit unsigned).
+ 115:Generated_Source\PSoC4/VDAC_Synth.c **** * 
+ 116:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 117:Generated_Source\PSoC4/VDAC_Synth.c **** * \param value
+ 118:Generated_Source\PSoC4/VDAC_Synth.c **** *  The value with which to update the DAC. Saturates if out of range.
+ 119:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 120:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 121:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 122:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 123:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 124:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SetValue
+ 125:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 126:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 127:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_SetValue(int32 value)
+ 128:Generated_Source\PSoC4/VDAC_Synth.c **** {
+  62              		.loc 1 128 0
+  63              		.cfi_startproc
+  64              	.LVL2:
+  65 0000 08B5     		push	{r3, lr}
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 3, -8
+  68              		.cfi_offset 14, -4
+ 129:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_UAB_SetDacNext((int16)value);
+  69              		.loc 1 129 0
+  70 0002 00B2     		sxth	r0, r0
+  71              	.LVL3:
+  72 0004 FFF7FEFF 		bl	VDAC_Synth_UAB_SetDacNext
+  73              	.LVL4:
+ 130:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 131:Generated_Source\PSoC4/VDAC_Synth.c **** }
+  74              		.loc 1 131 0
+  75              		@ sp needed
+  76 0008 08BD     		pop	{r3, pc}
+  77              		.cfi_endproc
+  78              	.LFE3:
+  79              		.size	VDAC_Synth_SetValue, .-VDAC_Synth_SetValue
+  80              		.section	.text.VDAC_Synth_SaturateTwosComp,"ax",%progbits
+  81              		.align	1
+  82              		.global	VDAC_Synth_SaturateTwosComp
+  83              		.code	16
+  84              		.thumb_func
+  85              		.type	VDAC_Synth_SaturateTwosComp, %function
+  86              	VDAC_Synth_SaturateTwosComp:
+  87              	.LFB4:
+ 132:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 133:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 134:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SaturateTwosComp
+ 135:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 136:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 137:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Saturates input to the 13-bit 2's complement range.
+ 138:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 139:Generated_Source\PSoC4/VDAC_Synth.c **** * The maximum value that the DAC supports is 4095.  The minimum is -4096.
+ 140:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 5
+
+
+ 141:Generated_Source\PSoC4/VDAC_Synth.c **** * \param value
+ 142:Generated_Source\PSoC4/VDAC_Synth.c **** *  The value to saturate.
+ 143:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 144:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 145:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 146:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 147:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 148:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SaturateTwosComp
+ 149:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 150:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 151:Generated_Source\PSoC4/VDAC_Synth.c **** int32 VDAC_Synth_SaturateTwosComp(int32 value)
+ 152:Generated_Source\PSoC4/VDAC_Synth.c **** {
+  88              		.loc 1 152 0
+  89              		.cfi_startproc
+  90              	.LVL5:
+ 153:Generated_Source\PSoC4/VDAC_Synth.c ****     /* If larger than max, or smaller than min, saturate. Otherwise, do nothing. */
+ 154:Generated_Source\PSoC4/VDAC_Synth.c ****     value = (value > VDAC_Synth_MAX_13b2SCOMP) ? VDAC_Synth_MAX_13b2SCOMP :
+  91              		.loc 1 154 0
+  92 0000 044B     		ldr	r3, .L9
+  93 0002 9842     		cmp	r0, r3
+  94 0004 00DA     		bge	.L6
+  95 0006 181C     		mov	r0, r3
+  96              	.LVL6:
+  97              	.L6:
+  98 0008 034B     		ldr	r3, .L9+4
+  99 000a 9842     		cmp	r0, r3
+ 100 000c 00DD     		ble	.L7
+ 101 000e 181C     		mov	r0, r3
+ 102              	.LVL7:
+ 103              	.L7:
+ 155:Generated_Source\PSoC4/VDAC_Synth.c ****             ((value < VDAC_Synth_MIN_13b2SCOMP) ? VDAC_Synth_MIN_13b2SCOMP : value);
+ 156:Generated_Source\PSoC4/VDAC_Synth.c ****     return value;
+ 157:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 104              		.loc 1 157 0
+ 105              		@ sp needed
+ 106 0010 7047     		bx	lr
+ 107              	.L10:
+ 108 0012 C046     		.align	2
+ 109              	.L9:
+ 110 0014 00F0FFFF 		.word	-4096
+ 111 0018 FF0F0000 		.word	4095
+ 112              		.cfi_endproc
+ 113              	.LFE4:
+ 114              		.size	VDAC_Synth_SaturateTwosComp, .-VDAC_Synth_SaturateTwosComp
+ 115              		.section	.text.VDAC_Synth_SaturateSignMagnitude,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	VDAC_Synth_SaturateSignMagnitude
+ 118              		.code	16
+ 119              		.thumb_func
+ 120              		.type	VDAC_Synth_SaturateSignMagnitude, %function
+ 121              	VDAC_Synth_SaturateSignMagnitude:
+ 122              	.LFB5:
+ 158:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 159:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 160:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SaturateSignMagnitude
+ 161:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 162:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 6
+
+
+ 163:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Saturates input to the 13-bit sign magnitude range.
+ 164:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 165:Generated_Source\PSoC4/VDAC_Synth.c **** * The maximum value that the DAC supports is 4095.  The minimum is -4095.
+ 166:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 167:Generated_Source\PSoC4/VDAC_Synth.c **** * \param sign
+ 168:Generated_Source\PSoC4/VDAC_Synth.c **** *  The sign of the value to saturate.  See \ref sign for values.
+ 169:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 170:Generated_Source\PSoC4/VDAC_Synth.c **** * \param magnitude
+ 171:Generated_Source\PSoC4/VDAC_Synth.c **** *  The magnitude of the value to saturate.
+ 172:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 173:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 174:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 175:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 176:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 177:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SaturateSignMagnitude
+ 178:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 179:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 180:Generated_Source\PSoC4/VDAC_Synth.c **** int32 VDAC_Synth_SaturateSignMagnitude(VDAC_Synth_sign_enum sign, uint32 magnitude)
+ 181:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 123              		.loc 1 181 0
+ 124              		.cfi_startproc
+ 125              	.LVL8:
+ 182:Generated_Source\PSoC4/VDAC_Synth.c ****     uint32 tmpSign = 0u;
+ 183:Generated_Source\PSoC4/VDAC_Synth.c ****     magnitude = (magnitude > VDAC_Synth_MAX_13bSGNMAG_12bUNSIGN) ? VDAC_Synth_MAX_13bSGNMAG_12bUNSI
+ 126              		.loc 1 183 0
+ 127 0000 044B     		ldr	r3, .L15
+ 128 0002 9942     		cmp	r1, r3
+ 129 0004 00D9     		bls	.L12
+ 130 0006 191C     		mov	r1, r3
+ 131              	.LVL9:
+ 132              	.L12:
+ 184:Generated_Source\PSoC4/VDAC_Synth.c ****     if (VDAC_Synth_SIGN_POSITIVE != sign)
+ 185:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+ 186:Generated_Source\PSoC4/VDAC_Synth.c ****         tmpSign = 0x00001000UL;
+ 133              		.loc 1 186 0
+ 134 0008 431E     		sub	r3, r0, #1
+ 135 000a 9841     		sbc	r0, r0, r3
+ 136              	.LVL10:
+ 137 000c 0003     		lsl	r0, r0, #12
+ 138              	.LVL11:
+ 187:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+ 188:Generated_Source\PSoC4/VDAC_Synth.c ****     magnitude = tmpSign | magnitude;
+ 139              		.loc 1 188 0
+ 140 000e 0843     		orr	r0, r1
+ 141              	.LVL12:
+ 189:Generated_Source\PSoC4/VDAC_Synth.c ****     return (int32) magnitude;
+ 190:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 142              		.loc 1 190 0
+ 143              		@ sp needed
+ 144 0010 7047     		bx	lr
+ 145              	.L16:
+ 146 0012 C046     		.align	2
+ 147              	.L15:
+ 148 0014 FF0F0000 		.word	4095
+ 149              		.cfi_endproc
+ 150              	.LFE5:
+ 151              		.size	VDAC_Synth_SaturateSignMagnitude, .-VDAC_Synth_SaturateSignMagnitude
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 7
+
+
+ 152              		.section	.text.VDAC_Synth_ConvertUnsigned2TwosComp,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	VDAC_Synth_ConvertUnsigned2TwosComp
+ 155              		.code	16
+ 156              		.thumb_func
+ 157              		.type	VDAC_Synth_ConvertUnsigned2TwosComp, %function
+ 158              	VDAC_Synth_ConvertUnsigned2TwosComp:
+ 159              	.LFB6:
+ 191:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 192:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 193:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_ConvertUnsigned2TwosComp
+ 194:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 195:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 196:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Saturates input to the 13-bit unsigned, and reformats to two's-complement.
+ 197:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 198:Generated_Source\PSoC4/VDAC_Synth.c **** * The maximum value that the DAC supports is 8191.  The minimum is 0.
+ 199:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 200:Generated_Source\PSoC4/VDAC_Synth.c **** * \param value
+ 201:Generated_Source\PSoC4/VDAC_Synth.c **** *  The value to saturate and convert.
+ 202:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 203:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 204:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 205:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 206:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 207:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_ConvertUnsigned2TwosComp
+ 208:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 209:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 210:Generated_Source\PSoC4/VDAC_Synth.c **** int32 VDAC_Synth_ConvertUnsigned2TwosComp(uint32 value)
+ 211:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 160              		.loc 1 211 0
+ 161              		.cfi_startproc
+ 162              	.LVL13:
+ 212:Generated_Source\PSoC4/VDAC_Synth.c ****     uint32 retVal = 0U;
+ 213:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Saturate value */
+ 214:Generated_Source\PSoC4/VDAC_Synth.c ****     value = ((value > VDAC_Synth_MAX_13bUNSIGNED) ? VDAC_Synth_MAX_13bUNSIGNED :value);
+ 163              		.loc 1 214 0
+ 164 0000 034B     		ldr	r3, .L19
+ 165 0002 9842     		cmp	r0, r3
+ 166 0004 00D9     		bls	.L18
+ 167 0006 181C     		mov	r0, r3
+ 168              	.L18:
+ 215:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Convert from binary offset to 2's complement */
+ 216:Generated_Source\PSoC4/VDAC_Synth.c ****     retVal = value ^ 0x00001000UL;
+ 169              		.loc 1 216 0
+ 170 0008 8023     		mov	r3, #128
+ 171 000a 5B01     		lsl	r3, r3, #5
+ 172 000c 5840     		eor	r0, r3
+ 217:Generated_Source\PSoC4/VDAC_Synth.c ****     return (int32) retVal;
+ 218:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 173              		.loc 1 218 0
+ 174              		@ sp needed
+ 175 000e 7047     		bx	lr
+ 176              	.L20:
+ 177              		.align	2
+ 178              	.L19:
+ 179 0010 FF1F0000 		.word	8191
+ 180              		.cfi_endproc
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 8
+
+
+ 181              	.LFE6:
+ 182              		.size	VDAC_Synth_ConvertUnsigned2TwosComp, .-VDAC_Synth_ConvertUnsigned2TwosComp
+ 183              		.section	.text.VDAC_Synth_SetFormat,"ax",%progbits
+ 184              		.align	1
+ 185              		.global	VDAC_Synth_SetFormat
+ 186              		.code	16
+ 187              		.thumb_func
+ 188              		.type	VDAC_Synth_SetFormat, %function
+ 189              	VDAC_Synth_SetFormat:
+ 190              	.LFB7:
+ 219:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 220:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SetFormat
+ 221:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 222:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 223:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief This sets the format of the DAC.
+ 224:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 225:Generated_Source\PSoC4/VDAC_Synth.c **** * The DAC can decode numbers in the formats: 13bit 2's complement, 13bit sign magnitude,
+ 226:Generated_Source\PSoC4/VDAC_Synth.c **** * and 12bit unsigned.
+ 227:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 228:Generated_Source\PSoC4/VDAC_Synth.c **** * \param dacFormat
+ 229:Generated_Source\PSoC4/VDAC_Synth.c **** *  Which format the DAC should use. See the \ref dacFormat constants for
+ 230:Generated_Source\PSoC4/VDAC_Synth.c **** *  the valid values.
+ 231:Generated_Source\PSoC4/VDAC_Synth.c **** * 
+ 232:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 233:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 234:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 235:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 236:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SetFormat
+ 237:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 238:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 239:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_SetFormat(VDAC_Synth_format_enum dacFormat)
+ 240:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 191              		.loc 1 240 0
+ 192              		.cfi_startproc
+ 193              	.LVL14:
+ 194 0000 08B5     		push	{r3, lr}
+ 195              		.cfi_def_cfa_offset 8
+ 196              		.cfi_offset 3, -8
+ 197              		.cfi_offset 14, -4
+ 241:Generated_Source\PSoC4/VDAC_Synth.c ****     switch (dacFormat) 
+ 198              		.loc 1 241 0
+ 199 0002 0128     		cmp	r0, #1
+ 200 0004 01D1     		bne	.L25
+ 242:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+ 243:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_FORMAT_13SIGNMAG:
+ 244:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetDacMode(CyUAB_DAC_MODE_UNSIGNED12); /* Hardware does no conversions. */
+ 201              		.loc 1 244 0
+ 202 0006 0020     		mov	r0, #0
+ 203              	.LVL15:
+ 204 0008 00E0     		b	.L26
+ 205              	.LVL16:
+ 206              	.L25:
+ 245:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 246:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_FORMAT_13TWOSCOMP:
+ 247:Generated_Source\PSoC4/VDAC_Synth.c ****     default: /* Other format requires UAB to be set in DACMode 2 */
+ 248:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetDacMode(CyUAB_DAC_MODE_SIGNED13); /* Hardware converts negative numbers t
+ 207              		.loc 1 248 0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 9
+
+
+ 208 000a 0220     		mov	r0, #2
+ 209              	.LVL17:
+ 210              	.L26:
+ 211 000c FFF7FEFF 		bl	VDAC_Synth_UAB_SetDacMode
+ 212              	.LVL18:
+ 249:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 250:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+ 251:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 252:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 213              		.loc 1 252 0
+ 214              		@ sp needed
+ 215 0010 08BD     		pop	{r3, pc}
+ 216              		.cfi_endproc
+ 217              	.LFE7:
+ 218              		.size	VDAC_Synth_SetFormat, .-VDAC_Synth_SetFormat
+ 219              		.section	.text.VDAC_Synth_SetStrobeMode,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	VDAC_Synth_SetStrobeMode
+ 222              		.code	16
+ 223              		.thumb_func
+ 224              		.type	VDAC_Synth_SetStrobeMode, %function
+ 225              	VDAC_Synth_SetStrobeMode:
+ 226              	.LFB8:
+ 253:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 254:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 255:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SetStrobeMode
+ 256:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 257:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Set whether a hardware strobe is required to update DAC value.
+ 258:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 259:Generated_Source\PSoC4/VDAC_Synth.c **** * Invalid input results in no change.
+ 260:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 261:Generated_Source\PSoC4/VDAC_Synth.c **** * \param isHWStrobed
+ 262:Generated_Source\PSoC4/VDAC_Synth.c **** *  Whether to continuously update or require HW strobe. 
+ 263:Generated_Source\PSoC4/VDAC_Synth.c **** *  See the \ref isHWStrobed constants for the valid values.
+ 264:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 265:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 266:Generated_Source\PSoC4/VDAC_Synth.c **** *  This is a side effect section.
+ 267:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 268:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 269:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SetStrobeMode
+ 270:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 271:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 272:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_SetStrobeMode(VDAC_Synth_strobe_mode_enum isHWStrobed)
+ 273:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 227              		.loc 1 273 0
+ 228              		.cfi_startproc
+ 229              	.LVL19:
+ 230 0000 08B5     		push	{r3, lr}
+ 231              		.cfi_def_cfa_offset 8
+ 232              		.cfi_offset 3, -8
+ 233              		.cfi_offset 14, -4
+ 274:Generated_Source\PSoC4/VDAC_Synth.c ****     switch(isHWStrobed)
+ 234              		.loc 1 274 0
+ 235 0002 0028     		cmp	r0, #0
+ 236 0004 04D0     		beq	.L29
+ 237 0006 0128     		cmp	r0, #1
+ 238 0008 06D1     		bne	.L27
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 10
+
+
+ 275:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+ 276:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_STROBE_CONTINUOUSLY:
+ 277:Generated_Source\PSoC4/VDAC_Synth.c ****         /* Strobe clock treats strobe signal as "modbit", so to not use HW strobe
+ 278:Generated_Source\PSoC4/VDAC_Synth.c ****            set the strobe clock to a regular clock. */
+ 279:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetStrobeClock(CyUAB_CLK_PHI1);
+ 280:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 281:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_STROBE_FROM_TERMINAL:
+ 282:Generated_Source\PSoC4/VDAC_Synth.c ****         /* Strobe clock treats strobe signal as "modbit", so to use HW strobe
+ 283:Generated_Source\PSoC4/VDAC_Synth.c ****            set the strobe clock to a mod clock. Use PHI11, since we need a waveform
+ 284:Generated_Source\PSoC4/VDAC_Synth.c ****            that is PHI1 when strobe is high, and 0 when strobe is low.*/
+ 285:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetStrobeClock(CyUAB_CLK_PHI11);
+ 239              		.loc 1 285 0
+ 240 000a 0448     		ldr	r0, .L32
+ 241              	.LVL20:
+ 242 000c 0B21     		mov	r1, #11
+ 243 000e 01E0     		b	.L31
+ 244              	.LVL21:
+ 245              	.L29:
+ 279:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 246              		.loc 1 279 0
+ 247 0010 0121     		mov	r1, #1
+ 248 0012 0248     		ldr	r0, .L32
+ 249              	.LVL22:
+ 250              	.L31:
+ 251              		.loc 1 285 0
+ 252 0014 FFF7FEFF 		bl	VDAC_Synth_UAB_SetSwitch
+ 253              	.LVL23:
+ 254              	.L27:
+ 286:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 287:Generated_Source\PSoC4/VDAC_Synth.c ****     default:
+ 288:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 289:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+ 290:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 291:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 255              		.loc 1 291 0
+ 256              		@ sp needed
+ 257 0018 08BD     		pop	{r3, pc}
+ 258              	.L33:
+ 259 001a C046     		.align	2
+ 260              	.L32:
+ 261 001c 70001C00 		.word	1835120
+ 262              		.cfi_endproc
+ 263              	.LFE8:
+ 264              		.size	VDAC_Synth_SetStrobeMode, .-VDAC_Synth_SetStrobeMode
+ 265              		.section	.text.VDAC_Synth_SetHiZ,"ax",%progbits
+ 266              		.align	1
+ 267              		.global	VDAC_Synth_SetHiZ
+ 268              		.code	16
+ 269              		.thumb_func
+ 270              		.type	VDAC_Synth_SetHiZ, %function
+ 271              	VDAC_Synth_SetHiZ:
+ 272              	.LFB9:
+ 292:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 293:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 294:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SetHiZ
+ 295:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 296:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 11
+
+
+ 297:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief This sets the output state of the DAC.
+ 298:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 299:Generated_Source\PSoC4/VDAC_Synth.c **** * The output state can be tristated, or restored from tristate.  Invalid input
+ 300:Generated_Source\PSoC4/VDAC_Synth.c **** * results in no change.
+ 301:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 302:Generated_Source\PSoC4/VDAC_Synth.c **** * \param isHiZ
+ 303:Generated_Source\PSoC4/VDAC_Synth.c **** *  The target setting. See the \ref isHiZ constants for the valid values.
+ 304:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 305:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 306:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 307:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 308:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 309:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SetHiZ
+ 310:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 311:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 312:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_SetHiZ(VDAC_Synth_output_state_enum isHiZ)
+ 313:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 273              		.loc 1 313 0
+ 274              		.cfi_startproc
+ 275              	.LVL24:
+ 276 0000 08B5     		push	{r3, lr}
+ 277              		.cfi_def_cfa_offset 8
+ 278              		.cfi_offset 3, -8
+ 279              		.cfi_offset 14, -4
+ 314:Generated_Source\PSoC4/VDAC_Synth.c ****     switch(isHiZ)
+ 280              		.loc 1 314 0
+ 281 0002 0028     		cmp	r0, #0
+ 282 0004 04D0     		beq	.L36
+ 283 0006 0128     		cmp	r0, #1
+ 284 0008 04D1     		bne	.L34
+ 315:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+ 316:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_OUTSTATE_HIZ:
+ 317:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_OUTBUFFER_Stop();
+ 285              		.loc 1 317 0
+ 286 000a FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Stop
+ 287              	.LVL25:
+ 318:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 288              		.loc 1 318 0
+ 289 000e 01E0     		b	.L34
+ 290              	.LVL26:
+ 291              	.L36:
+ 319:Generated_Source\PSoC4/VDAC_Synth.c ****     case VDAC_Synth_OUTSTATE_DRIVEN:
+ 320:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_OUTBUFFER_Start();
+ 292              		.loc 1 320 0
+ 293 0010 FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Start
+ 294              	.LVL27:
+ 295              	.L34:
+ 321:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 322:Generated_Source\PSoC4/VDAC_Synth.c ****     default:
+ 323:Generated_Source\PSoC4/VDAC_Synth.c ****         break;
+ 324:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+ 325:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 326:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 327:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 296              		.loc 1 327 0
+ 297              		@ sp needed
+ 298 0014 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 12
+
+
+ 299              		.cfi_endproc
+ 300              	.LFE9:
+ 301              		.size	VDAC_Synth_SetHiZ, .-VDAC_Synth_SetHiZ
+ 302              		.section	.text.VDAC_Synth_SetRange,"ax",%progbits
+ 303              		.align	1
+ 304              		.global	VDAC_Synth_SetRange
+ 305              		.code	16
+ 306              		.thumb_func
+ 307              		.type	VDAC_Synth_SetRange, %function
+ 308              	VDAC_Synth_SetRange:
+ 309              	.LFB10:
+ 328:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 329:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 330:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_SetRange
+ 331:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 332:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 333:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Set the range.
+ 334:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 335:Generated_Source\PSoC4/VDAC_Synth.c **** * \param gainFactor
+ 336:Generated_Source\PSoC4/VDAC_Synth.c **** *  The range to be applied to input codes. See the \ref rangeFactor constants for
+ 337:Generated_Source\PSoC4/VDAC_Synth.c **** *  the valid values.
+ 338:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 339:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 340:Generated_Source\PSoC4/VDAC_Synth.c **** *  None
+ 341:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 342:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 343:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_SetGain
+ 344:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 345:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 346:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_SetRange(VDAC_Synth_range_enum rangeFactor)
+ 347:Generated_Source\PSoC4/VDAC_Synth.c **** {   
+ 310              		.loc 1 347 0
+ 311              		.cfi_startproc
+ 312              	.LVL28:
+ 313 0000 08B5     		push	{r3, lr}
+ 314              		.cfi_def_cfa_offset 8
+ 315              		.cfi_offset 3, -8
+ 316              		.cfi_offset 14, -4
+ 348:Generated_Source\PSoC4/VDAC_Synth.c ****     /* DAC Range is inversely proportional to feedback capacitors, so
+ 349:Generated_Source\PSoC4/VDAC_Synth.c ****        set the feedback capacitors to maximum amount, divided by desired gain.
+ 350:Generated_Source\PSoC4/VDAC_Synth.c ****        This division is built-in to the range_enum definitions, so they may
+ 351:Generated_Source\PSoC4/VDAC_Synth.c ****        simply be set as the feedback capacitance. */
+ 352:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_UAB_SetCapF((CyUAB_f_cap_enum)rangeFactor);
+ 317              		.loc 1 352 0
+ 318 0002 FFF7FEFF 		bl	VDAC_Synth_UAB_SetCapF
+ 319              	.LVL29:
+ 353:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 320              		.loc 1 353 0
+ 321              		@ sp needed
+ 322 0006 08BD     		pop	{r3, pc}
+ 323              		.cfi_endproc
+ 324              	.LFE10:
+ 325              		.size	VDAC_Synth_SetRange, .-VDAC_Synth_SetRange
+ 326              		.section	.text.VDAC_Synth_Init,"ax",%progbits
+ 327              		.align	1
+ 328              		.global	VDAC_Synth_Init
+ 329              		.code	16
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 13
+
+
+ 330              		.thumb_func
+ 331              		.type	VDAC_Synth_Init, %function
+ 332              	VDAC_Synth_Init:
+ 333              	.LFB11:
+ 354:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 355:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 356:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 357:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_Init
+ 358:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 359:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 360:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Configures hardware, after reset, according to parameters defined in 
+ 361:Generated_Source\PSoC4/VDAC_Synth.c **** * the customizer.
+ 362:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 363:Generated_Source\PSoC4/VDAC_Synth.c **** * It is not necessary to call Init() because the Start() API 
+ 364:Generated_Source\PSoC4/VDAC_Synth.c **** * calls this function and is the preferred method to begin the component operation.  
+ 365:Generated_Source\PSoC4/VDAC_Synth.c **** * Init will not necessarily restore a default state if the block is not in a reset state.
+ 366:Generated_Source\PSoC4/VDAC_Synth.c **** * VDAC_Synth_Init only writes registers when the resulting register will be
+ 367:Generated_Source\PSoC4/VDAC_Synth.c **** * nonzero, and it only writes to registers that the VDAC utilizes.
+ 368:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 369:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 370:Generated_Source\PSoC4/VDAC_Synth.c **** *  Component output will be in a high impedance state until 
+ 371:Generated_Source\PSoC4/VDAC_Synth.c **** *  VDAC_Synth_Enable() is called.
+ 372:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 373:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 374:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_Init
+ 375:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 376:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 377:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_Init(void)
+ 378:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 334              		.loc 1 378 0
+ 335              		.cfi_startproc
+ 336 0000 08B5     		push	{r3, lr}
+ 337              		.cfi_def_cfa_offset 8
+ 338              		.cfi_offset 3, -8
+ 339              		.cfi_offset 14, -4
+ 379:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Call the default UAB init*/
+ 380:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_UAB_Init(&VDAC_Synth_UAB_config);
+ 340              		.loc 1 380 0
+ 341 0002 0A48     		ldr	r0, .L40
+ 342 0004 FFF7FEFF 		bl	VDAC_Synth_UAB_Init
+ 343              	.LVL30:
+ 381:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Set several of the UAB switches or buffers based on what source is used as Vagnd/Vref. */
+ 382:Generated_Source\PSoC4/VDAC_Synth.c ****     #if VDAC_Synth_UAB_halfuab__VAGND_SRC != VDAC_Synth_UAB_halfuab__SRC_AGNDBUF
+ 383:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetStaticSwitch(VDAC_Synth_SW_EXTAGND, CyUAB_SW_CLOSED);
+ 384:Generated_Source\PSoC4/VDAC_Synth.c ****     #else
+ 385:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetAgndPower(CyUAB_PWR_HIGH);
+ 344              		.loc 1 385 0
+ 345 0008 0720     		mov	r0, #7
+ 346 000a FFF7FEFF 		bl	VDAC_Synth_UAB_SetAgndPower
+ 347              	.LVL31:
+ 386:Generated_Source\PSoC4/VDAC_Synth.c ****     #endif
+ 387:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 388:Generated_Source\PSoC4/VDAC_Synth.c ****     #if VDAC_Synth_UAB_halfuab__VREF_SRC != VDAC_Synth_UAB_halfuab__SRC_REFBUF
+ 389:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetSwitch(VDAC_Synth_SW_EXTREFA, CyUAB_CLK_PHI9);
+ 390:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetSwitch(VDAC_Synth_SW_EXTREFB, CyUAB_CLK_PHI9);
+ 391:Generated_Source\PSoC4/VDAC_Synth.c ****     #else
+ 392:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetSwitch(CyUAB_SW_AR_MODBIT, CyUAB_CLK_PHI9);
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 14
+
+
+ 348              		.loc 1 392 0
+ 349 000e 0848     		ldr	r0, .L40+4
+ 350 0010 0921     		mov	r1, #9
+ 351 0012 FFF7FEFF 		bl	VDAC_Synth_UAB_SetSwitch
+ 352              	.LVL32:
+ 393:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetSwitch(CyUAB_SW_BR_MODBIT, CyUAB_CLK_PHI9);
+ 353              		.loc 1 393 0
+ 354 0016 0921     		mov	r1, #9
+ 355 0018 0648     		ldr	r0, .L40+8
+ 356 001a FFF7FEFF 		bl	VDAC_Synth_UAB_SetSwitch
+ 357              	.LVL33:
+ 394:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_UAB_SetRefPower(CyUAB_PWR_HIGH);
+ 358              		.loc 1 394 0
+ 359 001e 0720     		mov	r0, #7
+ 360 0020 FFF7FEFF 		bl	VDAC_Synth_UAB_SetRefPower
+ 361              	.LVL34:
+ 395:Generated_Source\PSoC4/VDAC_Synth.c ****     #endif
+ 396:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 397:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Highest power, Bypass, Enable OA Pump*/
+ 398:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_OUTBUFFER_Init();
+ 399:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 400:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 362              		.loc 1 400 0
+ 363              		@ sp needed
+ 398:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 364              		.loc 1 398 0
+ 365 0024 FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Init
+ 366              	.LVL35:
+ 367              		.loc 1 400 0
+ 368 0028 08BD     		pop	{r3, pc}
+ 369              	.L41:
+ 370 002a C046     		.align	2
+ 371              	.L40:
+ 372 002c 00000000 		.word	VDAC_Synth_UAB_config
+ 373 0030 44000400 		.word	262212
+ 374 0034 54000400 		.word	262228
+ 375              		.cfi_endproc
+ 376              	.LFE11:
+ 377              		.size	VDAC_Synth_Init, .-VDAC_Synth_Init
+ 378              		.section	.text.VDAC_Synth_Enable,"ax",%progbits
+ 379              		.align	1
+ 380              		.global	VDAC_Synth_Enable
+ 381              		.code	16
+ 382              		.thumb_func
+ 383              		.type	VDAC_Synth_Enable, %function
+ 384              	VDAC_Synth_Enable:
+ 385              	.LFB12:
+ 401:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 402:Generated_Source\PSoC4/VDAC_Synth.c **** /*******************************************************************************
+ 403:Generated_Source\PSoC4/VDAC_Synth.c **** * Function Name: VDAC_Synth_Enable
+ 404:Generated_Source\PSoC4/VDAC_Synth.c **** ****************************************************************************//**
+ 405:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 406:Generated_Source\PSoC4/VDAC_Synth.c **** * \brief Enables the component.
+ 407:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 408:Generated_Source\PSoC4/VDAC_Synth.c **** * It is not necessary to call Enable() because the Start() API 
+ 409:Generated_Source\PSoC4/VDAC_Synth.c **** * calls this function and is the preferred method to begin the component operation.
+ 410:Generated_Source\PSoC4/VDAC_Synth.c **** * Activates the UAB and CTB.  Requires that the blocks have been configured, such
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 15
+
+
+ 411:Generated_Source\PSoC4/VDAC_Synth.c **** * as by calling VDAC_Synth_Init().
+ 412:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 413:Generated_Source\PSoC4/VDAC_Synth.c **** * \sideeffect
+ 414:Generated_Source\PSoC4/VDAC_Synth.c **** *  Causes output state to be driven until set to analog high impedance by, for
+ 415:Generated_Source\PSoC4/VDAC_Synth.c **** *  example, VDAC_Synth_Stop().
+ 416:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 417:Generated_Source\PSoC4/VDAC_Synth.c **** * <b>Code Snippet</b>
+ 418:Generated_Source\PSoC4/VDAC_Synth.c **** *  \snippet main.c snippet_VDAC_Synth_Enable
+ 419:Generated_Source\PSoC4/VDAC_Synth.c **** *
+ 420:Generated_Source\PSoC4/VDAC_Synth.c **** *******************************************************************************/
+ 421:Generated_Source\PSoC4/VDAC_Synth.c **** void VDAC_Synth_Enable(void) 
+ 422:Generated_Source\PSoC4/VDAC_Synth.c **** {
+ 386              		.loc 1 422 0
+ 387              		.cfi_startproc
+ 388 0000 08B5     		push	{r3, lr}
+ 389              		.cfi_def_cfa_offset 8
+ 390              		.cfi_offset 3, -8
+ 391              		.cfi_offset 14, -4
+ 423:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Enable the UAB */
+ 424:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_UAB_Run(1u);
+ 392              		.loc 1 424 0
+ 393 0002 0120     		mov	r0, #1
+ 394 0004 FFF7FEFF 		bl	VDAC_Synth_UAB_Run
+ 395              	.LVL36:
+ 425:Generated_Source\PSoC4/VDAC_Synth.c ****     /* Enable the CTB */
+ 426:Generated_Source\PSoC4/VDAC_Synth.c ****     VDAC_Synth_OUTBUFFER_Enable();
+ 427:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 428:Generated_Source\PSoC4/VDAC_Synth.c **** }
+ 396              		.loc 1 428 0
+ 397              		@ sp needed
+ 426:Generated_Source\PSoC4/VDAC_Synth.c ****     return;
+ 398              		.loc 1 426 0
+ 399 0008 FFF7FEFF 		bl	VDAC_Synth_OUTBUFFER_Enable
+ 400              	.LVL37:
+ 401              		.loc 1 428 0
+ 402 000c 08BD     		pop	{r3, pc}
+ 403              		.cfi_endproc
+ 404              	.LFE12:
+ 405              		.size	VDAC_Synth_Enable, .-VDAC_Synth_Enable
+ 406              		.section	.text.VDAC_Synth_Start,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	VDAC_Synth_Start
+ 409              		.code	16
+ 410              		.thumb_func
+ 411              		.type	VDAC_Synth_Start, %function
+ 412              	VDAC_Synth_Start:
+ 413              	.LFB1:
+  66:Generated_Source\PSoC4/VDAC_Synth.c ****     if (1u != VDAC_Synth_initVar)
+ 414              		.loc 1 66 0
+ 415              		.cfi_startproc
+ 416 0000 10B5     		push	{r4, lr}
+ 417              		.cfi_def_cfa_offset 8
+ 418              		.cfi_offset 4, -8
+ 419              		.cfi_offset 14, -4
+  67:Generated_Source\PSoC4/VDAC_Synth.c ****     {
+ 420              		.loc 1 67 0
+ 421 0002 054C     		ldr	r4, .L48
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 16
+
+
+ 422 0004 2378     		ldrb	r3, [r4]
+ 423 0006 012B     		cmp	r3, #1
+ 424 0008 03D0     		beq	.L44
+  69:Generated_Source\PSoC4/VDAC_Synth.c ****         VDAC_Synth_initVar = 1u;
+ 425              		.loc 1 69 0
+ 426 000a FFF7FEFF 		bl	VDAC_Synth_Init
+ 427              	.LVL38:
+  70:Generated_Source\PSoC4/VDAC_Synth.c ****     }
+ 428              		.loc 1 70 0
+ 429 000e 0123     		mov	r3, #1
+ 430 0010 2370     		strb	r3, [r4]
+ 431              	.L44:
+  72:Generated_Source\PSoC4/VDAC_Synth.c ****     
+ 432              		.loc 1 72 0
+ 433 0012 FFF7FEFF 		bl	VDAC_Synth_Enable
+ 434              	.LVL39:
+  75:Generated_Source\PSoC4/VDAC_Synth.c **** 
+ 435              		.loc 1 75 0
+ 436              		@ sp needed
+ 437 0016 10BD     		pop	{r4, pc}
+ 438              	.L49:
+ 439              		.align	2
+ 440              	.L48:
+ 441 0018 00000000 		.word	.LANCHOR0
+ 442              		.cfi_endproc
+ 443              	.LFE1:
+ 444              		.size	VDAC_Synth_Start, .-VDAC_Synth_Start
+ 445              		.global	VDAC_Synth_initVar
+ 446              		.bss
+ 447              		.set	.LANCHOR0,. + 0
+ 448              		.type	VDAC_Synth_initVar, %object
+ 449              		.size	VDAC_Synth_initVar, 1
+ 450              	VDAC_Synth_initVar:
+ 451 0000 00       		.space	1
+ 452              		.text
+ 453              	.Letext0:
+ 454              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 455              		.file 3 "Generated_Source\\PSoC4\\VDAC_Synth.h"
+ 456              		.file 4 "Generated_Source\\PSoC4\\VDAC_Synth_UAB_CyUAB_types.h"
+ 457              		.file 5 "Generated_Source\\PSoC4\\VDAC_Synth_UAB.h"
+ 458              		.file 6 "Generated_Source\\PSoC4\\VDAC_Synth_OUTBUFFER.h"
+ 459              		.section	.debug_info,"",%progbits
+ 460              	.Ldebug_info0:
+ 461 0000 450A0000 		.4byte	0xa45
+ 462 0004 0400     		.2byte	0x4
+ 463 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 464 000a 04       		.byte	0x4
+ 465 000b 01       		.uleb128 0x1
+ 466 000c AE090000 		.4byte	.LASF239
+ 467 0010 01       		.byte	0x1
+ 468 0011 10020000 		.4byte	.LASF240
+ 469 0015 660E0000 		.4byte	.LASF241
+ 470 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 471 001d 00000000 		.4byte	0
+ 472 0021 00000000 		.4byte	.Ldebug_line0
+ 473 0025 02       		.uleb128 0x2
+ 474 0026 01       		.byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 17
+
+
+ 475 0027 06       		.byte	0x6
+ 476 0028 AC0F0000 		.4byte	.LASF0
+ 477 002c 02       		.uleb128 0x2
+ 478 002d 01       		.byte	0x1
+ 479 002e 08       		.byte	0x8
+ 480 002f C60E0000 		.4byte	.LASF1
+ 481 0033 02       		.uleb128 0x2
+ 482 0034 02       		.byte	0x2
+ 483 0035 05       		.byte	0x5
+ 484 0036 410B0000 		.4byte	.LASF2
+ 485 003a 02       		.uleb128 0x2
+ 486 003b 02       		.byte	0x2
+ 487 003c 07       		.byte	0x7
+ 488 003d CC0F0000 		.4byte	.LASF3
+ 489 0041 02       		.uleb128 0x2
+ 490 0042 04       		.byte	0x4
+ 491 0043 05       		.byte	0x5
+ 492 0044 610B0000 		.4byte	.LASF4
+ 493 0048 02       		.uleb128 0x2
+ 494 0049 04       		.byte	0x4
+ 495 004a 07       		.byte	0x7
+ 496 004b AE0D0000 		.4byte	.LASF5
+ 497 004f 02       		.uleb128 0x2
+ 498 0050 08       		.byte	0x8
+ 499 0051 05       		.byte	0x5
+ 500 0052 8A080000 		.4byte	.LASF6
+ 501 0056 02       		.uleb128 0x2
+ 502 0057 08       		.byte	0x8
+ 503 0058 07       		.byte	0x7
+ 504 0059 7F040000 		.4byte	.LASF7
+ 505 005d 03       		.uleb128 0x3
+ 506 005e 04       		.byte	0x4
+ 507 005f 05       		.byte	0x5
+ 508 0060 696E7400 		.ascii	"int\000"
+ 509 0064 02       		.uleb128 0x2
+ 510 0065 04       		.byte	0x4
+ 511 0066 07       		.byte	0x7
+ 512 0067 B7010000 		.4byte	.LASF8
+ 513 006b 04       		.uleb128 0x4
+ 514 006c 86100000 		.4byte	.LASF9
+ 515 0070 02       		.byte	0x2
+ 516 0071 B901     		.2byte	0x1b9
+ 517 0073 2C000000 		.4byte	0x2c
+ 518 0077 04       		.uleb128 0x4
+ 519 0078 8C070000 		.4byte	.LASF10
+ 520 007c 02       		.byte	0x2
+ 521 007d BA01     		.2byte	0x1ba
+ 522 007f 3A000000 		.4byte	0x3a
+ 523 0083 04       		.uleb128 0x4
+ 524 0084 6E0C0000 		.4byte	.LASF11
+ 525 0088 02       		.byte	0x2
+ 526 0089 BB01     		.2byte	0x1bb
+ 527 008b 48000000 		.4byte	0x48
+ 528 008f 04       		.uleb128 0x4
+ 529 0090 34020000 		.4byte	.LASF12
+ 530 0094 02       		.byte	0x2
+ 531 0095 BD01     		.2byte	0x1bd
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 18
+
+
+ 532 0097 33000000 		.4byte	0x33
+ 533 009b 04       		.uleb128 0x4
+ 534 009c 10040000 		.4byte	.LASF13
+ 535 00a0 02       		.byte	0x2
+ 536 00a1 BE01     		.2byte	0x1be
+ 537 00a3 41000000 		.4byte	0x41
+ 538 00a7 02       		.uleb128 0x2
+ 539 00a8 04       		.byte	0x4
+ 540 00a9 04       		.byte	0x4
+ 541 00aa 0A040000 		.4byte	.LASF14
+ 542 00ae 02       		.uleb128 0x2
+ 543 00af 08       		.byte	0x8
+ 544 00b0 04       		.byte	0x4
+ 545 00b1 8C100000 		.4byte	.LASF15
+ 546 00b5 02       		.uleb128 0x2
+ 547 00b6 01       		.byte	0x1
+ 548 00b7 08       		.byte	0x8
+ 549 00b8 A0060000 		.4byte	.LASF16
+ 550 00bc 04       		.uleb128 0x4
+ 551 00bd FC0A0000 		.4byte	.LASF17
+ 552 00c1 02       		.byte	0x2
+ 553 00c2 6502     		.2byte	0x265
+ 554 00c4 C8000000 		.4byte	0xc8
+ 555 00c8 05       		.uleb128 0x5
+ 556 00c9 83000000 		.4byte	0x83
+ 557 00cd 02       		.uleb128 0x2
+ 558 00ce 04       		.byte	0x4
+ 559 00cf 07       		.byte	0x7
+ 560 00d0 7F0D0000 		.4byte	.LASF18
+ 561 00d4 06       		.uleb128 0x6
+ 562 00d5 01       		.byte	0x1
+ 563 00d6 03       		.byte	0x3
+ 564 00d7 8D       		.byte	0x8d
+ 565 00d8 E9000000 		.4byte	0xe9
+ 566 00dc 07       		.uleb128 0x7
+ 567 00dd 63090000 		.4byte	.LASF19
+ 568 00e1 00       		.sleb128 0
+ 569 00e2 07       		.uleb128 0x7
+ 570 00e3 CB060000 		.4byte	.LASF20
+ 571 00e7 01       		.sleb128 1
+ 572 00e8 00       		.byte	0
+ 573 00e9 08       		.uleb128 0x8
+ 574 00ea B2020000 		.4byte	.LASF21
+ 575 00ee 03       		.byte	0x3
+ 576 00ef 90       		.byte	0x90
+ 577 00f0 D4000000 		.4byte	0xd4
+ 578 00f4 06       		.uleb128 0x6
+ 579 00f5 01       		.byte	0x1
+ 580 00f6 03       		.byte	0x3
+ 581 00f7 9A       		.byte	0x9a
+ 582 00f8 09010000 		.4byte	0x109
+ 583 00fc 07       		.uleb128 0x7
+ 584 00fd DE030000 		.4byte	.LASF22
+ 585 0101 00       		.sleb128 0
+ 586 0102 07       		.uleb128 0x7
+ 587 0103 AC050000 		.4byte	.LASF23
+ 588 0107 01       		.sleb128 1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 19
+
+
+ 589 0108 00       		.byte	0
+ 590 0109 08       		.uleb128 0x8
+ 591 010a 380C0000 		.4byte	.LASF24
+ 592 010e 03       		.byte	0x3
+ 593 010f 9D       		.byte	0x9d
+ 594 0110 F4000000 		.4byte	0xf4
+ 595 0114 06       		.uleb128 0x6
+ 596 0115 01       		.byte	0x1
+ 597 0116 03       		.byte	0x3
+ 598 0117 A5       		.byte	0xa5
+ 599 0118 29010000 		.4byte	0x129
+ 600 011c 07       		.uleb128 0x7
+ 601 011d BF030000 		.4byte	.LASF25
+ 602 0121 00       		.sleb128 0
+ 603 0122 07       		.uleb128 0x7
+ 604 0123 6C070000 		.4byte	.LASF26
+ 605 0127 01       		.sleb128 1
+ 606 0128 00       		.byte	0
+ 607 0129 08       		.uleb128 0x8
+ 608 012a EE0F0000 		.4byte	.LASF27
+ 609 012e 03       		.byte	0x3
+ 610 012f A8       		.byte	0xa8
+ 611 0130 14010000 		.4byte	0x114
+ 612 0134 06       		.uleb128 0x6
+ 613 0135 01       		.byte	0x1
+ 614 0136 03       		.byte	0x3
+ 615 0137 B0       		.byte	0xb0
+ 616 0138 49010000 		.4byte	0x149
+ 617 013c 07       		.uleb128 0x7
+ 618 013d 5F0A0000 		.4byte	.LASF28
+ 619 0141 00       		.sleb128 0
+ 620 0142 07       		.uleb128 0x7
+ 621 0143 E50B0000 		.4byte	.LASF29
+ 622 0147 01       		.sleb128 1
+ 623 0148 00       		.byte	0
+ 624 0149 08       		.uleb128 0x8
+ 625 014a BD040000 		.4byte	.LASF30
+ 626 014e 03       		.byte	0x3
+ 627 014f B3       		.byte	0xb3
+ 628 0150 34010000 		.4byte	0x134
+ 629 0154 06       		.uleb128 0x6
+ 630 0155 01       		.byte	0x1
+ 631 0156 03       		.byte	0x3
+ 632 0157 BB       		.byte	0xbb
+ 633 0158 6F010000 		.4byte	0x16f
+ 634 015c 07       		.uleb128 0x7
+ 635 015d 74080000 		.4byte	.LASF31
+ 636 0161 1F       		.sleb128 31
+ 637 0162 07       		.uleb128 0x7
+ 638 0163 ED020000 		.4byte	.LASF32
+ 639 0167 0F       		.sleb128 15
+ 640 0168 07       		.uleb128 0x7
+ 641 0169 C7070000 		.4byte	.LASF33
+ 642 016d 07       		.sleb128 7
+ 643 016e 00       		.byte	0
+ 644 016f 08       		.uleb128 0x8
+ 645 0170 49000000 		.4byte	.LASF34
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 20
+
+
+ 646 0174 03       		.byte	0x3
+ 647 0175 BF       		.byte	0xbf
+ 648 0176 54010000 		.4byte	0x154
+ 649 017a 09       		.uleb128 0x9
+ 650 017b 08       		.byte	0x8
+ 651 017c 04       		.byte	0x4
+ 652 017d 44       		.byte	0x44
+ 653 017e 9B010000 		.4byte	0x19b
+ 654 0182 0A       		.uleb128 0xa
+ 655 0183 E30E0000 		.4byte	.LASF35
+ 656 0187 04       		.byte	0x4
+ 657 0188 45       		.byte	0x45
+ 658 0189 9B010000 		.4byte	0x19b
+ 659 018d 00       		.byte	0
+ 660 018e 0A       		.uleb128 0xa
+ 661 018f 24050000 		.4byte	.LASF36
+ 662 0193 04       		.byte	0x4
+ 663 0194 46       		.byte	0x46
+ 664 0195 83000000 		.4byte	0x83
+ 665 0199 04       		.byte	0x4
+ 666 019a 00       		.byte	0
+ 667 019b 0B       		.uleb128 0xb
+ 668 019c 04       		.byte	0x4
+ 669 019d BC000000 		.4byte	0xbc
+ 670 01a1 08       		.uleb128 0x8
+ 671 01a2 3E060000 		.4byte	.LASF37
+ 672 01a6 04       		.byte	0x4
+ 673 01a7 47       		.byte	0x47
+ 674 01a8 7A010000 		.4byte	0x17a
+ 675 01ac 09       		.uleb128 0x9
+ 676 01ad 0C       		.byte	0xc
+ 677 01ae 04       		.byte	0x4
+ 678 01af 4E       		.byte	0x4e
+ 679 01b0 F1010000 		.4byte	0x1f1
+ 680 01b4 0A       		.uleb128 0xa
+ 681 01b5 5E0F0000 		.4byte	.LASF38
+ 682 01b9 04       		.byte	0x4
+ 683 01ba 4F       		.byte	0x4f
+ 684 01bb F1010000 		.4byte	0x1f1
+ 685 01bf 00       		.byte	0
+ 686 01c0 0A       		.uleb128 0xa
+ 687 01c1 73020000 		.4byte	.LASF39
+ 688 01c5 04       		.byte	0x4
+ 689 01c6 50       		.byte	0x50
+ 690 01c7 F7010000 		.4byte	0x1f7
+ 691 01cb 04       		.byte	0x4
+ 692 01cc 0A       		.uleb128 0xa
+ 693 01cd C80B0000 		.4byte	.LASF40
+ 694 01d1 04       		.byte	0x4
+ 695 01d2 51       		.byte	0x51
+ 696 01d3 77000000 		.4byte	0x77
+ 697 01d7 08       		.byte	0x8
+ 698 01d8 0A       		.uleb128 0xa
+ 699 01d9 570B0000 		.4byte	.LASF41
+ 700 01dd 04       		.byte	0x4
+ 701 01de 52       		.byte	0x52
+ 702 01df 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 21
+
+
+ 703 01e3 0A       		.byte	0xa
+ 704 01e4 0A       		.uleb128 0xa
+ 705 01e5 29070000 		.4byte	.LASF42
+ 706 01e9 04       		.byte	0x4
+ 707 01ea 53       		.byte	0x53
+ 708 01eb 6B000000 		.4byte	0x6b
+ 709 01ef 0B       		.byte	0xb
+ 710 01f0 00       		.byte	0
+ 711 01f1 0B       		.uleb128 0xb
+ 712 01f2 04       		.byte	0x4
+ 713 01f3 77000000 		.4byte	0x77
+ 714 01f7 0B       		.uleb128 0xb
+ 715 01f8 04       		.byte	0x4
+ 716 01f9 A1010000 		.4byte	0x1a1
+ 717 01fd 08       		.uleb128 0x8
+ 718 01fe DC0A0000 		.4byte	.LASF43
+ 719 0202 04       		.byte	0x4
+ 720 0203 54       		.byte	0x54
+ 721 0204 AC010000 		.4byte	0x1ac
+ 722 0208 06       		.uleb128 0x6
+ 723 0209 01       		.byte	0x1
+ 724 020a 04       		.byte	0x4
+ 725 020b F5       		.byte	0xf5
+ 726 020c 3B020000 		.4byte	0x23b
+ 727 0210 07       		.uleb128 0x7
+ 728 0211 4D0C0000 		.4byte	.LASF44
+ 729 0215 00       		.sleb128 0
+ 730 0216 07       		.uleb128 0x7
+ 731 0217 A6070000 		.4byte	.LASF45
+ 732 021b 01       		.sleb128 1
+ 733 021c 07       		.uleb128 0x7
+ 734 021d 71040000 		.4byte	.LASF46
+ 735 0221 02       		.sleb128 2
+ 736 0222 07       		.uleb128 0x7
+ 737 0223 680F0000 		.4byte	.LASF47
+ 738 0227 03       		.sleb128 3
+ 739 0228 07       		.uleb128 0x7
+ 740 0229 AE000000 		.4byte	.LASF48
+ 741 022d 05       		.sleb128 5
+ 742 022e 07       		.uleb128 0x7
+ 743 022f B80E0000 		.4byte	.LASF49
+ 744 0233 06       		.sleb128 6
+ 745 0234 07       		.uleb128 0x7
+ 746 0235 750C0000 		.4byte	.LASF50
+ 747 0239 07       		.sleb128 7
+ 748 023a 00       		.byte	0
+ 749 023b 08       		.uleb128 0x8
+ 750 023c 840C0000 		.4byte	.LASF51
+ 751 0240 04       		.byte	0x4
+ 752 0241 FE       		.byte	0xfe
+ 753 0242 08020000 		.4byte	0x208
+ 754 0246 0C       		.uleb128 0xc
+ 755 0247 01       		.byte	0x1
+ 756 0248 04       		.byte	0x4
+ 757 0249 2901     		.2byte	0x129
+ 758 024b 62020000 		.4byte	0x262
+ 759 024f 07       		.uleb128 0x7
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 22
+
+
+ 760 0250 DA040000 		.4byte	.LASF52
+ 761 0254 00       		.sleb128 0
+ 762 0255 07       		.uleb128 0x7
+ 763 0256 14080000 		.4byte	.LASF53
+ 764 025a 01       		.sleb128 1
+ 765 025b 07       		.uleb128 0x7
+ 766 025c 420D0000 		.4byte	.LASF54
+ 767 0260 02       		.sleb128 2
+ 768 0261 00       		.byte	0
+ 769 0262 04       		.uleb128 0x4
+ 770 0263 7A0A0000 		.4byte	.LASF55
+ 771 0267 04       		.byte	0x4
+ 772 0268 3F01     		.2byte	0x13f
+ 773 026a 46020000 		.4byte	0x246
+ 774 026e 0C       		.uleb128 0xc
+ 775 026f 01       		.byte	0x1
+ 776 0270 04       		.byte	0x4
+ 777 0271 7001     		.2byte	0x170
+ 778 0273 CC020000 		.4byte	0x2cc
+ 779 0277 07       		.uleb128 0x7
+ 780 0278 770F0000 		.4byte	.LASF56
+ 781 027c 00       		.sleb128 0
+ 782 027d 07       		.uleb128 0x7
+ 783 027e DF0F0000 		.4byte	.LASF57
+ 784 0282 01       		.sleb128 1
+ 785 0283 07       		.uleb128 0x7
+ 786 0284 1C060000 		.4byte	.LASF58
+ 787 0288 02       		.sleb128 2
+ 788 0289 07       		.uleb128 0x7
+ 789 028a 0A100000 		.4byte	.LASF59
+ 790 028e 03       		.sleb128 3
+ 791 028f 07       		.uleb128 0x7
+ 792 0290 19100000 		.4byte	.LASF60
+ 793 0294 04       		.sleb128 4
+ 794 0295 07       		.uleb128 0x7
+ 795 0296 28100000 		.4byte	.LASF61
+ 796 029a 05       		.sleb128 5
+ 797 029b 07       		.uleb128 0x7
+ 798 029c 37100000 		.4byte	.LASF62
+ 799 02a0 06       		.sleb128 6
+ 800 02a1 07       		.uleb128 0x7
+ 801 02a2 46100000 		.4byte	.LASF63
+ 802 02a6 07       		.sleb128 7
+ 803 02a7 07       		.uleb128 0x7
+ 804 02a8 55100000 		.4byte	.LASF64
+ 805 02ac 08       		.sleb128 8
+ 806 02ad 07       		.uleb128 0x7
+ 807 02ae 64100000 		.4byte	.LASF65
+ 808 02b2 09       		.sleb128 9
+ 809 02b3 07       		.uleb128 0x7
+ 810 02b4 2E0F0000 		.4byte	.LASF66
+ 811 02b8 0A       		.sleb128 10
+ 812 02b9 07       		.uleb128 0x7
+ 813 02ba 3E0F0000 		.4byte	.LASF67
+ 814 02be 0B       		.sleb128 11
+ 815 02bf 07       		.uleb128 0x7
+ 816 02c0 4E0F0000 		.4byte	.LASF68
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 23
+
+
+ 817 02c4 0C       		.sleb128 12
+ 818 02c5 07       		.uleb128 0x7
+ 819 02c6 E6050000 		.4byte	.LASF69
+ 820 02ca 0F       		.sleb128 15
+ 821 02cb 00       		.byte	0
+ 822 02cc 04       		.uleb128 0x4
+ 823 02cd D40E0000 		.4byte	.LASF70
+ 824 02d1 04       		.byte	0x4
+ 825 02d2 8601     		.2byte	0x186
+ 826 02d4 6E020000 		.4byte	0x26e
+ 827 02d8 0C       		.uleb128 0xc
+ 828 02d9 04       		.byte	0x4
+ 829 02da 04       		.byte	0x4
+ 830 02db CD01     		.2byte	0x1cd
+ 831 02dd 1F050000 		.4byte	0x51f
+ 832 02e1 07       		.uleb128 0x7
+ 833 02e2 6C030000 		.4byte	.LASF71
+ 834 02e6 B0808004 		.sleb128 8388656
+ 835 02ea 07       		.uleb128 0x7
+ 836 02eb 79030000 		.4byte	.LASF72
+ 837 02ef B0808404 		.sleb128 8454192
+ 838 02f3 07       		.uleb128 0x7
+ 839 02f4 86030000 		.4byte	.LASF73
+ 840 02f8 B0808804 		.sleb128 8519728
+ 841 02fc 07       		.uleb128 0x7
+ 842 02fd 93030000 		.4byte	.LASF74
+ 843 0301 B0808C04 		.sleb128 8585264
+ 844 0305 07       		.uleb128 0x7
+ 845 0306 4B0B0000 		.4byte	.LASF75
+ 846 030a B08010   		.sleb128 262192
+ 847 030d 07       		.uleb128 0x7
+ 848 030e B9100000 		.4byte	.LASF76
+ 849 0312 B08014   		.sleb128 327728
+ 850 0315 07       		.uleb128 0x7
+ 851 0316 760B0000 		.4byte	.LASF77
+ 852 031a B08020   		.sleb128 524336
+ 853 031d 07       		.uleb128 0x7
+ 854 031e F5100000 		.4byte	.LASF78
+ 855 0322 B08024   		.sleb128 589872
+ 856 0325 07       		.uleb128 0x7
+ 857 0326 D00A0000 		.4byte	.LASF79
+ 858 032a B08028   		.sleb128 655408
+ 859 032d 07       		.uleb128 0x7
+ 860 032e 3B050000 		.4byte	.LASF80
+ 861 0332 C0808004 		.sleb128 8388672
+ 862 0336 07       		.uleb128 0x7
+ 863 0337 820B0000 		.4byte	.LASF81
+ 864 033b C0809004 		.sleb128 8650816
+ 865 033f 07       		.uleb128 0x7
+ 866 0340 3C010000 		.4byte	.LASF82
+ 867 0344 C080A004 		.sleb128 8912960
+ 868 0348 07       		.uleb128 0x7
+ 869 0349 02010000 		.4byte	.LASF83
+ 870 034d C080B004 		.sleb128 9175104
+ 871 0351 07       		.uleb128 0x7
+ 872 0352 68080000 		.4byte	.LASF84
+ 873 0356 C080C000 		.sleb128 1048640
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 24
+
+
+ 874 035a 07       		.uleb128 0x7
+ 875 035b 400A0000 		.4byte	.LASF85
+ 876 035f C080D000 		.sleb128 1310784
+ 877 0363 07       		.uleb128 0x7
+ 878 0364 4B090000 		.4byte	.LASF86
+ 879 0368 C400     		.sleb128 68
+ 880 036a 07       		.uleb128 0x7
+ 881 036b 33070000 		.4byte	.LASF87
+ 882 036f C48010   		.sleb128 262212
+ 883 0372 07       		.uleb128 0x7
+ 884 0373 A5060000 		.4byte	.LASF88
+ 885 0377 C48020   		.sleb128 524356
+ 886 037a 07       		.uleb128 0x7
+ 887 037b A50E0000 		.4byte	.LASF89
+ 888 037f C48030   		.sleb128 786500
+ 889 0382 07       		.uleb128 0x7
+ 890 0383 9B000000 		.4byte	.LASF90
+ 891 0387 C800     		.sleb128 72
+ 892 0389 07       		.uleb128 0x7
+ 893 038a 14110000 		.4byte	.LASF91
+ 894 038e C88010   		.sleb128 262216
+ 895 0391 07       		.uleb128 0x7
+ 896 0392 01080000 		.4byte	.LASF92
+ 897 0396 C88020   		.sleb128 524360
+ 898 0399 07       		.uleb128 0x7
+ 899 039a 980C0000 		.4byte	.LASF93
+ 900 039e C880C000 		.sleb128 1048648
+ 901 03a2 07       		.uleb128 0x7
+ 902 03a3 00090000 		.4byte	.LASF94
+ 903 03a7 D0808004 		.sleb128 8388688
+ 904 03ab 07       		.uleb128 0x7
+ 905 03ac B80F0000 		.4byte	.LASF95
+ 906 03b0 D0809004 		.sleb128 8650832
+ 907 03b4 07       		.uleb128 0x7
+ 908 03b5 10050000 		.4byte	.LASF96
+ 909 03b9 D080A004 		.sleb128 8912976
+ 910 03bd 07       		.uleb128 0x7
+ 911 03be 2D0B0000 		.4byte	.LASF97
+ 912 03c2 D080B004 		.sleb128 9175120
+ 913 03c6 07       		.uleb128 0x7
+ 914 03c7 020B0000 		.4byte	.LASF98
+ 915 03cb D080C000 		.sleb128 1048656
+ 916 03cf 07       		.uleb128 0x7
+ 917 03d0 0E0B0000 		.4byte	.LASF99
+ 918 03d4 D080D000 		.sleb128 1310800
+ 919 03d8 07       		.uleb128 0x7
+ 920 03d9 C40A0000 		.4byte	.LASF100
+ 921 03dd D400     		.sleb128 84
+ 922 03df 07       		.uleb128 0x7
+ 923 03e0 250C0000 		.4byte	.LASF101
+ 924 03e4 D48010   		.sleb128 262228
+ 925 03e7 07       		.uleb128 0x7
+ 926 03e8 A20B0000 		.4byte	.LASF102
+ 927 03ec D48020   		.sleb128 524372
+ 928 03ef 07       		.uleb128 0x7
+ 929 03f0 60020000 		.4byte	.LASF103
+ 930 03f4 D48030   		.sleb128 786516
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 25
+
+
+ 931 03f7 07       		.uleb128 0x7
+ 932 03f8 B8060000 		.4byte	.LASF104
+ 933 03fc D800     		.sleb128 88
+ 934 03fe 07       		.uleb128 0x7
+ 935 03ff AA040000 		.4byte	.LASF105
+ 936 0403 D88010   		.sleb128 262232
+ 937 0406 07       		.uleb128 0x7
+ 938 0407 88090000 		.4byte	.LASF106
+ 939 040b D88020   		.sleb128 524376
+ 940 040e 07       		.uleb128 0x7
+ 941 040f 140E0000 		.4byte	.LASF107
+ 942 0413 D88030   		.sleb128 786520
+ 943 0416 07       		.uleb128 0x7
+ 944 0417 A40C0000 		.4byte	.LASF108
+ 945 041b D880C000 		.sleb128 1048664
+ 946 041f 07       		.uleb128 0x7
+ 947 0420 140D0000 		.4byte	.LASF109
+ 948 0424 E0808004 		.sleb128 8388704
+ 949 0428 07       		.uleb128 0x7
+ 950 0429 9E020000 		.4byte	.LASF110
+ 951 042d E0809004 		.sleb128 8650848
+ 952 0431 07       		.uleb128 0x7
+ 953 0432 C6080000 		.4byte	.LASF111
+ 954 0436 E080A004 		.sleb128 8912992
+ 955 043a 07       		.uleb128 0x7
+ 956 043b 850F0000 		.4byte	.LASF112
+ 957 043f E080B004 		.sleb128 9175136
+ 958 0443 07       		.uleb128 0x7
+ 959 0444 960B0000 		.4byte	.LASF113
+ 960 0448 E080C000 		.sleb128 1048672
+ 961 044c 07       		.uleb128 0x7
+ 962 044d E20C0000 		.4byte	.LASF114
+ 963 0451 E080D000 		.sleb128 1310816
+ 964 0455 07       		.uleb128 0x7
+ 965 0456 6A0B0000 		.4byte	.LASF115
+ 966 045a E400     		.sleb128 100
+ 967 045c 07       		.uleb128 0x7
+ 968 045d 23000000 		.4byte	.LASF116
+ 969 0461 E48010   		.sleb128 262244
+ 970 0464 07       		.uleb128 0x7
+ 971 0465 01110000 		.4byte	.LASF117
+ 972 0469 E48020   		.sleb128 524388
+ 973 046c 07       		.uleb128 0x7
+ 974 046d 60060000 		.4byte	.LASF118
+ 975 0471 E48030   		.sleb128 786532
+ 976 0474 07       		.uleb128 0x7
+ 977 0475 C70D0000 		.4byte	.LASF119
+ 978 0479 E800     		.sleb128 104
+ 979 047b 07       		.uleb128 0x7
+ 980 047c FD010000 		.4byte	.LASF120
+ 981 0480 E88010   		.sleb128 262248
+ 982 0483 07       		.uleb128 0x7
+ 983 0484 73100000 		.4byte	.LASF121
+ 984 0488 E88020   		.sleb128 524392
+ 985 048b 07       		.uleb128 0x7
+ 986 048c 200E0000 		.4byte	.LASF122
+ 987 0490 E88030   		.sleb128 786536
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 26
+
+
+ 988 0493 07       		.uleb128 0x7
+ 989 0494 B00C0000 		.4byte	.LASF123
+ 990 0498 E880C000 		.sleb128 1048680
+ 991 049c 07       		.uleb128 0x7
+ 992 049d B3030000 		.4byte	.LASF124
+ 993 04a1 E880D000 		.sleb128 1310824
+ 994 04a5 07       		.uleb128 0x7
+ 995 04a6 AD100000 		.4byte	.LASF125
+ 996 04aa EC00     		.sleb128 108
+ 997 04ac 07       		.uleb128 0x7
+ 998 04ad 14090000 		.4byte	.LASF126
+ 999 04b1 EC8010   		.sleb128 262252
+ 1000 04b4 07       		.uleb128 0x7
+ 1001 04b5 57090000 		.4byte	.LASF127
+ 1002 04b9 EC8020   		.sleb128 524396
+ 1003 04bc 07       		.uleb128 0x7
+ 1004 04bd 3F090000 		.4byte	.LASF128
+ 1005 04c1 EC8030   		.sleb128 786540
+ 1006 04c4 07       		.uleb128 0x7
+ 1007 04c5 E7060000 		.4byte	.LASF129
+ 1008 04c9 F000     		.sleb128 112
+ 1009 04cb 07       		.uleb128 0x7
+ 1010 04cc F3000000 		.4byte	.LASF130
+ 1011 04d0 F08010   		.sleb128 262256
+ 1012 04d3 07       		.uleb128 0x7
+ 1013 04d4 79020000 		.4byte	.LASF131
+ 1014 04d8 F08020   		.sleb128 524400
+ 1015 04db 07       		.uleb128 0x7
+ 1016 04dc 9B090000 		.4byte	.LASF132
+ 1017 04e0 F080E000 		.sleb128 1572976
+ 1018 04e4 07       		.uleb128 0x7
+ 1019 04e5 3C040000 		.4byte	.LASF133
+ 1020 04e9 F080F000 		.sleb128 1835120
+ 1021 04ed 07       		.uleb128 0x7
+ 1022 04ee 44080000 		.4byte	.LASF134
+ 1023 04f2 F400     		.sleb128 116
+ 1024 04f4 07       		.uleb128 0x7
+ 1025 04f5 E2000000 		.4byte	.LASF135
+ 1026 04f9 F48010   		.sleb128 262260
+ 1027 04fc 07       		.uleb128 0x7
+ 1028 04fd A10A0000 		.4byte	.LASF136
+ 1029 0501 F48020   		.sleb128 524404
+ 1030 0504 07       		.uleb128 0x7
+ 1031 0505 2A050000 		.4byte	.LASF137
+ 1032 0509 F48030   		.sleb128 786548
+ 1033 050c 07       		.uleb128 0x7
+ 1034 050d 16040000 		.4byte	.LASF138
+ 1035 0511 F480C000 		.sleb128 1048692
+ 1036 0515 07       		.uleb128 0x7
+ 1037 0516 7C050000 		.4byte	.LASF139
+ 1038 051a F480D000 		.sleb128 1310836
+ 1039 051e 00       		.byte	0
+ 1040 051f 04       		.uleb128 0x4
+ 1041 0520 140C0000 		.4byte	.LASF140
+ 1042 0524 04       		.byte	0x4
+ 1043 0525 2702     		.2byte	0x227
+ 1044 0527 D8020000 		.4byte	0x2d8
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 27
+
+
+ 1045 052b 0C       		.uleb128 0xc
+ 1046 052c 01       		.byte	0x1
+ 1047 052d 04       		.byte	0x4
+ 1048 052e 4D03     		.2byte	0x34d
+ 1049 0530 B5060000 		.4byte	0x6b5
+ 1050 0534 07       		.uleb128 0x7
+ 1051 0535 33030000 		.4byte	.LASF141
+ 1052 0539 00       		.sleb128 0
+ 1053 053a 07       		.uleb128 0x7
+ 1054 053b 920E0000 		.4byte	.LASF142
+ 1055 053f 01       		.sleb128 1
+ 1056 0540 07       		.uleb128 0x7
+ 1057 0541 31080000 		.4byte	.LASF143
+ 1058 0545 02       		.sleb128 2
+ 1059 0546 07       		.uleb128 0x7
+ 1060 0547 8B020000 		.4byte	.LASF144
+ 1061 054b 03       		.sleb128 3
+ 1062 054c 07       		.uleb128 0x7
+ 1063 054d 6C0D0000 		.4byte	.LASF145
+ 1064 0551 04       		.sleb128 4
+ 1065 0552 07       		.uleb128 0x7
+ 1066 0553 16070000 		.4byte	.LASF146
+ 1067 0557 05       		.sleb128 5
+ 1068 0558 07       		.uleb128 0x7
+ 1069 0559 C4010000 		.4byte	.LASF147
+ 1070 055d 06       		.sleb128 6
+ 1071 055e 07       		.uleb128 0x7
+ 1072 055f CF000000 		.4byte	.LASF148
+ 1073 0563 07       		.sleb128 7
+ 1074 0564 07       		.uleb128 0x7
+ 1075 0565 2B060000 		.4byte	.LASF149
+ 1076 0569 08       		.sleb128 8
+ 1077 056a 07       		.uleb128 0x7
+ 1078 056b 04030000 		.4byte	.LASF150
+ 1079 056f 09       		.sleb128 9
+ 1080 0570 07       		.uleb128 0x7
+ 1081 0571 400E0000 		.4byte	.LASF151
+ 1082 0575 0A       		.sleb128 10
+ 1083 0576 07       		.uleb128 0x7
+ 1084 0577 DE070000 		.4byte	.LASF152
+ 1085 057b 0B       		.sleb128 11
+ 1086 057c 07       		.uleb128 0x7
+ 1087 057d 4D020000 		.4byte	.LASF153
+ 1088 0581 0C       		.sleb128 12
+ 1089 0582 07       		.uleb128 0x7
+ 1090 0583 010D0000 		.4byte	.LASF154
+ 1091 0587 0D       		.sleb128 13
+ 1092 0588 07       		.uleb128 0x7
+ 1093 0589 93070000 		.4byte	.LASF155
+ 1094 058d 0E       		.sleb128 14
+ 1095 058e 07       		.uleb128 0x7
+ 1096 058f 50010000 		.4byte	.LASF156
+ 1097 0593 0F       		.sleb128 15
+ 1098 0594 07       		.uleb128 0x7
+ 1099 0595 DA080000 		.4byte	.LASF157
+ 1100 0599 10       		.sleb128 16
+ 1101 059a 07       		.uleb128 0x7
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 28
+
+
+ 1102 059b 09060000 		.4byte	.LASF158
+ 1103 059f 11       		.sleb128 17
+ 1104 05a0 07       		.uleb128 0x7
+ 1105 05a1 75000000 		.4byte	.LASF159
+ 1106 05a5 12       		.sleb128 18
+ 1107 05a6 07       		.uleb128 0x7
+ 1108 05a7 010E0000 		.4byte	.LASF160
+ 1109 05ab 13       		.sleb128 19
+ 1110 05ac 07       		.uleb128 0x7
+ 1111 05ad C5100000 		.4byte	.LASF161
+ 1112 05b1 14       		.sleb128 20
+ 1113 05b2 07       		.uleb128 0x7
+ 1114 05b3 3A020000 		.4byte	.LASF162
+ 1115 05b7 15       		.sleb128 21
+ 1116 05b8 07       		.uleb128 0x7
+ 1117 05b9 BC000000 		.4byte	.LASF163
+ 1118 05bd 16       		.sleb128 22
+ 1119 05be 07       		.uleb128 0x7
+ 1120 05bf 73060000 		.4byte	.LASF164
+ 1121 05c3 17       		.sleb128 23
+ 1122 05c4 07       		.uleb128 0x7
+ 1123 05c5 16010000 		.4byte	.LASF165
+ 1124 05c9 18       		.sleb128 24
+ 1125 05ca 07       		.uleb128 0x7
+ 1126 05cb D20B0000 		.4byte	.LASF166
+ 1127 05cf 19       		.sleb128 25
+ 1128 05d0 07       		.uleb128 0x7
+ 1129 05d1 99050000 		.4byte	.LASF167
+ 1130 05d5 1A       		.sleb128 26
+ 1131 05d6 07       		.uleb128 0x7
+ 1132 05d7 36000000 		.4byte	.LASF168
+ 1133 05db 1B       		.sleb128 27
+ 1134 05dc 07       		.uleb128 0x7
+ 1135 05dd 1A0B0000 		.4byte	.LASF169
+ 1136 05e1 1C       		.sleb128 28
+ 1137 05e2 07       		.uleb128 0x7
+ 1138 05e3 59070000 		.4byte	.LASF170
+ 1139 05e7 1D       		.sleb128 29
+ 1140 05e8 07       		.uleb128 0x7
+ 1141 05e9 EA010000 		.4byte	.LASF171
+ 1142 05ed 1E       		.sleb128 30
+ 1143 05ee 07       		.uleb128 0x7
+ 1144 05ef CF0C0000 		.4byte	.LASF172
+ 1145 05f3 1F       		.sleb128 31
+ 1146 05f4 07       		.uleb128 0x7
+ 1147 05f5 59030000 		.4byte	.LASF173
+ 1148 05f9 00       		.sleb128 0
+ 1149 05fa 07       		.uleb128 0x7
+ 1150 05fb 55080000 		.4byte	.LASF174
+ 1151 05ff 01       		.sleb128 1
+ 1152 0600 07       		.uleb128 0x7
+ 1153 0601 880D0000 		.4byte	.LASF175
+ 1154 0605 02       		.sleb128 2
+ 1155 0606 07       		.uleb128 0x7
+ 1156 0607 D7010000 		.4byte	.LASF176
+ 1157 060b 03       		.sleb128 3
+ 1158 060c 07       		.uleb128 0x7
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 29
+
+
+ 1159 060d B3080000 		.4byte	.LASF177
+ 1160 0611 04       		.sleb128 4
+ 1161 0612 07       		.uleb128 0x7
+ 1162 0613 530E0000 		.4byte	.LASF178
+ 1163 0617 05       		.sleb128 5
+ 1164 0618 07       		.uleb128 0x7
+ 1165 0619 EE0C0000 		.4byte	.LASF179
+ 1166 061d 06       		.sleb128 6
+ 1167 061e 07       		.uleb128 0x7
+ 1168 061f F7060000 		.4byte	.LASF180
+ 1169 0623 07       		.sleb128 7
+ 1170 0624 07       		.uleb128 0x7
+ 1171 0625 5B0C0000 		.4byte	.LASF181
+ 1172 0629 08       		.sleb128 8
+ 1173 062a 07       		.uleb128 0x7
+ 1174 062b DA020000 		.4byte	.LASF182
+ 1175 062f 09       		.sleb128 9
+ 1176 0630 07       		.uleb128 0x7
+ 1177 0631 B4070000 		.4byte	.LASF183
+ 1178 0635 0A       		.sleb128 10
+ 1179 0636 07       		.uleb128 0x7
+ 1180 0637 46070000 		.4byte	.LASF184
+ 1181 063b 0B       		.sleb128 11
+ 1182 063c 07       		.uleb128 0x7
+ 1183 063d 29010000 		.4byte	.LASF185
+ 1184 0641 0C       		.sleb128 12
+ 1185 0642 07       		.uleb128 0x7
+ 1186 0643 F6050000 		.4byte	.LASF186
+ 1187 0647 0D       		.sleb128 13
+ 1188 0648 07       		.uleb128 0x7
+ 1189 0649 DA0D0000 		.4byte	.LASF187
+ 1190 064d 0E       		.sleb128 14
+ 1191 064e 07       		.uleb128 0x7
+ 1192 064f 88000000 		.4byte	.LASF188
+ 1193 0653 0F       		.sleb128 15
+ 1194 0654 07       		.uleb128 0x7
+ 1195 0655 4D060000 		.4byte	.LASF189
+ 1196 0659 10       		.sleb128 16
+ 1197 065a 07       		.uleb128 0x7
+ 1198 065b B50B0000 		.4byte	.LASF190
+ 1199 065f 11       		.sleb128 17
+ 1200 0660 07       		.uleb128 0x7
+ 1201 0661 00000000 		.4byte	.LASF191
+ 1202 0665 12       		.sleb128 18
+ 1203 0666 07       		.uleb128 0x7
+ 1204 0667 69050000 		.4byte	.LASF192
+ 1205 066b 13       		.sleb128 19
+ 1206 066c 07       		.uleb128 0x7
+ 1207 066d E90A0000 		.4byte	.LASF193
+ 1208 0671 14       		.sleb128 20
+ 1209 0672 07       		.uleb128 0x7
+ 1210 0673 A0030000 		.4byte	.LASF194
+ 1211 0677 15       		.sleb128 21
+ 1212 0678 07       		.uleb128 0x7
+ 1213 0679 29040000 		.4byte	.LASF195
+ 1214 067d 16       		.sleb128 22
+ 1215 067e 07       		.uleb128 0x7
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 30
+
+
+ 1216 067f ED080000 		.4byte	.LASF196
+ 1217 0683 17       		.sleb128 23
+ 1218 0684 07       		.uleb128 0x7
+ 1219 0685 E2100000 		.4byte	.LASF197
+ 1220 0689 18       		.sleb128 24
+ 1221 068a 07       		.uleb128 0x7
+ 1222 068b 9B0D0000 		.4byte	.LASF198
+ 1223 068f 19       		.sleb128 25
+ 1224 0690 07       		.uleb128 0x7
+ 1225 0691 4C0A0000 		.4byte	.LASF199
+ 1226 0695 1A       		.sleb128 26
+ 1227 0696 07       		.uleb128 0x7
+ 1228 0697 020F0000 		.4byte	.LASF200
+ 1229 069b 1B       		.sleb128 27
+ 1230 069c 07       		.uleb128 0x7
+ 1231 069d 46030000 		.4byte	.LASF201
+ 1232 06a1 1C       		.sleb128 28
+ 1233 06a2 07       		.uleb128 0x7
+ 1234 06a3 8E0A0000 		.4byte	.LASF202
+ 1235 06a7 1D       		.sleb128 29
+ 1236 06a8 07       		.uleb128 0x7
+ 1237 06a9 990F0000 		.4byte	.LASF203
+ 1238 06ad 1E       		.sleb128 30
+ 1239 06ae 07       		.uleb128 0x7
+ 1240 06af F7030000 		.4byte	.LASF204
+ 1241 06b3 1F       		.sleb128 31
+ 1242 06b4 00       		.byte	0
+ 1243 06b5 04       		.uleb128 0x4
+ 1244 06b6 40110000 		.4byte	.LASF205
+ 1245 06ba 04       		.byte	0x4
+ 1246 06bb 8F03     		.2byte	0x38f
+ 1247 06bd 2B050000 		.4byte	0x52b
+ 1248 06c1 0D       		.uleb128 0xd
+ 1249 06c2 13000000 		.4byte	.LASF206
+ 1250 06c6 01       		.byte	0x1
+ 1251 06c7 5E       		.byte	0x5e
+ 1252 06c8 00000000 		.4byte	.LFB2
+ 1253 06cc 18000000 		.4byte	.LFE2-.LFB2
+ 1254 06d0 01       		.uleb128 0x1
+ 1255 06d1 9C       		.byte	0x9c
+ 1256 06d2 E9060000 		.4byte	0x6e9
+ 1257 06d6 0E       		.uleb128 0xe
+ 1258 06d7 06000000 		.4byte	.LVL0
+ 1259 06db 88090000 		.4byte	0x988
+ 1260 06df 0E       		.uleb128 0xe
+ 1261 06e0 0A000000 		.4byte	.LVL1
+ 1262 06e4 8F090000 		.4byte	0x98f
+ 1263 06e8 00       		.byte	0
+ 1264 06e9 0D       		.uleb128 0xd
+ 1265 06ea 2C0E0000 		.4byte	.LASF207
+ 1266 06ee 01       		.byte	0x1
+ 1267 06ef 7F       		.byte	0x7f
+ 1268 06f0 00000000 		.4byte	.LFB3
+ 1269 06f4 0A000000 		.4byte	.LFE3-.LFB3
+ 1270 06f8 01       		.uleb128 0x1
+ 1271 06f9 9C       		.byte	0x9c
+ 1272 06fa 1F070000 		.4byte	0x71f
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 31
+
+
+ 1273 06fe 0F       		.uleb128 0xf
+ 1274 06ff 24050000 		.4byte	.LASF36
+ 1275 0703 01       		.byte	0x1
+ 1276 0704 7F       		.byte	0x7f
+ 1277 0705 9B000000 		.4byte	0x9b
+ 1278 0709 00000000 		.4byte	.LLST0
+ 1279 070d 10       		.uleb128 0x10
+ 1280 070e 08000000 		.4byte	.LVL4
+ 1281 0712 96090000 		.4byte	0x996
+ 1282 0716 11       		.uleb128 0x11
+ 1283 0717 01       		.uleb128 0x1
+ 1284 0718 50       		.byte	0x50
+ 1285 0719 03       		.uleb128 0x3
+ 1286 071a F3       		.byte	0xf3
+ 1287 071b 01       		.uleb128 0x1
+ 1288 071c 50       		.byte	0x50
+ 1289 071d 00       		.byte	0
+ 1290 071e 00       		.byte	0
+ 1291 071f 12       		.uleb128 0x12
+ 1292 0720 F4040000 		.4byte	.LASF208
+ 1293 0724 01       		.byte	0x1
+ 1294 0725 97       		.byte	0x97
+ 1295 0726 9B000000 		.4byte	0x9b
+ 1296 072a 00000000 		.4byte	.LFB4
+ 1297 072e 1C000000 		.4byte	.LFE4-.LFB4
+ 1298 0732 01       		.uleb128 0x1
+ 1299 0733 9C       		.byte	0x9c
+ 1300 0734 48070000 		.4byte	0x748
+ 1301 0738 0F       		.uleb128 0xf
+ 1302 0739 24050000 		.4byte	.LASF36
+ 1303 073d 01       		.byte	0x1
+ 1304 073e 97       		.byte	0x97
+ 1305 073f 9B000000 		.4byte	0x9b
+ 1306 0743 21000000 		.4byte	.LLST1
+ 1307 0747 00       		.byte	0
+ 1308 0748 12       		.uleb128 0x12
+ 1309 0749 C5050000 		.4byte	.LASF209
+ 1310 074d 01       		.byte	0x1
+ 1311 074e B4       		.byte	0xb4
+ 1312 074f 9B000000 		.4byte	0x9b
+ 1313 0753 00000000 		.4byte	.LFB5
+ 1314 0757 18000000 		.4byte	.LFE5-.LFB5
+ 1315 075b 01       		.uleb128 0x1
+ 1316 075c 9C       		.byte	0x9c
+ 1317 075d 8F070000 		.4byte	0x78f
+ 1318 0761 0F       		.uleb128 0xf
+ 1319 0762 64050000 		.4byte	.LASF210
+ 1320 0766 01       		.byte	0x1
+ 1321 0767 B4       		.byte	0xb4
+ 1322 0768 09010000 		.4byte	0x109
+ 1323 076c 4D000000 		.4byte	.LLST2
+ 1324 0770 0F       		.uleb128 0xf
+ 1325 0771 D8100000 		.4byte	.LASF211
+ 1326 0775 01       		.byte	0x1
+ 1327 0776 B4       		.byte	0xb4
+ 1328 0777 83000000 		.4byte	0x83
+ 1329 077b 6E000000 		.4byte	.LLST3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 32
+
+
+ 1330 077f 13       		.uleb128 0x13
+ 1331 0780 80090000 		.4byte	.LASF242
+ 1332 0784 01       		.byte	0x1
+ 1333 0785 B6       		.byte	0xb6
+ 1334 0786 83000000 		.4byte	0x83
+ 1335 078a A7000000 		.4byte	.LLST4
+ 1336 078e 00       		.byte	0
+ 1337 078f 12       		.uleb128 0x12
+ 1338 0790 7F010000 		.4byte	.LASF212
+ 1339 0794 01       		.byte	0x1
+ 1340 0795 D2       		.byte	0xd2
+ 1341 0796 9B000000 		.4byte	0x9b
+ 1342 079a 00000000 		.4byte	.LFB6
+ 1343 079e 14000000 		.4byte	.LFE6-.LFB6
+ 1344 07a2 01       		.uleb128 0x1
+ 1345 07a3 9C       		.byte	0x9c
+ 1346 07a4 C3070000 		.4byte	0x7c3
+ 1347 07a8 0F       		.uleb128 0xf
+ 1348 07a9 24050000 		.4byte	.LASF36
+ 1349 07ad 01       		.byte	0x1
+ 1350 07ae D2       		.byte	0xd2
+ 1351 07af 83000000 		.4byte	0x83
+ 1352 07b3 C6000000 		.4byte	.LLST5
+ 1353 07b7 14       		.uleb128 0x14
+ 1354 07b8 C00D0000 		.4byte	.LASF243
+ 1355 07bc 01       		.byte	0x1
+ 1356 07bd D4       		.byte	0xd4
+ 1357 07be 83000000 		.4byte	0x83
+ 1358 07c2 00       		.byte	0
+ 1359 07c3 0D       		.uleb128 0xd
+ 1360 07c4 4F050000 		.4byte	.LASF213
+ 1361 07c8 01       		.byte	0x1
+ 1362 07c9 EF       		.byte	0xef
+ 1363 07ca 00000000 		.4byte	.LFB7
+ 1364 07ce 12000000 		.4byte	.LFE7-.LFB7
+ 1365 07d2 01       		.uleb128 0x1
+ 1366 07d3 9C       		.byte	0x9c
+ 1367 07d4 F1070000 		.4byte	0x7f1
+ 1368 07d8 0F       		.uleb128 0xf
+ 1369 07d9 8F050000 		.4byte	.LASF214
+ 1370 07dd 01       		.byte	0x1
+ 1371 07de EF       		.byte	0xef
+ 1372 07df E9000000 		.4byte	0xe9
+ 1373 07e3 D9000000 		.4byte	.LLST6
+ 1374 07e7 0E       		.uleb128 0xe
+ 1375 07e8 10000000 		.4byte	.LVL18
+ 1376 07ec A8090000 		.4byte	0x9a8
+ 1377 07f0 00       		.byte	0
+ 1378 07f1 15       		.uleb128 0x15
+ 1379 07f2 150F0000 		.4byte	.LASF215
+ 1380 07f6 01       		.byte	0x1
+ 1381 07f7 1001     		.2byte	0x110
+ 1382 07f9 00000000 		.4byte	.LFB8
+ 1383 07fd 20000000 		.4byte	.LFE8-.LFB8
+ 1384 0801 01       		.uleb128 0x1
+ 1385 0802 9C       		.byte	0x9c
+ 1386 0803 21080000 		.4byte	0x821
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 33
+
+
+ 1387 0807 16       		.uleb128 0x16
+ 1388 0808 20090000 		.4byte	.LASF216
+ 1389 080c 01       		.byte	0x1
+ 1390 080d 1001     		.2byte	0x110
+ 1391 080f 29010000 		.4byte	0x129
+ 1392 0813 13010000 		.4byte	.LLST7
+ 1393 0817 0E       		.uleb128 0xe
+ 1394 0818 18000000 		.4byte	.LVL23
+ 1395 081c BA090000 		.4byte	0x9ba
+ 1396 0820 00       		.byte	0
+ 1397 0821 15       		.uleb128 0x15
+ 1398 0822 5A0D0000 		.4byte	.LASF217
+ 1399 0826 01       		.byte	0x1
+ 1400 0827 3801     		.2byte	0x138
+ 1401 0829 00000000 		.4byte	.LFB9
+ 1402 082d 16000000 		.4byte	.LFE9-.LFB9
+ 1403 0831 01       		.uleb128 0x1
+ 1404 0832 9C       		.byte	0x9c
+ 1405 0833 5A080000 		.4byte	0x85a
+ 1406 0837 16       		.uleb128 0x16
+ 1407 0838 6B040000 		.4byte	.LASF218
+ 1408 083c 01       		.byte	0x1
+ 1409 083d 3801     		.2byte	0x138
+ 1410 083f 49010000 		.4byte	0x149
+ 1411 0843 4D010000 		.4byte	.LLST8
+ 1412 0847 0E       		.uleb128 0xe
+ 1413 0848 0E000000 		.4byte	.LVL25
+ 1414 084c 88090000 		.4byte	0x988
+ 1415 0850 0E       		.uleb128 0xe
+ 1416 0851 14000000 		.4byte	.LVL27
+ 1417 0855 D1090000 		.4byte	0x9d1
+ 1418 0859 00       		.byte	0
+ 1419 085a 15       		.uleb128 0x15
+ 1420 085b A3010000 		.4byte	.LASF219
+ 1421 085f 01       		.byte	0x1
+ 1422 0860 5A01     		.2byte	0x15a
+ 1423 0862 00000000 		.4byte	.LFB10
+ 1424 0866 08000000 		.4byte	.LFE10-.LFB10
+ 1425 086a 01       		.uleb128 0x1
+ 1426 086b 9C       		.byte	0x9c
+ 1427 086c 8A080000 		.4byte	0x88a
+ 1428 0870 16       		.uleb128 0x16
+ 1429 0871 0A070000 		.4byte	.LASF220
+ 1430 0875 01       		.byte	0x1
+ 1431 0876 5A01     		.2byte	0x15a
+ 1432 0878 6F010000 		.4byte	0x16f
+ 1433 087c 87010000 		.4byte	.LLST9
+ 1434 0880 0E       		.uleb128 0xe
+ 1435 0881 06000000 		.4byte	.LVL29
+ 1436 0885 D8090000 		.4byte	0x9d8
+ 1437 0889 00       		.byte	0
+ 1438 088a 15       		.uleb128 0x15
+ 1439 088b F1070000 		.4byte	.LASF221
+ 1440 088f 01       		.byte	0x1
+ 1441 0890 7901     		.2byte	0x179
+ 1442 0892 00000000 		.4byte	.LFB11
+ 1443 0896 38000000 		.4byte	.LFE11-.LFB11
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 34
+
+
+ 1444 089a 01       		.uleb128 0x1
+ 1445 089b 9C       		.byte	0x9c
+ 1446 089c 11090000 		.4byte	0x911
+ 1447 08a0 0E       		.uleb128 0xe
+ 1448 08a1 08000000 		.4byte	.LVL30
+ 1449 08a5 EA090000 		.4byte	0x9ea
+ 1450 08a9 17       		.uleb128 0x17
+ 1451 08aa 0E000000 		.4byte	.LVL31
+ 1452 08ae 060A0000 		.4byte	0xa06
+ 1453 08b2 BC080000 		.4byte	0x8bc
+ 1454 08b6 11       		.uleb128 0x11
+ 1455 08b7 01       		.uleb128 0x1
+ 1456 08b8 50       		.byte	0x50
+ 1457 08b9 01       		.uleb128 0x1
+ 1458 08ba 37       		.byte	0x37
+ 1459 08bb 00       		.byte	0
+ 1460 08bc 17       		.uleb128 0x17
+ 1461 08bd 16000000 		.4byte	.LVL32
+ 1462 08c1 BA090000 		.4byte	0x9ba
+ 1463 08c5 D8080000 		.4byte	0x8d8
+ 1464 08c9 11       		.uleb128 0x11
+ 1465 08ca 01       		.uleb128 0x1
+ 1466 08cb 51       		.byte	0x51
+ 1467 08cc 01       		.uleb128 0x1
+ 1468 08cd 39       		.byte	0x39
+ 1469 08ce 11       		.uleb128 0x11
+ 1470 08cf 01       		.uleb128 0x1
+ 1471 08d0 50       		.byte	0x50
+ 1472 08d1 05       		.uleb128 0x5
+ 1473 08d2 0C       		.byte	0xc
+ 1474 08d3 44000400 		.4byte	0x40044
+ 1475 08d7 00       		.byte	0
+ 1476 08d8 17       		.uleb128 0x17
+ 1477 08d9 1E000000 		.4byte	.LVL33
+ 1478 08dd BA090000 		.4byte	0x9ba
+ 1479 08e1 F4080000 		.4byte	0x8f4
+ 1480 08e5 11       		.uleb128 0x11
+ 1481 08e6 01       		.uleb128 0x1
+ 1482 08e7 51       		.byte	0x51
+ 1483 08e8 01       		.uleb128 0x1
+ 1484 08e9 39       		.byte	0x39
+ 1485 08ea 11       		.uleb128 0x11
+ 1486 08eb 01       		.uleb128 0x1
+ 1487 08ec 50       		.byte	0x50
+ 1488 08ed 05       		.uleb128 0x5
+ 1489 08ee 0C       		.byte	0xc
+ 1490 08ef 54000400 		.4byte	0x40054
+ 1491 08f3 00       		.byte	0
+ 1492 08f4 17       		.uleb128 0x17
+ 1493 08f5 24000000 		.4byte	.LVL34
+ 1494 08f9 170A0000 		.4byte	0xa17
+ 1495 08fd 07090000 		.4byte	0x907
+ 1496 0901 11       		.uleb128 0x11
+ 1497 0902 01       		.uleb128 0x1
+ 1498 0903 50       		.byte	0x50
+ 1499 0904 01       		.uleb128 0x1
+ 1500 0905 37       		.byte	0x37
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 35
+
+
+ 1501 0906 00       		.byte	0
+ 1502 0907 0E       		.uleb128 0xe
+ 1503 0908 28000000 		.4byte	.LVL35
+ 1504 090c 280A0000 		.4byte	0xa28
+ 1505 0910 00       		.byte	0
+ 1506 0911 15       		.uleb128 0x15
+ 1507 0912 B20A0000 		.4byte	.LASF222
+ 1508 0916 01       		.byte	0x1
+ 1509 0917 A501     		.2byte	0x1a5
+ 1510 0919 00000000 		.4byte	.LFB12
+ 1511 091d 0E000000 		.4byte	.LFE12-.LFB12
+ 1512 0921 01       		.uleb128 0x1
+ 1513 0922 9C       		.byte	0x9c
+ 1514 0923 44090000 		.4byte	0x944
+ 1515 0927 17       		.uleb128 0x17
+ 1516 0928 08000000 		.4byte	.LVL36
+ 1517 092c 2F0A0000 		.4byte	0xa2f
+ 1518 0930 3A090000 		.4byte	0x93a
+ 1519 0934 11       		.uleb128 0x11
+ 1520 0935 01       		.uleb128 0x1
+ 1521 0936 50       		.byte	0x50
+ 1522 0937 01       		.uleb128 0x1
+ 1523 0938 31       		.byte	0x31
+ 1524 0939 00       		.byte	0
+ 1525 093a 0E       		.uleb128 0xe
+ 1526 093b 0C000000 		.4byte	.LVL37
+ 1527 093f 410A0000 		.4byte	0xa41
+ 1528 0943 00       		.byte	0
+ 1529 0944 0D       		.uleb128 0xd
+ 1530 0945 C9020000 		.4byte	.LASF223
+ 1531 0949 01       		.byte	0x1
+ 1532 094a 41       		.byte	0x41
+ 1533 094b 00000000 		.4byte	.LFB1
+ 1534 094f 1C000000 		.4byte	.LFE1-.LFB1
+ 1535 0953 01       		.uleb128 0x1
+ 1536 0954 9C       		.byte	0x9c
+ 1537 0955 6C090000 		.4byte	0x96c
+ 1538 0959 0E       		.uleb128 0xe
+ 1539 095a 0E000000 		.4byte	.LVL38
+ 1540 095e 8A080000 		.4byte	0x88a
+ 1541 0962 0E       		.uleb128 0xe
+ 1542 0963 16000000 		.4byte	.LVL39
+ 1543 0967 11090000 		.4byte	0x911
+ 1544 096b 00       		.byte	0
+ 1545 096c 18       		.uleb128 0x18
+ 1546 096d 2C090000 		.4byte	.LASF224
+ 1547 0971 01       		.byte	0x1
+ 1548 0972 2B       		.byte	0x2b
+ 1549 0973 6B000000 		.4byte	0x6b
+ 1550 0977 05       		.uleb128 0x5
+ 1551 0978 03       		.byte	0x3
+ 1552 0979 00000000 		.4byte	VDAC_Synth_initVar
+ 1553 097d 19       		.uleb128 0x19
+ 1554 097e 5F000000 		.4byte	.LASF225
+ 1555 0982 05       		.byte	0x5
+ 1556 0983 CF       		.byte	0xcf
+ 1557 0984 FD010000 		.4byte	0x1fd
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 36
+
+
+ 1558 0988 1A       		.uleb128 0x1a
+ 1559 0989 93100000 		.4byte	.LASF226
+ 1560 098d 06       		.byte	0x6
+ 1561 098e 2A       		.byte	0x2a
+ 1562 098f 1A       		.uleb128 0x1a
+ 1563 0990 ED0D0000 		.4byte	.LASF227
+ 1564 0994 05       		.byte	0x5
+ 1565 0995 DF       		.byte	0xdf
+ 1566 0996 1B       		.uleb128 0x1b
+ 1567 0997 E80E0000 		.4byte	.LASF228
+ 1568 099b 05       		.byte	0x5
+ 1569 099c 2101     		.2byte	0x121
+ 1570 099e A8090000 		.4byte	0x9a8
+ 1571 09a2 1C       		.uleb128 0x1c
+ 1572 09a3 8F000000 		.4byte	0x8f
+ 1573 09a7 00       		.byte	0
+ 1574 09a8 1B       		.uleb128 0x1b
+ 1575 09a9 280D0000 		.4byte	.LASF229
+ 1576 09ad 05       		.byte	0x5
+ 1577 09ae 1F01     		.2byte	0x11f
+ 1578 09b0 BA090000 		.4byte	0x9ba
+ 1579 09b4 1C       		.uleb128 0x1c
+ 1580 09b5 62020000 		.4byte	0x262
+ 1581 09b9 00       		.byte	0
+ 1582 09ba 1B       		.uleb128 0x1b
+ 1583 09bb 27110000 		.4byte	.LASF230
+ 1584 09bf 05       		.byte	0x5
+ 1585 09c0 3E01     		.2byte	0x13e
+ 1586 09c2 D1090000 		.4byte	0x9d1
+ 1587 09c6 1C       		.uleb128 0x1c
+ 1588 09c7 1F050000 		.4byte	0x51f
+ 1589 09cb 1C       		.uleb128 0x1c
+ 1590 09cc CC020000 		.4byte	0x2cc
+ 1591 09d0 00       		.byte	0
+ 1592 09d1 1A       		.uleb128 0x1a
+ 1593 09d2 98080000 		.4byte	.LASF231
+ 1594 09d6 06       		.byte	0x6
+ 1595 09d7 29       		.byte	0x29
+ 1596 09d8 1B       		.uleb128 0x1b
+ 1597 09d9 FD0B0000 		.4byte	.LASF232
+ 1598 09dd 05       		.byte	0x5
+ 1599 09de 1201     		.2byte	0x112
+ 1600 09e0 EA090000 		.4byte	0x9ea
+ 1601 09e4 1C       		.uleb128 0x1c
+ 1602 09e5 B5060000 		.4byte	0x6b5
+ 1603 09e9 00       		.byte	0
+ 1604 09ea 1D       		.uleb128 0x1d
+ 1605 09eb 96040000 		.4byte	.LASF233
+ 1606 09ef 05       		.byte	0x5
+ 1607 09f0 E0       		.byte	0xe0
+ 1608 09f1 FB090000 		.4byte	0x9fb
+ 1609 09f5 1C       		.uleb128 0x1c
+ 1610 09f6 FB090000 		.4byte	0x9fb
+ 1611 09fa 00       		.byte	0
+ 1612 09fb 0B       		.uleb128 0xb
+ 1613 09fc 04       		.byte	0x4
+ 1614 09fd 010A0000 		.4byte	0xa01
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 37
+
+
+ 1615 0a01 1E       		.uleb128 0x1e
+ 1616 0a02 FD010000 		.4byte	0x1fd
+ 1617 0a06 1D       		.uleb128 0x1d
+ 1618 0a07 63010000 		.4byte	.LASF234
+ 1619 0a0b 05       		.byte	0x5
+ 1620 0a0c FD       		.byte	0xfd
+ 1621 0a0d 170A0000 		.4byte	0xa17
+ 1622 0a11 1C       		.uleb128 0x1c
+ 1623 0a12 3B020000 		.4byte	0x23b
+ 1624 0a16 00       		.byte	0
+ 1625 0a17 1D       		.uleb128 0x1d
+ 1626 0a18 50040000 		.4byte	.LASF235
+ 1627 0a1c 05       		.byte	0x5
+ 1628 0a1d FC       		.byte	0xfc
+ 1629 0a1e 280A0000 		.4byte	0xa28
+ 1630 0a22 1C       		.uleb128 0x1c
+ 1631 0a23 3B020000 		.4byte	0x23b
+ 1632 0a27 00       		.byte	0
+ 1633 0a28 1A       		.uleb128 0x1a
+ 1634 0a29 86060000 		.4byte	.LASF236
+ 1635 0a2d 06       		.byte	0x6
+ 1636 0a2e 27       		.byte	0x27
+ 1637 0a2f 1B       		.uleb128 0x1b
+ 1638 0a30 BC0C0000 		.4byte	.LASF237
+ 1639 0a34 05       		.byte	0x5
+ 1640 0a35 5A01     		.2byte	0x15a
+ 1641 0a37 410A0000 		.4byte	0xa41
+ 1642 0a3b 1C       		.uleb128 0x1c
+ 1643 0a3c 83000000 		.4byte	0x83
+ 1644 0a40 00       		.byte	0
+ 1645 0a41 1A       		.uleb128 0x1a
+ 1646 0a42 17030000 		.4byte	.LASF238
+ 1647 0a46 06       		.byte	0x6
+ 1648 0a47 28       		.byte	0x28
+ 1649 0a48 00       		.byte	0
+ 1650              		.section	.debug_abbrev,"",%progbits
+ 1651              	.Ldebug_abbrev0:
+ 1652 0000 01       		.uleb128 0x1
+ 1653 0001 11       		.uleb128 0x11
+ 1654 0002 01       		.byte	0x1
+ 1655 0003 25       		.uleb128 0x25
+ 1656 0004 0E       		.uleb128 0xe
+ 1657 0005 13       		.uleb128 0x13
+ 1658 0006 0B       		.uleb128 0xb
+ 1659 0007 03       		.uleb128 0x3
+ 1660 0008 0E       		.uleb128 0xe
+ 1661 0009 1B       		.uleb128 0x1b
+ 1662 000a 0E       		.uleb128 0xe
+ 1663 000b 55       		.uleb128 0x55
+ 1664 000c 17       		.uleb128 0x17
+ 1665 000d 11       		.uleb128 0x11
+ 1666 000e 01       		.uleb128 0x1
+ 1667 000f 10       		.uleb128 0x10
+ 1668 0010 17       		.uleb128 0x17
+ 1669 0011 00       		.byte	0
+ 1670 0012 00       		.byte	0
+ 1671 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 38
+
+
+ 1672 0014 24       		.uleb128 0x24
+ 1673 0015 00       		.byte	0
+ 1674 0016 0B       		.uleb128 0xb
+ 1675 0017 0B       		.uleb128 0xb
+ 1676 0018 3E       		.uleb128 0x3e
+ 1677 0019 0B       		.uleb128 0xb
+ 1678 001a 03       		.uleb128 0x3
+ 1679 001b 0E       		.uleb128 0xe
+ 1680 001c 00       		.byte	0
+ 1681 001d 00       		.byte	0
+ 1682 001e 03       		.uleb128 0x3
+ 1683 001f 24       		.uleb128 0x24
+ 1684 0020 00       		.byte	0
+ 1685 0021 0B       		.uleb128 0xb
+ 1686 0022 0B       		.uleb128 0xb
+ 1687 0023 3E       		.uleb128 0x3e
+ 1688 0024 0B       		.uleb128 0xb
+ 1689 0025 03       		.uleb128 0x3
+ 1690 0026 08       		.uleb128 0x8
+ 1691 0027 00       		.byte	0
+ 1692 0028 00       		.byte	0
+ 1693 0029 04       		.uleb128 0x4
+ 1694 002a 16       		.uleb128 0x16
+ 1695 002b 00       		.byte	0
+ 1696 002c 03       		.uleb128 0x3
+ 1697 002d 0E       		.uleb128 0xe
+ 1698 002e 3A       		.uleb128 0x3a
+ 1699 002f 0B       		.uleb128 0xb
+ 1700 0030 3B       		.uleb128 0x3b
+ 1701 0031 05       		.uleb128 0x5
+ 1702 0032 49       		.uleb128 0x49
+ 1703 0033 13       		.uleb128 0x13
+ 1704 0034 00       		.byte	0
+ 1705 0035 00       		.byte	0
+ 1706 0036 05       		.uleb128 0x5
+ 1707 0037 35       		.uleb128 0x35
+ 1708 0038 00       		.byte	0
+ 1709 0039 49       		.uleb128 0x49
+ 1710 003a 13       		.uleb128 0x13
+ 1711 003b 00       		.byte	0
+ 1712 003c 00       		.byte	0
+ 1713 003d 06       		.uleb128 0x6
+ 1714 003e 04       		.uleb128 0x4
+ 1715 003f 01       		.byte	0x1
+ 1716 0040 0B       		.uleb128 0xb
+ 1717 0041 0B       		.uleb128 0xb
+ 1718 0042 3A       		.uleb128 0x3a
+ 1719 0043 0B       		.uleb128 0xb
+ 1720 0044 3B       		.uleb128 0x3b
+ 1721 0045 0B       		.uleb128 0xb
+ 1722 0046 01       		.uleb128 0x1
+ 1723 0047 13       		.uleb128 0x13
+ 1724 0048 00       		.byte	0
+ 1725 0049 00       		.byte	0
+ 1726 004a 07       		.uleb128 0x7
+ 1727 004b 28       		.uleb128 0x28
+ 1728 004c 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 39
+
+
+ 1729 004d 03       		.uleb128 0x3
+ 1730 004e 0E       		.uleb128 0xe
+ 1731 004f 1C       		.uleb128 0x1c
+ 1732 0050 0D       		.uleb128 0xd
+ 1733 0051 00       		.byte	0
+ 1734 0052 00       		.byte	0
+ 1735 0053 08       		.uleb128 0x8
+ 1736 0054 16       		.uleb128 0x16
+ 1737 0055 00       		.byte	0
+ 1738 0056 03       		.uleb128 0x3
+ 1739 0057 0E       		.uleb128 0xe
+ 1740 0058 3A       		.uleb128 0x3a
+ 1741 0059 0B       		.uleb128 0xb
+ 1742 005a 3B       		.uleb128 0x3b
+ 1743 005b 0B       		.uleb128 0xb
+ 1744 005c 49       		.uleb128 0x49
+ 1745 005d 13       		.uleb128 0x13
+ 1746 005e 00       		.byte	0
+ 1747 005f 00       		.byte	0
+ 1748 0060 09       		.uleb128 0x9
+ 1749 0061 13       		.uleb128 0x13
+ 1750 0062 01       		.byte	0x1
+ 1751 0063 0B       		.uleb128 0xb
+ 1752 0064 0B       		.uleb128 0xb
+ 1753 0065 3A       		.uleb128 0x3a
+ 1754 0066 0B       		.uleb128 0xb
+ 1755 0067 3B       		.uleb128 0x3b
+ 1756 0068 0B       		.uleb128 0xb
+ 1757 0069 01       		.uleb128 0x1
+ 1758 006a 13       		.uleb128 0x13
+ 1759 006b 00       		.byte	0
+ 1760 006c 00       		.byte	0
+ 1761 006d 0A       		.uleb128 0xa
+ 1762 006e 0D       		.uleb128 0xd
+ 1763 006f 00       		.byte	0
+ 1764 0070 03       		.uleb128 0x3
+ 1765 0071 0E       		.uleb128 0xe
+ 1766 0072 3A       		.uleb128 0x3a
+ 1767 0073 0B       		.uleb128 0xb
+ 1768 0074 3B       		.uleb128 0x3b
+ 1769 0075 0B       		.uleb128 0xb
+ 1770 0076 49       		.uleb128 0x49
+ 1771 0077 13       		.uleb128 0x13
+ 1772 0078 38       		.uleb128 0x38
+ 1773 0079 0B       		.uleb128 0xb
+ 1774 007a 00       		.byte	0
+ 1775 007b 00       		.byte	0
+ 1776 007c 0B       		.uleb128 0xb
+ 1777 007d 0F       		.uleb128 0xf
+ 1778 007e 00       		.byte	0
+ 1779 007f 0B       		.uleb128 0xb
+ 1780 0080 0B       		.uleb128 0xb
+ 1781 0081 49       		.uleb128 0x49
+ 1782 0082 13       		.uleb128 0x13
+ 1783 0083 00       		.byte	0
+ 1784 0084 00       		.byte	0
+ 1785 0085 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 40
+
+
+ 1786 0086 04       		.uleb128 0x4
+ 1787 0087 01       		.byte	0x1
+ 1788 0088 0B       		.uleb128 0xb
+ 1789 0089 0B       		.uleb128 0xb
+ 1790 008a 3A       		.uleb128 0x3a
+ 1791 008b 0B       		.uleb128 0xb
+ 1792 008c 3B       		.uleb128 0x3b
+ 1793 008d 05       		.uleb128 0x5
+ 1794 008e 01       		.uleb128 0x1
+ 1795 008f 13       		.uleb128 0x13
+ 1796 0090 00       		.byte	0
+ 1797 0091 00       		.byte	0
+ 1798 0092 0D       		.uleb128 0xd
+ 1799 0093 2E       		.uleb128 0x2e
+ 1800 0094 01       		.byte	0x1
+ 1801 0095 3F       		.uleb128 0x3f
+ 1802 0096 19       		.uleb128 0x19
+ 1803 0097 03       		.uleb128 0x3
+ 1804 0098 0E       		.uleb128 0xe
+ 1805 0099 3A       		.uleb128 0x3a
+ 1806 009a 0B       		.uleb128 0xb
+ 1807 009b 3B       		.uleb128 0x3b
+ 1808 009c 0B       		.uleb128 0xb
+ 1809 009d 27       		.uleb128 0x27
+ 1810 009e 19       		.uleb128 0x19
+ 1811 009f 11       		.uleb128 0x11
+ 1812 00a0 01       		.uleb128 0x1
+ 1813 00a1 12       		.uleb128 0x12
+ 1814 00a2 06       		.uleb128 0x6
+ 1815 00a3 40       		.uleb128 0x40
+ 1816 00a4 18       		.uleb128 0x18
+ 1817 00a5 9742     		.uleb128 0x2117
+ 1818 00a7 19       		.uleb128 0x19
+ 1819 00a8 01       		.uleb128 0x1
+ 1820 00a9 13       		.uleb128 0x13
+ 1821 00aa 00       		.byte	0
+ 1822 00ab 00       		.byte	0
+ 1823 00ac 0E       		.uleb128 0xe
+ 1824 00ad 898201   		.uleb128 0x4109
+ 1825 00b0 00       		.byte	0
+ 1826 00b1 11       		.uleb128 0x11
+ 1827 00b2 01       		.uleb128 0x1
+ 1828 00b3 31       		.uleb128 0x31
+ 1829 00b4 13       		.uleb128 0x13
+ 1830 00b5 00       		.byte	0
+ 1831 00b6 00       		.byte	0
+ 1832 00b7 0F       		.uleb128 0xf
+ 1833 00b8 05       		.uleb128 0x5
+ 1834 00b9 00       		.byte	0
+ 1835 00ba 03       		.uleb128 0x3
+ 1836 00bb 0E       		.uleb128 0xe
+ 1837 00bc 3A       		.uleb128 0x3a
+ 1838 00bd 0B       		.uleb128 0xb
+ 1839 00be 3B       		.uleb128 0x3b
+ 1840 00bf 0B       		.uleb128 0xb
+ 1841 00c0 49       		.uleb128 0x49
+ 1842 00c1 13       		.uleb128 0x13
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 41
+
+
+ 1843 00c2 02       		.uleb128 0x2
+ 1844 00c3 17       		.uleb128 0x17
+ 1845 00c4 00       		.byte	0
+ 1846 00c5 00       		.byte	0
+ 1847 00c6 10       		.uleb128 0x10
+ 1848 00c7 898201   		.uleb128 0x4109
+ 1849 00ca 01       		.byte	0x1
+ 1850 00cb 11       		.uleb128 0x11
+ 1851 00cc 01       		.uleb128 0x1
+ 1852 00cd 31       		.uleb128 0x31
+ 1853 00ce 13       		.uleb128 0x13
+ 1854 00cf 00       		.byte	0
+ 1855 00d0 00       		.byte	0
+ 1856 00d1 11       		.uleb128 0x11
+ 1857 00d2 8A8201   		.uleb128 0x410a
+ 1858 00d5 00       		.byte	0
+ 1859 00d6 02       		.uleb128 0x2
+ 1860 00d7 18       		.uleb128 0x18
+ 1861 00d8 9142     		.uleb128 0x2111
+ 1862 00da 18       		.uleb128 0x18
+ 1863 00db 00       		.byte	0
+ 1864 00dc 00       		.byte	0
+ 1865 00dd 12       		.uleb128 0x12
+ 1866 00de 2E       		.uleb128 0x2e
+ 1867 00df 01       		.byte	0x1
+ 1868 00e0 3F       		.uleb128 0x3f
+ 1869 00e1 19       		.uleb128 0x19
+ 1870 00e2 03       		.uleb128 0x3
+ 1871 00e3 0E       		.uleb128 0xe
+ 1872 00e4 3A       		.uleb128 0x3a
+ 1873 00e5 0B       		.uleb128 0xb
+ 1874 00e6 3B       		.uleb128 0x3b
+ 1875 00e7 0B       		.uleb128 0xb
+ 1876 00e8 27       		.uleb128 0x27
+ 1877 00e9 19       		.uleb128 0x19
+ 1878 00ea 49       		.uleb128 0x49
+ 1879 00eb 13       		.uleb128 0x13
+ 1880 00ec 11       		.uleb128 0x11
+ 1881 00ed 01       		.uleb128 0x1
+ 1882 00ee 12       		.uleb128 0x12
+ 1883 00ef 06       		.uleb128 0x6
+ 1884 00f0 40       		.uleb128 0x40
+ 1885 00f1 18       		.uleb128 0x18
+ 1886 00f2 9742     		.uleb128 0x2117
+ 1887 00f4 19       		.uleb128 0x19
+ 1888 00f5 01       		.uleb128 0x1
+ 1889 00f6 13       		.uleb128 0x13
+ 1890 00f7 00       		.byte	0
+ 1891 00f8 00       		.byte	0
+ 1892 00f9 13       		.uleb128 0x13
+ 1893 00fa 34       		.uleb128 0x34
+ 1894 00fb 00       		.byte	0
+ 1895 00fc 03       		.uleb128 0x3
+ 1896 00fd 0E       		.uleb128 0xe
+ 1897 00fe 3A       		.uleb128 0x3a
+ 1898 00ff 0B       		.uleb128 0xb
+ 1899 0100 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 42
+
+
+ 1900 0101 0B       		.uleb128 0xb
+ 1901 0102 49       		.uleb128 0x49
+ 1902 0103 13       		.uleb128 0x13
+ 1903 0104 02       		.uleb128 0x2
+ 1904 0105 17       		.uleb128 0x17
+ 1905 0106 00       		.byte	0
+ 1906 0107 00       		.byte	0
+ 1907 0108 14       		.uleb128 0x14
+ 1908 0109 34       		.uleb128 0x34
+ 1909 010a 00       		.byte	0
+ 1910 010b 03       		.uleb128 0x3
+ 1911 010c 0E       		.uleb128 0xe
+ 1912 010d 3A       		.uleb128 0x3a
+ 1913 010e 0B       		.uleb128 0xb
+ 1914 010f 3B       		.uleb128 0x3b
+ 1915 0110 0B       		.uleb128 0xb
+ 1916 0111 49       		.uleb128 0x49
+ 1917 0112 13       		.uleb128 0x13
+ 1918 0113 00       		.byte	0
+ 1919 0114 00       		.byte	0
+ 1920 0115 15       		.uleb128 0x15
+ 1921 0116 2E       		.uleb128 0x2e
+ 1922 0117 01       		.byte	0x1
+ 1923 0118 3F       		.uleb128 0x3f
+ 1924 0119 19       		.uleb128 0x19
+ 1925 011a 03       		.uleb128 0x3
+ 1926 011b 0E       		.uleb128 0xe
+ 1927 011c 3A       		.uleb128 0x3a
+ 1928 011d 0B       		.uleb128 0xb
+ 1929 011e 3B       		.uleb128 0x3b
+ 1930 011f 05       		.uleb128 0x5
+ 1931 0120 27       		.uleb128 0x27
+ 1932 0121 19       		.uleb128 0x19
+ 1933 0122 11       		.uleb128 0x11
+ 1934 0123 01       		.uleb128 0x1
+ 1935 0124 12       		.uleb128 0x12
+ 1936 0125 06       		.uleb128 0x6
+ 1937 0126 40       		.uleb128 0x40
+ 1938 0127 18       		.uleb128 0x18
+ 1939 0128 9742     		.uleb128 0x2117
+ 1940 012a 19       		.uleb128 0x19
+ 1941 012b 01       		.uleb128 0x1
+ 1942 012c 13       		.uleb128 0x13
+ 1943 012d 00       		.byte	0
+ 1944 012e 00       		.byte	0
+ 1945 012f 16       		.uleb128 0x16
+ 1946 0130 05       		.uleb128 0x5
+ 1947 0131 00       		.byte	0
+ 1948 0132 03       		.uleb128 0x3
+ 1949 0133 0E       		.uleb128 0xe
+ 1950 0134 3A       		.uleb128 0x3a
+ 1951 0135 0B       		.uleb128 0xb
+ 1952 0136 3B       		.uleb128 0x3b
+ 1953 0137 05       		.uleb128 0x5
+ 1954 0138 49       		.uleb128 0x49
+ 1955 0139 13       		.uleb128 0x13
+ 1956 013a 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 43
+
+
+ 1957 013b 17       		.uleb128 0x17
+ 1958 013c 00       		.byte	0
+ 1959 013d 00       		.byte	0
+ 1960 013e 17       		.uleb128 0x17
+ 1961 013f 898201   		.uleb128 0x4109
+ 1962 0142 01       		.byte	0x1
+ 1963 0143 11       		.uleb128 0x11
+ 1964 0144 01       		.uleb128 0x1
+ 1965 0145 31       		.uleb128 0x31
+ 1966 0146 13       		.uleb128 0x13
+ 1967 0147 01       		.uleb128 0x1
+ 1968 0148 13       		.uleb128 0x13
+ 1969 0149 00       		.byte	0
+ 1970 014a 00       		.byte	0
+ 1971 014b 18       		.uleb128 0x18
+ 1972 014c 34       		.uleb128 0x34
+ 1973 014d 00       		.byte	0
+ 1974 014e 03       		.uleb128 0x3
+ 1975 014f 0E       		.uleb128 0xe
+ 1976 0150 3A       		.uleb128 0x3a
+ 1977 0151 0B       		.uleb128 0xb
+ 1978 0152 3B       		.uleb128 0x3b
+ 1979 0153 0B       		.uleb128 0xb
+ 1980 0154 49       		.uleb128 0x49
+ 1981 0155 13       		.uleb128 0x13
+ 1982 0156 3F       		.uleb128 0x3f
+ 1983 0157 19       		.uleb128 0x19
+ 1984 0158 02       		.uleb128 0x2
+ 1985 0159 18       		.uleb128 0x18
+ 1986 015a 00       		.byte	0
+ 1987 015b 00       		.byte	0
+ 1988 015c 19       		.uleb128 0x19
+ 1989 015d 34       		.uleb128 0x34
+ 1990 015e 00       		.byte	0
+ 1991 015f 03       		.uleb128 0x3
+ 1992 0160 0E       		.uleb128 0xe
+ 1993 0161 3A       		.uleb128 0x3a
+ 1994 0162 0B       		.uleb128 0xb
+ 1995 0163 3B       		.uleb128 0x3b
+ 1996 0164 0B       		.uleb128 0xb
+ 1997 0165 49       		.uleb128 0x49
+ 1998 0166 13       		.uleb128 0x13
+ 1999 0167 3F       		.uleb128 0x3f
+ 2000 0168 19       		.uleb128 0x19
+ 2001 0169 3C       		.uleb128 0x3c
+ 2002 016a 19       		.uleb128 0x19
+ 2003 016b 00       		.byte	0
+ 2004 016c 00       		.byte	0
+ 2005 016d 1A       		.uleb128 0x1a
+ 2006 016e 2E       		.uleb128 0x2e
+ 2007 016f 00       		.byte	0
+ 2008 0170 3F       		.uleb128 0x3f
+ 2009 0171 19       		.uleb128 0x19
+ 2010 0172 03       		.uleb128 0x3
+ 2011 0173 0E       		.uleb128 0xe
+ 2012 0174 3A       		.uleb128 0x3a
+ 2013 0175 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 44
+
+
+ 2014 0176 3B       		.uleb128 0x3b
+ 2015 0177 0B       		.uleb128 0xb
+ 2016 0178 27       		.uleb128 0x27
+ 2017 0179 19       		.uleb128 0x19
+ 2018 017a 3C       		.uleb128 0x3c
+ 2019 017b 19       		.uleb128 0x19
+ 2020 017c 00       		.byte	0
+ 2021 017d 00       		.byte	0
+ 2022 017e 1B       		.uleb128 0x1b
+ 2023 017f 2E       		.uleb128 0x2e
+ 2024 0180 01       		.byte	0x1
+ 2025 0181 3F       		.uleb128 0x3f
+ 2026 0182 19       		.uleb128 0x19
+ 2027 0183 03       		.uleb128 0x3
+ 2028 0184 0E       		.uleb128 0xe
+ 2029 0185 3A       		.uleb128 0x3a
+ 2030 0186 0B       		.uleb128 0xb
+ 2031 0187 3B       		.uleb128 0x3b
+ 2032 0188 05       		.uleb128 0x5
+ 2033 0189 27       		.uleb128 0x27
+ 2034 018a 19       		.uleb128 0x19
+ 2035 018b 3C       		.uleb128 0x3c
+ 2036 018c 19       		.uleb128 0x19
+ 2037 018d 01       		.uleb128 0x1
+ 2038 018e 13       		.uleb128 0x13
+ 2039 018f 00       		.byte	0
+ 2040 0190 00       		.byte	0
+ 2041 0191 1C       		.uleb128 0x1c
+ 2042 0192 05       		.uleb128 0x5
+ 2043 0193 00       		.byte	0
+ 2044 0194 49       		.uleb128 0x49
+ 2045 0195 13       		.uleb128 0x13
+ 2046 0196 00       		.byte	0
+ 2047 0197 00       		.byte	0
+ 2048 0198 1D       		.uleb128 0x1d
+ 2049 0199 2E       		.uleb128 0x2e
+ 2050 019a 01       		.byte	0x1
+ 2051 019b 3F       		.uleb128 0x3f
+ 2052 019c 19       		.uleb128 0x19
+ 2053 019d 03       		.uleb128 0x3
+ 2054 019e 0E       		.uleb128 0xe
+ 2055 019f 3A       		.uleb128 0x3a
+ 2056 01a0 0B       		.uleb128 0xb
+ 2057 01a1 3B       		.uleb128 0x3b
+ 2058 01a2 0B       		.uleb128 0xb
+ 2059 01a3 27       		.uleb128 0x27
+ 2060 01a4 19       		.uleb128 0x19
+ 2061 01a5 3C       		.uleb128 0x3c
+ 2062 01a6 19       		.uleb128 0x19
+ 2063 01a7 01       		.uleb128 0x1
+ 2064 01a8 13       		.uleb128 0x13
+ 2065 01a9 00       		.byte	0
+ 2066 01aa 00       		.byte	0
+ 2067 01ab 1E       		.uleb128 0x1e
+ 2068 01ac 26       		.uleb128 0x26
+ 2069 01ad 00       		.byte	0
+ 2070 01ae 49       		.uleb128 0x49
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 45
+
+
+ 2071 01af 13       		.uleb128 0x13
+ 2072 01b0 00       		.byte	0
+ 2073 01b1 00       		.byte	0
+ 2074 01b2 00       		.byte	0
+ 2075              		.section	.debug_loc,"",%progbits
+ 2076              	.Ldebug_loc0:
+ 2077              	.LLST0:
+ 2078 0000 00000000 		.4byte	.LVL2
+ 2079 0004 04000000 		.4byte	.LVL3
+ 2080 0008 0100     		.2byte	0x1
+ 2081 000a 50       		.byte	0x50
+ 2082 000b 04000000 		.4byte	.LVL3
+ 2083 000f 0A000000 		.4byte	.LFE3
+ 2084 0013 0400     		.2byte	0x4
+ 2085 0015 F3       		.byte	0xf3
+ 2086 0016 01       		.uleb128 0x1
+ 2087 0017 50       		.byte	0x50
+ 2088 0018 9F       		.byte	0x9f
+ 2089 0019 00000000 		.4byte	0
+ 2090 001d 00000000 		.4byte	0
+ 2091              	.LLST1:
+ 2092 0021 00000000 		.4byte	.LVL5
+ 2093 0025 08000000 		.4byte	.LVL6
+ 2094 0029 0100     		.2byte	0x1
+ 2095 002b 50       		.byte	0x50
+ 2096 002c 08000000 		.4byte	.LVL6
+ 2097 0030 10000000 		.4byte	.LVL7
+ 2098 0034 0F00     		.2byte	0xf
+ 2099 0036 70       		.byte	0x70
+ 2100 0037 00       		.sleb128 0
+ 2101 0038 12       		.byte	0x12
+ 2102 0039 0A       		.byte	0xa
+ 2103 003a FF0F     		.2byte	0xfff
+ 2104 003c 16       		.byte	0x16
+ 2105 003d 14       		.byte	0x14
+ 2106 003e 2D       		.byte	0x2d
+ 2107 003f 28       		.byte	0x28
+ 2108 0040 0100     		.2byte	0x1
+ 2109 0042 16       		.byte	0x16
+ 2110 0043 13       		.byte	0x13
+ 2111 0044 9F       		.byte	0x9f
+ 2112 0045 00000000 		.4byte	0
+ 2113 0049 00000000 		.4byte	0
+ 2114              	.LLST2:
+ 2115 004d 00000000 		.4byte	.LVL8
+ 2116 0051 0C000000 		.4byte	.LVL10
+ 2117 0055 0100     		.2byte	0x1
+ 2118 0057 50       		.byte	0x50
+ 2119 0058 0C000000 		.4byte	.LVL10
+ 2120 005c 18000000 		.4byte	.LFE5
+ 2121 0060 0400     		.2byte	0x4
+ 2122 0062 F3       		.byte	0xf3
+ 2123 0063 01       		.uleb128 0x1
+ 2124 0064 50       		.byte	0x50
+ 2125 0065 9F       		.byte	0x9f
+ 2126 0066 00000000 		.4byte	0
+ 2127 006a 00000000 		.4byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 46
+
+
+ 2128              	.LLST3:
+ 2129 006e 00000000 		.4byte	.LVL8
+ 2130 0072 08000000 		.4byte	.LVL9
+ 2131 0076 0100     		.2byte	0x1
+ 2132 0078 51       		.byte	0x51
+ 2133 0079 08000000 		.4byte	.LVL9
+ 2134 007d 0E000000 		.4byte	.LVL11
+ 2135 0081 0100     		.2byte	0x1
+ 2136 0083 51       		.byte	0x51
+ 2137 0084 0E000000 		.4byte	.LVL11
+ 2138 0088 10000000 		.4byte	.LVL12
+ 2139 008c 0600     		.2byte	0x6
+ 2140 008e 70       		.byte	0x70
+ 2141 008f 00       		.sleb128 0
+ 2142 0090 71       		.byte	0x71
+ 2143 0091 00       		.sleb128 0
+ 2144 0092 21       		.byte	0x21
+ 2145 0093 9F       		.byte	0x9f
+ 2146 0094 10000000 		.4byte	.LVL12
+ 2147 0098 18000000 		.4byte	.LFE5
+ 2148 009c 0100     		.2byte	0x1
+ 2149 009e 50       		.byte	0x50
+ 2150 009f 00000000 		.4byte	0
+ 2151 00a3 00000000 		.4byte	0
+ 2152              	.LLST4:
+ 2153 00a7 00000000 		.4byte	.LVL8
+ 2154 00ab 0E000000 		.4byte	.LVL11
+ 2155 00af 0200     		.2byte	0x2
+ 2156 00b1 30       		.byte	0x30
+ 2157 00b2 9F       		.byte	0x9f
+ 2158 00b3 0E000000 		.4byte	.LVL11
+ 2159 00b7 10000000 		.4byte	.LVL12
+ 2160 00bb 0100     		.2byte	0x1
+ 2161 00bd 50       		.byte	0x50
+ 2162 00be 00000000 		.4byte	0
+ 2163 00c2 00000000 		.4byte	0
+ 2164              	.LLST5:
+ 2165 00c6 00000000 		.4byte	.LVL13
+ 2166 00ca 00000000 		.4byte	.LVL13
+ 2167 00ce 0100     		.2byte	0x1
+ 2168 00d0 50       		.byte	0x50
+ 2169 00d1 00000000 		.4byte	0
+ 2170 00d5 00000000 		.4byte	0
+ 2171              	.LLST6:
+ 2172 00d9 00000000 		.4byte	.LVL14
+ 2173 00dd 08000000 		.4byte	.LVL15
+ 2174 00e1 0100     		.2byte	0x1
+ 2175 00e3 50       		.byte	0x50
+ 2176 00e4 08000000 		.4byte	.LVL15
+ 2177 00e8 0A000000 		.4byte	.LVL16
+ 2178 00ec 0400     		.2byte	0x4
+ 2179 00ee F3       		.byte	0xf3
+ 2180 00ef 01       		.uleb128 0x1
+ 2181 00f0 50       		.byte	0x50
+ 2182 00f1 9F       		.byte	0x9f
+ 2183 00f2 0A000000 		.4byte	.LVL16
+ 2184 00f6 0C000000 		.4byte	.LVL17
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 47
+
+
+ 2185 00fa 0100     		.2byte	0x1
+ 2186 00fc 50       		.byte	0x50
+ 2187 00fd 0C000000 		.4byte	.LVL17
+ 2188 0101 12000000 		.4byte	.LFE7
+ 2189 0105 0400     		.2byte	0x4
+ 2190 0107 F3       		.byte	0xf3
+ 2191 0108 01       		.uleb128 0x1
+ 2192 0109 50       		.byte	0x50
+ 2193 010a 9F       		.byte	0x9f
+ 2194 010b 00000000 		.4byte	0
+ 2195 010f 00000000 		.4byte	0
+ 2196              	.LLST7:
+ 2197 0113 00000000 		.4byte	.LVL19
+ 2198 0117 0C000000 		.4byte	.LVL20
+ 2199 011b 0100     		.2byte	0x1
+ 2200 011d 50       		.byte	0x50
+ 2201 011e 0C000000 		.4byte	.LVL20
+ 2202 0122 10000000 		.4byte	.LVL21
+ 2203 0126 0400     		.2byte	0x4
+ 2204 0128 F3       		.byte	0xf3
+ 2205 0129 01       		.uleb128 0x1
+ 2206 012a 50       		.byte	0x50
+ 2207 012b 9F       		.byte	0x9f
+ 2208 012c 10000000 		.4byte	.LVL21
+ 2209 0130 14000000 		.4byte	.LVL22
+ 2210 0134 0100     		.2byte	0x1
+ 2211 0136 50       		.byte	0x50
+ 2212 0137 14000000 		.4byte	.LVL22
+ 2213 013b 20000000 		.4byte	.LFE8
+ 2214 013f 0400     		.2byte	0x4
+ 2215 0141 F3       		.byte	0xf3
+ 2216 0142 01       		.uleb128 0x1
+ 2217 0143 50       		.byte	0x50
+ 2218 0144 9F       		.byte	0x9f
+ 2219 0145 00000000 		.4byte	0
+ 2220 0149 00000000 		.4byte	0
+ 2221              	.LLST8:
+ 2222 014d 00000000 		.4byte	.LVL24
+ 2223 0151 0D000000 		.4byte	.LVL25-1
+ 2224 0155 0100     		.2byte	0x1
+ 2225 0157 50       		.byte	0x50
+ 2226 0158 0D000000 		.4byte	.LVL25-1
+ 2227 015c 10000000 		.4byte	.LVL26
+ 2228 0160 0400     		.2byte	0x4
+ 2229 0162 F3       		.byte	0xf3
+ 2230 0163 01       		.uleb128 0x1
+ 2231 0164 50       		.byte	0x50
+ 2232 0165 9F       		.byte	0x9f
+ 2233 0166 10000000 		.4byte	.LVL26
+ 2234 016a 13000000 		.4byte	.LVL27-1
+ 2235 016e 0100     		.2byte	0x1
+ 2236 0170 50       		.byte	0x50
+ 2237 0171 13000000 		.4byte	.LVL27-1
+ 2238 0175 16000000 		.4byte	.LFE9
+ 2239 0179 0400     		.2byte	0x4
+ 2240 017b F3       		.byte	0xf3
+ 2241 017c 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 48
+
+
+ 2242 017d 50       		.byte	0x50
+ 2243 017e 9F       		.byte	0x9f
+ 2244 017f 00000000 		.4byte	0
+ 2245 0183 00000000 		.4byte	0
+ 2246              	.LLST9:
+ 2247 0187 00000000 		.4byte	.LVL28
+ 2248 018b 05000000 		.4byte	.LVL29-1
+ 2249 018f 0100     		.2byte	0x1
+ 2250 0191 50       		.byte	0x50
+ 2251 0192 05000000 		.4byte	.LVL29-1
+ 2252 0196 08000000 		.4byte	.LFE10
+ 2253 019a 0400     		.2byte	0x4
+ 2254 019c F3       		.byte	0xf3
+ 2255 019d 01       		.uleb128 0x1
+ 2256 019e 50       		.byte	0x50
+ 2257 019f 9F       		.byte	0x9f
+ 2258 01a0 00000000 		.4byte	0
+ 2259 01a4 00000000 		.4byte	0
+ 2260              		.section	.debug_aranges,"",%progbits
+ 2261 0000 74000000 		.4byte	0x74
+ 2262 0004 0200     		.2byte	0x2
+ 2263 0006 00000000 		.4byte	.Ldebug_info0
+ 2264 000a 04       		.byte	0x4
+ 2265 000b 00       		.byte	0
+ 2266 000c 0000     		.2byte	0
+ 2267 000e 0000     		.2byte	0
+ 2268 0010 00000000 		.4byte	.LFB2
+ 2269 0014 18000000 		.4byte	.LFE2-.LFB2
+ 2270 0018 00000000 		.4byte	.LFB3
+ 2271 001c 0A000000 		.4byte	.LFE3-.LFB3
+ 2272 0020 00000000 		.4byte	.LFB4
+ 2273 0024 1C000000 		.4byte	.LFE4-.LFB4
+ 2274 0028 00000000 		.4byte	.LFB5
+ 2275 002c 18000000 		.4byte	.LFE5-.LFB5
+ 2276 0030 00000000 		.4byte	.LFB6
+ 2277 0034 14000000 		.4byte	.LFE6-.LFB6
+ 2278 0038 00000000 		.4byte	.LFB7
+ 2279 003c 12000000 		.4byte	.LFE7-.LFB7
+ 2280 0040 00000000 		.4byte	.LFB8
+ 2281 0044 20000000 		.4byte	.LFE8-.LFB8
+ 2282 0048 00000000 		.4byte	.LFB9
+ 2283 004c 16000000 		.4byte	.LFE9-.LFB9
+ 2284 0050 00000000 		.4byte	.LFB10
+ 2285 0054 08000000 		.4byte	.LFE10-.LFB10
+ 2286 0058 00000000 		.4byte	.LFB11
+ 2287 005c 38000000 		.4byte	.LFE11-.LFB11
+ 2288 0060 00000000 		.4byte	.LFB12
+ 2289 0064 0E000000 		.4byte	.LFE12-.LFB12
+ 2290 0068 00000000 		.4byte	.LFB1
+ 2291 006c 1C000000 		.4byte	.LFE1-.LFB1
+ 2292 0070 00000000 		.4byte	0
+ 2293 0074 00000000 		.4byte	0
+ 2294              		.section	.debug_ranges,"",%progbits
+ 2295              	.Ldebug_ranges0:
+ 2296 0000 00000000 		.4byte	.LFB2
+ 2297 0004 18000000 		.4byte	.LFE2
+ 2298 0008 00000000 		.4byte	.LFB3
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 49
+
+
+ 2299 000c 0A000000 		.4byte	.LFE3
+ 2300 0010 00000000 		.4byte	.LFB4
+ 2301 0014 1C000000 		.4byte	.LFE4
+ 2302 0018 00000000 		.4byte	.LFB5
+ 2303 001c 18000000 		.4byte	.LFE5
+ 2304 0020 00000000 		.4byte	.LFB6
+ 2305 0024 14000000 		.4byte	.LFE6
+ 2306 0028 00000000 		.4byte	.LFB7
+ 2307 002c 12000000 		.4byte	.LFE7
+ 2308 0030 00000000 		.4byte	.LFB8
+ 2309 0034 20000000 		.4byte	.LFE8
+ 2310 0038 00000000 		.4byte	.LFB9
+ 2311 003c 16000000 		.4byte	.LFE9
+ 2312 0040 00000000 		.4byte	.LFB10
+ 2313 0044 08000000 		.4byte	.LFE10
+ 2314 0048 00000000 		.4byte	.LFB11
+ 2315 004c 38000000 		.4byte	.LFE11
+ 2316 0050 00000000 		.4byte	.LFB12
+ 2317 0054 0E000000 		.4byte	.LFE12
+ 2318 0058 00000000 		.4byte	.LFB1
+ 2319 005c 1C000000 		.4byte	.LFE1
+ 2320 0060 00000000 		.4byte	0
+ 2321 0064 00000000 		.4byte	0
+ 2322              		.section	.debug_line,"",%progbits
+ 2323              	.Ldebug_line0:
+ 2324 0000 A1010000 		.section	.debug_str,"MS",%progbits,1
+ 2324      0200A500 
+ 2324      00000201 
+ 2324      FB0E0D00 
+ 2324      01010101 
+ 2325              	.LASF191:
+ 2326 0000 43795541 		.ascii	"CyUAB_F_CAP_38UNIT\000"
+ 2326      425F465F 
+ 2326      4341505F 
+ 2326      3338554E 
+ 2326      495400
+ 2327              	.LASF206:
+ 2328 0013 56444143 		.ascii	"VDAC_Synth_Stop\000"
+ 2328      5F53796E 
+ 2328      74685F53 
+ 2328      746F7000 
+ 2329              	.LASF116:
+ 2330 0023 43795541 		.ascii	"CyUAB_SW_CR_MODBIT\000"
+ 2330      425F5357 
+ 2330      5F43525F 
+ 2330      4D4F4442 
+ 2330      495400
+ 2331              	.LASF168:
+ 2332 0036 43795541 		.ascii	"CyUAB_F_CAP_2800fF\000"
+ 2332      425F465F 
+ 2332      4341505F 
+ 2332      32383030 
+ 2332      664600
+ 2333              	.LASF34:
+ 2334 0049 56444143 		.ascii	"VDAC_Synth_range_enum\000"
+ 2334      5F53796E 
+ 2334      74685F72 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 50
+
+
+ 2334      616E6765 
+ 2334      5F656E75 
+ 2335              	.LASF225:
+ 2336 005f 56444143 		.ascii	"VDAC_Synth_UAB_config\000"
+ 2336      5F53796E 
+ 2336      74685F55 
+ 2336      41425F63 
+ 2336      6F6E6669 
+ 2337              	.LASF159:
+ 2338 0075 43795541 		.ascii	"CyUAB_F_CAP_1900fF\000"
+ 2338      425F465F 
+ 2338      4341505F 
+ 2338      31393030 
+ 2338      664600
+ 2339              	.LASF188:
+ 2340 0088 43795541 		.ascii	"CyUAB_F_CAP_32UNIT\000"
+ 2340      425F465F 
+ 2340      4341505F 
+ 2340      3332554E 
+ 2340      495400
+ 2341              	.LASF90:
+ 2342 009b 43795541 		.ascii	"CyUAB_SW_RA_MODBIT\000"
+ 2342      425F5357 
+ 2342      5F52415F 
+ 2342      4D4F4442 
+ 2342      495400
+ 2343              	.LASF48:
+ 2344 00ae 43795541 		.ascii	"CyUAB_PWR_5_8\000"
+ 2344      425F5057 
+ 2344      525F355F 
+ 2344      3800
+ 2345              	.LASF163:
+ 2346 00bc 43795541 		.ascii	"CyUAB_F_CAP_2300fF\000"
+ 2346      425F465F 
+ 2346      4341505F 
+ 2346      32333030 
+ 2346      664600
+ 2347              	.LASF148:
+ 2348 00cf 43795541 		.ascii	"CyUAB_F_CAP_0800fF\000"
+ 2348      425F465F 
+ 2348      4341505F 
+ 2348      30383030 
+ 2348      664600
+ 2349              	.LASF135:
+ 2350 00e2 43795541 		.ascii	"CyUAB_SW_B_BOOST\000"
+ 2350      425F5357 
+ 2350      5F425F42 
+ 2350      4F4F5354 
+ 2350      00
+ 2351              	.LASF130:
+ 2352 00f3 43795541 		.ascii	"CyUAB_SW_VALID\000"
+ 2352      425F5357 
+ 2352      5F56414C 
+ 2352      494400
+ 2353              	.LASF83:
+ 2354 0102 43795541 		.ascii	"CyUAB_SW_AX3_MODBIT\000"
+ 2354      425F5357 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 51
+
+
+ 2354      5F415833 
+ 2354      5F4D4F44 
+ 2354      42495400 
+ 2355              	.LASF165:
+ 2356 0116 43795541 		.ascii	"CyUAB_F_CAP_2500fF\000"
+ 2356      425F465F 
+ 2356      4341505F 
+ 2356      32353030 
+ 2356      664600
+ 2357              	.LASF185:
+ 2358 0129 43795541 		.ascii	"CyUAB_F_CAP_26UNIT\000"
+ 2358      425F465F 
+ 2358      4341505F 
+ 2358      3236554E 
+ 2358      495400
+ 2359              	.LASF82:
+ 2360 013c 43795541 		.ascii	"CyUAB_SW_AX2_MODBIT\000"
+ 2360      425F5357 
+ 2360      5F415832 
+ 2360      5F4D4F44 
+ 2360      42495400 
+ 2361              	.LASF156:
+ 2362 0150 43795541 		.ascii	"CyUAB_F_CAP_1600fF\000"
+ 2362      425F465F 
+ 2362      4341505F 
+ 2362      31363030 
+ 2362      664600
+ 2363              	.LASF234:
+ 2364 0163 56444143 		.ascii	"VDAC_Synth_UAB_SetAgndPower\000"
+ 2364      5F53796E 
+ 2364      74685F55 
+ 2364      41425F53 
+ 2364      65744167 
+ 2365              	.LASF212:
+ 2366 017f 56444143 		.ascii	"VDAC_Synth_ConvertUnsigned2TwosComp\000"
+ 2366      5F53796E 
+ 2366      74685F43 
+ 2366      6F6E7665 
+ 2366      7274556E 
+ 2367              	.LASF219:
+ 2368 01a3 56444143 		.ascii	"VDAC_Synth_SetRange\000"
+ 2368      5F53796E 
+ 2368      74685F53 
+ 2368      65745261 
+ 2368      6E676500 
+ 2369              	.LASF8:
+ 2370 01b7 756E7369 		.ascii	"unsigned int\000"
+ 2370      676E6564 
+ 2370      20696E74 
+ 2370      00
+ 2371              	.LASF147:
+ 2372 01c4 43795541 		.ascii	"CyUAB_F_CAP_0700fF\000"
+ 2372      425F465F 
+ 2372      4341505F 
+ 2372      30373030 
+ 2372      664600
+ 2373              	.LASF176:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 52
+
+
+ 2374 01d7 43795541 		.ascii	"CyUAB_F_CAP_08UNIT\000"
+ 2374      425F465F 
+ 2374      4341505F 
+ 2374      3038554E 
+ 2374      495400
+ 2375              	.LASF171:
+ 2376 01ea 43795541 		.ascii	"CyUAB_F_CAP_3100fF\000"
+ 2376      425F465F 
+ 2376      4341505F 
+ 2376      33313030 
+ 2376      664600
+ 2377              	.LASF120:
+ 2378 01fd 43795541 		.ascii	"CyUAB_SW_GC_MODBIT\000"
+ 2378      425F5357 
+ 2378      5F47435F 
+ 2378      4D4F4442 
+ 2378      495400
+ 2379              	.LASF240:
+ 2380 0210 47656E65 		.ascii	"Generated_Source\\PSoC4\\VDAC_Synth.c\000"
+ 2380      72617465 
+ 2380      645F536F 
+ 2380      75726365 
+ 2380      5C50536F 
+ 2381              	.LASF12:
+ 2382 0234 696E7431 		.ascii	"int16\000"
+ 2382      3600
+ 2383              	.LASF162:
+ 2384 023a 43795541 		.ascii	"CyUAB_F_CAP_2200fF\000"
+ 2384      425F465F 
+ 2384      4341505F 
+ 2384      32323030 
+ 2384      664600
+ 2385              	.LASF153:
+ 2386 024d 43795541 		.ascii	"CyUAB_F_CAP_1300fF\000"
+ 2386      425F465F 
+ 2386      4341505F 
+ 2386      31333030 
+ 2386      664600
+ 2387              	.LASF103:
+ 2388 0260 43795541 		.ascii	"CyUAB_SW_BV_MODBIT\000"
+ 2388      425F5357 
+ 2388      5F42565F 
+ 2388      4D4F4442 
+ 2388      495400
+ 2389              	.LASF39:
+ 2390 0273 70616972 		.ascii	"pairs\000"
+ 2390      7300
+ 2391              	.LASF131:
+ 2392 0279 43795541 		.ascii	"CyUAB_SW_TRIG_OUT\000"
+ 2392      425F5357 
+ 2392      5F545249 
+ 2392      475F4F55 
+ 2392      5400
+ 2393              	.LASF144:
+ 2394 028b 43795541 		.ascii	"CyUAB_F_CAP_0400fF\000"
+ 2394      425F465F 
+ 2394      4341505F 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 53
+
+
+ 2394      30343030 
+ 2394      664600
+ 2395              	.LASF110:
+ 2396 029e 43795541 		.ascii	"CyUAB_SW_CX1_MODBIT\000"
+ 2396      425F5357 
+ 2396      5F435831 
+ 2396      5F4D4F44 
+ 2396      42495400 
+ 2397              	.LASF21:
+ 2398 02b2 56444143 		.ascii	"VDAC_Synth_format_enum\000"
+ 2398      5F53796E 
+ 2398      74685F66 
+ 2398      6F726D61 
+ 2398      745F656E 
+ 2399              	.LASF223:
+ 2400 02c9 56444143 		.ascii	"VDAC_Synth_Start\000"
+ 2400      5F53796E 
+ 2400      74685F53 
+ 2400      74617274 
+ 2400      00
+ 2401              	.LASF182:
+ 2402 02da 43795541 		.ascii	"CyUAB_F_CAP_20UNIT\000"
+ 2402      425F465F 
+ 2402      4341505F 
+ 2402      3230554E 
+ 2402      495400
+ 2403              	.LASF32:
+ 2404 02ed 56444143 		.ascii	"VDAC_Synth_RANGE_2VREF\000"
+ 2404      5F53796E 
+ 2404      74685F52 
+ 2404      414E4745 
+ 2404      5F325652 
+ 2405              	.LASF150:
+ 2406 0304 43795541 		.ascii	"CyUAB_F_CAP_1000fF\000"
+ 2406      425F465F 
+ 2406      4341505F 
+ 2406      31303030 
+ 2406      664600
+ 2407              	.LASF238:
+ 2408 0317 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Enable\000"
+ 2408      5F53796E 
+ 2408      74685F4F 
+ 2408      55544255 
+ 2408      46464552 
+ 2409              	.LASF141:
+ 2410 0333 43795541 		.ascii	"CyUAB_F_CAP_0100fF\000"
+ 2410      425F465F 
+ 2410      4341505F 
+ 2410      30313030 
+ 2410      664600
+ 2411              	.LASF201:
+ 2412 0346 43795541 		.ascii	"CyUAB_F_CAP_58UNIT\000"
+ 2412      425F465F 
+ 2412      4341505F 
+ 2412      3538554E 
+ 2412      495400
+ 2413              	.LASF173:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 54
+
+
+ 2414 0359 43795541 		.ascii	"CyUAB_F_CAP_02UNIT\000"
+ 2414      425F465F 
+ 2414      4341505F 
+ 2414      3032554E 
+ 2414      495400
+ 2415              	.LASF71:
+ 2416 036c 43795541 		.ascii	"CyUAB_SW_GX0\000"
+ 2416      425F5357 
+ 2416      5F475830 
+ 2416      00
+ 2417              	.LASF72:
+ 2418 0379 43795541 		.ascii	"CyUAB_SW_GX1\000"
+ 2418      425F5357 
+ 2418      5F475831 
+ 2418      00
+ 2419              	.LASF73:
+ 2420 0386 43795541 		.ascii	"CyUAB_SW_GX2\000"
+ 2420      425F5357 
+ 2420      5F475832 
+ 2420      00
+ 2421              	.LASF74:
+ 2422 0393 43795541 		.ascii	"CyUAB_SW_GX3\000"
+ 2422      425F5357 
+ 2422      5F475833 
+ 2422      00
+ 2423              	.LASF194:
+ 2424 03a0 43795541 		.ascii	"CyUAB_F_CAP_44UNIT\000"
+ 2424      425F465F 
+ 2424      4341505F 
+ 2424      3434554E 
+ 2424      495400
+ 2425              	.LASF124:
+ 2426 03b3 43795541 		.ascii	"CyUAB_SW_ZC\000"
+ 2426      425F5357 
+ 2426      5F5A4300 
+ 2427              	.LASF25:
+ 2428 03bf 56444143 		.ascii	"VDAC_Synth_STROBE_CONTINUOUSLY\000"
+ 2428      5F53796E 
+ 2428      74685F53 
+ 2428      54524F42 
+ 2428      455F434F 
+ 2429              	.LASF22:
+ 2430 03de 56444143 		.ascii	"VDAC_Synth_SIGN_POSITIVE\000"
+ 2430      5F53796E 
+ 2430      74685F53 
+ 2430      49474E5F 
+ 2430      504F5349 
+ 2431              	.LASF204:
+ 2432 03f7 43795541 		.ascii	"CyUAB_F_CAP_64UNIT\000"
+ 2432      425F465F 
+ 2432      4341505F 
+ 2432      3634554E 
+ 2432      495400
+ 2433              	.LASF14:
+ 2434 040a 666C6F61 		.ascii	"float\000"
+ 2434      7400
+ 2435              	.LASF13:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 55
+
+
+ 2436 0410 696E7433 		.ascii	"int32\000"
+ 2436      3200
+ 2437              	.LASF138:
+ 2438 0416 43795541 		.ascii	"CyUAB_SW_SUM_BOOST\000"
+ 2438      425F5357 
+ 2438      5F53554D 
+ 2438      5F424F4F 
+ 2438      535400
+ 2439              	.LASF195:
+ 2440 0429 43795541 		.ascii	"CyUAB_F_CAP_46UNIT\000"
+ 2440      425F465F 
+ 2440      4341505F 
+ 2440      3436554E 
+ 2440      495400
+ 2441              	.LASF133:
+ 2442 043c 43795541 		.ascii	"CyUAB_SW_STROBE_RST\000"
+ 2442      425F5357 
+ 2442      5F535452 
+ 2442      4F42455F 
+ 2442      52535400 
+ 2443              	.LASF235:
+ 2444 0450 56444143 		.ascii	"VDAC_Synth_UAB_SetRefPower\000"
+ 2444      5F53796E 
+ 2444      74685F55 
+ 2444      41425F53 
+ 2444      65745265 
+ 2445              	.LASF218:
+ 2446 046b 69734869 		.ascii	"isHiZ\000"
+ 2446      5A00
+ 2447              	.LASF46:
+ 2448 0471 43795541 		.ascii	"CyUAB_PWR_3_8\000"
+ 2448      425F5057 
+ 2448      525F335F 
+ 2448      3800
+ 2449              	.LASF7:
+ 2450 047f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2450      206C6F6E 
+ 2450      6720756E 
+ 2450      7369676E 
+ 2450      65642069 
+ 2451              	.LASF233:
+ 2452 0496 56444143 		.ascii	"VDAC_Synth_UAB_Init\000"
+ 2452      5F53796E 
+ 2452      74685F55 
+ 2452      41425F49 
+ 2452      6E697400 
+ 2453              	.LASF105:
+ 2454 04aa 43795541 		.ascii	"CyUAB_SW_GB_MODBIT\000"
+ 2454      425F5357 
+ 2454      5F47425F 
+ 2454      4D4F4442 
+ 2454      495400
+ 2455              	.LASF30:
+ 2456 04bd 56444143 		.ascii	"VDAC_Synth_output_state_enum\000"
+ 2456      5F53796E 
+ 2456      74685F6F 
+ 2456      75747075 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 56
+
+
+ 2456      745F7374 
+ 2457              	.LASF52:
+ 2458 04da 43795541 		.ascii	"CyUAB_DAC_MODE_UNSIGNED12\000"
+ 2458      425F4441 
+ 2458      435F4D4F 
+ 2458      44455F55 
+ 2458      4E534947 
+ 2459              	.LASF208:
+ 2460 04f4 56444143 		.ascii	"VDAC_Synth_SaturateTwosComp\000"
+ 2460      5F53796E 
+ 2460      74685F53 
+ 2460      61747572 
+ 2460      61746554 
+ 2461              	.LASF96:
+ 2462 0510 43795541 		.ascii	"CyUAB_SW_BX2_MODBIT\000"
+ 2462      425F5357 
+ 2462      5F425832 
+ 2462      5F4D4F44 
+ 2462      42495400 
+ 2463              	.LASF36:
+ 2464 0524 76616C75 		.ascii	"value\000"
+ 2464      6500
+ 2465              	.LASF137:
+ 2466 052a 43795541 		.ascii	"CyUAB_SW_F_BOOST\000"
+ 2466      425F5357 
+ 2466      5F465F42 
+ 2466      4F4F5354 
+ 2466      00
+ 2467              	.LASF80:
+ 2468 053b 43795541 		.ascii	"CyUAB_SW_AX0_MODBIT\000"
+ 2468      425F5357 
+ 2468      5F415830 
+ 2468      5F4D4F44 
+ 2468      42495400 
+ 2469              	.LASF213:
+ 2470 054f 56444143 		.ascii	"VDAC_Synth_SetFormat\000"
+ 2470      5F53796E 
+ 2470      74685F53 
+ 2470      6574466F 
+ 2470      726D6174 
+ 2471              	.LASF210:
+ 2472 0564 7369676E 		.ascii	"sign\000"
+ 2472      00
+ 2473              	.LASF192:
+ 2474 0569 43795541 		.ascii	"CyUAB_F_CAP_40UNIT\000"
+ 2474      425F465F 
+ 2474      4341505F 
+ 2474      3430554E 
+ 2474      495400
+ 2475              	.LASF139:
+ 2476 057c 43795541 		.ascii	"CyUAB_SW_PUMP_WAVE\000"
+ 2476      425F5357 
+ 2476      5F50554D 
+ 2476      505F5741 
+ 2476      564500
+ 2477              	.LASF214:
+ 2478 058f 64616346 		.ascii	"dacFormat\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 57
+
+
+ 2478      6F726D61 
+ 2478      7400
+ 2479              	.LASF167:
+ 2480 0599 43795541 		.ascii	"CyUAB_F_CAP_2700fF\000"
+ 2480      425F465F 
+ 2480      4341505F 
+ 2480      32373030 
+ 2480      664600
+ 2481              	.LASF23:
+ 2482 05ac 56444143 		.ascii	"VDAC_Synth_SIGN_NEGATIVE\000"
+ 2482      5F53796E 
+ 2482      74685F53 
+ 2482      49474E5F 
+ 2482      4E454741 
+ 2483              	.LASF209:
+ 2484 05c5 56444143 		.ascii	"VDAC_Synth_SaturateSignMagnitude\000"
+ 2484      5F53796E 
+ 2484      74685F53 
+ 2484      61747572 
+ 2484      61746553 
+ 2485              	.LASF69:
+ 2486 05e6 43795541 		.ascii	"CyUAB_SW_CLOSED\000"
+ 2486      425F5357 
+ 2486      5F434C4F 
+ 2486      53454400 
+ 2487              	.LASF186:
+ 2488 05f6 43795541 		.ascii	"CyUAB_F_CAP_28UNIT\000"
+ 2488      425F465F 
+ 2488      4341505F 
+ 2488      3238554E 
+ 2488      495400
+ 2489              	.LASF158:
+ 2490 0609 43795541 		.ascii	"CyUAB_F_CAP_1800fF\000"
+ 2490      425F465F 
+ 2490      4341505F 
+ 2490      31383030 
+ 2490      664600
+ 2491              	.LASF58:
+ 2492 061c 43795541 		.ascii	"CyUAB_CLK_PHI2\000"
+ 2492      425F434C 
+ 2492      4B5F5048 
+ 2492      493200
+ 2493              	.LASF149:
+ 2494 062b 43795541 		.ascii	"CyUAB_F_CAP_0900fF\000"
+ 2494      425F465F 
+ 2494      4341505F 
+ 2494      30393030 
+ 2494      664600
+ 2495              	.LASF37:
+ 2496 063e 43795541 		.ascii	"CyUAB_reg_pair\000"
+ 2496      425F7265 
+ 2496      675F7061 
+ 2496      697200
+ 2497              	.LASF189:
+ 2498 064d 43795541 		.ascii	"CyUAB_F_CAP_34UNIT\000"
+ 2498      425F465F 
+ 2498      4341505F 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 58
+
+
+ 2498      3334554E 
+ 2498      495400
+ 2499              	.LASF118:
+ 2500 0660 43795541 		.ascii	"CyUAB_SW_CV_MODBIT\000"
+ 2500      425F5357 
+ 2500      5F43565F 
+ 2500      4D4F4442 
+ 2500      495400
+ 2501              	.LASF164:
+ 2502 0673 43795541 		.ascii	"CyUAB_F_CAP_2400fF\000"
+ 2502      425F465F 
+ 2502      4341505F 
+ 2502      32343030 
+ 2502      664600
+ 2503              	.LASF236:
+ 2504 0686 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Init\000"
+ 2504      5F53796E 
+ 2504      74685F4F 
+ 2504      55544255 
+ 2504      46464552 
+ 2505              	.LASF16:
+ 2506 06a0 63686172 		.ascii	"char\000"
+ 2506      00
+ 2507              	.LASF88:
+ 2508 06a5 43795541 		.ascii	"CyUAB_SW_AG_MODBIT\000"
+ 2508      425F5357 
+ 2508      5F41475F 
+ 2508      4D4F4442 
+ 2508      495400
+ 2509              	.LASF104:
+ 2510 06b8 43795541 		.ascii	"CyUAB_SW_RB_MODBIT\000"
+ 2510      425F5357 
+ 2510      5F52425F 
+ 2510      4D4F4442 
+ 2510      495400
+ 2511              	.LASF20:
+ 2512 06cb 56444143 		.ascii	"VDAC_Synth_FORMAT_13SIGNMAG\000"
+ 2512      5F53796E 
+ 2512      74685F46 
+ 2512      4F524D41 
+ 2512      545F3133 
+ 2513              	.LASF129:
+ 2514 06e7 43795541 		.ascii	"CyUAB_SW_CMP_FF\000"
+ 2514      425F5357 
+ 2514      5F434D50 
+ 2514      5F464600 
+ 2515              	.LASF180:
+ 2516 06f7 43795541 		.ascii	"CyUAB_F_CAP_16UNIT\000"
+ 2516      425F465F 
+ 2516      4341505F 
+ 2516      3136554E 
+ 2516      495400
+ 2517              	.LASF220:
+ 2518 070a 72616E67 		.ascii	"rangeFactor\000"
+ 2518      65466163 
+ 2518      746F7200 
+ 2519              	.LASF146:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 59
+
+
+ 2520 0716 43795541 		.ascii	"CyUAB_F_CAP_0600fF\000"
+ 2520      425F465F 
+ 2520      4341505F 
+ 2520      30363030 
+ 2520      664600
+ 2521              	.LASF42:
+ 2522 0729 70616972 		.ascii	"pairCount\000"
+ 2522      436F756E 
+ 2522      7400
+ 2523              	.LASF87:
+ 2524 0733 43795541 		.ascii	"CyUAB_SW_AR_MODBIT\000"
+ 2524      425F5357 
+ 2524      5F41525F 
+ 2524      4D4F4442 
+ 2524      495400
+ 2525              	.LASF184:
+ 2526 0746 43795541 		.ascii	"CyUAB_F_CAP_24UNIT\000"
+ 2526      425F465F 
+ 2526      4341505F 
+ 2526      3234554E 
+ 2526      495400
+ 2527              	.LASF170:
+ 2528 0759 43795541 		.ascii	"CyUAB_F_CAP_3000fF\000"
+ 2528      425F465F 
+ 2528      4341505F 
+ 2528      33303030 
+ 2528      664600
+ 2529              	.LASF26:
+ 2530 076c 56444143 		.ascii	"VDAC_Synth_STROBE_FROM_TERMINAL\000"
+ 2530      5F53796E 
+ 2530      74685F53 
+ 2530      54524F42 
+ 2530      455F4652 
+ 2531              	.LASF10:
+ 2532 078c 75696E74 		.ascii	"uint16\000"
+ 2532      313600
+ 2533              	.LASF155:
+ 2534 0793 43795541 		.ascii	"CyUAB_F_CAP_1500fF\000"
+ 2534      425F465F 
+ 2534      4341505F 
+ 2534      31353030 
+ 2534      664600
+ 2535              	.LASF45:
+ 2536 07a6 43795541 		.ascii	"CyUAB_PWR_1_8\000"
+ 2536      425F5057 
+ 2536      525F315F 
+ 2536      3800
+ 2537              	.LASF183:
+ 2538 07b4 43795541 		.ascii	"CyUAB_F_CAP_22UNIT\000"
+ 2538      425F465F 
+ 2538      4341505F 
+ 2538      3232554E 
+ 2538      495400
+ 2539              	.LASF33:
+ 2540 07c7 56444143 		.ascii	"VDAC_Synth_RANGE_4VREF\000"
+ 2540      5F53796E 
+ 2540      74685F52 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 60
+
+
+ 2540      414E4745 
+ 2540      5F345652 
+ 2541              	.LASF152:
+ 2542 07de 43795541 		.ascii	"CyUAB_F_CAP_1200fF\000"
+ 2542      425F465F 
+ 2542      4341505F 
+ 2542      31323030 
+ 2542      664600
+ 2543              	.LASF221:
+ 2544 07f1 56444143 		.ascii	"VDAC_Synth_Init\000"
+ 2544      5F53796E 
+ 2544      74685F49 
+ 2544      6E697400 
+ 2545              	.LASF92:
+ 2546 0801 43795541 		.ascii	"CyUAB_SW_VA_MODBIT\000"
+ 2546      425F5357 
+ 2546      5F56415F 
+ 2546      4D4F4442 
+ 2546      495400
+ 2547              	.LASF53:
+ 2548 0814 43795541 		.ascii	"CyUAB_DAC_MODE_VIRT_SIGNED12\000"
+ 2548      425F4441 
+ 2548      435F4D4F 
+ 2548      44455F56 
+ 2548      4952545F 
+ 2549              	.LASF143:
+ 2550 0831 43795541 		.ascii	"CyUAB_F_CAP_0300fF\000"
+ 2550      425F465F 
+ 2550      4341505F 
+ 2550      30333030 
+ 2550      664600
+ 2551              	.LASF134:
+ 2552 0844 43795541 		.ascii	"CyUAB_SW_A_BOOST\000"
+ 2552      425F5357 
+ 2552      5F415F42 
+ 2552      4F4F5354 
+ 2552      00
+ 2553              	.LASF174:
+ 2554 0855 43795541 		.ascii	"CyUAB_F_CAP_04UNIT\000"
+ 2554      425F465F 
+ 2554      4341505F 
+ 2554      3034554E 
+ 2554      495400
+ 2555              	.LASF84:
+ 2556 0868 43795541 		.ascii	"CyUAB_SW_AP\000"
+ 2556      425F5357 
+ 2556      5F415000 
+ 2557              	.LASF31:
+ 2558 0874 56444143 		.ascii	"VDAC_Synth_RANGE_VREF\000"
+ 2558      5F53796E 
+ 2558      74685F52 
+ 2558      414E4745 
+ 2558      5F565245 
+ 2559              	.LASF6:
+ 2560 088a 6C6F6E67 		.ascii	"long long int\000"
+ 2560      206C6F6E 
+ 2560      6720696E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 61
+
+
+ 2560      7400
+ 2561              	.LASF231:
+ 2562 0898 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Start\000"
+ 2562      5F53796E 
+ 2562      74685F4F 
+ 2562      55544255 
+ 2562      46464552 
+ 2563              	.LASF177:
+ 2564 08b3 43795541 		.ascii	"CyUAB_F_CAP_10UNIT\000"
+ 2564      425F465F 
+ 2564      4341505F 
+ 2564      3130554E 
+ 2564      495400
+ 2565              	.LASF111:
+ 2566 08c6 43795541 		.ascii	"CyUAB_SW_CX2_MODBIT\000"
+ 2566      425F5357 
+ 2566      5F435832 
+ 2566      5F4D4F44 
+ 2566      42495400 
+ 2567              	.LASF157:
+ 2568 08da 43795541 		.ascii	"CyUAB_F_CAP_1700fF\000"
+ 2568      425F465F 
+ 2568      4341505F 
+ 2568      31373030 
+ 2568      664600
+ 2569              	.LASF196:
+ 2570 08ed 43795541 		.ascii	"CyUAB_F_CAP_48UNIT\000"
+ 2570      425F465F 
+ 2570      4341505F 
+ 2570      3438554E 
+ 2570      495400
+ 2571              	.LASF94:
+ 2572 0900 43795541 		.ascii	"CyUAB_SW_BX0_MODBIT\000"
+ 2572      425F5357 
+ 2572      5F425830 
+ 2572      5F4D4F44 
+ 2572      42495400 
+ 2573              	.LASF126:
+ 2574 0914 43795541 		.ascii	"CyUAB_SW_PF\000"
+ 2574      425F5357 
+ 2574      5F504600 
+ 2575              	.LASF216:
+ 2576 0920 69734857 		.ascii	"isHWStrobed\000"
+ 2576      5374726F 
+ 2576      62656400 
+ 2577              	.LASF224:
+ 2578 092c 56444143 		.ascii	"VDAC_Synth_initVar\000"
+ 2578      5F53796E 
+ 2578      74685F69 
+ 2578      6E697456 
+ 2578      617200
+ 2579              	.LASF128:
+ 2580 093f 43795541 		.ascii	"CyUAB_SW_PO\000"
+ 2580      425F5357 
+ 2580      5F504F00 
+ 2581              	.LASF86:
+ 2582 094b 43795541 		.ascii	"CyUAB_SW_AA\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 62
+
+
+ 2582      425F5357 
+ 2582      5F414100 
+ 2583              	.LASF127:
+ 2584 0957 43795541 		.ascii	"CyUAB_SW_PS\000"
+ 2584      425F5357 
+ 2584      5F505300 
+ 2585              	.LASF19:
+ 2586 0963 56444143 		.ascii	"VDAC_Synth_FORMAT_13TWOSCOMP\000"
+ 2586      5F53796E 
+ 2586      74685F46 
+ 2586      4F524D41 
+ 2586      545F3133 
+ 2587              	.LASF242:
+ 2588 0980 746D7053 		.ascii	"tmpSign\000"
+ 2588      69676E00 
+ 2589              	.LASF106:
+ 2590 0988 43795541 		.ascii	"CyUAB_SW_VB_MODBIT\000"
+ 2590      425F5357 
+ 2590      5F56425F 
+ 2590      4D4F4442 
+ 2590      495400
+ 2591              	.LASF132:
+ 2592 099b 43795541 		.ascii	"CyUAB_SW_STROBE_SW\000"
+ 2592      425F5357 
+ 2592      5F535452 
+ 2592      4F42455F 
+ 2592      535700
+ 2593              	.LASF239:
+ 2594 09ae 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2594      4320342E 
+ 2594      392E3320 
+ 2594      32303135 
+ 2594      30333033 
+ 2595 09e1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 2595      20726576 
+ 2595      6973696F 
+ 2595      6E203232 
+ 2595      31323230 
+ 2596 0a14 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 2596      73202D66 
+ 2596      66756E63 
+ 2596      74696F6E 
+ 2596      2D736563 
+ 2597              	.LASF85:
+ 2598 0a40 43795541 		.ascii	"CyUAB_SW_AQ\000"
+ 2598      425F5357 
+ 2598      5F415100 
+ 2599              	.LASF199:
+ 2600 0a4c 43795541 		.ascii	"CyUAB_F_CAP_54UNIT\000"
+ 2600      425F465F 
+ 2600      4341505F 
+ 2600      3534554E 
+ 2600      495400
+ 2601              	.LASF28:
+ 2602 0a5f 56444143 		.ascii	"VDAC_Synth_OUTSTATE_DRIVEN\000"
+ 2602      5F53796E 
+ 2602      74685F4F 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 63
+
+
+ 2602      55545354 
+ 2602      4154455F 
+ 2603              	.LASF55:
+ 2604 0a7a 43795541 		.ascii	"CyUAB_dac_mode_enum\000"
+ 2604      425F6461 
+ 2604      635F6D6F 
+ 2604      64655F65 
+ 2604      6E756D00 
+ 2605              	.LASF202:
+ 2606 0a8e 43795541 		.ascii	"CyUAB_F_CAP_60UNIT\000"
+ 2606      425F465F 
+ 2606      4341505F 
+ 2606      3630554E 
+ 2606      495400
+ 2607              	.LASF136:
+ 2608 0aa1 43795541 		.ascii	"CyUAB_SW_C_BOOST\000"
+ 2608      425F5357 
+ 2608      5F435F42 
+ 2608      4F4F5354 
+ 2608      00
+ 2609              	.LASF222:
+ 2610 0ab2 56444143 		.ascii	"VDAC_Synth_Enable\000"
+ 2610      5F53796E 
+ 2610      74685F45 
+ 2610      6E61626C 
+ 2610      6500
+ 2611              	.LASF100:
+ 2612 0ac4 43795541 		.ascii	"CyUAB_SW_BB\000"
+ 2612      425F5357 
+ 2612      5F424200 
+ 2613              	.LASF79:
+ 2614 0ad0 43795541 		.ascii	"CyUAB_SW_QT\000"
+ 2614      425F5357 
+ 2614      5F515400 
+ 2615              	.LASF43:
+ 2616 0adc 43795541 		.ascii	"CyUAB_config\000"
+ 2616      425F636F 
+ 2616      6E666967 
+ 2616      00
+ 2617              	.LASF193:
+ 2618 0ae9 43795541 		.ascii	"CyUAB_F_CAP_42UNIT\000"
+ 2618      425F465F 
+ 2618      4341505F 
+ 2618      3432554E 
+ 2618      495400
+ 2619              	.LASF17:
+ 2620 0afc 72656733 		.ascii	"reg32\000"
+ 2620      3200
+ 2621              	.LASF98:
+ 2622 0b02 43795541 		.ascii	"CyUAB_SW_BP\000"
+ 2622      425F5357 
+ 2622      5F425000 
+ 2623              	.LASF99:
+ 2624 0b0e 43795541 		.ascii	"CyUAB_SW_BQ\000"
+ 2624      425F5357 
+ 2624      5F425100 
+ 2625              	.LASF169:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 64
+
+
+ 2626 0b1a 43795541 		.ascii	"CyUAB_F_CAP_2900fF\000"
+ 2626      425F465F 
+ 2626      4341505F 
+ 2626      32393030 
+ 2626      664600
+ 2627              	.LASF97:
+ 2628 0b2d 43795541 		.ascii	"CyUAB_SW_BX3_MODBIT\000"
+ 2628      425F5357 
+ 2628      5F425833 
+ 2628      5F4D4F44 
+ 2628      42495400 
+ 2629              	.LASF2:
+ 2630 0b41 73686F72 		.ascii	"short int\000"
+ 2630      7420696E 
+ 2630      7400
+ 2631              	.LASF75:
+ 2632 0b4b 43795541 		.ascii	"CyUAB_SW_RG\000"
+ 2632      425F5357 
+ 2632      5F524700 
+ 2633              	.LASF41:
+ 2634 0b57 73746570 		.ascii	"stepCount\000"
+ 2634      436F756E 
+ 2634      7400
+ 2635              	.LASF4:
+ 2636 0b61 6C6F6E67 		.ascii	"long int\000"
+ 2636      20696E74 
+ 2636      00
+ 2637              	.LASF115:
+ 2638 0b6a 43795541 		.ascii	"CyUAB_SW_CC\000"
+ 2638      425F5357 
+ 2638      5F434300 
+ 2639              	.LASF77:
+ 2640 0b76 43795541 		.ascii	"CyUAB_SW_RT\000"
+ 2640      425F5357 
+ 2640      5F525400 
+ 2641              	.LASF81:
+ 2642 0b82 43795541 		.ascii	"CyUAB_SW_AX1_MODBIT\000"
+ 2642      425F5357 
+ 2642      5F415831 
+ 2642      5F4D4F44 
+ 2642      42495400 
+ 2643              	.LASF113:
+ 2644 0b96 43795541 		.ascii	"CyUAB_SW_CP\000"
+ 2644      425F5357 
+ 2644      5F435000 
+ 2645              	.LASF102:
+ 2646 0ba2 43795541 		.ascii	"CyUAB_SW_BG_MODBIT\000"
+ 2646      425F5357 
+ 2646      5F42475F 
+ 2646      4D4F4442 
+ 2646      495400
+ 2647              	.LASF190:
+ 2648 0bb5 43795541 		.ascii	"CyUAB_F_CAP_36UNIT\000"
+ 2648      425F465F 
+ 2648      4341505F 
+ 2648      3336554E 
+ 2648      495400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 65
+
+
+ 2649              	.LASF40:
+ 2650 0bc8 73686172 		.ascii	"shared_sw\000"
+ 2650      65645F73 
+ 2650      7700
+ 2651              	.LASF166:
+ 2652 0bd2 43795541 		.ascii	"CyUAB_F_CAP_2600fF\000"
+ 2652      425F465F 
+ 2652      4341505F 
+ 2652      32363030 
+ 2652      664600
+ 2653              	.LASF29:
+ 2654 0be5 56444143 		.ascii	"VDAC_Synth_OUTSTATE_HIZ\000"
+ 2654      5F53796E 
+ 2654      74685F4F 
+ 2654      55545354 
+ 2654      4154455F 
+ 2655              	.LASF232:
+ 2656 0bfd 56444143 		.ascii	"VDAC_Synth_UAB_SetCapF\000"
+ 2656      5F53796E 
+ 2656      74685F55 
+ 2656      41425F53 
+ 2656      65744361 
+ 2657              	.LASF140:
+ 2658 0c14 43795541 		.ascii	"CyUAB_sw_id_enum\000"
+ 2658      425F7377 
+ 2658      5F69645F 
+ 2658      656E756D 
+ 2658      00
+ 2659              	.LASF101:
+ 2660 0c25 43795541 		.ascii	"CyUAB_SW_BR_MODBIT\000"
+ 2660      425F5357 
+ 2660      5F42525F 
+ 2660      4D4F4442 
+ 2660      495400
+ 2661              	.LASF24:
+ 2662 0c38 56444143 		.ascii	"VDAC_Synth_sign_enum\000"
+ 2662      5F53796E 
+ 2662      74685F73 
+ 2662      69676E5F 
+ 2662      656E756D 
+ 2663              	.LASF44:
+ 2664 0c4d 43795541 		.ascii	"CyUAB_PWR_OFF\000"
+ 2664      425F5057 
+ 2664      525F4F46 
+ 2664      4600
+ 2665              	.LASF181:
+ 2666 0c5b 43795541 		.ascii	"CyUAB_F_CAP_18UNIT\000"
+ 2666      425F465F 
+ 2666      4341505F 
+ 2666      3138554E 
+ 2666      495400
+ 2667              	.LASF11:
+ 2668 0c6e 75696E74 		.ascii	"uint32\000"
+ 2668      333200
+ 2669              	.LASF50:
+ 2670 0c75 43795541 		.ascii	"CyUAB_PWR_HIGH\000"
+ 2670      425F5057 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 66
+
+
+ 2670      525F4849 
+ 2670      474800
+ 2671              	.LASF51:
+ 2672 0c84 43795541 		.ascii	"CyUAB_fine_pwr_enum\000"
+ 2672      425F6669 
+ 2672      6E655F70 
+ 2672      77725F65 
+ 2672      6E756D00 
+ 2673              	.LASF93:
+ 2674 0c98 43795541 		.ascii	"CyUAB_SW_SA\000"
+ 2674      425F5357 
+ 2674      5F534100 
+ 2675              	.LASF108:
+ 2676 0ca4 43795541 		.ascii	"CyUAB_SW_SB\000"
+ 2676      425F5357 
+ 2676      5F534200 
+ 2677              	.LASF123:
+ 2678 0cb0 43795541 		.ascii	"CyUAB_SW_SC\000"
+ 2678      425F5357 
+ 2678      5F534300 
+ 2679              	.LASF237:
+ 2680 0cbc 56444143 		.ascii	"VDAC_Synth_UAB_Run\000"
+ 2680      5F53796E 
+ 2680      74685F55 
+ 2680      41425F52 
+ 2680      756E00
+ 2681              	.LASF172:
+ 2682 0ccf 43795541 		.ascii	"CyUAB_F_CAP_3200fF\000"
+ 2682      425F465F 
+ 2682      4341505F 
+ 2682      33323030 
+ 2682      664600
+ 2683              	.LASF114:
+ 2684 0ce2 43795541 		.ascii	"CyUAB_SW_CQ\000"
+ 2684      425F5357 
+ 2684      5F435100 
+ 2685              	.LASF179:
+ 2686 0cee 43795541 		.ascii	"CyUAB_F_CAP_14UNIT\000"
+ 2686      425F465F 
+ 2686      4341505F 
+ 2686      3134554E 
+ 2686      495400
+ 2687              	.LASF154:
+ 2688 0d01 43795541 		.ascii	"CyUAB_F_CAP_1400fF\000"
+ 2688      425F465F 
+ 2688      4341505F 
+ 2688      31343030 
+ 2688      664600
+ 2689              	.LASF109:
+ 2690 0d14 43795541 		.ascii	"CyUAB_SW_CX0_MODBIT\000"
+ 2690      425F5357 
+ 2690      5F435830 
+ 2690      5F4D4F44 
+ 2690      42495400 
+ 2691              	.LASF229:
+ 2692 0d28 56444143 		.ascii	"VDAC_Synth_UAB_SetDacMode\000"
+ 2692      5F53796E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 67
+
+
+ 2692      74685F55 
+ 2692      41425F53 
+ 2692      65744461 
+ 2693              	.LASF54:
+ 2694 0d42 43795541 		.ascii	"CyUAB_DAC_MODE_SIGNED13\000"
+ 2694      425F4441 
+ 2694      435F4D4F 
+ 2694      44455F53 
+ 2694      49474E45 
+ 2695              	.LASF217:
+ 2696 0d5a 56444143 		.ascii	"VDAC_Synth_SetHiZ\000"
+ 2696      5F53796E 
+ 2696      74685F53 
+ 2696      65744869 
+ 2696      5A00
+ 2697              	.LASF145:
+ 2698 0d6c 43795541 		.ascii	"CyUAB_F_CAP_0500fF\000"
+ 2698      425F465F 
+ 2698      4341505F 
+ 2698      30353030 
+ 2698      664600
+ 2699              	.LASF18:
+ 2700 0d7f 73697A65 		.ascii	"sizetype\000"
+ 2700      74797065 
+ 2700      00
+ 2701              	.LASF175:
+ 2702 0d88 43795541 		.ascii	"CyUAB_F_CAP_06UNIT\000"
+ 2702      425F465F 
+ 2702      4341505F 
+ 2702      3036554E 
+ 2702      495400
+ 2703              	.LASF198:
+ 2704 0d9b 43795541 		.ascii	"CyUAB_F_CAP_52UNIT\000"
+ 2704      425F465F 
+ 2704      4341505F 
+ 2704      3532554E 
+ 2704      495400
+ 2705              	.LASF5:
+ 2706 0dae 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2706      20756E73 
+ 2706      69676E65 
+ 2706      6420696E 
+ 2706      7400
+ 2707              	.LASF243:
+ 2708 0dc0 72657456 		.ascii	"retVal\000"
+ 2708      616C00
+ 2709              	.LASF119:
+ 2710 0dc7 43795541 		.ascii	"CyUAB_SW_RC_MODBIT\000"
+ 2710      425F5357 
+ 2710      5F52435F 
+ 2710      4D4F4442 
+ 2710      495400
+ 2711              	.LASF187:
+ 2712 0dda 43795541 		.ascii	"CyUAB_F_CAP_30UNIT\000"
+ 2712      425F465F 
+ 2712      4341505F 
+ 2712      3330554E 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 68
+
+
+ 2712      495400
+ 2713              	.LASF227:
+ 2714 0ded 56444143 		.ascii	"VDAC_Synth_UAB_Stop\000"
+ 2714      5F53796E 
+ 2714      74685F55 
+ 2714      41425F53 
+ 2714      746F7000 
+ 2715              	.LASF160:
+ 2716 0e01 43795541 		.ascii	"CyUAB_F_CAP_2000fF\000"
+ 2716      425F465F 
+ 2716      4341505F 
+ 2716      32303030 
+ 2716      664600
+ 2717              	.LASF107:
+ 2718 0e14 43795541 		.ascii	"CyUAB_SW_TB\000"
+ 2718      425F5357 
+ 2718      5F544200 
+ 2719              	.LASF122:
+ 2720 0e20 43795541 		.ascii	"CyUAB_SW_TC\000"
+ 2720      425F5357 
+ 2720      5F544300 
+ 2721              	.LASF207:
+ 2722 0e2c 56444143 		.ascii	"VDAC_Synth_SetValue\000"
+ 2722      5F53796E 
+ 2722      74685F53 
+ 2722      65745661 
+ 2722      6C756500 
+ 2723              	.LASF151:
+ 2724 0e40 43795541 		.ascii	"CyUAB_F_CAP_1100fF\000"
+ 2724      425F465F 
+ 2724      4341505F 
+ 2724      31313030 
+ 2724      664600
+ 2725              	.LASF178:
+ 2726 0e53 43795541 		.ascii	"CyUAB_F_CAP_12UNIT\000"
+ 2726      425F465F 
+ 2726      4341505F 
+ 2726      3132554E 
+ 2726      495400
+ 2727              	.LASF241:
+ 2728 0e66 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 2728      79707265 
+ 2728      73735C54 
+ 2728      616C6B69 
+ 2728      6E67436C 
+ 2729              	.LASF142:
+ 2730 0e92 43795541 		.ascii	"CyUAB_F_CAP_0200fF\000"
+ 2730      425F465F 
+ 2730      4341505F 
+ 2730      30323030 
+ 2730      664600
+ 2731              	.LASF89:
+ 2732 0ea5 43795541 		.ascii	"CyUAB_SW_AV_MODBIT\000"
+ 2732      425F5357 
+ 2732      5F41565F 
+ 2732      4D4F4442 
+ 2732      495400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 69
+
+
+ 2733              	.LASF49:
+ 2734 0eb8 43795541 		.ascii	"CyUAB_PWR_7_8\000"
+ 2734      425F5057 
+ 2734      525F375F 
+ 2734      3800
+ 2735              	.LASF1:
+ 2736 0ec6 756E7369 		.ascii	"unsigned char\000"
+ 2736      676E6564 
+ 2736      20636861 
+ 2736      7200
+ 2737              	.LASF70:
+ 2738 0ed4 43795541 		.ascii	"CyUAB_clk_enum\000"
+ 2738      425F636C 
+ 2738      6B5F656E 
+ 2738      756D00
+ 2739              	.LASF35:
+ 2740 0ee3 61646472 		.ascii	"addr\000"
+ 2740      00
+ 2741              	.LASF228:
+ 2742 0ee8 56444143 		.ascii	"VDAC_Synth_UAB_SetDacNext\000"
+ 2742      5F53796E 
+ 2742      74685F55 
+ 2742      41425F53 
+ 2742      65744461 
+ 2743              	.LASF200:
+ 2744 0f02 43795541 		.ascii	"CyUAB_F_CAP_56UNIT\000"
+ 2744      425F465F 
+ 2744      4341505F 
+ 2744      3536554E 
+ 2744      495400
+ 2745              	.LASF215:
+ 2746 0f15 56444143 		.ascii	"VDAC_Synth_SetStrobeMode\000"
+ 2746      5F53796E 
+ 2746      74685F53 
+ 2746      65745374 
+ 2746      726F6265 
+ 2747              	.LASF66:
+ 2748 0f2e 43795541 		.ascii	"CyUAB_CLK_PHI10\000"
+ 2748      425F434C 
+ 2748      4B5F5048 
+ 2748      49313000 
+ 2749              	.LASF67:
+ 2750 0f3e 43795541 		.ascii	"CyUAB_CLK_PHI11\000"
+ 2750      425F434C 
+ 2750      4B5F5048 
+ 2750      49313100 
+ 2751              	.LASF68:
+ 2752 0f4e 43795541 		.ascii	"CyUAB_CLK_PHI12\000"
+ 2752      425F434C 
+ 2752      4B5F5048 
+ 2752      49313200 
+ 2753              	.LASF38:
+ 2754 0f5e 77617665 		.ascii	"waveSteps\000"
+ 2754      53746570 
+ 2754      7300
+ 2755              	.LASF47:
+ 2756 0f68 43795541 		.ascii	"CyUAB_PWR_HALF\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 70
+
+
+ 2756      425F5057 
+ 2756      525F4841 
+ 2756      4C4600
+ 2757              	.LASF56:
+ 2758 0f77 43795541 		.ascii	"CyUAB_SW_OPEN\000"
+ 2758      425F5357 
+ 2758      5F4F5045 
+ 2758      4E00
+ 2759              	.LASF112:
+ 2760 0f85 43795541 		.ascii	"CyUAB_SW_CX3_MODBIT\000"
+ 2760      425F5357 
+ 2760      5F435833 
+ 2760      5F4D4F44 
+ 2760      42495400 
+ 2761              	.LASF203:
+ 2762 0f99 43795541 		.ascii	"CyUAB_F_CAP_62UNIT\000"
+ 2762      425F465F 
+ 2762      4341505F 
+ 2762      3632554E 
+ 2762      495400
+ 2763              	.LASF0:
+ 2764 0fac 7369676E 		.ascii	"signed char\000"
+ 2764      65642063 
+ 2764      68617200 
+ 2765              	.LASF95:
+ 2766 0fb8 43795541 		.ascii	"CyUAB_SW_BX1_MODBIT\000"
+ 2766      425F5357 
+ 2766      5F425831 
+ 2766      5F4D4F44 
+ 2766      42495400 
+ 2767              	.LASF3:
+ 2768 0fcc 73686F72 		.ascii	"short unsigned int\000"
+ 2768      7420756E 
+ 2768      7369676E 
+ 2768      65642069 
+ 2768      6E7400
+ 2769              	.LASF57:
+ 2770 0fdf 43795541 		.ascii	"CyUAB_CLK_PHI1\000"
+ 2770      425F434C 
+ 2770      4B5F5048 
+ 2770      493100
+ 2771              	.LASF27:
+ 2772 0fee 56444143 		.ascii	"VDAC_Synth_strobe_mode_enum\000"
+ 2772      5F53796E 
+ 2772      74685F73 
+ 2772      74726F62 
+ 2772      655F6D6F 
+ 2773              	.LASF59:
+ 2774 100a 43795541 		.ascii	"CyUAB_CLK_PHI3\000"
+ 2774      425F434C 
+ 2774      4B5F5048 
+ 2774      493300
+ 2775              	.LASF60:
+ 2776 1019 43795541 		.ascii	"CyUAB_CLK_PHI4\000"
+ 2776      425F434C 
+ 2776      4B5F5048 
+ 2776      493400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 71
+
+
+ 2777              	.LASF61:
+ 2778 1028 43795541 		.ascii	"CyUAB_CLK_PHI5\000"
+ 2778      425F434C 
+ 2778      4B5F5048 
+ 2778      493500
+ 2779              	.LASF62:
+ 2780 1037 43795541 		.ascii	"CyUAB_CLK_PHI6\000"
+ 2780      425F434C 
+ 2780      4B5F5048 
+ 2780      493600
+ 2781              	.LASF63:
+ 2782 1046 43795541 		.ascii	"CyUAB_CLK_PHI7\000"
+ 2782      425F434C 
+ 2782      4B5F5048 
+ 2782      493700
+ 2783              	.LASF64:
+ 2784 1055 43795541 		.ascii	"CyUAB_CLK_PHI8\000"
+ 2784      425F434C 
+ 2784      4B5F5048 
+ 2784      493800
+ 2785              	.LASF65:
+ 2786 1064 43795541 		.ascii	"CyUAB_CLK_PHI9\000"
+ 2786      425F434C 
+ 2786      4B5F5048 
+ 2786      493900
+ 2787              	.LASF121:
+ 2788 1073 43795541 		.ascii	"CyUAB_SW_VC_MODBIT\000"
+ 2788      425F5357 
+ 2788      5F56435F 
+ 2788      4D4F4442 
+ 2788      495400
+ 2789              	.LASF9:
+ 2790 1086 75696E74 		.ascii	"uint8\000"
+ 2790      3800
+ 2791              	.LASF15:
+ 2792 108c 646F7562 		.ascii	"double\000"
+ 2792      6C6500
+ 2793              	.LASF226:
+ 2794 1093 56444143 		.ascii	"VDAC_Synth_OUTBUFFER_Stop\000"
+ 2794      5F53796E 
+ 2794      74685F4F 
+ 2794      55544255 
+ 2794      46464552 
+ 2795              	.LASF125:
+ 2796 10ad 43795541 		.ascii	"CyUAB_SW_GF\000"
+ 2796      425F5357 
+ 2796      5F474600 
+ 2797              	.LASF76:
+ 2798 10b9 43795541 		.ascii	"CyUAB_SW_GG\000"
+ 2798      425F5357 
+ 2798      5F474700 
+ 2799              	.LASF161:
+ 2800 10c5 43795541 		.ascii	"CyUAB_F_CAP_2100fF\000"
+ 2800      425F465F 
+ 2800      4341505F 
+ 2800      32313030 
+ 2800      664600
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\ccmyiYWE.s 			page 72
+
+
+ 2801              	.LASF211:
+ 2802 10d8 6D61676E 		.ascii	"magnitude\000"
+ 2802      69747564 
+ 2802      6500
+ 2803              	.LASF197:
+ 2804 10e2 43795541 		.ascii	"CyUAB_F_CAP_50UNIT\000"
+ 2804      425F465F 
+ 2804      4341505F 
+ 2804      3530554E 
+ 2804      495400
+ 2805              	.LASF78:
+ 2806 10f5 43795541 		.ascii	"CyUAB_SW_GT\000"
+ 2806      425F5357 
+ 2806      5F475400 
+ 2807              	.LASF117:
+ 2808 1101 43795541 		.ascii	"CyUAB_SW_CG_MODBIT\000"
+ 2808      425F5357 
+ 2808      5F43475F 
+ 2808      4D4F4442 
+ 2808      495400
+ 2809              	.LASF91:
+ 2810 1114 43795541 		.ascii	"CyUAB_SW_GA_MODBIT\000"
+ 2810      425F5357 
+ 2810      5F47415F 
+ 2810      4D4F4442 
+ 2810      495400
+ 2811              	.LASF230:
+ 2812 1127 56444143 		.ascii	"VDAC_Synth_UAB_SetSwitch\000"
+ 2812      5F53796E 
+ 2812      74685F55 
+ 2812      41425F53 
+ 2812      65745377 
+ 2813              	.LASF205:
+ 2814 1140 43795541 		.ascii	"CyUAB_f_cap_enum\000"
+ 2814      425F665F 
+ 2814      6361705F 
+ 2814      656E756D 
+ 2814      00
+ 2815              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

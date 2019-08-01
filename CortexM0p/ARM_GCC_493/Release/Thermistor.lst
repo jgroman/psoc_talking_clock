@@ -1,0 +1,3014 @@
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"Thermistor.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_idiv
+  18              		.section	.text.Thermistor_GetResistance,"ax",%progbits
+  19              		.align	1
+  20              		.global	Thermistor_GetResistance
+  21              		.code	16
+  22              		.thumb_func
+  23              		.type	Thermistor_GetResistance, %function
+  24              	Thermistor_GetResistance:
+  25              	.LFB1:
+  26              		.file 1 "Generated_Source\\PSoC4\\Thermistor.c"
+   1:Generated_Source\PSoC4/Thermistor.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Thermistor.c **** * File Name: Thermistor.c
+   3:Generated_Source\PSoC4/Thermistor.c **** * Version 1.20
+   4:Generated_Source\PSoC4/Thermistor.c **** *
+   5:Generated_Source\PSoC4/Thermistor.c **** * Description:
+   6:Generated_Source\PSoC4/Thermistor.c **** *  This file provides the source code to the API for the ThermistorCalc
+   7:Generated_Source\PSoC4/Thermistor.c **** *  Component.
+   8:Generated_Source\PSoC4/Thermistor.c **** *
+   9:Generated_Source\PSoC4/Thermistor.c **** * Note:
+  10:Generated_Source\PSoC4/Thermistor.c **** *  None.
+  11:Generated_Source\PSoC4/Thermistor.c **** *
+  12:Generated_Source\PSoC4/Thermistor.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/Thermistor.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/Thermistor.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/Thermistor.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/Thermistor.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/Thermistor.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/Thermistor.c **** 
+  19:Generated_Source\PSoC4/Thermistor.c **** #include "Thermistor.h"
+  20:Generated_Source\PSoC4/Thermistor.c **** 
+  21:Generated_Source\PSoC4/Thermistor.c **** 
+  22:Generated_Source\PSoC4/Thermistor.c **** /*******************************************************************************
+  23:Generated_Source\PSoC4/Thermistor.c **** * Function Name: Thermistor_GetResistance
+  24:Generated_Source\PSoC4/Thermistor.c **** ********************************************************************************
+  25:Generated_Source\PSoC4/Thermistor.c **** *
+  26:Generated_Source\PSoC4/Thermistor.c **** * Summary:
+  27:Generated_Source\PSoC4/Thermistor.c **** *  The digital values of the voltages across the reference resistor and the
+  28:Generated_Source\PSoC4/Thermistor.c **** *  thermistor are passed to this function as parameters. The function returns
+  29:Generated_Source\PSoC4/Thermistor.c **** *  the resistance, based on the voltage values.
+  30:Generated_Source\PSoC4/Thermistor.c **** *
+  31:Generated_Source\PSoC4/Thermistor.c **** * Parameters:
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 2
+
+
+  32:Generated_Source\PSoC4/Thermistor.c **** *  vReference: the voltage across the reference resistor;
+  33:Generated_Source\PSoC4/Thermistor.c **** *  vThermistor: the voltage across the thermistor.
+  34:Generated_Source\PSoC4/Thermistor.c **** *  The ratio of these two voltages is used by this function. Therefore, the
+  35:Generated_Source\PSoC4/Thermistor.c **** *  units for both parameters must be the same.
+  36:Generated_Source\PSoC4/Thermistor.c **** *
+  37:Generated_Source\PSoC4/Thermistor.c **** * Return:
+  38:Generated_Source\PSoC4/Thermistor.c **** *  The return value is the resistance across the thermistor. The value returned
+  39:Generated_Source\PSoC4/Thermistor.c **** *  is the resistance in Ohms.
+  40:Generated_Source\PSoC4/Thermistor.c **** *
+  41:Generated_Source\PSoC4/Thermistor.c **** *******************************************************************************/
+  42:Generated_Source\PSoC4/Thermistor.c **** uint32 Thermistor_GetResistance(int16 vReference, int16 vThermistor)
+  43:Generated_Source\PSoC4/Thermistor.c ****                                       
+  44:Generated_Source\PSoC4/Thermistor.c **** {
+  27              		.loc 1 44 0
+  28              		.cfi_startproc
+  29              	.LVL0:
+  30 0000 08B5     		push	{r3, lr}
+  31              		.cfi_def_cfa_offset 8
+  32              		.cfi_offset 3, -8
+  33              		.cfi_offset 14, -4
+  45:Generated_Source\PSoC4/Thermistor.c ****     int32 resT;
+  46:Generated_Source\PSoC4/Thermistor.c ****     int16 temp;
+  47:Generated_Source\PSoC4/Thermistor.c **** 
+  48:Generated_Source\PSoC4/Thermistor.c ****     /* Calculate thermistor resistance from the voltages */
+  49:Generated_Source\PSoC4/Thermistor.c ****     resT = Thermistor_REF_RESISTOR * ((int32)vThermistor);
+  34              		.loc 1 49 0
+  35 0002 094B     		ldr	r3, .L5
+  44:Generated_Source\PSoC4/Thermistor.c ****     int32 resT;
+  36              		.loc 1 44 0
+  37 0004 021C     		mov	r2, r0
+  38              		.loc 1 49 0
+  39 0006 5943     		mul	r1, r3
+  40              	.LVL1:
+  50:Generated_Source\PSoC4/Thermistor.c ****     if (vReference < 0)
+  41              		.loc 1 50 0
+  42 0008 0028     		cmp	r0, #0
+  43 000a 05DA     		bge	.L2
+  44              	.LVL2:
+  51:Generated_Source\PSoC4/Thermistor.c ****     {
+  52:Generated_Source\PSoC4/Thermistor.c ****         temp = -vReference;
+  45              		.loc 1 52 0
+  46 000c 4342     		neg	r3, r0
+  53:Generated_Source\PSoC4/Thermistor.c ****         temp = (int16)((uint16)((uint16)temp >> 1u));
+  47              		.loc 1 53 0
+  48 000e 9BB2     		uxth	r3, r3
+  49 0010 5B08     		lsr	r3, r3, #1
+  54:Generated_Source\PSoC4/Thermistor.c ****         temp = -temp;
+  50              		.loc 1 54 0
+  51 0012 5B42     		neg	r3, r3
+  52 0014 9BB2     		uxth	r3, r3
+  53              	.LVL3:
+  54 0016 01E0     		b	.L3
+  55              	.LVL4:
+  56              	.L2:
+  55:Generated_Source\PSoC4/Thermistor.c ****     }
+  56:Generated_Source\PSoC4/Thermistor.c ****     else
+  57:Generated_Source\PSoC4/Thermistor.c ****     {
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 3
+
+
+  58:Generated_Source\PSoC4/Thermistor.c ****         temp = (int16)((uint16)((uint16)vReference >> 1u));
+  57              		.loc 1 58 0
+  58 0018 83B2     		uxth	r3, r0
+  59 001a 5B08     		lsr	r3, r3, #1
+  60              	.LVL5:
+  61              	.L3:
+  59:Generated_Source\PSoC4/Thermistor.c ****     }
+  60:Generated_Source\PSoC4/Thermistor.c ****     resT += temp;
+  62              		.loc 1 60 0
+  63 001c 1BB2     		sxth	r3, r3
+  64 001e C818     		add	r0, r1, r3
+  65              	.LVL6:
+  61:Generated_Source\PSoC4/Thermistor.c ****     resT /= vReference;
+  66              		.loc 1 61 0
+  67 0020 111C     		mov	r1, r2
+  68 0022 FFF7FEFF 		bl	__aeabi_idiv
+  69              	.LVL7:
+  62:Generated_Source\PSoC4/Thermistor.c **** 
+  63:Generated_Source\PSoC4/Thermistor.c ****     /* The ordering of Reference resistor value is specifically designed to keep the result from ov
+  64:Generated_Source\PSoC4/Thermistor.c ****     return ((uint32)((uint32)resT << Thermistor_REF_RES_SHIFT));
+  65:Generated_Source\PSoC4/Thermistor.c **** }
+  70              		.loc 1 65 0
+  71              		@ sp needed
+  72 0026 08BD     		pop	{r3, pc}
+  73              	.L6:
+  74              		.align	2
+  75              	.L5:
+  76 0028 10270000 		.word	10000
+  77              		.cfi_endproc
+  78              	.LFE1:
+  79              		.size	Thermistor_GetResistance, .-Thermistor_GetResistance
+  80              		.section	.text.Thermistor_GetTemperature,"ax",%progbits
+  81              		.align	1
+  82              		.global	Thermistor_GetTemperature
+  83              		.code	16
+  84              		.thumb_func
+  85              		.type	Thermistor_GetTemperature, %function
+  86              	Thermistor_GetTemperature:
+  87              	.LFB2:
+  66:Generated_Source\PSoC4/Thermistor.c **** 
+  67:Generated_Source\PSoC4/Thermistor.c **** 
+  68:Generated_Source\PSoC4/Thermistor.c **** /*******************************************************************************
+  69:Generated_Source\PSoC4/Thermistor.c **** * Function Name: Thermistor_GetTemperature
+  70:Generated_Source\PSoC4/Thermistor.c **** ********************************************************************************
+  71:Generated_Source\PSoC4/Thermistor.c **** *
+  72:Generated_Source\PSoC4/Thermistor.c **** * Summary:
+  73:Generated_Source\PSoC4/Thermistor.c **** *  The value of the thermistor resistance is passed to this function as a
+  74:Generated_Source\PSoC4/Thermistor.c **** *  parameter. The function returns the temperature, based on the resistance
+  75:Generated_Source\PSoC4/Thermistor.c **** *  value. The method used to calculate the temperature is dependent on whether
+  76:Generated_Source\PSoC4/Thermistor.c **** *  Equation or LUT was selected in the Customizer.
+  77:Generated_Source\PSoC4/Thermistor.c **** *
+  78:Generated_Source\PSoC4/Thermistor.c **** * Parameters:
+  79:Generated_Source\PSoC4/Thermistor.c **** *  resT: the resistance across the thermistor in Ohms.
+  80:Generated_Source\PSoC4/Thermistor.c **** *
+  81:Generated_Source\PSoC4/Thermistor.c **** * Return:
+  82:Generated_Source\PSoC4/Thermistor.c **** *  The return value is the temperature in 1/100ths of degrees C. For example,
+  83:Generated_Source\PSoC4/Thermistor.c **** *  the return value is 2345, when the actual temperature is 23.45 degrees C.
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 4
+
+
+  84:Generated_Source\PSoC4/Thermistor.c **** *
+  85:Generated_Source\PSoC4/Thermistor.c **** *******************************************************************************/
+  86:Generated_Source\PSoC4/Thermistor.c **** int16 Thermistor_GetTemperature(uint32 resT) 
+  87:Generated_Source\PSoC4/Thermistor.c **** {
+  88              		.loc 1 87 0
+  89              		.cfi_startproc
+  90              	.LVL8:
+  91 0000 70B5     		push	{r4, r5, r6, lr}
+  92              		.cfi_def_cfa_offset 16
+  93              		.cfi_offset 4, -16
+  94              		.cfi_offset 5, -12
+  95              		.cfi_offset 6, -8
+  96              		.cfi_offset 14, -4
+  88:Generated_Source\PSoC4/Thermistor.c ****     int16 tempTR;
+  89:Generated_Source\PSoC4/Thermistor.c ****     static const uint32 CYCODE Thermistor_LUT[] = { 419380u, 416455u, 413552u, 410671u, 407812u, 40
+  90:Generated_Source\PSoC4/Thermistor.c ****  396593u, 393842u, 391111u, 388401u, 385711u, 383042u, 380393u, 377764u, 375155u, 372566u, 369996u,
+  91:Generated_Source\PSoC4/Thermistor.c ****  362402u, 359909u, 357435u, 354979u, 352542u, 350123u, 347722u, 345339u, 342974u, 340627u, 338298u,
+  92:Generated_Source\PSoC4/Thermistor.c ****  331413u, 329153u, 326909u, 324682u, 322471u, 320278u, 318100u, 315939u, 313793u, 311664u, 309551u,
+  93:Generated_Source\PSoC4/Thermistor.c ****  303304u, 301252u, 299216u, 297195u, 295189u, 293198u, 291221u, 289259u, 287311u, 285378u, 283459u,
+  94:Generated_Source\PSoC4/Thermistor.c ****  277787u, 275924u, 274074u, 272239u, 270416u, 268608u, 266812u, 265029u, 263260u, 261503u, 259760u,
+  95:Generated_Source\PSoC4/Thermistor.c ****  254605u, 252912u, 251231u, 249562u, 247906u, 246261u, 244629u, 243008u, 241399u, 239802u, 238217u,
+  96:Generated_Source\PSoC4/Thermistor.c ****  233529u, 231989u, 230460u, 228942u, 227435u, 225939u, 224454u, 222979u, 221515u, 220062u, 218619u,
+  97:Generated_Source\PSoC4/Thermistor.c ****  214352u, 212950u, 211558u, 210177u, 208805u, 207443u, 206090u, 204748u, 203415u, 202091u, 200777u,
+  98:Generated_Source\PSoC4/Thermistor.c ****  196891u, 195614u, 194346u, 193087u, 191837u, 190596u, 189364u, 188141u, 186926u, 185720u, 184522u,
+  99:Generated_Source\PSoC4/Thermistor.c ****  180980u, 179816u, 178660u, 177513u, 176373u, 175241u, 174118u, 173002u, 171895u, 170795u, 169702u,
+ 100:Generated_Source\PSoC4/Thermistor.c ****  166471u, 165409u, 164355u, 163308u, 162268u, 161236u, 160210u, 159192u, 158181u, 157178u, 156181u,
+ 101:Generated_Source\PSoC4/Thermistor.c ****  153231u, 152262u, 151299u, 150343u, 149394u, 148451u, 147515u, 146586u, 145662u, 144745u, 143835u,
+ 102:Generated_Source\PSoC4/Thermistor.c ****  141141u, 140255u, 139376u, 138503u, 137635u, 136774u, 135918u, 135069u, 134225u, 133387u, 132555u,
+ 103:Generated_Source\PSoC4/Thermistor.c ****  130092u, 129283u, 128479u, 127680u, 126887u, 126099u, 125317u, 124540u, 123769u, 123002u, 122241u,
+ 104:Generated_Source\PSoC4/Thermistor.c ****  119989u, 119248u, 118512u, 117782u, 117056u, 116335u, 115620u, 114909u, 114202u, 113501u, 112804u,
+ 105:Generated_Source\PSoC4/Thermistor.c ****  110743u, 110065u, 109391u, 108722u, 108058u, 107398u, 106743u, 106091u, 105445u, 104802u, 104164u,
+ 106:Generated_Source\PSoC4/Thermistor.c ****  102276u, 101655u, 101038u, 100425u, 99816u, 99212u, 98611u, 98014u, 97422u, 96833u, 96248u, 95668u
+ 107:Generated_Source\PSoC4/Thermistor.c ****  93948u, 93382u, 92821u, 92263u, 91708u, 91158u, 90610u, 90067u, 89527u, 88991u, 88458u, 87929u, 87
+ 108:Generated_Source\PSoC4/Thermistor.c ****  85847u, 85335u, 84826u, 84321u, 83819u, 83320u, 82825u, 82333u, 81844u, 81358u, 80876u, 80396u, 79
+ 109:Generated_Source\PSoC4/Thermistor.c ****  78510u, 78046u, 77585u, 77127u, 76672u, 76220u, 75771u, 75325u, 74882u, 74442u, 74004u, 73570u, 73
+ 110:Generated_Source\PSoC4/Thermistor.c ****  71859u, 71439u, 71021u, 70605u, 70193u, 69783u, 69376u, 68971u, 68569u, 68169u, 67772u, 67378u, 66
+ 111:Generated_Source\PSoC4/Thermistor.c ****  65826u, 65444u, 65065u, 64688u, 64313u, 63941u, 63571u, 63204u, 62839u, 62476u, 62116u, 61758u, 61
+ 112:Generated_Source\PSoC4/Thermistor.c ****  60348u, 60001u, 59656u, 59314u, 58973u, 58635u, 58299u, 57965u, 57634u, 57304u, 56976u, 56651u, 56
+ 113:Generated_Source\PSoC4/Thermistor.c ****  55369u, 55054u, 54741u, 54429u, 54120u, 53812u, 53507u, 53203u, 52902u, 52602u, 52304u, 52008u, 51
+ 114:Generated_Source\PSoC4/Thermistor.c ****  50842u, 50555u, 50270u, 49986u, 49705u, 49425u, 49147u, 48871u, 48596u, 48323u, 48052u, 47782u, 47
+ 115:Generated_Source\PSoC4/Thermistor.c ****  46721u, 46459u, 46200u, 45942u, 45685u, 45430u, 45177u, 44925u, 44675u, 44426u, 44179u, 43934u, 43
+ 116:Generated_Source\PSoC4/Thermistor.c ****  42966u, 42728u, 42492u, 42257u, 42023u, 41790u, 41560u, 41330u, 41102u, 40875u, 40650u, 40426u, 40
+ 117:Generated_Source\PSoC4/Thermistor.c ****  39544u, 39327u, 39111u, 38896u, 38683u, 38471u, 38260u, 38051u, 37843u, 37636u, 37431u, 37226u, 37
+ 118:Generated_Source\PSoC4/Thermistor.c ****  36421u, 36223u, 36026u, 35830u, 35635u, 35442u, 35249u, 35058u, 34868u, 34679u, 34492u, 34305u, 34
+ 119:Generated_Source\PSoC4/Thermistor.c ****  33570u, 33389u, 33209u, 33030u, 32852u, 32675u, 32499u, 32325u, 32151u, 31978u, 31807u, 31636u, 31
+ 120:Generated_Source\PSoC4/Thermistor.c ****  30964u, 30799u, 30634u, 30470u, 30308u, 30146u, 29985u, 29826u, 29667u, 29509u, 29352u, 29196u, 29
+ 121:Generated_Source\PSoC4/Thermistor.c ****  28581u, 28430u, 28279u, 28130u, 27981u, 27833u, 27686u, 27540u, 27394u, 27250u, 27106u, 26964u, 26
+ 122:Generated_Source\PSoC4/Thermistor.c ****  26401u, 26262u, 26124u, 25987u, 25851u, 25715u, 25581u, 25447u, 25314u, 25181u, 25050u, 24919u, 24
+ 123:Generated_Source\PSoC4/Thermistor.c ****  24404u, 24276u, 24150u, 24025u, 23900u, 23776u, 23652u, 23530u, 23408u, 23286u, 23166u, 23046u, 22
+ 124:Generated_Source\PSoC4/Thermistor.c ****  22573u, 22457u, 22341u, 22226u, 22111u, 21997u, 21884u, 21772u, 21660u, 21549u, 21438u, 21328u, 21
+ 125:Generated_Source\PSoC4/Thermistor.c ****  20894u, 20787u, 20681u, 20576u, 20470u, 20366u, 20262u, 20159u, 20056u, 19954u, 19853u, 19752u, 19
+ 126:Generated_Source\PSoC4/Thermistor.c ****  19353u, 19255u, 19158u, 19061u, 18964u, 18868u, 18773u, 18678u, 18584u, 18490u, 18397u, 18304u, 18
+ 127:Generated_Source\PSoC4/Thermistor.c ****  17938u, 17848u, 17758u, 17669u, 17581u, 17492u, 17405u, 17318u, 17231u, 17145u, 17059u, 16974u, 16
+ 128:Generated_Source\PSoC4/Thermistor.c ****  16638u, 16555u, 16472u, 16390u, 16309u, 16228u, 16147u, 16067u, 15987u, 15908u, 15829u, 15751u, 15
+ 129:Generated_Source\PSoC4/Thermistor.c ****  15441u, 15365u, 15289u, 15214u, 15139u, 15064u, 14990u, 14916u, 14843u, 14770u, 14697u, 14625u, 14
+ 130:Generated_Source\PSoC4/Thermistor.c ****  14340u, 14270u, 14200u, 14131u, 14062u, 13993u, 13924u, 13857u, 13789u, 13722u, 13655u, 13588u, 13
+ 131:Generated_Source\PSoC4/Thermistor.c ****  13326u, 13261u, 13197u, 13133u, 13069u, 13006u, 12943u, 12880u, 12818u, 12756u, 12695u, 12633u, 12
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 5
+
+
+ 132:Generated_Source\PSoC4/Thermistor.c ****  12391u, 12332u, 12273u, 12214u, 12155u, 12096u, 12038u, 11981u, 11923u, 11866u, 11809u, 11753u, 11
+ 133:Generated_Source\PSoC4/Thermistor.c ****  11530u, 11475u, 11420u, 11365u, 11311u, 11257u, 11204u, 11151u, 11098u, 11045u, 10992u, 10940u, 10
+ 134:Generated_Source\PSoC4/Thermistor.c ****  10734u, 10684u, 10633u, 10583u, 10533u, 10483u, 10434u, 10384u, 10335u, 10287u, 10238u, 10190u, 10
+ 135:Generated_Source\PSoC4/Thermistor.c ****  10000u, 9953u, 9906u, 9860u, 9814u, 9768u, 9722u, 9677u, 9631u, 9586u, 9542u, 9497u, 9453u, 9409u,
+ 136:Generated_Source\PSoC4/Thermistor.c ****  9235u, 9192u, 9149u, 9107u, 9065u, 9023u, 8981u, 8939u, 8898u, 8857u, 8816u, 8775u, 8734u, 8694u, 
+ 137:Generated_Source\PSoC4/Thermistor.c ****  8535u, 8496u, 8457u, 8418u, 8379u, 8341u, 8302u, 8264u, 8226u, 8189u, 8151u, 8114u, 8077u, 8040u, 
+ 138:Generated_Source\PSoC4/Thermistor.c ****  7894u, 7858u, 7822u, 7787u, 7751u, 7716u, 7681u, 7646u, 7611u, 7577u, 7542u, 7508u, 7474u, 7440u, 
+ 139:Generated_Source\PSoC4/Thermistor.c ****  7306u, 7273u, 7241u, 7208u, 7175u, 7143u, 7111u, 7079u, 7047u, 7015u, 6984u, 6953u, 6921u, 6890u, 
+ 140:Generated_Source\PSoC4/Thermistor.c ****  6768u, 6737u, 6707u, 6677u, 6647u, 6618u, 6588u, 6559u, 6530u, 6501u, 6472u, 6443u, 6414u, 6386u, 
+ 141:Generated_Source\PSoC4/Thermistor.c ****  6273u, 6245u, 6218u, 6190u, 6163u, 6136u, 6108u, 6081u, 6055u, 6028u, 6001u, 5975u, 5949u, 5922u, 
+ 142:Generated_Source\PSoC4/Thermistor.c ****  5819u, 5793u, 5768u, 5743u, 5717u, 5692u, 5668u, 5643u, 5618u, 5593u, 5569u, 5545u, 5521u, 5496u, 
+ 143:Generated_Source\PSoC4/Thermistor.c ****  5401u, 5378u, 5354u, 5331u, 5308u, 5285u, 5262u, 5239u, 5217u, 5194u, 5172u, 5149u, 5127u, 5105u, 
+ 144:Generated_Source\PSoC4/Thermistor.c ****  5017u, 4996u, 4974u, 4953u, 4931u, 4910u, 4889u, 4868u, 4847u, 4826u, 4806u, 4785u, 4765u, 4744u, 
+ 145:Generated_Source\PSoC4/Thermistor.c ****  4664u, 4644u, 4624u, 4604u, 4585u, 4565u, 4546u, 4526u, 4507u, 4488u, 4469u, 4450u, 4431u, 4412u, 
+ 146:Generated_Source\PSoC4/Thermistor.c ****  4338u, 4320u, 4301u, 4283u, 4265u, 4247u, 4229u, 4211u, 4194u, 4176u, 4158u, 4141u, 4123u, 4106u, 
+ 147:Generated_Source\PSoC4/Thermistor.c ****  4038u, 4021u, 4004u, 3987u, 3970u, 3954u, 3937u, 3921u, 3904u, 3888u, 3872u, 3856u, 3840u, 3824u, 
+ 148:Generated_Source\PSoC4/Thermistor.c ****  3761u, 3745u, 3729u, 3714u, 3699u, 3683u, 3668u, 3653u, 3638u, 3623u, 3608u, 3593u, 3578u, 3563u, 
+ 149:Generated_Source\PSoC4/Thermistor.c ****  3505u, 3490u, 3476u, 3462u, 3448u, 3433u, 3419u, 3405u, 3391u, 3377u, 3364u, 3350u, 3336u, 3322u, 
+ 150:Generated_Source\PSoC4/Thermistor.c ****  3269u, 3255u, 3242u, 3229u, 3216u, 3203u, 3190u, 3177u, 3164u, 3151u, 3138u, 3125u, 3113u, 3100u, 
+ 151:Generated_Source\PSoC4/Thermistor.c ****  3050u, 3038u, 3026u, 3013u, 3001u, 2989u, 2977u, 2965u, 2953u, 2941u, 2929u, 2918u, 2906u, 2894u, 
+ 152:Generated_Source\PSoC4/Thermistor.c ****  2848u, 2837u, 2825u, 2814u, 2803u, 2792u, 2780u, 2769u, 2758u, 2747u, 2736u, 2726u, 2715u, 2704u, 
+ 153:Generated_Source\PSoC4/Thermistor.c ****  2661u, 2651u, 2640u, 2630u, 2619u, 2609u, 2599u, 2588u, 2578u, 2568u, 2558u, 2548u, 2538u, 2528u, 
+ 154:Generated_Source\PSoC4/Thermistor.c ****  2488u, 2478u, 2468u, 2459u, 2449u, 2439u, 2430u, 2420u, 2411u, 2401u, 2392u, 2383u, 2373u, 2364u, 
+ 155:Generated_Source\PSoC4/Thermistor.c ****  2327u, 2318u, 2309u, 2300u, 2291u, 2282u, 2274u, 2265u, 2256u, 2247u, 2239u, 2230u, 2221u, 2213u, 
+ 156:Generated_Source\PSoC4/Thermistor.c ****  2179u, 2170u, 2162u, 2153u, 2145u, 2137u, 2129u, 2120u, 2112u, 2104u, 2096u, 2088u, 2080u, 2072u, 
+ 157:Generated_Source\PSoC4/Thermistor.c ****  2040u, 2033u, 2025u, 2017u, 2009u, 2002u, 1994u, 1986u, 1979u, 1971u, 1964u, 1956u, 1949u, 1941u, 
+ 158:Generated_Source\PSoC4/Thermistor.c ****  1912u, 1905u, 1898u, 1890u, 1883u, 1876u, 1869u, 1862u, 1855u, 1848u, 1841u, 1834u, 1827u, 1820u, 
+ 159:Generated_Source\PSoC4/Thermistor.c ****  1793u, 1786u, 1780u, 1773u, 1766u, 1760u, 1753u, 1746u, 1740u, 1733u, 1727u, 1720u, 1714u, 1708u, 
+ 160:Generated_Source\PSoC4/Thermistor.c ****  1682u, 1676u, 1670u, 1663u, 1657u, 1651u, 1645u, 1639u, 1633u, 1627u, 1621u, 1615u, 1609u, 1603u, 
+ 161:Generated_Source\PSoC4/Thermistor.c ****  1579u, 1573u, 1567u, 1562u, 1556u, 1550u, 1544u, 1539u, 1533u, 1527u, 1522u, 1516u, 1511u, 1505u, 
+ 162:Generated_Source\PSoC4/Thermistor.c ****  1483u, 1478u, 1472u, 1467u, 1462u, 1456u, 1451u, 1446u, 1440u, 1435u, 1430u, 1425u, 1419u, 1414u, 
+ 163:Generated_Source\PSoC4/Thermistor.c ****  1394u, 1389u, 1384u, 1379u, 1374u, 1369u, 1364u, 1359u, 1354u, 1349u, 1344u, 1339u, 1334u, 1330u, 
+ 164:Generated_Source\PSoC4/Thermistor.c ****  1311u, 1306u, 1301u, 1296u, 1292u, 1287u, 1283u, 1278u, 1273u, 1269u, 1264u, 1260u, 1255u, 1251u, 
+ 165:Generated_Source\PSoC4/Thermistor.c ****  1233u, 1229u, 1224u, 1220u, 1215u, 1211u, 1207u, 1203u, 1198u, 1194u, 1190u, 1186u, 1181u, 1177u, 
+ 166:Generated_Source\PSoC4/Thermistor.c ****  1161u, 1156u, 1152u, 1148u, 1144u, 1140u, 1136u, 1132u, 1128u, 1124u, 1120u, 1116u, 1112u, 1108u, 
+ 167:Generated_Source\PSoC4/Thermistor.c ****  1093u, 1089u, 1085u, 1081u, 1078u, 1074u, 1070u, 1066u, 1063u, 1059u, 1055u, 1052u, 1048u, 1044u, 
+ 168:Generated_Source\PSoC4/Thermistor.c ****  1030u, 1026u, 1023u, 1019u, 1016u, 1012u, 1009u, 1005u, 1002u, 998u, 995u, 991u, 988u, 984u, 981u,
+ 169:Generated_Source\PSoC4/Thermistor.c ****  967u, 964u, 961u, 958u, 954u, 951u, 948u, 944u, 941u, 938u, 935u, 932u, 928u, 925u, 922u, 919u, 91
+ 170:Generated_Source\PSoC4/Thermistor.c ****  903u, 900u, 897u, 894u, 891u, 888u, 885u, 882u, 879u, 876u, 873u, 870u, 867u, 864u, 861u, 858u, 85
+ 171:Generated_Source\PSoC4/Thermistor.c ****  844u, 841u, 838u, 835u, 832u, 830u, 827u, 824u, 821u, 819u, 816u, 813u, 810u, 808u, 805u, 802u, 79
+ 172:Generated_Source\PSoC4/Thermistor.c ****  789u, 786u, 784u, 781u, 778u, 776u, 773u, 771u, 768u, 765u, 763u, 760u, 758u, 755u, 753u, 750u, 74
+ 173:Generated_Source\PSoC4/Thermistor.c ****  738u, 735u, 733u, 731u, 728u, 726u, 723u, 721u, 719u, 716u, 714u, 712u, 709u, 707u, 705u, 702u, 70
+ 174:Generated_Source\PSoC4/Thermistor.c ****  691u, 689u, 686u, 684u, 682u, 680u, 677u, 675u, 673u, 671u, 669u, 666u, 664u, 662u, 660u, 658u, 65
+ 175:Generated_Source\PSoC4/Thermistor.c ****  647u, 645u, 643u, 641u, 639u, 637u, 635u, 633u, 630u, 628u, 626u, 624u, 622u, 620u, 618u, 616u, 61
+ 176:Generated_Source\PSoC4/Thermistor.c ****  606u, 605u, 603u, 601u, 599u, 597u, 595u, 593u, 591u, 589u, 587u, 585u, 584u, 582u, 580u, 578u, 57
+ 177:Generated_Source\PSoC4/Thermistor.c ****  569u, 567u, 565u, 563u, 562u, 560u, 558u, 556u, 555u, 553u, 551u, 549u, 548u, 546u, 544u, 542u, 54
+ 178:Generated_Source\PSoC4/Thermistor.c ****  534u, 532u, 530u, 529u, 527u, 525u, 524u, 522u, 521u, 519u, 517u, 516u, 514u, 512u, 511u, 509u, 50
+ 179:Generated_Source\PSoC4/Thermistor.c ****  501u, 500u, 498u, 497u, 495u, 494u, 492u, 490u, 489u, 487u, 486u, 484u, 483u, 481u, 480u, 478u, 47
+ 180:Generated_Source\PSoC4/Thermistor.c ****  471u, 470u, 468u, 467u, 465u, 464u, 462u, 461u, 459u, 458u, 457u, 455u, 454u, 452u, 451u, 450u, 44
+ 181:Generated_Source\PSoC4/Thermistor.c ****  443u, 441u, 440u, 439u, 437u, 436u, 435u, 433u, 432u, 431u, 429u, 428u, 427u, 426u, 424u, 423u, 42
+ 182:Generated_Source\PSoC4/Thermistor.c ****  417u, 415u, 414u, 413u, 412u, 410u, 409u, 408u, 407u, 405u, 404u, 403u, 402u, 400u, 399u, 398u, 39
+ 183:Generated_Source\PSoC4/Thermistor.c ****  392u, 391u, 390u, 389u, 387u, 386u, 385u, 384u, 383u, 382u, 381u, 379u, 378u, 377u, 376u, 375u, 37
+ 184:Generated_Source\PSoC4/Thermistor.c ****  369u, 368u, 367u, 366u, 365u, 364u, 363u, 362u, 361u, 360u, 358u, 357u, 356u, 355u, 354u, 353u, 35
+ 185:Generated_Source\PSoC4/Thermistor.c ****  348u, 347u, 346u, 345u, 344u, 343u, 342u, 341u, 340u, 339u, 338u, 337u, 336u, 335u, 334u, 333u, 33
+ 186:Generated_Source\PSoC4/Thermistor.c ****  328u, 327u, 326u, 325u, 324u, 323u, 322u, 321u, 321u, 320u, 319u, 318u, 317u, 316u, 315u, 314u, 31
+ 187:Generated_Source\PSoC4/Thermistor.c ****  310u, 309u, 308u, 307u, 306u, 305u, 304u, 303u, 302u, 302u, 301u, 300u, 299u, 298u, 297u, 296u, 29
+ 188:Generated_Source\PSoC4/Thermistor.c ****  292u, 291u, 291u, 290u, 289u, 288u, 287u, 286u, 286u, 285u, 284u, 283u, 282u, 281u, 281u, 280u, 27
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 6
+
+
+ 189:Generated_Source\PSoC4/Thermistor.c ****  276u, 275u, 274u, 274u, 273u, 272u, 271u, 271u, 270u, 269u, 268u, 267u, 267u, 266u, 265u, 264u, 26
+ 190:Generated_Source\PSoC4/Thermistor.c ****  261u, 260u };
+ 191:Generated_Source\PSoC4/Thermistor.c **** 
+ 192:Generated_Source\PSoC4/Thermistor.c **** 
+ 193:Generated_Source\PSoC4/Thermistor.c ****     #if (Thermistor_IMPLEMENTATION == Thermistor_EQUATION_METHOD)
+ 194:Generated_Source\PSoC4/Thermistor.c **** 
+ 195:Generated_Source\PSoC4/Thermistor.c ****         float32 stEqn;
+ 196:Generated_Source\PSoC4/Thermistor.c ****         float32 logrT;
+ 197:Generated_Source\PSoC4/Thermistor.c **** 
+ 198:Generated_Source\PSoC4/Thermistor.c ****         /* Calculate thermistor resistance from the voltages */
+ 199:Generated_Source\PSoC4/Thermistor.c ****         #if(!CY_PSOC3)
+ 200:Generated_Source\PSoC4/Thermistor.c ****             logrT = (float32)log((float64)resT);
+ 201:Generated_Source\PSoC4/Thermistor.c ****         #else
+ 202:Generated_Source\PSoC4/Thermistor.c ****             logrT = log((float32)resT);
+ 203:Generated_Source\PSoC4/Thermistor.c ****         #endif  /* (!CY_PSOC3) */
+ 204:Generated_Source\PSoC4/Thermistor.c **** 
+ 205:Generated_Source\PSoC4/Thermistor.c ****         /* Calculate temperature from the resistance of thermistor using Steinhart-Hart Equation */
+ 206:Generated_Source\PSoC4/Thermistor.c ****         #if(!CY_PSOC3)
+ 207:Generated_Source\PSoC4/Thermistor.c ****             stEqn = (float32)(Thermistor_THA + (Thermistor_THB * logrT) + 
+ 208:Generated_Source\PSoC4/Thermistor.c ****                              (Thermistor_THC * pow((float64)logrT, (float32)3)));
+ 209:Generated_Source\PSoC4/Thermistor.c ****         #else
+ 210:Generated_Source\PSoC4/Thermistor.c ****             stEqn = (float32)(Thermistor_THA + (Thermistor_THB * logrT) + 
+ 211:Generated_Source\PSoC4/Thermistor.c ****                              (Thermistor_THC * pow(logrT, (float32)3)));
+ 212:Generated_Source\PSoC4/Thermistor.c ****         #endif  /* (!CY_PSOC3) */
+ 213:Generated_Source\PSoC4/Thermistor.c **** 
+ 214:Generated_Source\PSoC4/Thermistor.c ****         tempTR = (int16)((float32)((((1.0 / stEqn) - Thermistor_K2C) * (float32)Thermistor_SCALE) +
+ 215:Generated_Source\PSoC4/Thermistor.c **** 
+ 216:Generated_Source\PSoC4/Thermistor.c ****     #else /* Thermistor_IMPLEMENTATION == Thermistor_LUT_METHOD */
+ 217:Generated_Source\PSoC4/Thermistor.c **** 
+ 218:Generated_Source\PSoC4/Thermistor.c ****         uint16 mid;
+ 219:Generated_Source\PSoC4/Thermistor.c ****         uint16 first = 0u;
+  97              		.loc 1 219 0
+  98 0002 0025     		mov	r5, #0
+ 220:Generated_Source\PSoC4/Thermistor.c ****         uint16 last = Thermistor_LUT_SIZE - 1u;
+  99              		.loc 1 220 0
+ 100 0004 1C4B     		ldr	r3, .L20
+ 101              	.LVL9:
+ 102              	.L13:
+ 221:Generated_Source\PSoC4/Thermistor.c **** 
+ 222:Generated_Source\PSoC4/Thermistor.c ****         /* Calculate temperature from the resistance of thermistor by using the LUT */
+ 223:Generated_Source\PSoC4/Thermistor.c ****         while (first < last)
+ 224:Generated_Source\PSoC4/Thermistor.c ****         {
+ 225:Generated_Source\PSoC4/Thermistor.c ****             mid = (first + last) >> 1u;
+ 103              		.loc 1 225 0
+ 104 0006 E918     		add	r1, r5, r3
+ 105 0008 4910     		asr	r1, r1, #1
+ 106 000a 8AB2     		uxth	r2, r1
+ 107              	.LVL10:
+ 108 000c 1B4C     		ldr	r4, .L20+4
+ 226:Generated_Source\PSoC4/Thermistor.c **** 
+ 227:Generated_Source\PSoC4/Thermistor.c ****             if ((0u == mid) || ((Thermistor_LUT_SIZE - 1u) == mid) || (resT == Thermistor_LUT[mid])
+ 109              		.loc 1 227 0
+ 110 000e 0029     		cmp	r1, #0
+ 111 0010 04D0     		beq	.L16
+ 112              		.loc 1 227 0 is_stmt 0 discriminator 2
+ 113 0012 8900     		lsl	r1, r1, #2
+ 114 0014 6158     		ldr	r1, [r4, r1]
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 7
+
+
+ 115 0016 8842     		cmp	r0, r1
+ 116 0018 03D1     		bne	.L9
+ 117 001a 00E0     		b	.L8
+ 118              	.L16:
+ 119 001c 0A1C     		mov	r2, r1
+ 120              	.LVL11:
+ 121              	.L8:
+ 228:Generated_Source\PSoC4/Thermistor.c ****             {
+ 229:Generated_Source\PSoC4/Thermistor.c ****                 last = mid;
+ 122              		.loc 1 229 0 is_stmt 1
+ 123 001e 131C     		mov	r3, r2
+ 124              	.LVL12:
+ 230:Generated_Source\PSoC4/Thermistor.c ****                 break;
+ 125              		.loc 1 230 0
+ 126 0020 08E0     		b	.L10
+ 127              	.LVL13:
+ 128              	.L9:
+ 231:Generated_Source\PSoC4/Thermistor.c ****             }
+ 232:Generated_Source\PSoC4/Thermistor.c ****             else if (Thermistor_LUT[mid] > resT)
+ 129              		.loc 1 232 0
+ 130 0022 8142     		cmp	r1, r0
+ 131 0024 02D9     		bls	.L11
+ 233:Generated_Source\PSoC4/Thermistor.c ****             {
+ 234:Generated_Source\PSoC4/Thermistor.c ****                 first = mid + 1u;
+ 132              		.loc 1 234 0
+ 133 0026 0132     		add	r2, r2, #1
+ 134              	.LVL14:
+ 135 0028 95B2     		uxth	r5, r2
+ 136              	.LVL15:
+ 137 002a 01E0     		b	.L12
+ 138              	.LVL16:
+ 139              	.L11:
+ 235:Generated_Source\PSoC4/Thermistor.c ****             }
+ 236:Generated_Source\PSoC4/Thermistor.c ****             else /* (Thermistor_LUT[mid] < resT) */
+ 237:Generated_Source\PSoC4/Thermistor.c ****             {
+ 238:Generated_Source\PSoC4/Thermistor.c ****                 last = mid - 1u;
+ 140              		.loc 1 238 0
+ 141 002c 531E     		sub	r3, r2, #1
+ 142              	.LVL17:
+ 143 002e 9BB2     		uxth	r3, r3
+ 144              	.LVL18:
+ 145              	.L12:
+ 223:Generated_Source\PSoC4/Thermistor.c ****         {
+ 146              		.loc 1 223 0
+ 147 0030 9D42     		cmp	r5, r3
+ 148 0032 E8D3     		bcc	.L13
+ 149              	.LVL19:
+ 150              	.L10:
+ 239:Generated_Source\PSoC4/Thermistor.c ****             }
+ 240:Generated_Source\PSoC4/Thermistor.c ****         }
+ 241:Generated_Source\PSoC4/Thermistor.c **** 
+ 242:Generated_Source\PSoC4/Thermistor.c ****         /* Calculation the closest entry in the LUT */
+ 243:Generated_Source\PSoC4/Thermistor.c ****         if ((Thermistor_LUT[last] > resT) && (last < (Thermistor_LUT_SIZE - 1u)) &&
+ 151              		.loc 1 243 0
+ 152 0034 9A00     		lsl	r2, r3, #2
+ 153 0036 A258     		ldr	r2, [r4, r2]
+ 154 0038 8242     		cmp	r2, r0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 8
+
+
+ 155 003a 0BD9     		bls	.L14
+ 156              		.loc 1 243 0 is_stmt 0 discriminator 1
+ 157 003c 1049     		ldr	r1, .L20+8
+ 158 003e 8B42     		cmp	r3, r1
+ 159 0040 08D8     		bhi	.L14
+ 244:Generated_Source\PSoC4/Thermistor.c ****            ((Thermistor_LUT[last] - resT) > (resT - Thermistor_LUT[last + 1u])))
+ 160              		.loc 1 244 0 is_stmt 1 discriminator 2
+ 161 0042 5E1C     		add	r6, r3, #1
+ 162 0044 B100     		lsl	r1, r6, #2
+ 163 0046 6158     		ldr	r1, [r4, r1]
+ 164 0048 151A     		sub	r5, r2, r0
+ 165              	.LVL20:
+ 166 004a 411A     		sub	r1, r0, r1
+ 243:Generated_Source\PSoC4/Thermistor.c ****            ((Thermistor_LUT[last] - resT) > (resT - Thermistor_LUT[last + 1u])))
+ 167              		.loc 1 243 0 discriminator 2
+ 168 004c 8D42     		cmp	r5, r1
+ 169 004e 01D9     		bls	.L14
+ 245:Generated_Source\PSoC4/Thermistor.c ****         {
+ 246:Generated_Source\PSoC4/Thermistor.c ****             last++;
+ 170              		.loc 1 246 0
+ 171 0050 B3B2     		uxth	r3, r6
+ 172              	.LVL21:
+ 173 0052 0BE0     		b	.L15
+ 174              	.L14:
+ 247:Generated_Source\PSoC4/Thermistor.c ****         }
+ 248:Generated_Source\PSoC4/Thermistor.c ****         else if ((Thermistor_LUT[last] < resT) && (last > 0u) &&
+ 175              		.loc 1 248 0
+ 176 0054 8242     		cmp	r2, r0
+ 177 0056 09D2     		bcs	.L15
+ 178              		.loc 1 248 0 is_stmt 0 discriminator 1
+ 179 0058 002B     		cmp	r3, #0
+ 180 005a 07D0     		beq	.L15
+ 249:Generated_Source\PSoC4/Thermistor.c ****                 ((Thermistor_LUT[last - 1u] - resT) < (resT - Thermistor_LUT[last])))
+ 181              		.loc 1 249 0 is_stmt 1 discriminator 2
+ 182 005c 5D1E     		sub	r5, r3, #1
+ 183 005e A900     		lsl	r1, r5, #2
+ 184 0060 6158     		ldr	r1, [r4, r1]
+ 185 0062 091A     		sub	r1, r1, r0
+ 186 0064 801A     		sub	r0, r0, r2
+ 187              	.LVL22:
+ 248:Generated_Source\PSoC4/Thermistor.c ****                 ((Thermistor_LUT[last - 1u] - resT) < (resT - Thermistor_LUT[last])))
+ 188              		.loc 1 248 0 discriminator 2
+ 189 0066 8142     		cmp	r1, r0
+ 190 0068 00D2     		bcs	.L15
+ 250:Generated_Source\PSoC4/Thermistor.c ****         {
+ 251:Generated_Source\PSoC4/Thermistor.c ****             last--;
+ 191              		.loc 1 251 0
+ 192 006a ABB2     		uxth	r3, r5
+ 193              	.LVL23:
+ 194              	.L15:
+ 252:Generated_Source\PSoC4/Thermistor.c ****         }
+ 253:Generated_Source\PSoC4/Thermistor.c ****         else
+ 254:Generated_Source\PSoC4/Thermistor.c ****         {
+ 255:Generated_Source\PSoC4/Thermistor.c ****             /* Closest entry in the LUT already found */
+ 256:Generated_Source\PSoC4/Thermistor.c ****         }
+ 257:Generated_Source\PSoC4/Thermistor.c **** 
+ 258:Generated_Source\PSoC4/Thermistor.c ****         tempTR = Thermistor_MIN_TEMP + (int16)((uint16)(last * Thermistor_ACCURACY));
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 9
+
+
+ 195              		.loc 1 258 0
+ 196 006c 0A20     		mov	r0, #10
+ 197 006e 4343     		mul	r3, r0
+ 198              	.LVL24:
+ 199 0070 044A     		ldr	r2, .L20+12
+ 259:Generated_Source\PSoC4/Thermistor.c **** 
+ 260:Generated_Source\PSoC4/Thermistor.c ****     #endif /* (Thermistor_IMPLEMENTATION == Thermistor_EQUATION_METHOD) */
+ 261:Generated_Source\PSoC4/Thermistor.c **** 
+ 262:Generated_Source\PSoC4/Thermistor.c ****     return (tempTR);
+ 263:Generated_Source\PSoC4/Thermistor.c **** }
+ 200              		.loc 1 263 0
+ 201              		@ sp needed
+ 258:Generated_Source\PSoC4/Thermistor.c **** 
+ 202              		.loc 1 258 0
+ 203 0072 9818     		add	r0, r3, r2
+ 262:Generated_Source\PSoC4/Thermistor.c **** }
+ 204              		.loc 1 262 0
+ 205 0074 00B2     		sxth	r0, r0
+ 206              		.loc 1 263 0
+ 207 0076 70BD     		pop	{r4, r5, r6, pc}
+ 208              	.L21:
+ 209              		.align	2
+ 210              	.L20:
+ 211 0078 72060000 		.word	1650
+ 212 007c 00000000 		.word	.LANCHOR0
+ 213 0080 71060000 		.word	1649
+ 214 0084 60F0FFFF 		.word	-4000
+ 215              		.cfi_endproc
+ 216              	.LFE2:
+ 217              		.size	Thermistor_GetTemperature, .-Thermistor_GetTemperature
+ 218              		.section	.rodata
+ 219              		.align	2
+ 220              		.set	.LANCHOR0,. + 0
+ 221              		.type	Thermistor_LUT.4765, %object
+ 222              		.size	Thermistor_LUT.4765, 6604
+ 223              	Thermistor_LUT.4765:
+ 224 0000 34660600 		.word	419380
+ 225 0004 C75A0600 		.word	416455
+ 226 0008 704F0600 		.word	413552
+ 227 000c 2F440600 		.word	410671
+ 228 0010 04390600 		.word	407812
+ 229 0014 EF2D0600 		.word	404975
+ 230 0018 F0220600 		.word	402160
+ 231 001c 06180600 		.word	399366
+ 232 0020 310D0600 		.word	396593
+ 233 0024 72020600 		.word	393842
+ 234 0028 C7F70500 		.word	391111
+ 235 002c 31ED0500 		.word	388401
+ 236 0030 AFE20500 		.word	385711
+ 237 0034 42D80500 		.word	383042
+ 238 0038 E9CD0500 		.word	380393
+ 239 003c A4C30500 		.word	377764
+ 240 0040 73B90500 		.word	375155
+ 241 0044 56AF0500 		.word	372566
+ 242 0048 4CA50500 		.word	369996
+ 243 004c 559B0500 		.word	367445
+ 244 0050 72910500 		.word	364914
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 10
+
+
+ 245 0054 A2870500 		.word	362402
+ 246 0058 E57D0500 		.word	359909
+ 247 005c 3B740500 		.word	357435
+ 248 0060 A36A0500 		.word	354979
+ 249 0064 1E610500 		.word	352542
+ 250 0068 AB570500 		.word	350123
+ 251 006c 4A4E0500 		.word	347722
+ 252 0070 FB440500 		.word	345339
+ 253 0074 BE3B0500 		.word	342974
+ 254 0078 93320500 		.word	340627
+ 255 007c 7A290500 		.word	338298
+ 256 0080 72200500 		.word	335986
+ 257 0084 7B170500 		.word	333691
+ 258 0088 950E0500 		.word	331413
+ 259 008c C1050500 		.word	329153
+ 260 0090 FDFC0400 		.word	326909
+ 261 0094 4AF40400 		.word	324682
+ 262 0098 A7EB0400 		.word	322471
+ 263 009c 16E30400 		.word	320278
+ 264 00a0 94DA0400 		.word	318100
+ 265 00a4 23D20400 		.word	315939
+ 266 00a8 C1C90400 		.word	313793
+ 267 00ac 70C10400 		.word	311664
+ 268 00b0 2FB90400 		.word	309551
+ 269 00b4 FDB00400 		.word	307453
+ 270 00b8 DBA80400 		.word	305371
+ 271 00bc C8A00400 		.word	303304
+ 272 00c0 C4980400 		.word	301252
+ 273 00c4 D0900400 		.word	299216
+ 274 00c8 EB880400 		.word	297195
+ 275 00cc 15810400 		.word	295189
+ 276 00d0 4E790400 		.word	293198
+ 277 00d4 95710400 		.word	291221
+ 278 00d8 EB690400 		.word	289259
+ 279 00dc 4F620400 		.word	287311
+ 280 00e0 C25A0400 		.word	285378
+ 281 00e4 43530400 		.word	283459
+ 282 00e8 D24B0400 		.word	281554
+ 283 00ec 70440400 		.word	279664
+ 284 00f0 1B3D0400 		.word	277787
+ 285 00f4 D4350400 		.word	275924
+ 286 00f8 9A2E0400 		.word	274074
+ 287 00fc 6F270400 		.word	272239
+ 288 0100 50200400 		.word	270416
+ 289 0104 40190400 		.word	268608
+ 290 0108 3C120400 		.word	266812
+ 291 010c 450B0400 		.word	265029
+ 292 0110 5C040400 		.word	263260
+ 293 0114 7FFD0300 		.word	261503
+ 294 0118 B0F60300 		.word	259760
+ 295 011c EDEF0300 		.word	258029
+ 296 0120 37E90300 		.word	256311
+ 297 0124 8DE20300 		.word	254605
+ 298 0128 F0DB0300 		.word	252912
+ 299 012c 5FD50300 		.word	251231
+ 300 0130 DACE0300 		.word	249562
+ 301 0134 62C80300 		.word	247906
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 11
+
+
+ 302 0138 F5C10300 		.word	246261
+ 303 013c 95BB0300 		.word	244629
+ 304 0140 40B50300 		.word	243008
+ 305 0144 F7AE0300 		.word	241399
+ 306 0148 BAA80300 		.word	239802
+ 307 014c 89A20300 		.word	238217
+ 308 0150 639C0300 		.word	236643
+ 309 0154 48960300 		.word	235080
+ 310 0158 39900300 		.word	233529
+ 311 015c 358A0300 		.word	231989
+ 312 0160 3C840300 		.word	230460
+ 313 0164 4E7E0300 		.word	228942
+ 314 0168 6B780300 		.word	227435
+ 315 016c 93720300 		.word	225939
+ 316 0170 C66C0300 		.word	224454
+ 317 0174 03670300 		.word	222979
+ 318 0178 4B610300 		.word	221515
+ 319 017c 9E5B0300 		.word	220062
+ 320 0180 FB550300 		.word	218619
+ 321 0184 62500300 		.word	217186
+ 322 0188 D44A0300 		.word	215764
+ 323 018c 50450300 		.word	214352
+ 324 0190 D63F0300 		.word	212950
+ 325 0194 663A0300 		.word	211558
+ 326 0198 01350300 		.word	210177
+ 327 019c A52F0300 		.word	208805
+ 328 01a0 532A0300 		.word	207443
+ 329 01a4 0A250300 		.word	206090
+ 330 01a8 CC1F0300 		.word	204748
+ 331 01ac 971A0300 		.word	203415
+ 332 01b0 6B150300 		.word	202091
+ 333 01b4 49100300 		.word	200777
+ 334 01b8 300B0300 		.word	199472
+ 335 01bc 21060300 		.word	198177
+ 336 01c0 1B010300 		.word	196891
+ 337 01c4 1EFC0200 		.word	195614
+ 338 01c8 2AF70200 		.word	194346
+ 339 01cc 3FF20200 		.word	193087
+ 340 01d0 5DED0200 		.word	191837
+ 341 01d4 84E80200 		.word	190596
+ 342 01d8 B4E30200 		.word	189364
+ 343 01dc EDDE0200 		.word	188141
+ 344 01e0 2EDA0200 		.word	186926
+ 345 01e4 78D50200 		.word	185720
+ 346 01e8 CAD00200 		.word	184522
+ 347 01ec 25CC0200 		.word	183333
+ 348 01f0 88C70200 		.word	182152
+ 349 01f4 F4C20200 		.word	180980
+ 350 01f8 68BE0200 		.word	179816
+ 351 01fc E4B90200 		.word	178660
+ 352 0200 69B50200 		.word	177513
+ 353 0204 F5B00200 		.word	176373
+ 354 0208 89AC0200 		.word	175241
+ 355 020c 26A80200 		.word	174118
+ 356 0210 CAA30200 		.word	173002
+ 357 0214 779F0200 		.word	171895
+ 358 0218 2B9B0200 		.word	170795
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 12
+
+
+ 359 021c E6960200 		.word	169702
+ 360 0220 AA920200 		.word	168618
+ 361 0224 758E0200 		.word	167541
+ 362 0228 478A0200 		.word	166471
+ 363 022c 21860200 		.word	165409
+ 364 0230 03820200 		.word	164355
+ 365 0234 EC7D0200 		.word	163308
+ 366 0238 DC790200 		.word	162268
+ 367 023c D4750200 		.word	161236
+ 368 0240 D2710200 		.word	160210
+ 369 0244 D86D0200 		.word	159192
+ 370 0248 E5690200 		.word	158181
+ 371 024c FA650200 		.word	157178
+ 372 0250 15620200 		.word	156181
+ 373 0254 375E0200 		.word	155191
+ 374 0258 605A0200 		.word	154208
+ 375 025c 8F560200 		.word	153231
+ 376 0260 C6520200 		.word	152262
+ 377 0264 034F0200 		.word	151299
+ 378 0268 474B0200 		.word	150343
+ 379 026c 92470200 		.word	149394
+ 380 0270 E3430200 		.word	148451
+ 381 0274 3B400200 		.word	147515
+ 382 0278 9A3C0200 		.word	146586
+ 383 027c FE380200 		.word	145662
+ 384 0280 69350200 		.word	144745
+ 385 0284 DB310200 		.word	143835
+ 386 0288 532E0200 		.word	142931
+ 387 028c D12A0200 		.word	142033
+ 388 0290 55270200 		.word	141141
+ 389 0294 DF230200 		.word	140255
+ 390 0298 70200200 		.word	139376
+ 391 029c 071D0200 		.word	138503
+ 392 02a0 A3190200 		.word	137635
+ 393 02a4 46160200 		.word	136774
+ 394 02a8 EE120200 		.word	135918
+ 395 02ac 9D0F0200 		.word	135069
+ 396 02b0 510C0200 		.word	134225
+ 397 02b4 0B090200 		.word	133387
+ 398 02b8 CB050200 		.word	132555
+ 399 02bc 90020200 		.word	131728
+ 400 02c0 5BFF0100 		.word	130907
+ 401 02c4 2CFC0100 		.word	130092
+ 402 02c8 03F90100 		.word	129283
+ 403 02cc DFF50100 		.word	128479
+ 404 02d0 C0F20100 		.word	127680
+ 405 02d4 A7EF0100 		.word	126887
+ 406 02d8 93EC0100 		.word	126099
+ 407 02dc 85E90100 		.word	125317
+ 408 02e0 7CE60100 		.word	124540
+ 409 02e4 79E30100 		.word	123769
+ 410 02e8 7AE00100 		.word	123002
+ 411 02ec 81DD0100 		.word	122241
+ 412 02f0 8DDA0100 		.word	121485
+ 413 02f4 9ED70100 		.word	120734
+ 414 02f8 B5D40100 		.word	119989
+ 415 02fc D0D10100 		.word	119248
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 13
+
+
+ 416 0300 F0CE0100 		.word	118512
+ 417 0304 16CC0100 		.word	117782
+ 418 0308 40C90100 		.word	117056
+ 419 030c 6FC60100 		.word	116335
+ 420 0310 A4C30100 		.word	115620
+ 421 0314 DDC00100 		.word	114909
+ 422 0318 1ABE0100 		.word	114202
+ 423 031c 5DBB0100 		.word	113501
+ 424 0320 A4B80100 		.word	112804
+ 425 0324 F1B50100 		.word	112113
+ 426 0328 41B30100 		.word	111425
+ 427 032c 97B00100 		.word	110743
+ 428 0330 F1AD0100 		.word	110065
+ 429 0334 4FAB0100 		.word	109391
+ 430 0338 B2A80100 		.word	108722
+ 431 033c 1AA60100 		.word	108058
+ 432 0340 86A30100 		.word	107398
+ 433 0344 F7A00100 		.word	106743
+ 434 0348 6B9E0100 		.word	106091
+ 435 034c E59B0100 		.word	105445
+ 436 0350 62990100 		.word	104802
+ 437 0354 E4960100 		.word	104164
+ 438 0358 6B940100 		.word	103531
+ 439 035c F5910100 		.word	102901
+ 440 0360 848F0100 		.word	102276
+ 441 0364 178D0100 		.word	101655
+ 442 0368 AE8A0100 		.word	101038
+ 443 036c 49880100 		.word	100425
+ 444 0370 E8850100 		.word	99816
+ 445 0374 8C830100 		.word	99212
+ 446 0378 33810100 		.word	98611
+ 447 037c DE7E0100 		.word	98014
+ 448 0380 8E7C0100 		.word	97422
+ 449 0384 417A0100 		.word	96833
+ 450 0388 F8770100 		.word	96248
+ 451 038c B4750100 		.word	95668
+ 452 0390 73730100 		.word	95091
+ 453 0394 35710100 		.word	94517
+ 454 0398 FC6E0100 		.word	93948
+ 455 039c C66C0100 		.word	93382
+ 456 03a0 956A0100 		.word	92821
+ 457 03a4 67680100 		.word	92263
+ 458 03a8 3C660100 		.word	91708
+ 459 03ac 16640100 		.word	91158
+ 460 03b0 F2610100 		.word	90610
+ 461 03b4 D35F0100 		.word	90067
+ 462 03b8 B75D0100 		.word	89527
+ 463 03bc 9F5B0100 		.word	88991
+ 464 03c0 8A590100 		.word	88458
+ 465 03c4 79570100 		.word	87929
+ 466 03c8 6B550100 		.word	87403
+ 467 03cc 61530100 		.word	86881
+ 468 03d0 5A510100 		.word	86362
+ 469 03d4 574F0100 		.word	85847
+ 470 03d8 574D0100 		.word	85335
+ 471 03dc 5A4B0100 		.word	84826
+ 472 03e0 61490100 		.word	84321
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 14
+
+
+ 473 03e4 6B470100 		.word	83819
+ 474 03e8 78450100 		.word	83320
+ 475 03ec 89430100 		.word	82825
+ 476 03f0 9D410100 		.word	82333
+ 477 03f4 B43F0100 		.word	81844
+ 478 03f8 CE3D0100 		.word	81358
+ 479 03fc EC3B0100 		.word	80876
+ 480 0400 0C3A0100 		.word	80396
+ 481 0404 30380100 		.word	79920
+ 482 0408 57360100 		.word	79447
+ 483 040c 81340100 		.word	78977
+ 484 0410 AE320100 		.word	78510
+ 485 0414 DE300100 		.word	78046
+ 486 0418 112F0100 		.word	77585
+ 487 041c 472D0100 		.word	77127
+ 488 0420 802B0100 		.word	76672
+ 489 0424 BC290100 		.word	76220
+ 490 0428 FB270100 		.word	75771
+ 491 042c 3D260100 		.word	75325
+ 492 0430 82240100 		.word	74882
+ 493 0434 CA220100 		.word	74442
+ 494 0438 14210100 		.word	74004
+ 495 043c 621F0100 		.word	73570
+ 496 0440 B21D0100 		.word	73138
+ 497 0444 051C0100 		.word	72709
+ 498 0448 5B1A0100 		.word	72283
+ 499 044c B3180100 		.word	71859
+ 500 0450 0F170100 		.word	71439
+ 501 0454 6D150100 		.word	71021
+ 502 0458 CD130100 		.word	70605
+ 503 045c 31120100 		.word	70193
+ 504 0460 97100100 		.word	69783
+ 505 0464 000F0100 		.word	69376
+ 506 0468 6B0D0100 		.word	68971
+ 507 046c D90B0100 		.word	68569
+ 508 0470 490A0100 		.word	68169
+ 509 0474 BC080100 		.word	67772
+ 510 0478 32070100 		.word	67378
+ 511 047c AA050100 		.word	66986
+ 512 0480 25040100 		.word	66597
+ 513 0484 A2020100 		.word	66210
+ 514 0488 22010100 		.word	65826
+ 515 048c A4FF0000 		.word	65444
+ 516 0490 29FE0000 		.word	65065
+ 517 0494 B0FC0000 		.word	64688
+ 518 0498 39FB0000 		.word	64313
+ 519 049c C5F90000 		.word	63941
+ 520 04a0 53F80000 		.word	63571
+ 521 04a4 E4F60000 		.word	63204
+ 522 04a8 77F50000 		.word	62839
+ 523 04ac 0CF40000 		.word	62476
+ 524 04b0 A4F20000 		.word	62116
+ 525 04b4 3EF10000 		.word	61758
+ 526 04b8 DAEF0000 		.word	61402
+ 527 04bc 78EE0000 		.word	61048
+ 528 04c0 19ED0000 		.word	60697
+ 529 04c4 BCEB0000 		.word	60348
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 15
+
+
+ 530 04c8 61EA0000 		.word	60001
+ 531 04cc 08E90000 		.word	59656
+ 532 04d0 B2E70000 		.word	59314
+ 533 04d4 5DE60000 		.word	58973
+ 534 04d8 0BE50000 		.word	58635
+ 535 04dc BBE30000 		.word	58299
+ 536 04e0 6DE20000 		.word	57965
+ 537 04e4 22E10000 		.word	57634
+ 538 04e8 D8DF0000 		.word	57304
+ 539 04ec 90DE0000 		.word	56976
+ 540 04f0 4BDD0000 		.word	56651
+ 541 04f4 08DC0000 		.word	56328
+ 542 04f8 C6DA0000 		.word	56006
+ 543 04fc 87D90000 		.word	55687
+ 544 0500 49D80000 		.word	55369
+ 545 0504 0ED70000 		.word	55054
+ 546 0508 D5D50000 		.word	54741
+ 547 050c 9DD40000 		.word	54429
+ 548 0510 68D30000 		.word	54120
+ 549 0514 34D20000 		.word	53812
+ 550 0518 03D10000 		.word	53507
+ 551 051c D3CF0000 		.word	53203
+ 552 0520 A6CE0000 		.word	52902
+ 553 0524 7ACD0000 		.word	52602
+ 554 0528 50CC0000 		.word	52304
+ 555 052c 28CB0000 		.word	52008
+ 556 0530 02CA0000 		.word	51714
+ 557 0534 DDC80000 		.word	51421
+ 558 0538 BBC70000 		.word	51131
+ 559 053c 9AC60000 		.word	50842
+ 560 0540 7BC50000 		.word	50555
+ 561 0544 5EC40000 		.word	50270
+ 562 0548 42C30000 		.word	49986
+ 563 054c 29C20000 		.word	49705
+ 564 0550 11C10000 		.word	49425
+ 565 0554 FBBF0000 		.word	49147
+ 566 0558 E7BE0000 		.word	48871
+ 567 055c D4BD0000 		.word	48596
+ 568 0560 C3BC0000 		.word	48323
+ 569 0564 B4BB0000 		.word	48052
+ 570 0568 A6BA0000 		.word	47782
+ 571 056c 9AB90000 		.word	47514
+ 572 0570 90B80000 		.word	47248
+ 573 0574 88B70000 		.word	46984
+ 574 0578 81B60000 		.word	46721
+ 575 057c 7BB50000 		.word	46459
+ 576 0580 78B40000 		.word	46200
+ 577 0584 76B30000 		.word	45942
+ 578 0588 75B20000 		.word	45685
+ 579 058c 76B10000 		.word	45430
+ 580 0590 79B00000 		.word	45177
+ 581 0594 7DAF0000 		.word	44925
+ 582 0598 83AE0000 		.word	44675
+ 583 059c 8AAD0000 		.word	44426
+ 584 05a0 93AC0000 		.word	44179
+ 585 05a4 9EAB0000 		.word	43934
+ 586 05a8 AAAA0000 		.word	43690
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 16
+
+
+ 587 05ac B7A90000 		.word	43447
+ 588 05b0 C6A80000 		.word	43206
+ 589 05b4 D6A70000 		.word	42966
+ 590 05b8 E8A60000 		.word	42728
+ 591 05bc FCA50000 		.word	42492
+ 592 05c0 11A50000 		.word	42257
+ 593 05c4 27A40000 		.word	42023
+ 594 05c8 3EA30000 		.word	41790
+ 595 05cc 58A20000 		.word	41560
+ 596 05d0 72A10000 		.word	41330
+ 597 05d4 8EA00000 		.word	41102
+ 598 05d8 AB9F0000 		.word	40875
+ 599 05dc CA9E0000 		.word	40650
+ 600 05e0 EA9D0000 		.word	40426
+ 601 05e4 0B9D0000 		.word	40203
+ 602 05e8 2E9C0000 		.word	39982
+ 603 05ec 529B0000 		.word	39762
+ 604 05f0 789A0000 		.word	39544
+ 605 05f4 9F990000 		.word	39327
+ 606 05f8 C7980000 		.word	39111
+ 607 05fc F0970000 		.word	38896
+ 608 0600 1B970000 		.word	38683
+ 609 0604 47960000 		.word	38471
+ 610 0608 74950000 		.word	38260
+ 611 060c A3940000 		.word	38051
+ 612 0610 D3930000 		.word	37843
+ 613 0614 04930000 		.word	37636
+ 614 0618 37920000 		.word	37431
+ 615 061c 6A910000 		.word	37226
+ 616 0620 9F900000 		.word	37023
+ 617 0624 D58F0000 		.word	36821
+ 618 0628 0D8F0000 		.word	36621
+ 619 062c 458E0000 		.word	36421
+ 620 0630 7F8D0000 		.word	36223
+ 621 0634 BA8C0000 		.word	36026
+ 622 0638 F68B0000 		.word	35830
+ 623 063c 338B0000 		.word	35635
+ 624 0640 728A0000 		.word	35442
+ 625 0644 B1890000 		.word	35249
+ 626 0648 F2880000 		.word	35058
+ 627 064c 34880000 		.word	34868
+ 628 0650 77870000 		.word	34679
+ 629 0654 BC860000 		.word	34492
+ 630 0658 01860000 		.word	34305
+ 631 065c 48850000 		.word	34120
+ 632 0660 8F840000 		.word	33935
+ 633 0664 D8830000 		.word	33752
+ 634 0668 22830000 		.word	33570
+ 635 066c 6D820000 		.word	33389
+ 636 0670 B9810000 		.word	33209
+ 637 0674 06810000 		.word	33030
+ 638 0678 54800000 		.word	32852
+ 639 067c A37F0000 		.word	32675
+ 640 0680 F37E0000 		.word	32499
+ 641 0684 457E0000 		.word	32325
+ 642 0688 977D0000 		.word	32151
+ 643 068c EA7C0000 		.word	31978
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 17
+
+
+ 644 0690 3F7C0000 		.word	31807
+ 645 0694 947B0000 		.word	31636
+ 646 0698 EB7A0000 		.word	31467
+ 647 069c 427A0000 		.word	31298
+ 648 06a0 9B790000 		.word	31131
+ 649 06a4 F4780000 		.word	30964
+ 650 06a8 4F780000 		.word	30799
+ 651 06ac AA770000 		.word	30634
+ 652 06b0 06770000 		.word	30470
+ 653 06b4 64760000 		.word	30308
+ 654 06b8 C2750000 		.word	30146
+ 655 06bc 21750000 		.word	29985
+ 656 06c0 82740000 		.word	29826
+ 657 06c4 E3730000 		.word	29667
+ 658 06c8 45730000 		.word	29509
+ 659 06cc A8720000 		.word	29352
+ 660 06d0 0C720000 		.word	29196
+ 661 06d4 71710000 		.word	29041
+ 662 06d8 D7700000 		.word	28887
+ 663 06dc 3E700000 		.word	28734
+ 664 06e0 A56F0000 		.word	28581
+ 665 06e4 0E6F0000 		.word	28430
+ 666 06e8 776E0000 		.word	28279
+ 667 06ec E26D0000 		.word	28130
+ 668 06f0 4D6D0000 		.word	27981
+ 669 06f4 B96C0000 		.word	27833
+ 670 06f8 266C0000 		.word	27686
+ 671 06fc 946B0000 		.word	27540
+ 672 0700 026B0000 		.word	27394
+ 673 0704 726A0000 		.word	27250
+ 674 0708 E2690000 		.word	27106
+ 675 070c 54690000 		.word	26964
+ 676 0710 C6680000 		.word	26822
+ 677 0714 38680000 		.word	26680
+ 678 0718 AC670000 		.word	26540
+ 679 071c 21670000 		.word	26401
+ 680 0720 96660000 		.word	26262
+ 681 0724 0C660000 		.word	26124
+ 682 0728 83650000 		.word	25987
+ 683 072c FB640000 		.word	25851
+ 684 0730 73640000 		.word	25715
+ 685 0734 ED630000 		.word	25581
+ 686 0738 67630000 		.word	25447
+ 687 073c E2620000 		.word	25314
+ 688 0740 5D620000 		.word	25181
+ 689 0744 DA610000 		.word	25050
+ 690 0748 57610000 		.word	24919
+ 691 074c D5600000 		.word	24789
+ 692 0750 54600000 		.word	24660
+ 693 0754 D35F0000 		.word	24531
+ 694 0758 545F0000 		.word	24404
+ 695 075c D45E0000 		.word	24276
+ 696 0760 565E0000 		.word	24150
+ 697 0764 D95D0000 		.word	24025
+ 698 0768 5C5D0000 		.word	23900
+ 699 076c E05C0000 		.word	23776
+ 700 0770 645C0000 		.word	23652
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 18
+
+
+ 701 0774 EA5B0000 		.word	23530
+ 702 0778 705B0000 		.word	23408
+ 703 077c F65A0000 		.word	23286
+ 704 0780 7E5A0000 		.word	23166
+ 705 0784 065A0000 		.word	23046
+ 706 0788 8F590000 		.word	22927
+ 707 078c 18590000 		.word	22808
+ 708 0790 A2580000 		.word	22690
+ 709 0794 2D580000 		.word	22573
+ 710 0798 B9570000 		.word	22457
+ 711 079c 45570000 		.word	22341
+ 712 07a0 D2560000 		.word	22226
+ 713 07a4 5F560000 		.word	22111
+ 714 07a8 ED550000 		.word	21997
+ 715 07ac 7C550000 		.word	21884
+ 716 07b0 0C550000 		.word	21772
+ 717 07b4 9C540000 		.word	21660
+ 718 07b8 2D540000 		.word	21549
+ 719 07bc BE530000 		.word	21438
+ 720 07c0 50530000 		.word	21328
+ 721 07c4 E3520000 		.word	21219
+ 722 07c8 76520000 		.word	21110
+ 723 07cc 0A520000 		.word	21002
+ 724 07d0 9E510000 		.word	20894
+ 725 07d4 33510000 		.word	20787
+ 726 07d8 C9500000 		.word	20681
+ 727 07dc 60500000 		.word	20576
+ 728 07e0 F64F0000 		.word	20470
+ 729 07e4 8E4F0000 		.word	20366
+ 730 07e8 264F0000 		.word	20262
+ 731 07ec BF4E0000 		.word	20159
+ 732 07f0 584E0000 		.word	20056
+ 733 07f4 F24D0000 		.word	19954
+ 734 07f8 8D4D0000 		.word	19853
+ 735 07fc 284D0000 		.word	19752
+ 736 0800 C34C0000 		.word	19651
+ 737 0804 5F4C0000 		.word	19551
+ 738 0808 FC4B0000 		.word	19452
+ 739 080c 994B0000 		.word	19353
+ 740 0810 374B0000 		.word	19255
+ 741 0814 D64A0000 		.word	19158
+ 742 0818 754A0000 		.word	19061
+ 743 081c 144A0000 		.word	18964
+ 744 0820 B4490000 		.word	18868
+ 745 0824 55490000 		.word	18773
+ 746 0828 F6480000 		.word	18678
+ 747 082c 98480000 		.word	18584
+ 748 0830 3A480000 		.word	18490
+ 749 0834 DD470000 		.word	18397
+ 750 0838 80470000 		.word	18304
+ 751 083c 24470000 		.word	18212
+ 752 0840 C8460000 		.word	18120
+ 753 0844 6D460000 		.word	18029
+ 754 0848 12460000 		.word	17938
+ 755 084c B8450000 		.word	17848
+ 756 0850 5E450000 		.word	17758
+ 757 0854 05450000 		.word	17669
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 19
+
+
+ 758 0858 AD440000 		.word	17581
+ 759 085c 54440000 		.word	17492
+ 760 0860 FD430000 		.word	17405
+ 761 0864 A6430000 		.word	17318
+ 762 0868 4F430000 		.word	17231
+ 763 086c F9420000 		.word	17145
+ 764 0870 A3420000 		.word	17059
+ 765 0874 4E420000 		.word	16974
+ 766 0878 F9410000 		.word	16889
+ 767 087c A5410000 		.word	16805
+ 768 0880 51410000 		.word	16721
+ 769 0884 FE400000 		.word	16638
+ 770 0888 AB400000 		.word	16555
+ 771 088c 58400000 		.word	16472
+ 772 0890 06400000 		.word	16390
+ 773 0894 B53F0000 		.word	16309
+ 774 0898 643F0000 		.word	16228
+ 775 089c 133F0000 		.word	16147
+ 776 08a0 C33E0000 		.word	16067
+ 777 08a4 733E0000 		.word	15987
+ 778 08a8 243E0000 		.word	15908
+ 779 08ac D53D0000 		.word	15829
+ 780 08b0 873D0000 		.word	15751
+ 781 08b4 393D0000 		.word	15673
+ 782 08b8 EB3C0000 		.word	15595
+ 783 08bc 9E3C0000 		.word	15518
+ 784 08c0 513C0000 		.word	15441
+ 785 08c4 053C0000 		.word	15365
+ 786 08c8 B93B0000 		.word	15289
+ 787 08cc 6E3B0000 		.word	15214
+ 788 08d0 233B0000 		.word	15139
+ 789 08d4 D83A0000 		.word	15064
+ 790 08d8 8E3A0000 		.word	14990
+ 791 08dc 443A0000 		.word	14916
+ 792 08e0 FB390000 		.word	14843
+ 793 08e4 B2390000 		.word	14770
+ 794 08e8 69390000 		.word	14697
+ 795 08ec 21390000 		.word	14625
+ 796 08f0 D9380000 		.word	14553
+ 797 08f4 92380000 		.word	14482
+ 798 08f8 4B380000 		.word	14411
+ 799 08fc 04380000 		.word	14340
+ 800 0900 BE370000 		.word	14270
+ 801 0904 78370000 		.word	14200
+ 802 0908 33370000 		.word	14131
+ 803 090c EE360000 		.word	14062
+ 804 0910 A9360000 		.word	13993
+ 805 0914 64360000 		.word	13924
+ 806 0918 21360000 		.word	13857
+ 807 091c DD350000 		.word	13789
+ 808 0920 9A350000 		.word	13722
+ 809 0924 57350000 		.word	13655
+ 810 0928 14350000 		.word	13588
+ 811 092c D2340000 		.word	13522
+ 812 0930 91340000 		.word	13457
+ 813 0934 4F340000 		.word	13391
+ 814 0938 0E340000 		.word	13326
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 20
+
+
+ 815 093c CD330000 		.word	13261
+ 816 0940 8D330000 		.word	13197
+ 817 0944 4D330000 		.word	13133
+ 818 0948 0D330000 		.word	13069
+ 819 094c CE320000 		.word	13006
+ 820 0950 8F320000 		.word	12943
+ 821 0954 50320000 		.word	12880
+ 822 0958 12320000 		.word	12818
+ 823 095c D4310000 		.word	12756
+ 824 0960 97310000 		.word	12695
+ 825 0964 59310000 		.word	12633
+ 826 0968 1C310000 		.word	12572
+ 827 096c E0300000 		.word	12512
+ 828 0970 A3300000 		.word	12451
+ 829 0974 67300000 		.word	12391
+ 830 0978 2C300000 		.word	12332
+ 831 097c F12F0000 		.word	12273
+ 832 0980 B62F0000 		.word	12214
+ 833 0984 7B2F0000 		.word	12155
+ 834 0988 402F0000 		.word	12096
+ 835 098c 062F0000 		.word	12038
+ 836 0990 CD2E0000 		.word	11981
+ 837 0994 932E0000 		.word	11923
+ 838 0998 5A2E0000 		.word	11866
+ 839 099c 212E0000 		.word	11809
+ 840 09a0 E92D0000 		.word	11753
+ 841 09a4 B12D0000 		.word	11697
+ 842 09a8 792D0000 		.word	11641
+ 843 09ac 412D0000 		.word	11585
+ 844 09b0 0A2D0000 		.word	11530
+ 845 09b4 D32C0000 		.word	11475
+ 846 09b8 9C2C0000 		.word	11420
+ 847 09bc 652C0000 		.word	11365
+ 848 09c0 2F2C0000 		.word	11311
+ 849 09c4 F92B0000 		.word	11257
+ 850 09c8 C42B0000 		.word	11204
+ 851 09cc 8F2B0000 		.word	11151
+ 852 09d0 5A2B0000 		.word	11098
+ 853 09d4 252B0000 		.word	11045
+ 854 09d8 F02A0000 		.word	10992
+ 855 09dc BC2A0000 		.word	10940
+ 856 09e0 882A0000 		.word	10888
+ 857 09e4 552A0000 		.word	10837
+ 858 09e8 212A0000 		.word	10785
+ 859 09ec EE290000 		.word	10734
+ 860 09f0 BC290000 		.word	10684
+ 861 09f4 89290000 		.word	10633
+ 862 09f8 57290000 		.word	10583
+ 863 09fc 25290000 		.word	10533
+ 864 0a00 F3280000 		.word	10483
+ 865 0a04 C2280000 		.word	10434
+ 866 0a08 90280000 		.word	10384
+ 867 0a0c 5F280000 		.word	10335
+ 868 0a10 2F280000 		.word	10287
+ 869 0a14 FE270000 		.word	10238
+ 870 0a18 CE270000 		.word	10190
+ 871 0a1c 9E270000 		.word	10142
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 21
+
+
+ 872 0a20 6F270000 		.word	10095
+ 873 0a24 3F270000 		.word	10047
+ 874 0a28 10270000 		.word	10000
+ 875 0a2c E1260000 		.word	9953
+ 876 0a30 B2260000 		.word	9906
+ 877 0a34 84260000 		.word	9860
+ 878 0a38 56260000 		.word	9814
+ 879 0a3c 28260000 		.word	9768
+ 880 0a40 FA250000 		.word	9722
+ 881 0a44 CD250000 		.word	9677
+ 882 0a48 9F250000 		.word	9631
+ 883 0a4c 72250000 		.word	9586
+ 884 0a50 46250000 		.word	9542
+ 885 0a54 19250000 		.word	9497
+ 886 0a58 ED240000 		.word	9453
+ 887 0a5c C1240000 		.word	9409
+ 888 0a60 95240000 		.word	9365
+ 889 0a64 69240000 		.word	9321
+ 890 0a68 3E240000 		.word	9278
+ 891 0a6c 13240000 		.word	9235
+ 892 0a70 E8230000 		.word	9192
+ 893 0a74 BD230000 		.word	9149
+ 894 0a78 93230000 		.word	9107
+ 895 0a7c 69230000 		.word	9065
+ 896 0a80 3F230000 		.word	9023
+ 897 0a84 15230000 		.word	8981
+ 898 0a88 EB220000 		.word	8939
+ 899 0a8c C2220000 		.word	8898
+ 900 0a90 99220000 		.word	8857
+ 901 0a94 70220000 		.word	8816
+ 902 0a98 47220000 		.word	8775
+ 903 0a9c 1E220000 		.word	8734
+ 904 0aa0 F6210000 		.word	8694
+ 905 0aa4 CE210000 		.word	8654
+ 906 0aa8 A6210000 		.word	8614
+ 907 0aac 7E210000 		.word	8574
+ 908 0ab0 57210000 		.word	8535
+ 909 0ab4 30210000 		.word	8496
+ 910 0ab8 09210000 		.word	8457
+ 911 0abc E2200000 		.word	8418
+ 912 0ac0 BB200000 		.word	8379
+ 913 0ac4 95200000 		.word	8341
+ 914 0ac8 6E200000 		.word	8302
+ 915 0acc 48200000 		.word	8264
+ 916 0ad0 22200000 		.word	8226
+ 917 0ad4 FD1F0000 		.word	8189
+ 918 0ad8 D71F0000 		.word	8151
+ 919 0adc B21F0000 		.word	8114
+ 920 0ae0 8D1F0000 		.word	8077
+ 921 0ae4 681F0000 		.word	8040
+ 922 0ae8 431F0000 		.word	8003
+ 923 0aec 1E1F0000 		.word	7966
+ 924 0af0 FA1E0000 		.word	7930
+ 925 0af4 D61E0000 		.word	7894
+ 926 0af8 B21E0000 		.word	7858
+ 927 0afc 8E1E0000 		.word	7822
+ 928 0b00 6B1E0000 		.word	7787
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 22
+
+
+ 929 0b04 471E0000 		.word	7751
+ 930 0b08 241E0000 		.word	7716
+ 931 0b0c 011E0000 		.word	7681
+ 932 0b10 DE1D0000 		.word	7646
+ 933 0b14 BB1D0000 		.word	7611
+ 934 0b18 991D0000 		.word	7577
+ 935 0b1c 761D0000 		.word	7542
+ 936 0b20 541D0000 		.word	7508
+ 937 0b24 321D0000 		.word	7474
+ 938 0b28 101D0000 		.word	7440
+ 939 0b2c EE1C0000 		.word	7406
+ 940 0b30 CD1C0000 		.word	7373
+ 941 0b34 AC1C0000 		.word	7340
+ 942 0b38 8A1C0000 		.word	7306
+ 943 0b3c 691C0000 		.word	7273
+ 944 0b40 491C0000 		.word	7241
+ 945 0b44 281C0000 		.word	7208
+ 946 0b48 071C0000 		.word	7175
+ 947 0b4c E71B0000 		.word	7143
+ 948 0b50 C71B0000 		.word	7111
+ 949 0b54 A71B0000 		.word	7079
+ 950 0b58 871B0000 		.word	7047
+ 951 0b5c 671B0000 		.word	7015
+ 952 0b60 481B0000 		.word	6984
+ 953 0b64 291B0000 		.word	6953
+ 954 0b68 091B0000 		.word	6921
+ 955 0b6c EA1A0000 		.word	6890
+ 956 0b70 CB1A0000 		.word	6859
+ 957 0b74 AD1A0000 		.word	6829
+ 958 0b78 8E1A0000 		.word	6798
+ 959 0b7c 701A0000 		.word	6768
+ 960 0b80 511A0000 		.word	6737
+ 961 0b84 331A0000 		.word	6707
+ 962 0b88 151A0000 		.word	6677
+ 963 0b8c F7190000 		.word	6647
+ 964 0b90 DA190000 		.word	6618
+ 965 0b94 BC190000 		.word	6588
+ 966 0b98 9F190000 		.word	6559
+ 967 0b9c 82190000 		.word	6530
+ 968 0ba0 65190000 		.word	6501
+ 969 0ba4 48190000 		.word	6472
+ 970 0ba8 2B190000 		.word	6443
+ 971 0bac 0E190000 		.word	6414
+ 972 0bb0 F2180000 		.word	6386
+ 973 0bb4 D5180000 		.word	6357
+ 974 0bb8 B9180000 		.word	6329
+ 975 0bbc 9D180000 		.word	6301
+ 976 0bc0 81180000 		.word	6273
+ 977 0bc4 65180000 		.word	6245
+ 978 0bc8 4A180000 		.word	6218
+ 979 0bcc 2E180000 		.word	6190
+ 980 0bd0 13180000 		.word	6163
+ 981 0bd4 F8170000 		.word	6136
+ 982 0bd8 DC170000 		.word	6108
+ 983 0bdc C1170000 		.word	6081
+ 984 0be0 A7170000 		.word	6055
+ 985 0be4 8C170000 		.word	6028
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 23
+
+
+ 986 0be8 71170000 		.word	6001
+ 987 0bec 57170000 		.word	5975
+ 988 0bf0 3D170000 		.word	5949
+ 989 0bf4 22170000 		.word	5922
+ 990 0bf8 08170000 		.word	5896
+ 991 0bfc EE160000 		.word	5870
+ 992 0c00 D5160000 		.word	5845
+ 993 0c04 BB160000 		.word	5819
+ 994 0c08 A1160000 		.word	5793
+ 995 0c0c 88160000 		.word	5768
+ 996 0c10 6F160000 		.word	5743
+ 997 0c14 55160000 		.word	5717
+ 998 0c18 3C160000 		.word	5692
+ 999 0c1c 24160000 		.word	5668
+ 1000 0c20 0B160000 		.word	5643
+ 1001 0c24 F2150000 		.word	5618
+ 1002 0c28 D9150000 		.word	5593
+ 1003 0c2c C1150000 		.word	5569
+ 1004 0c30 A9150000 		.word	5545
+ 1005 0c34 91150000 		.word	5521
+ 1006 0c38 78150000 		.word	5496
+ 1007 0c3c 61150000 		.word	5473
+ 1008 0c40 49150000 		.word	5449
+ 1009 0c44 31150000 		.word	5425
+ 1010 0c48 19150000 		.word	5401
+ 1011 0c4c 02150000 		.word	5378
+ 1012 0c50 EA140000 		.word	5354
+ 1013 0c54 D3140000 		.word	5331
+ 1014 0c58 BC140000 		.word	5308
+ 1015 0c5c A5140000 		.word	5285
+ 1016 0c60 8E140000 		.word	5262
+ 1017 0c64 77140000 		.word	5239
+ 1018 0c68 61140000 		.word	5217
+ 1019 0c6c 4A140000 		.word	5194
+ 1020 0c70 34140000 		.word	5172
+ 1021 0c74 1D140000 		.word	5149
+ 1022 0c78 07140000 		.word	5127
+ 1023 0c7c F1130000 		.word	5105
+ 1024 0c80 DB130000 		.word	5083
+ 1025 0c84 C5130000 		.word	5061
+ 1026 0c88 AF130000 		.word	5039
+ 1027 0c8c 99130000 		.word	5017
+ 1028 0c90 84130000 		.word	4996
+ 1029 0c94 6E130000 		.word	4974
+ 1030 0c98 59130000 		.word	4953
+ 1031 0c9c 43130000 		.word	4931
+ 1032 0ca0 2E130000 		.word	4910
+ 1033 0ca4 19130000 		.word	4889
+ 1034 0ca8 04130000 		.word	4868
+ 1035 0cac EF120000 		.word	4847
+ 1036 0cb0 DA120000 		.word	4826
+ 1037 0cb4 C6120000 		.word	4806
+ 1038 0cb8 B1120000 		.word	4785
+ 1039 0cbc 9D120000 		.word	4765
+ 1040 0cc0 88120000 		.word	4744
+ 1041 0cc4 74120000 		.word	4724
+ 1042 0cc8 60120000 		.word	4704
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 24
+
+
+ 1043 0ccc 4C120000 		.word	4684
+ 1044 0cd0 38120000 		.word	4664
+ 1045 0cd4 24120000 		.word	4644
+ 1046 0cd8 10120000 		.word	4624
+ 1047 0cdc FC110000 		.word	4604
+ 1048 0ce0 E9110000 		.word	4585
+ 1049 0ce4 D5110000 		.word	4565
+ 1050 0ce8 C2110000 		.word	4546
+ 1051 0cec AE110000 		.word	4526
+ 1052 0cf0 9B110000 		.word	4507
+ 1053 0cf4 88110000 		.word	4488
+ 1054 0cf8 75110000 		.word	4469
+ 1055 0cfc 62110000 		.word	4450
+ 1056 0d00 4F110000 		.word	4431
+ 1057 0d04 3C110000 		.word	4412
+ 1058 0d08 29110000 		.word	4393
+ 1059 0d0c 17110000 		.word	4375
+ 1060 0d10 04110000 		.word	4356
+ 1061 0d14 F2100000 		.word	4338
+ 1062 0d18 E0100000 		.word	4320
+ 1063 0d1c CD100000 		.word	4301
+ 1064 0d20 BB100000 		.word	4283
+ 1065 0d24 A9100000 		.word	4265
+ 1066 0d28 97100000 		.word	4247
+ 1067 0d2c 85100000 		.word	4229
+ 1068 0d30 73100000 		.word	4211
+ 1069 0d34 62100000 		.word	4194
+ 1070 0d38 50100000 		.word	4176
+ 1071 0d3c 3E100000 		.word	4158
+ 1072 0d40 2D100000 		.word	4141
+ 1073 0d44 1B100000 		.word	4123
+ 1074 0d48 0A100000 		.word	4106
+ 1075 0d4c F90F0000 		.word	4089
+ 1076 0d50 E80F0000 		.word	4072
+ 1077 0d54 D70F0000 		.word	4055
+ 1078 0d58 C60F0000 		.word	4038
+ 1079 0d5c B50F0000 		.word	4021
+ 1080 0d60 A40F0000 		.word	4004
+ 1081 0d64 930F0000 		.word	3987
+ 1082 0d68 820F0000 		.word	3970
+ 1083 0d6c 720F0000 		.word	3954
+ 1084 0d70 610F0000 		.word	3937
+ 1085 0d74 510F0000 		.word	3921
+ 1086 0d78 400F0000 		.word	3904
+ 1087 0d7c 300F0000 		.word	3888
+ 1088 0d80 200F0000 		.word	3872
+ 1089 0d84 100F0000 		.word	3856
+ 1090 0d88 000F0000 		.word	3840
+ 1091 0d8c F00E0000 		.word	3824
+ 1092 0d90 E00E0000 		.word	3808
+ 1093 0d94 D00E0000 		.word	3792
+ 1094 0d98 C00E0000 		.word	3776
+ 1095 0d9c B10E0000 		.word	3761
+ 1096 0da0 A10E0000 		.word	3745
+ 1097 0da4 910E0000 		.word	3729
+ 1098 0da8 820E0000 		.word	3714
+ 1099 0dac 730E0000 		.word	3699
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 25
+
+
+ 1100 0db0 630E0000 		.word	3683
+ 1101 0db4 540E0000 		.word	3668
+ 1102 0db8 450E0000 		.word	3653
+ 1103 0dbc 360E0000 		.word	3638
+ 1104 0dc0 270E0000 		.word	3623
+ 1105 0dc4 180E0000 		.word	3608
+ 1106 0dc8 090E0000 		.word	3593
+ 1107 0dcc FA0D0000 		.word	3578
+ 1108 0dd0 EB0D0000 		.word	3563
+ 1109 0dd4 DC0D0000 		.word	3548
+ 1110 0dd8 CE0D0000 		.word	3534
+ 1111 0ddc BF0D0000 		.word	3519
+ 1112 0de0 B10D0000 		.word	3505
+ 1113 0de4 A20D0000 		.word	3490
+ 1114 0de8 940D0000 		.word	3476
+ 1115 0dec 860D0000 		.word	3462
+ 1116 0df0 780D0000 		.word	3448
+ 1117 0df4 690D0000 		.word	3433
+ 1118 0df8 5B0D0000 		.word	3419
+ 1119 0dfc 4D0D0000 		.word	3405
+ 1120 0e00 3F0D0000 		.word	3391
+ 1121 0e04 310D0000 		.word	3377
+ 1122 0e08 240D0000 		.word	3364
+ 1123 0e0c 160D0000 		.word	3350
+ 1124 0e10 080D0000 		.word	3336
+ 1125 0e14 FA0C0000 		.word	3322
+ 1126 0e18 ED0C0000 		.word	3309
+ 1127 0e1c DF0C0000 		.word	3295
+ 1128 0e20 D20C0000 		.word	3282
+ 1129 0e24 C50C0000 		.word	3269
+ 1130 0e28 B70C0000 		.word	3255
+ 1131 0e2c AA0C0000 		.word	3242
+ 1132 0e30 9D0C0000 		.word	3229
+ 1133 0e34 900C0000 		.word	3216
+ 1134 0e38 830C0000 		.word	3203
+ 1135 0e3c 760C0000 		.word	3190
+ 1136 0e40 690C0000 		.word	3177
+ 1137 0e44 5C0C0000 		.word	3164
+ 1138 0e48 4F0C0000 		.word	3151
+ 1139 0e4c 420C0000 		.word	3138
+ 1140 0e50 350C0000 		.word	3125
+ 1141 0e54 290C0000 		.word	3113
+ 1142 0e58 1C0C0000 		.word	3100
+ 1143 0e5c 0F0C0000 		.word	3087
+ 1144 0e60 030C0000 		.word	3075
+ 1145 0e64 F70B0000 		.word	3063
+ 1146 0e68 EA0B0000 		.word	3050
+ 1147 0e6c DE0B0000 		.word	3038
+ 1148 0e70 D20B0000 		.word	3026
+ 1149 0e74 C50B0000 		.word	3013
+ 1150 0e78 B90B0000 		.word	3001
+ 1151 0e7c AD0B0000 		.word	2989
+ 1152 0e80 A10B0000 		.word	2977
+ 1153 0e84 950B0000 		.word	2965
+ 1154 0e88 890B0000 		.word	2953
+ 1155 0e8c 7D0B0000 		.word	2941
+ 1156 0e90 710B0000 		.word	2929
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 26
+
+
+ 1157 0e94 660B0000 		.word	2918
+ 1158 0e98 5A0B0000 		.word	2906
+ 1159 0e9c 4E0B0000 		.word	2894
+ 1160 0ea0 430B0000 		.word	2883
+ 1161 0ea4 370B0000 		.word	2871
+ 1162 0ea8 2C0B0000 		.word	2860
+ 1163 0eac 200B0000 		.word	2848
+ 1164 0eb0 150B0000 		.word	2837
+ 1165 0eb4 090B0000 		.word	2825
+ 1166 0eb8 FE0A0000 		.word	2814
+ 1167 0ebc F30A0000 		.word	2803
+ 1168 0ec0 E80A0000 		.word	2792
+ 1169 0ec4 DC0A0000 		.word	2780
+ 1170 0ec8 D10A0000 		.word	2769
+ 1171 0ecc C60A0000 		.word	2758
+ 1172 0ed0 BB0A0000 		.word	2747
+ 1173 0ed4 B00A0000 		.word	2736
+ 1174 0ed8 A60A0000 		.word	2726
+ 1175 0edc 9B0A0000 		.word	2715
+ 1176 0ee0 900A0000 		.word	2704
+ 1177 0ee4 850A0000 		.word	2693
+ 1178 0ee8 7A0A0000 		.word	2682
+ 1179 0eec 700A0000 		.word	2672
+ 1180 0ef0 650A0000 		.word	2661
+ 1181 0ef4 5B0A0000 		.word	2651
+ 1182 0ef8 500A0000 		.word	2640
+ 1183 0efc 460A0000 		.word	2630
+ 1184 0f00 3B0A0000 		.word	2619
+ 1185 0f04 310A0000 		.word	2609
+ 1186 0f08 270A0000 		.word	2599
+ 1187 0f0c 1C0A0000 		.word	2588
+ 1188 0f10 120A0000 		.word	2578
+ 1189 0f14 080A0000 		.word	2568
+ 1190 0f18 FE090000 		.word	2558
+ 1191 0f1c F4090000 		.word	2548
+ 1192 0f20 EA090000 		.word	2538
+ 1193 0f24 E0090000 		.word	2528
+ 1194 0f28 D6090000 		.word	2518
+ 1195 0f2c CC090000 		.word	2508
+ 1196 0f30 C2090000 		.word	2498
+ 1197 0f34 B8090000 		.word	2488
+ 1198 0f38 AE090000 		.word	2478
+ 1199 0f3c A4090000 		.word	2468
+ 1200 0f40 9B090000 		.word	2459
+ 1201 0f44 91090000 		.word	2449
+ 1202 0f48 87090000 		.word	2439
+ 1203 0f4c 7E090000 		.word	2430
+ 1204 0f50 74090000 		.word	2420
+ 1205 0f54 6B090000 		.word	2411
+ 1206 0f58 61090000 		.word	2401
+ 1207 0f5c 58090000 		.word	2392
+ 1208 0f60 4F090000 		.word	2383
+ 1209 0f64 45090000 		.word	2373
+ 1210 0f68 3C090000 		.word	2364
+ 1211 0f6c 33090000 		.word	2355
+ 1212 0f70 2A090000 		.word	2346
+ 1213 0f74 21090000 		.word	2337
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 27
+
+
+ 1214 0f78 17090000 		.word	2327
+ 1215 0f7c 0E090000 		.word	2318
+ 1216 0f80 05090000 		.word	2309
+ 1217 0f84 FC080000 		.word	2300
+ 1218 0f88 F3080000 		.word	2291
+ 1219 0f8c EA080000 		.word	2282
+ 1220 0f90 E2080000 		.word	2274
+ 1221 0f94 D9080000 		.word	2265
+ 1222 0f98 D0080000 		.word	2256
+ 1223 0f9c C7080000 		.word	2247
+ 1224 0fa0 BF080000 		.word	2239
+ 1225 0fa4 B6080000 		.word	2230
+ 1226 0fa8 AD080000 		.word	2221
+ 1227 0fac A5080000 		.word	2213
+ 1228 0fb0 9C080000 		.word	2204
+ 1229 0fb4 94080000 		.word	2196
+ 1230 0fb8 8B080000 		.word	2187
+ 1231 0fbc 83080000 		.word	2179
+ 1232 0fc0 7A080000 		.word	2170
+ 1233 0fc4 72080000 		.word	2162
+ 1234 0fc8 69080000 		.word	2153
+ 1235 0fcc 61080000 		.word	2145
+ 1236 0fd0 59080000 		.word	2137
+ 1237 0fd4 51080000 		.word	2129
+ 1238 0fd8 48080000 		.word	2120
+ 1239 0fdc 40080000 		.word	2112
+ 1240 0fe0 38080000 		.word	2104
+ 1241 0fe4 30080000 		.word	2096
+ 1242 0fe8 28080000 		.word	2088
+ 1243 0fec 20080000 		.word	2080
+ 1244 0ff0 18080000 		.word	2072
+ 1245 0ff4 10080000 		.word	2064
+ 1246 0ff8 08080000 		.word	2056
+ 1247 0ffc 00080000 		.word	2048
+ 1248 1000 F8070000 		.word	2040
+ 1249 1004 F1070000 		.word	2033
+ 1250 1008 E9070000 		.word	2025
+ 1251 100c E1070000 		.word	2017
+ 1252 1010 D9070000 		.word	2009
+ 1253 1014 D2070000 		.word	2002
+ 1254 1018 CA070000 		.word	1994
+ 1255 101c C2070000 		.word	1986
+ 1256 1020 BB070000 		.word	1979
+ 1257 1024 B3070000 		.word	1971
+ 1258 1028 AC070000 		.word	1964
+ 1259 102c A4070000 		.word	1956
+ 1260 1030 9D070000 		.word	1949
+ 1261 1034 95070000 		.word	1941
+ 1262 1038 8E070000 		.word	1934
+ 1263 103c 87070000 		.word	1927
+ 1264 1040 7F070000 		.word	1919
+ 1265 1044 78070000 		.word	1912
+ 1266 1048 71070000 		.word	1905
+ 1267 104c 6A070000 		.word	1898
+ 1268 1050 62070000 		.word	1890
+ 1269 1054 5B070000 		.word	1883
+ 1270 1058 54070000 		.word	1876
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 28
+
+
+ 1271 105c 4D070000 		.word	1869
+ 1272 1060 46070000 		.word	1862
+ 1273 1064 3F070000 		.word	1855
+ 1274 1068 38070000 		.word	1848
+ 1275 106c 31070000 		.word	1841
+ 1276 1070 2A070000 		.word	1834
+ 1277 1074 23070000 		.word	1827
+ 1278 1078 1C070000 		.word	1820
+ 1279 107c 15070000 		.word	1813
+ 1280 1080 0F070000 		.word	1807
+ 1281 1084 08070000 		.word	1800
+ 1282 1088 01070000 		.word	1793
+ 1283 108c FA060000 		.word	1786
+ 1284 1090 F4060000 		.word	1780
+ 1285 1094 ED060000 		.word	1773
+ 1286 1098 E6060000 		.word	1766
+ 1287 109c E0060000 		.word	1760
+ 1288 10a0 D9060000 		.word	1753
+ 1289 10a4 D2060000 		.word	1746
+ 1290 10a8 CC060000 		.word	1740
+ 1291 10ac C5060000 		.word	1733
+ 1292 10b0 BF060000 		.word	1727
+ 1293 10b4 B8060000 		.word	1720
+ 1294 10b8 B2060000 		.word	1714
+ 1295 10bc AC060000 		.word	1708
+ 1296 10c0 A5060000 		.word	1701
+ 1297 10c4 9F060000 		.word	1695
+ 1298 10c8 98060000 		.word	1688
+ 1299 10cc 92060000 		.word	1682
+ 1300 10d0 8C060000 		.word	1676
+ 1301 10d4 86060000 		.word	1670
+ 1302 10d8 7F060000 		.word	1663
+ 1303 10dc 79060000 		.word	1657
+ 1304 10e0 73060000 		.word	1651
+ 1305 10e4 6D060000 		.word	1645
+ 1306 10e8 67060000 		.word	1639
+ 1307 10ec 61060000 		.word	1633
+ 1308 10f0 5B060000 		.word	1627
+ 1309 10f4 55060000 		.word	1621
+ 1310 10f8 4F060000 		.word	1615
+ 1311 10fc 49060000 		.word	1609
+ 1312 1100 43060000 		.word	1603
+ 1313 1104 3D060000 		.word	1597
+ 1314 1108 37060000 		.word	1591
+ 1315 110c 31060000 		.word	1585
+ 1316 1110 2B060000 		.word	1579
+ 1317 1114 25060000 		.word	1573
+ 1318 1118 1F060000 		.word	1567
+ 1319 111c 1A060000 		.word	1562
+ 1320 1120 14060000 		.word	1556
+ 1321 1124 0E060000 		.word	1550
+ 1322 1128 08060000 		.word	1544
+ 1323 112c 03060000 		.word	1539
+ 1324 1130 FD050000 		.word	1533
+ 1325 1134 F7050000 		.word	1527
+ 1326 1138 F2050000 		.word	1522
+ 1327 113c EC050000 		.word	1516
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 29
+
+
+ 1328 1140 E7050000 		.word	1511
+ 1329 1144 E1050000 		.word	1505
+ 1330 1148 DC050000 		.word	1500
+ 1331 114c D6050000 		.word	1494
+ 1332 1150 D1050000 		.word	1489
+ 1333 1154 CB050000 		.word	1483
+ 1334 1158 C6050000 		.word	1478
+ 1335 115c C0050000 		.word	1472
+ 1336 1160 BB050000 		.word	1467
+ 1337 1164 B6050000 		.word	1462
+ 1338 1168 B0050000 		.word	1456
+ 1339 116c AB050000 		.word	1451
+ 1340 1170 A6050000 		.word	1446
+ 1341 1174 A0050000 		.word	1440
+ 1342 1178 9B050000 		.word	1435
+ 1343 117c 96050000 		.word	1430
+ 1344 1180 91050000 		.word	1425
+ 1345 1184 8B050000 		.word	1419
+ 1346 1188 86050000 		.word	1414
+ 1347 118c 81050000 		.word	1409
+ 1348 1190 7C050000 		.word	1404
+ 1349 1194 77050000 		.word	1399
+ 1350 1198 72050000 		.word	1394
+ 1351 119c 6D050000 		.word	1389
+ 1352 11a0 68050000 		.word	1384
+ 1353 11a4 63050000 		.word	1379
+ 1354 11a8 5E050000 		.word	1374
+ 1355 11ac 59050000 		.word	1369
+ 1356 11b0 54050000 		.word	1364
+ 1357 11b4 4F050000 		.word	1359
+ 1358 11b8 4A050000 		.word	1354
+ 1359 11bc 45050000 		.word	1349
+ 1360 11c0 40050000 		.word	1344
+ 1361 11c4 3B050000 		.word	1339
+ 1362 11c8 36050000 		.word	1334
+ 1363 11cc 32050000 		.word	1330
+ 1364 11d0 2D050000 		.word	1325
+ 1365 11d4 28050000 		.word	1320
+ 1366 11d8 23050000 		.word	1315
+ 1367 11dc 1F050000 		.word	1311
+ 1368 11e0 1A050000 		.word	1306
+ 1369 11e4 15050000 		.word	1301
+ 1370 11e8 10050000 		.word	1296
+ 1371 11ec 0C050000 		.word	1292
+ 1372 11f0 07050000 		.word	1287
+ 1373 11f4 03050000 		.word	1283
+ 1374 11f8 FE040000 		.word	1278
+ 1375 11fc F9040000 		.word	1273
+ 1376 1200 F5040000 		.word	1269
+ 1377 1204 F0040000 		.word	1264
+ 1378 1208 EC040000 		.word	1260
+ 1379 120c E7040000 		.word	1255
+ 1380 1210 E3040000 		.word	1251
+ 1381 1214 DE040000 		.word	1246
+ 1382 1218 DA040000 		.word	1242
+ 1383 121c D5040000 		.word	1237
+ 1384 1220 D1040000 		.word	1233
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 30
+
+
+ 1385 1224 CD040000 		.word	1229
+ 1386 1228 C8040000 		.word	1224
+ 1387 122c C4040000 		.word	1220
+ 1388 1230 BF040000 		.word	1215
+ 1389 1234 BB040000 		.word	1211
+ 1390 1238 B7040000 		.word	1207
+ 1391 123c B3040000 		.word	1203
+ 1392 1240 AE040000 		.word	1198
+ 1393 1244 AA040000 		.word	1194
+ 1394 1248 A6040000 		.word	1190
+ 1395 124c A2040000 		.word	1186
+ 1396 1250 9D040000 		.word	1181
+ 1397 1254 99040000 		.word	1177
+ 1398 1258 95040000 		.word	1173
+ 1399 125c 91040000 		.word	1169
+ 1400 1260 8D040000 		.word	1165
+ 1401 1264 89040000 		.word	1161
+ 1402 1268 84040000 		.word	1156
+ 1403 126c 80040000 		.word	1152
+ 1404 1270 7C040000 		.word	1148
+ 1405 1274 78040000 		.word	1144
+ 1406 1278 74040000 		.word	1140
+ 1407 127c 70040000 		.word	1136
+ 1408 1280 6C040000 		.word	1132
+ 1409 1284 68040000 		.word	1128
+ 1410 1288 64040000 		.word	1124
+ 1411 128c 60040000 		.word	1120
+ 1412 1290 5C040000 		.word	1116
+ 1413 1294 58040000 		.word	1112
+ 1414 1298 54040000 		.word	1108
+ 1415 129c 51040000 		.word	1105
+ 1416 12a0 4D040000 		.word	1101
+ 1417 12a4 49040000 		.word	1097
+ 1418 12a8 45040000 		.word	1093
+ 1419 12ac 41040000 		.word	1089
+ 1420 12b0 3D040000 		.word	1085
+ 1421 12b4 39040000 		.word	1081
+ 1422 12b8 36040000 		.word	1078
+ 1423 12bc 32040000 		.word	1074
+ 1424 12c0 2E040000 		.word	1070
+ 1425 12c4 2A040000 		.word	1066
+ 1426 12c8 27040000 		.word	1063
+ 1427 12cc 23040000 		.word	1059
+ 1428 12d0 1F040000 		.word	1055
+ 1429 12d4 1C040000 		.word	1052
+ 1430 12d8 18040000 		.word	1048
+ 1431 12dc 14040000 		.word	1044
+ 1432 12e0 11040000 		.word	1041
+ 1433 12e4 0D040000 		.word	1037
+ 1434 12e8 09040000 		.word	1033
+ 1435 12ec 06040000 		.word	1030
+ 1436 12f0 02040000 		.word	1026
+ 1437 12f4 FF030000 		.word	1023
+ 1438 12f8 FB030000 		.word	1019
+ 1439 12fc F8030000 		.word	1016
+ 1440 1300 F4030000 		.word	1012
+ 1441 1304 F1030000 		.word	1009
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 31
+
+
+ 1442 1308 ED030000 		.word	1005
+ 1443 130c EA030000 		.word	1002
+ 1444 1310 E6030000 		.word	998
+ 1445 1314 E3030000 		.word	995
+ 1446 1318 DF030000 		.word	991
+ 1447 131c DC030000 		.word	988
+ 1448 1320 D8030000 		.word	984
+ 1449 1324 D5030000 		.word	981
+ 1450 1328 D2030000 		.word	978
+ 1451 132c CE030000 		.word	974
+ 1452 1330 CB030000 		.word	971
+ 1453 1334 C7030000 		.word	967
+ 1454 1338 C4030000 		.word	964
+ 1455 133c C1030000 		.word	961
+ 1456 1340 BE030000 		.word	958
+ 1457 1344 BA030000 		.word	954
+ 1458 1348 B7030000 		.word	951
+ 1459 134c B4030000 		.word	948
+ 1460 1350 B0030000 		.word	944
+ 1461 1354 AD030000 		.word	941
+ 1462 1358 AA030000 		.word	938
+ 1463 135c A7030000 		.word	935
+ 1464 1360 A4030000 		.word	932
+ 1465 1364 A0030000 		.word	928
+ 1466 1368 9D030000 		.word	925
+ 1467 136c 9A030000 		.word	922
+ 1468 1370 97030000 		.word	919
+ 1469 1374 94030000 		.word	916
+ 1470 1378 91030000 		.word	913
+ 1471 137c 8D030000 		.word	909
+ 1472 1380 8A030000 		.word	906
+ 1473 1384 87030000 		.word	903
+ 1474 1388 84030000 		.word	900
+ 1475 138c 81030000 		.word	897
+ 1476 1390 7E030000 		.word	894
+ 1477 1394 7B030000 		.word	891
+ 1478 1398 78030000 		.word	888
+ 1479 139c 75030000 		.word	885
+ 1480 13a0 72030000 		.word	882
+ 1481 13a4 6F030000 		.word	879
+ 1482 13a8 6C030000 		.word	876
+ 1483 13ac 69030000 		.word	873
+ 1484 13b0 66030000 		.word	870
+ 1485 13b4 63030000 		.word	867
+ 1486 13b8 60030000 		.word	864
+ 1487 13bc 5D030000 		.word	861
+ 1488 13c0 5A030000 		.word	858
+ 1489 13c4 57030000 		.word	855
+ 1490 13c8 54030000 		.word	852
+ 1491 13cc 52030000 		.word	850
+ 1492 13d0 4F030000 		.word	847
+ 1493 13d4 4C030000 		.word	844
+ 1494 13d8 49030000 		.word	841
+ 1495 13dc 46030000 		.word	838
+ 1496 13e0 43030000 		.word	835
+ 1497 13e4 40030000 		.word	832
+ 1498 13e8 3E030000 		.word	830
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 32
+
+
+ 1499 13ec 3B030000 		.word	827
+ 1500 13f0 38030000 		.word	824
+ 1501 13f4 35030000 		.word	821
+ 1502 13f8 33030000 		.word	819
+ 1503 13fc 30030000 		.word	816
+ 1504 1400 2D030000 		.word	813
+ 1505 1404 2A030000 		.word	810
+ 1506 1408 28030000 		.word	808
+ 1507 140c 25030000 		.word	805
+ 1508 1410 22030000 		.word	802
+ 1509 1414 1F030000 		.word	799
+ 1510 1418 1D030000 		.word	797
+ 1511 141c 1A030000 		.word	794
+ 1512 1420 17030000 		.word	791
+ 1513 1424 15030000 		.word	789
+ 1514 1428 12030000 		.word	786
+ 1515 142c 10030000 		.word	784
+ 1516 1430 0D030000 		.word	781
+ 1517 1434 0A030000 		.word	778
+ 1518 1438 08030000 		.word	776
+ 1519 143c 05030000 		.word	773
+ 1520 1440 03030000 		.word	771
+ 1521 1444 00030000 		.word	768
+ 1522 1448 FD020000 		.word	765
+ 1523 144c FB020000 		.word	763
+ 1524 1450 F8020000 		.word	760
+ 1525 1454 F6020000 		.word	758
+ 1526 1458 F3020000 		.word	755
+ 1527 145c F1020000 		.word	753
+ 1528 1460 EE020000 		.word	750
+ 1529 1464 EC020000 		.word	748
+ 1530 1468 E9020000 		.word	745
+ 1531 146c E7020000 		.word	743
+ 1532 1470 E4020000 		.word	740
+ 1533 1474 E2020000 		.word	738
+ 1534 1478 DF020000 		.word	735
+ 1535 147c DD020000 		.word	733
+ 1536 1480 DB020000 		.word	731
+ 1537 1484 D8020000 		.word	728
+ 1538 1488 D6020000 		.word	726
+ 1539 148c D3020000 		.word	723
+ 1540 1490 D1020000 		.word	721
+ 1541 1494 CF020000 		.word	719
+ 1542 1498 CC020000 		.word	716
+ 1543 149c CA020000 		.word	714
+ 1544 14a0 C8020000 		.word	712
+ 1545 14a4 C5020000 		.word	709
+ 1546 14a8 C3020000 		.word	707
+ 1547 14ac C1020000 		.word	705
+ 1548 14b0 BE020000 		.word	702
+ 1549 14b4 BC020000 		.word	700
+ 1550 14b8 BA020000 		.word	698
+ 1551 14bc B7020000 		.word	695
+ 1552 14c0 B5020000 		.word	693
+ 1553 14c4 B3020000 		.word	691
+ 1554 14c8 B1020000 		.word	689
+ 1555 14cc AE020000 		.word	686
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 33
+
+
+ 1556 14d0 AC020000 		.word	684
+ 1557 14d4 AA020000 		.word	682
+ 1558 14d8 A8020000 		.word	680
+ 1559 14dc A5020000 		.word	677
+ 1560 14e0 A3020000 		.word	675
+ 1561 14e4 A1020000 		.word	673
+ 1562 14e8 9F020000 		.word	671
+ 1563 14ec 9D020000 		.word	669
+ 1564 14f0 9A020000 		.word	666
+ 1565 14f4 98020000 		.word	664
+ 1566 14f8 96020000 		.word	662
+ 1567 14fc 94020000 		.word	660
+ 1568 1500 92020000 		.word	658
+ 1569 1504 90020000 		.word	656
+ 1570 1508 8D020000 		.word	653
+ 1571 150c 8B020000 		.word	651
+ 1572 1510 89020000 		.word	649
+ 1573 1514 87020000 		.word	647
+ 1574 1518 85020000 		.word	645
+ 1575 151c 83020000 		.word	643
+ 1576 1520 81020000 		.word	641
+ 1577 1524 7F020000 		.word	639
+ 1578 1528 7D020000 		.word	637
+ 1579 152c 7B020000 		.word	635
+ 1580 1530 79020000 		.word	633
+ 1581 1534 76020000 		.word	630
+ 1582 1538 74020000 		.word	628
+ 1583 153c 72020000 		.word	626
+ 1584 1540 70020000 		.word	624
+ 1585 1544 6E020000 		.word	622
+ 1586 1548 6C020000 		.word	620
+ 1587 154c 6A020000 		.word	618
+ 1588 1550 68020000 		.word	616
+ 1589 1554 66020000 		.word	614
+ 1590 1558 64020000 		.word	612
+ 1591 155c 62020000 		.word	610
+ 1592 1560 60020000 		.word	608
+ 1593 1564 5E020000 		.word	606
+ 1594 1568 5D020000 		.word	605
+ 1595 156c 5B020000 		.word	603
+ 1596 1570 59020000 		.word	601
+ 1597 1574 57020000 		.word	599
+ 1598 1578 55020000 		.word	597
+ 1599 157c 53020000 		.word	595
+ 1600 1580 51020000 		.word	593
+ 1601 1584 4F020000 		.word	591
+ 1602 1588 4D020000 		.word	589
+ 1603 158c 4B020000 		.word	587
+ 1604 1590 49020000 		.word	585
+ 1605 1594 48020000 		.word	584
+ 1606 1598 46020000 		.word	582
+ 1607 159c 44020000 		.word	580
+ 1608 15a0 42020000 		.word	578
+ 1609 15a4 40020000 		.word	576
+ 1610 15a8 3E020000 		.word	574
+ 1611 15ac 3C020000 		.word	572
+ 1612 15b0 3B020000 		.word	571
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 34
+
+
+ 1613 15b4 39020000 		.word	569
+ 1614 15b8 37020000 		.word	567
+ 1615 15bc 35020000 		.word	565
+ 1616 15c0 33020000 		.word	563
+ 1617 15c4 32020000 		.word	562
+ 1618 15c8 30020000 		.word	560
+ 1619 15cc 2E020000 		.word	558
+ 1620 15d0 2C020000 		.word	556
+ 1621 15d4 2B020000 		.word	555
+ 1622 15d8 29020000 		.word	553
+ 1623 15dc 27020000 		.word	551
+ 1624 15e0 25020000 		.word	549
+ 1625 15e4 24020000 		.word	548
+ 1626 15e8 22020000 		.word	546
+ 1627 15ec 20020000 		.word	544
+ 1628 15f0 1E020000 		.word	542
+ 1629 15f4 1D020000 		.word	541
+ 1630 15f8 1B020000 		.word	539
+ 1631 15fc 19020000 		.word	537
+ 1632 1600 18020000 		.word	536
+ 1633 1604 16020000 		.word	534
+ 1634 1608 14020000 		.word	532
+ 1635 160c 12020000 		.word	530
+ 1636 1610 11020000 		.word	529
+ 1637 1614 0F020000 		.word	527
+ 1638 1618 0D020000 		.word	525
+ 1639 161c 0C020000 		.word	524
+ 1640 1620 0A020000 		.word	522
+ 1641 1624 09020000 		.word	521
+ 1642 1628 07020000 		.word	519
+ 1643 162c 05020000 		.word	517
+ 1644 1630 04020000 		.word	516
+ 1645 1634 02020000 		.word	514
+ 1646 1638 00020000 		.word	512
+ 1647 163c FF010000 		.word	511
+ 1648 1640 FD010000 		.word	509
+ 1649 1644 FC010000 		.word	508
+ 1650 1648 FA010000 		.word	506
+ 1651 164c F8010000 		.word	504
+ 1652 1650 F7010000 		.word	503
+ 1653 1654 F5010000 		.word	501
+ 1654 1658 F4010000 		.word	500
+ 1655 165c F2010000 		.word	498
+ 1656 1660 F1010000 		.word	497
+ 1657 1664 EF010000 		.word	495
+ 1658 1668 EE010000 		.word	494
+ 1659 166c EC010000 		.word	492
+ 1660 1670 EA010000 		.word	490
+ 1661 1674 E9010000 		.word	489
+ 1662 1678 E7010000 		.word	487
+ 1663 167c E6010000 		.word	486
+ 1664 1680 E4010000 		.word	484
+ 1665 1684 E3010000 		.word	483
+ 1666 1688 E1010000 		.word	481
+ 1667 168c E0010000 		.word	480
+ 1668 1690 DE010000 		.word	478
+ 1669 1694 DD010000 		.word	477
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 35
+
+
+ 1670 1698 DB010000 		.word	475
+ 1671 169c DA010000 		.word	474
+ 1672 16a0 D8010000 		.word	472
+ 1673 16a4 D7010000 		.word	471
+ 1674 16a8 D6010000 		.word	470
+ 1675 16ac D4010000 		.word	468
+ 1676 16b0 D3010000 		.word	467
+ 1677 16b4 D1010000 		.word	465
+ 1678 16b8 D0010000 		.word	464
+ 1679 16bc CE010000 		.word	462
+ 1680 16c0 CD010000 		.word	461
+ 1681 16c4 CB010000 		.word	459
+ 1682 16c8 CA010000 		.word	458
+ 1683 16cc C9010000 		.word	457
+ 1684 16d0 C7010000 		.word	455
+ 1685 16d4 C6010000 		.word	454
+ 1686 16d8 C4010000 		.word	452
+ 1687 16dc C3010000 		.word	451
+ 1688 16e0 C2010000 		.word	450
+ 1689 16e4 C0010000 		.word	448
+ 1690 16e8 BF010000 		.word	447
+ 1691 16ec BE010000 		.word	446
+ 1692 16f0 BC010000 		.word	444
+ 1693 16f4 BB010000 		.word	443
+ 1694 16f8 B9010000 		.word	441
+ 1695 16fc B8010000 		.word	440
+ 1696 1700 B7010000 		.word	439
+ 1697 1704 B5010000 		.word	437
+ 1698 1708 B4010000 		.word	436
+ 1699 170c B3010000 		.word	435
+ 1700 1710 B1010000 		.word	433
+ 1701 1714 B0010000 		.word	432
+ 1702 1718 AF010000 		.word	431
+ 1703 171c AD010000 		.word	429
+ 1704 1720 AC010000 		.word	428
+ 1705 1724 AB010000 		.word	427
+ 1706 1728 AA010000 		.word	426
+ 1707 172c A8010000 		.word	424
+ 1708 1730 A7010000 		.word	423
+ 1709 1734 A6010000 		.word	422
+ 1710 1738 A4010000 		.word	420
+ 1711 173c A3010000 		.word	419
+ 1712 1740 A2010000 		.word	418
+ 1713 1744 A1010000 		.word	417
+ 1714 1748 9F010000 		.word	415
+ 1715 174c 9E010000 		.word	414
+ 1716 1750 9D010000 		.word	413
+ 1717 1754 9C010000 		.word	412
+ 1718 1758 9A010000 		.word	410
+ 1719 175c 99010000 		.word	409
+ 1720 1760 98010000 		.word	408
+ 1721 1764 97010000 		.word	407
+ 1722 1768 95010000 		.word	405
+ 1723 176c 94010000 		.word	404
+ 1724 1770 93010000 		.word	403
+ 1725 1774 92010000 		.word	402
+ 1726 1778 90010000 		.word	400
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 36
+
+
+ 1727 177c 8F010000 		.word	399
+ 1728 1780 8E010000 		.word	398
+ 1729 1784 8D010000 		.word	397
+ 1730 1788 8C010000 		.word	396
+ 1731 178c 8A010000 		.word	394
+ 1732 1790 89010000 		.word	393
+ 1733 1794 88010000 		.word	392
+ 1734 1798 87010000 		.word	391
+ 1735 179c 86010000 		.word	390
+ 1736 17a0 85010000 		.word	389
+ 1737 17a4 83010000 		.word	387
+ 1738 17a8 82010000 		.word	386
+ 1739 17ac 81010000 		.word	385
+ 1740 17b0 80010000 		.word	384
+ 1741 17b4 7F010000 		.word	383
+ 1742 17b8 7E010000 		.word	382
+ 1743 17bc 7D010000 		.word	381
+ 1744 17c0 7B010000 		.word	379
+ 1745 17c4 7A010000 		.word	378
+ 1746 17c8 79010000 		.word	377
+ 1747 17cc 78010000 		.word	376
+ 1748 17d0 77010000 		.word	375
+ 1749 17d4 76010000 		.word	374
+ 1750 17d8 75010000 		.word	373
+ 1751 17dc 74010000 		.word	372
+ 1752 17e0 72010000 		.word	370
+ 1753 17e4 71010000 		.word	369
+ 1754 17e8 70010000 		.word	368
+ 1755 17ec 6F010000 		.word	367
+ 1756 17f0 6E010000 		.word	366
+ 1757 17f4 6D010000 		.word	365
+ 1758 17f8 6C010000 		.word	364
+ 1759 17fc 6B010000 		.word	363
+ 1760 1800 6A010000 		.word	362
+ 1761 1804 69010000 		.word	361
+ 1762 1808 68010000 		.word	360
+ 1763 180c 66010000 		.word	358
+ 1764 1810 65010000 		.word	357
+ 1765 1814 64010000 		.word	356
+ 1766 1818 63010000 		.word	355
+ 1767 181c 62010000 		.word	354
+ 1768 1820 61010000 		.word	353
+ 1769 1824 60010000 		.word	352
+ 1770 1828 5F010000 		.word	351
+ 1771 182c 5E010000 		.word	350
+ 1772 1830 5D010000 		.word	349
+ 1773 1834 5C010000 		.word	348
+ 1774 1838 5B010000 		.word	347
+ 1775 183c 5A010000 		.word	346
+ 1776 1840 59010000 		.word	345
+ 1777 1844 58010000 		.word	344
+ 1778 1848 57010000 		.word	343
+ 1779 184c 56010000 		.word	342
+ 1780 1850 55010000 		.word	341
+ 1781 1854 54010000 		.word	340
+ 1782 1858 53010000 		.word	339
+ 1783 185c 52010000 		.word	338
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 37
+
+
+ 1784 1860 51010000 		.word	337
+ 1785 1864 50010000 		.word	336
+ 1786 1868 4F010000 		.word	335
+ 1787 186c 4E010000 		.word	334
+ 1788 1870 4D010000 		.word	333
+ 1789 1874 4C010000 		.word	332
+ 1790 1878 4B010000 		.word	331
+ 1791 187c 4A010000 		.word	330
+ 1792 1880 49010000 		.word	329
+ 1793 1884 48010000 		.word	328
+ 1794 1888 47010000 		.word	327
+ 1795 188c 46010000 		.word	326
+ 1796 1890 45010000 		.word	325
+ 1797 1894 44010000 		.word	324
+ 1798 1898 43010000 		.word	323
+ 1799 189c 42010000 		.word	322
+ 1800 18a0 41010000 		.word	321
+ 1801 18a4 41010000 		.word	321
+ 1802 18a8 40010000 		.word	320
+ 1803 18ac 3F010000 		.word	319
+ 1804 18b0 3E010000 		.word	318
+ 1805 18b4 3D010000 		.word	317
+ 1806 18b8 3C010000 		.word	316
+ 1807 18bc 3B010000 		.word	315
+ 1808 18c0 3A010000 		.word	314
+ 1809 18c4 39010000 		.word	313
+ 1810 18c8 38010000 		.word	312
+ 1811 18cc 37010000 		.word	311
+ 1812 18d0 36010000 		.word	310
+ 1813 18d4 36010000 		.word	310
+ 1814 18d8 35010000 		.word	309
+ 1815 18dc 34010000 		.word	308
+ 1816 18e0 33010000 		.word	307
+ 1817 18e4 32010000 		.word	306
+ 1818 18e8 31010000 		.word	305
+ 1819 18ec 30010000 		.word	304
+ 1820 18f0 2F010000 		.word	303
+ 1821 18f4 2E010000 		.word	302
+ 1822 18f8 2E010000 		.word	302
+ 1823 18fc 2D010000 		.word	301
+ 1824 1900 2C010000 		.word	300
+ 1825 1904 2B010000 		.word	299
+ 1826 1908 2A010000 		.word	298
+ 1827 190c 29010000 		.word	297
+ 1828 1910 28010000 		.word	296
+ 1829 1914 28010000 		.word	296
+ 1830 1918 27010000 		.word	295
+ 1831 191c 26010000 		.word	294
+ 1832 1920 25010000 		.word	293
+ 1833 1924 24010000 		.word	292
+ 1834 1928 23010000 		.word	291
+ 1835 192c 23010000 		.word	291
+ 1836 1930 22010000 		.word	290
+ 1837 1934 21010000 		.word	289
+ 1838 1938 20010000 		.word	288
+ 1839 193c 1F010000 		.word	287
+ 1840 1940 1E010000 		.word	286
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 38
+
+
+ 1841 1944 1E010000 		.word	286
+ 1842 1948 1D010000 		.word	285
+ 1843 194c 1C010000 		.word	284
+ 1844 1950 1B010000 		.word	283
+ 1845 1954 1A010000 		.word	282
+ 1846 1958 19010000 		.word	281
+ 1847 195c 19010000 		.word	281
+ 1848 1960 18010000 		.word	280
+ 1849 1964 17010000 		.word	279
+ 1850 1968 16010000 		.word	278
+ 1851 196c 16010000 		.word	278
+ 1852 1970 15010000 		.word	277
+ 1853 1974 14010000 		.word	276
+ 1854 1978 13010000 		.word	275
+ 1855 197c 12010000 		.word	274
+ 1856 1980 12010000 		.word	274
+ 1857 1984 11010000 		.word	273
+ 1858 1988 10010000 		.word	272
+ 1859 198c 0F010000 		.word	271
+ 1860 1990 0F010000 		.word	271
+ 1861 1994 0E010000 		.word	270
+ 1862 1998 0D010000 		.word	269
+ 1863 199c 0C010000 		.word	268
+ 1864 19a0 0B010000 		.word	267
+ 1865 19a4 0B010000 		.word	267
+ 1866 19a8 0A010000 		.word	266
+ 1867 19ac 09010000 		.word	265
+ 1868 19b0 08010000 		.word	264
+ 1869 19b4 08010000 		.word	264
+ 1870 19b8 07010000 		.word	263
+ 1871 19bc 06010000 		.word	262
+ 1872 19c0 05010000 		.word	261
+ 1873 19c4 05010000 		.word	261
+ 1874 19c8 04010000 		.word	260
+ 1875              		.text
+ 1876              	.Letext0:
+ 1877              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 1878              		.section	.debug_info,"",%progbits
+ 1879              	.Ldebug_info0:
+ 1880 0000 96010000 		.4byte	0x196
+ 1881 0004 0400     		.2byte	0x4
+ 1882 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1883 000a 04       		.byte	0x4
+ 1884 000b 01       		.uleb128 0x1
+ 1885 000c 2D000000 		.4byte	.LASF27
+ 1886 0010 01       		.byte	0x1
+ 1887 0011 C5000000 		.4byte	.LASF28
+ 1888 0015 E4010000 		.4byte	.LASF29
+ 1889 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1890 001d 00000000 		.4byte	0
+ 1891 0021 00000000 		.4byte	.Ldebug_line0
+ 1892 0025 02       		.uleb128 0x2
+ 1893 0026 01       		.byte	0x1
+ 1894 0027 06       		.byte	0x6
+ 1895 0028 D3010000 		.4byte	.LASF0
+ 1896 002c 02       		.uleb128 0x2
+ 1897 002d 01       		.byte	0x1
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 39
+
+
+ 1898 002e 08       		.byte	0x8
+ 1899 002f EF000000 		.4byte	.LASF1
+ 1900 0033 02       		.uleb128 0x2
+ 1901 0034 02       		.byte	0x2
+ 1902 0035 05       		.byte	0x5
+ 1903 0036 A2010000 		.4byte	.LASF2
+ 1904 003a 02       		.uleb128 0x2
+ 1905 003b 02       		.byte	0x2
+ 1906 003c 07       		.byte	0x7
+ 1907 003d 1A000000 		.4byte	.LASF3
+ 1908 0041 02       		.uleb128 0x2
+ 1909 0042 04       		.byte	0x4
+ 1910 0043 05       		.byte	0x5
+ 1911 0044 C5010000 		.4byte	.LASF4
+ 1912 0048 02       		.uleb128 0x2
+ 1913 0049 04       		.byte	0x4
+ 1914 004a 07       		.byte	0x7
+ 1915 004b 03010000 		.4byte	.LASF5
+ 1916 004f 02       		.uleb128 0x2
+ 1917 0050 08       		.byte	0x8
+ 1918 0051 05       		.byte	0x5
+ 1919 0052 8F010000 		.4byte	.LASF6
+ 1920 0056 02       		.uleb128 0x2
+ 1921 0057 08       		.byte	0x8
+ 1922 0058 07       		.byte	0x7
+ 1923 0059 63010000 		.4byte	.LASF7
+ 1924 005d 03       		.uleb128 0x3
+ 1925 005e 04       		.byte	0x4
+ 1926 005f 05       		.byte	0x5
+ 1927 0060 696E7400 		.ascii	"int\000"
+ 1928 0064 02       		.uleb128 0x2
+ 1929 0065 04       		.byte	0x4
+ 1930 0066 07       		.byte	0x7
+ 1931 0067 56010000 		.4byte	.LASF8
+ 1932 006b 04       		.uleb128 0x4
+ 1933 006c 48010000 		.4byte	.LASF9
+ 1934 0070 02       		.byte	0x2
+ 1935 0071 BA01     		.2byte	0x1ba
+ 1936 0073 3A000000 		.4byte	0x3a
+ 1937 0077 04       		.uleb128 0x4
+ 1938 0078 4F010000 		.4byte	.LASF10
+ 1939 007c 02       		.byte	0x2
+ 1940 007d BB01     		.2byte	0x1bb
+ 1941 007f 48000000 		.4byte	0x48
+ 1942 0083 04       		.uleb128 0x4
+ 1943 0084 FD000000 		.4byte	.LASF11
+ 1944 0088 02       		.byte	0x2
+ 1945 0089 BD01     		.2byte	0x1bd
+ 1946 008b 33000000 		.4byte	0x33
+ 1947 008f 04       		.uleb128 0x4
+ 1948 0090 1A010000 		.4byte	.LASF12
+ 1949 0094 02       		.byte	0x2
+ 1950 0095 BE01     		.2byte	0x1be
+ 1951 0097 41000000 		.4byte	0x41
+ 1952 009b 02       		.uleb128 0x2
+ 1953 009c 04       		.byte	0x4
+ 1954 009d 04       		.byte	0x4
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 40
+
+
+ 1955 009e E9000000 		.4byte	.LASF13
+ 1956 00a2 02       		.uleb128 0x2
+ 1957 00a3 08       		.byte	0x8
+ 1958 00a4 04       		.byte	0x4
+ 1959 00a5 41010000 		.4byte	.LASF14
+ 1960 00a9 02       		.uleb128 0x2
+ 1961 00aa 01       		.byte	0x1
+ 1962 00ab 08       		.byte	0x8
+ 1963 00ac 9D010000 		.4byte	.LASF15
+ 1964 00b0 02       		.uleb128 0x2
+ 1965 00b1 04       		.byte	0x4
+ 1966 00b2 07       		.byte	0x7
+ 1967 00b3 86010000 		.4byte	.LASF16
+ 1968 00b7 05       		.uleb128 0x5
+ 1969 00b8 AC010000 		.4byte	.LASF21
+ 1970 00bc 01       		.byte	0x1
+ 1971 00bd 2A       		.byte	0x2a
+ 1972 00be 77000000 		.4byte	0x77
+ 1973 00c2 00000000 		.4byte	.LFB1
+ 1974 00c6 2C000000 		.4byte	.LFE1-.LFB1
+ 1975 00ca 01       		.uleb128 0x1
+ 1976 00cb 9C       		.byte	0x9c
+ 1977 00cc 0D010000 		.4byte	0x10d
+ 1978 00d0 06       		.uleb128 0x6
+ 1979 00d1 0F000000 		.4byte	.LASF17
+ 1980 00d5 01       		.byte	0x1
+ 1981 00d6 2A       		.byte	0x2a
+ 1982 00d7 83000000 		.4byte	0x83
+ 1983 00db 00000000 		.4byte	.LLST0
+ 1984 00df 06       		.uleb128 0x6
+ 1985 00e0 7A010000 		.4byte	.LASF18
+ 1986 00e4 01       		.byte	0x1
+ 1987 00e5 2A       		.byte	0x2a
+ 1988 00e6 83000000 		.4byte	0x83
+ 1989 00ea 21000000 		.4byte	.LLST1
+ 1990 00ee 07       		.uleb128 0x7
+ 1991 00ef CE010000 		.4byte	.LASF19
+ 1992 00f3 01       		.byte	0x1
+ 1993 00f4 2D       		.byte	0x2d
+ 1994 00f5 8F000000 		.4byte	0x8f
+ 1995 00f9 42000000 		.4byte	.LLST2
+ 1996 00fd 07       		.uleb128 0x7
+ 1997 00fe 15010000 		.4byte	.LASF20
+ 1998 0102 01       		.byte	0x1
+ 1999 0103 2E       		.byte	0x2e
+ 2000 0104 83000000 		.4byte	0x83
+ 2001 0108 69000000 		.4byte	.LLST3
+ 2002 010c 00       		.byte	0
+ 2003 010d 08       		.uleb128 0x8
+ 2004 010e 20010000 		.4byte	.LASF22
+ 2005 0112 01       		.byte	0x1
+ 2006 0113 56       		.byte	0x56
+ 2007 0114 83000000 		.4byte	0x83
+ 2008 0118 00000000 		.4byte	.LFB2
+ 2009 011c 88000000 		.4byte	.LFE2-.LFB2
+ 2010 0120 01       		.uleb128 0x1
+ 2011 0121 9C       		.byte	0x9c
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 41
+
+
+ 2012 0122 83010000 		.4byte	0x183
+ 2013 0126 06       		.uleb128 0x6
+ 2014 0127 CE010000 		.4byte	.LASF19
+ 2015 012b 01       		.byte	0x1
+ 2016 012c 56       		.byte	0x56
+ 2017 012d 77000000 		.4byte	0x77
+ 2018 0131 97000000 		.4byte	.LLST4
+ 2019 0135 07       		.uleb128 0x7
+ 2020 0136 3A010000 		.4byte	.LASF23
+ 2021 013a 01       		.byte	0x1
+ 2022 013b 58       		.byte	0x58
+ 2023 013c 83000000 		.4byte	0x83
+ 2024 0140 B8000000 		.4byte	.LLST5
+ 2025 0144 09       		.uleb128 0x9
+ 2026 0145 00000000 		.4byte	.LASF24
+ 2027 0149 01       		.byte	0x1
+ 2028 014a 59       		.byte	0x59
+ 2029 014b 94010000 		.4byte	0x194
+ 2030 014f 05       		.uleb128 0x5
+ 2031 0150 03       		.byte	0x3
+ 2032 0151 00000000 		.4byte	Thermistor_LUT.4765
+ 2033 0155 0A       		.uleb128 0xa
+ 2034 0156 6D696400 		.ascii	"mid\000"
+ 2035 015a 01       		.byte	0x1
+ 2036 015b DA       		.byte	0xda
+ 2037 015c 6B000000 		.4byte	0x6b
+ 2038 0160 D3000000 		.4byte	.LLST6
+ 2039 0164 07       		.uleb128 0x7
+ 2040 0165 BF000000 		.4byte	.LASF25
+ 2041 0169 01       		.byte	0x1
+ 2042 016a DB       		.byte	0xdb
+ 2043 016b 6B000000 		.4byte	0x6b
+ 2044 016f 1B010000 		.4byte	.LLST7
+ 2045 0173 07       		.uleb128 0x7
+ 2046 0174 DF010000 		.4byte	.LASF26
+ 2047 0178 01       		.byte	0x1
+ 2048 0179 DC       		.byte	0xdc
+ 2049 017a 6B000000 		.4byte	0x6b
+ 2050 017e 3A010000 		.4byte	.LLST8
+ 2051 0182 00       		.byte	0
+ 2052 0183 0B       		.uleb128 0xb
+ 2053 0184 77000000 		.4byte	0x77
+ 2054 0188 94010000 		.4byte	0x194
+ 2055 018c 0C       		.uleb128 0xc
+ 2056 018d B0000000 		.4byte	0xb0
+ 2057 0191 7206     		.2byte	0x672
+ 2058 0193 00       		.byte	0
+ 2059 0194 0D       		.uleb128 0xd
+ 2060 0195 83010000 		.4byte	0x183
+ 2061 0199 00       		.byte	0
+ 2062              		.section	.debug_abbrev,"",%progbits
+ 2063              	.Ldebug_abbrev0:
+ 2064 0000 01       		.uleb128 0x1
+ 2065 0001 11       		.uleb128 0x11
+ 2066 0002 01       		.byte	0x1
+ 2067 0003 25       		.uleb128 0x25
+ 2068 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 42
+
+
+ 2069 0005 13       		.uleb128 0x13
+ 2070 0006 0B       		.uleb128 0xb
+ 2071 0007 03       		.uleb128 0x3
+ 2072 0008 0E       		.uleb128 0xe
+ 2073 0009 1B       		.uleb128 0x1b
+ 2074 000a 0E       		.uleb128 0xe
+ 2075 000b 55       		.uleb128 0x55
+ 2076 000c 17       		.uleb128 0x17
+ 2077 000d 11       		.uleb128 0x11
+ 2078 000e 01       		.uleb128 0x1
+ 2079 000f 10       		.uleb128 0x10
+ 2080 0010 17       		.uleb128 0x17
+ 2081 0011 00       		.byte	0
+ 2082 0012 00       		.byte	0
+ 2083 0013 02       		.uleb128 0x2
+ 2084 0014 24       		.uleb128 0x24
+ 2085 0015 00       		.byte	0
+ 2086 0016 0B       		.uleb128 0xb
+ 2087 0017 0B       		.uleb128 0xb
+ 2088 0018 3E       		.uleb128 0x3e
+ 2089 0019 0B       		.uleb128 0xb
+ 2090 001a 03       		.uleb128 0x3
+ 2091 001b 0E       		.uleb128 0xe
+ 2092 001c 00       		.byte	0
+ 2093 001d 00       		.byte	0
+ 2094 001e 03       		.uleb128 0x3
+ 2095 001f 24       		.uleb128 0x24
+ 2096 0020 00       		.byte	0
+ 2097 0021 0B       		.uleb128 0xb
+ 2098 0022 0B       		.uleb128 0xb
+ 2099 0023 3E       		.uleb128 0x3e
+ 2100 0024 0B       		.uleb128 0xb
+ 2101 0025 03       		.uleb128 0x3
+ 2102 0026 08       		.uleb128 0x8
+ 2103 0027 00       		.byte	0
+ 2104 0028 00       		.byte	0
+ 2105 0029 04       		.uleb128 0x4
+ 2106 002a 16       		.uleb128 0x16
+ 2107 002b 00       		.byte	0
+ 2108 002c 03       		.uleb128 0x3
+ 2109 002d 0E       		.uleb128 0xe
+ 2110 002e 3A       		.uleb128 0x3a
+ 2111 002f 0B       		.uleb128 0xb
+ 2112 0030 3B       		.uleb128 0x3b
+ 2113 0031 05       		.uleb128 0x5
+ 2114 0032 49       		.uleb128 0x49
+ 2115 0033 13       		.uleb128 0x13
+ 2116 0034 00       		.byte	0
+ 2117 0035 00       		.byte	0
+ 2118 0036 05       		.uleb128 0x5
+ 2119 0037 2E       		.uleb128 0x2e
+ 2120 0038 01       		.byte	0x1
+ 2121 0039 3F       		.uleb128 0x3f
+ 2122 003a 19       		.uleb128 0x19
+ 2123 003b 03       		.uleb128 0x3
+ 2124 003c 0E       		.uleb128 0xe
+ 2125 003d 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 43
+
+
+ 2126 003e 0B       		.uleb128 0xb
+ 2127 003f 3B       		.uleb128 0x3b
+ 2128 0040 0B       		.uleb128 0xb
+ 2129 0041 27       		.uleb128 0x27
+ 2130 0042 19       		.uleb128 0x19
+ 2131 0043 49       		.uleb128 0x49
+ 2132 0044 13       		.uleb128 0x13
+ 2133 0045 11       		.uleb128 0x11
+ 2134 0046 01       		.uleb128 0x1
+ 2135 0047 12       		.uleb128 0x12
+ 2136 0048 06       		.uleb128 0x6
+ 2137 0049 40       		.uleb128 0x40
+ 2138 004a 18       		.uleb128 0x18
+ 2139 004b 9642     		.uleb128 0x2116
+ 2140 004d 19       		.uleb128 0x19
+ 2141 004e 01       		.uleb128 0x1
+ 2142 004f 13       		.uleb128 0x13
+ 2143 0050 00       		.byte	0
+ 2144 0051 00       		.byte	0
+ 2145 0052 06       		.uleb128 0x6
+ 2146 0053 05       		.uleb128 0x5
+ 2147 0054 00       		.byte	0
+ 2148 0055 03       		.uleb128 0x3
+ 2149 0056 0E       		.uleb128 0xe
+ 2150 0057 3A       		.uleb128 0x3a
+ 2151 0058 0B       		.uleb128 0xb
+ 2152 0059 3B       		.uleb128 0x3b
+ 2153 005a 0B       		.uleb128 0xb
+ 2154 005b 49       		.uleb128 0x49
+ 2155 005c 13       		.uleb128 0x13
+ 2156 005d 02       		.uleb128 0x2
+ 2157 005e 17       		.uleb128 0x17
+ 2158 005f 00       		.byte	0
+ 2159 0060 00       		.byte	0
+ 2160 0061 07       		.uleb128 0x7
+ 2161 0062 34       		.uleb128 0x34
+ 2162 0063 00       		.byte	0
+ 2163 0064 03       		.uleb128 0x3
+ 2164 0065 0E       		.uleb128 0xe
+ 2165 0066 3A       		.uleb128 0x3a
+ 2166 0067 0B       		.uleb128 0xb
+ 2167 0068 3B       		.uleb128 0x3b
+ 2168 0069 0B       		.uleb128 0xb
+ 2169 006a 49       		.uleb128 0x49
+ 2170 006b 13       		.uleb128 0x13
+ 2171 006c 02       		.uleb128 0x2
+ 2172 006d 17       		.uleb128 0x17
+ 2173 006e 00       		.byte	0
+ 2174 006f 00       		.byte	0
+ 2175 0070 08       		.uleb128 0x8
+ 2176 0071 2E       		.uleb128 0x2e
+ 2177 0072 01       		.byte	0x1
+ 2178 0073 3F       		.uleb128 0x3f
+ 2179 0074 19       		.uleb128 0x19
+ 2180 0075 03       		.uleb128 0x3
+ 2181 0076 0E       		.uleb128 0xe
+ 2182 0077 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 44
+
+
+ 2183 0078 0B       		.uleb128 0xb
+ 2184 0079 3B       		.uleb128 0x3b
+ 2185 007a 0B       		.uleb128 0xb
+ 2186 007b 27       		.uleb128 0x27
+ 2187 007c 19       		.uleb128 0x19
+ 2188 007d 49       		.uleb128 0x49
+ 2189 007e 13       		.uleb128 0x13
+ 2190 007f 11       		.uleb128 0x11
+ 2191 0080 01       		.uleb128 0x1
+ 2192 0081 12       		.uleb128 0x12
+ 2193 0082 06       		.uleb128 0x6
+ 2194 0083 40       		.uleb128 0x40
+ 2195 0084 18       		.uleb128 0x18
+ 2196 0085 9742     		.uleb128 0x2117
+ 2197 0087 19       		.uleb128 0x19
+ 2198 0088 01       		.uleb128 0x1
+ 2199 0089 13       		.uleb128 0x13
+ 2200 008a 00       		.byte	0
+ 2201 008b 00       		.byte	0
+ 2202 008c 09       		.uleb128 0x9
+ 2203 008d 34       		.uleb128 0x34
+ 2204 008e 00       		.byte	0
+ 2205 008f 03       		.uleb128 0x3
+ 2206 0090 0E       		.uleb128 0xe
+ 2207 0091 3A       		.uleb128 0x3a
+ 2208 0092 0B       		.uleb128 0xb
+ 2209 0093 3B       		.uleb128 0x3b
+ 2210 0094 0B       		.uleb128 0xb
+ 2211 0095 49       		.uleb128 0x49
+ 2212 0096 13       		.uleb128 0x13
+ 2213 0097 02       		.uleb128 0x2
+ 2214 0098 18       		.uleb128 0x18
+ 2215 0099 00       		.byte	0
+ 2216 009a 00       		.byte	0
+ 2217 009b 0A       		.uleb128 0xa
+ 2218 009c 34       		.uleb128 0x34
+ 2219 009d 00       		.byte	0
+ 2220 009e 03       		.uleb128 0x3
+ 2221 009f 08       		.uleb128 0x8
+ 2222 00a0 3A       		.uleb128 0x3a
+ 2223 00a1 0B       		.uleb128 0xb
+ 2224 00a2 3B       		.uleb128 0x3b
+ 2225 00a3 0B       		.uleb128 0xb
+ 2226 00a4 49       		.uleb128 0x49
+ 2227 00a5 13       		.uleb128 0x13
+ 2228 00a6 02       		.uleb128 0x2
+ 2229 00a7 17       		.uleb128 0x17
+ 2230 00a8 00       		.byte	0
+ 2231 00a9 00       		.byte	0
+ 2232 00aa 0B       		.uleb128 0xb
+ 2233 00ab 01       		.uleb128 0x1
+ 2234 00ac 01       		.byte	0x1
+ 2235 00ad 49       		.uleb128 0x49
+ 2236 00ae 13       		.uleb128 0x13
+ 2237 00af 01       		.uleb128 0x1
+ 2238 00b0 13       		.uleb128 0x13
+ 2239 00b1 00       		.byte	0
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 45
+
+
+ 2240 00b2 00       		.byte	0
+ 2241 00b3 0C       		.uleb128 0xc
+ 2242 00b4 21       		.uleb128 0x21
+ 2243 00b5 00       		.byte	0
+ 2244 00b6 49       		.uleb128 0x49
+ 2245 00b7 13       		.uleb128 0x13
+ 2246 00b8 2F       		.uleb128 0x2f
+ 2247 00b9 05       		.uleb128 0x5
+ 2248 00ba 00       		.byte	0
+ 2249 00bb 00       		.byte	0
+ 2250 00bc 0D       		.uleb128 0xd
+ 2251 00bd 26       		.uleb128 0x26
+ 2252 00be 00       		.byte	0
+ 2253 00bf 49       		.uleb128 0x49
+ 2254 00c0 13       		.uleb128 0x13
+ 2255 00c1 00       		.byte	0
+ 2256 00c2 00       		.byte	0
+ 2257 00c3 00       		.byte	0
+ 2258              		.section	.debug_loc,"",%progbits
+ 2259              	.Ldebug_loc0:
+ 2260              	.LLST0:
+ 2261 0000 00000000 		.4byte	.LVL0
+ 2262 0004 20000000 		.4byte	.LVL6
+ 2263 0008 0100     		.2byte	0x1
+ 2264 000a 50       		.byte	0x50
+ 2265 000b 20000000 		.4byte	.LVL6
+ 2266 000f 2C000000 		.4byte	.LFE1
+ 2267 0013 0400     		.2byte	0x4
+ 2268 0015 F3       		.byte	0xf3
+ 2269 0016 01       		.uleb128 0x1
+ 2270 0017 50       		.byte	0x50
+ 2271 0018 9F       		.byte	0x9f
+ 2272 0019 00000000 		.4byte	0
+ 2273 001d 00000000 		.4byte	0
+ 2274              	.LLST1:
+ 2275 0021 00000000 		.4byte	.LVL0
+ 2276 0025 08000000 		.4byte	.LVL1
+ 2277 0029 0100     		.2byte	0x1
+ 2278 002b 51       		.byte	0x51
+ 2279 002c 08000000 		.4byte	.LVL1
+ 2280 0030 2C000000 		.4byte	.LFE1
+ 2281 0034 0400     		.2byte	0x4
+ 2282 0036 F3       		.byte	0xf3
+ 2283 0037 01       		.uleb128 0x1
+ 2284 0038 51       		.byte	0x51
+ 2285 0039 9F       		.byte	0x9f
+ 2286 003a 00000000 		.4byte	0
+ 2287 003e 00000000 		.4byte	0
+ 2288              	.LLST2:
+ 2289 0042 08000000 		.4byte	.LVL1
+ 2290 0046 20000000 		.4byte	.LVL6
+ 2291 004a 0100     		.2byte	0x1
+ 2292 004c 51       		.byte	0x51
+ 2293 004d 20000000 		.4byte	.LVL6
+ 2294 0051 25000000 		.4byte	.LVL7-1
+ 2295 0055 0A00     		.2byte	0xa
+ 2296 0057 70       		.byte	0x70
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 46
+
+
+ 2297 0058 00       		.sleb128 0
+ 2298 0059 72       		.byte	0x72
+ 2299 005a 00       		.sleb128 0
+ 2300 005b 40       		.byte	0x40
+ 2301 005c 24       		.byte	0x24
+ 2302 005d 40       		.byte	0x40
+ 2303 005e 26       		.byte	0x26
+ 2304 005f 1B       		.byte	0x1b
+ 2305 0060 9F       		.byte	0x9f
+ 2306 0061 00000000 		.4byte	0
+ 2307 0065 00000000 		.4byte	0
+ 2308              	.LLST3:
+ 2309 0069 0C000000 		.4byte	.LVL2
+ 2310 006d 16000000 		.4byte	.LVL3
+ 2311 0071 0600     		.2byte	0x6
+ 2312 0073 70       		.byte	0x70
+ 2313 0074 00       		.sleb128 0
+ 2314 0075 1F       		.byte	0x1f
+ 2315 0076 31       		.byte	0x31
+ 2316 0077 25       		.byte	0x25
+ 2317 0078 9F       		.byte	0x9f
+ 2318 0079 16000000 		.4byte	.LVL3
+ 2319 007d 18000000 		.4byte	.LVL4
+ 2320 0081 0100     		.2byte	0x1
+ 2321 0083 53       		.byte	0x53
+ 2322 0084 1C000000 		.4byte	.LVL5
+ 2323 0088 25000000 		.4byte	.LVL7-1
+ 2324 008c 0100     		.2byte	0x1
+ 2325 008e 53       		.byte	0x53
+ 2326 008f 00000000 		.4byte	0
+ 2327 0093 00000000 		.4byte	0
+ 2328              	.LLST4:
+ 2329 0097 00000000 		.4byte	.LVL8
+ 2330 009b 66000000 		.4byte	.LVL22
+ 2331 009f 0100     		.2byte	0x1
+ 2332 00a1 50       		.byte	0x50
+ 2333 00a2 66000000 		.4byte	.LVL22
+ 2334 00a6 88000000 		.4byte	.LFE2
+ 2335 00aa 0400     		.2byte	0x4
+ 2336 00ac F3       		.byte	0xf3
+ 2337 00ad 01       		.uleb128 0x1
+ 2338 00ae 50       		.byte	0x50
+ 2339 00af 9F       		.byte	0x9f
+ 2340 00b0 00000000 		.4byte	0
+ 2341 00b4 00000000 		.4byte	0
+ 2342              	.LLST5:
+ 2343 00b8 6C000000 		.4byte	.LVL23
+ 2344 00bc 70000000 		.4byte	.LVL24
+ 2345 00c0 0900     		.2byte	0x9
+ 2346 00c2 73       		.byte	0x73
+ 2347 00c3 00       		.sleb128 0
+ 2348 00c4 3A       		.byte	0x3a
+ 2349 00c5 1E       		.byte	0x1e
+ 2350 00c6 0A       		.byte	0xa
+ 2351 00c7 A00F     		.2byte	0xfa0
+ 2352 00c9 1C       		.byte	0x1c
+ 2353 00ca 9F       		.byte	0x9f
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 47
+
+
+ 2354 00cb 00000000 		.4byte	0
+ 2355 00cf 00000000 		.4byte	0
+ 2356              	.LLST6:
+ 2357 00d3 0C000000 		.4byte	.LVL10
+ 2358 00d7 1E000000 		.4byte	.LVL11
+ 2359 00db 0100     		.2byte	0x1
+ 2360 00dd 52       		.byte	0x52
+ 2361 00de 1E000000 		.4byte	.LVL11
+ 2362 00e2 20000000 		.4byte	.LVL12
+ 2363 00e6 0800     		.2byte	0x8
+ 2364 00e8 75       		.byte	0x75
+ 2365 00e9 00       		.sleb128 0
+ 2366 00ea 73       		.byte	0x73
+ 2367 00eb 00       		.sleb128 0
+ 2368 00ec 22       		.byte	0x22
+ 2369 00ed 31       		.byte	0x31
+ 2370 00ee 26       		.byte	0x26
+ 2371 00ef 9F       		.byte	0x9f
+ 2372 00f0 22000000 		.4byte	.LVL13
+ 2373 00f4 28000000 		.4byte	.LVL14
+ 2374 00f8 0100     		.2byte	0x1
+ 2375 00fa 52       		.byte	0x52
+ 2376 00fb 28000000 		.4byte	.LVL14
+ 2377 00ff 2C000000 		.4byte	.LVL16
+ 2378 0103 0300     		.2byte	0x3
+ 2379 0105 72       		.byte	0x72
+ 2380 0106 7F       		.sleb128 -1
+ 2381 0107 9F       		.byte	0x9f
+ 2382 0108 2C000000 		.4byte	.LVL16
+ 2383 010c 30000000 		.4byte	.LVL18
+ 2384 0110 0100     		.2byte	0x1
+ 2385 0112 52       		.byte	0x52
+ 2386 0113 00000000 		.4byte	0
+ 2387 0117 00000000 		.4byte	0
+ 2388              	.LLST7:
+ 2389 011b 00000000 		.4byte	.LVL8
+ 2390 011f 06000000 		.4byte	.LVL9
+ 2391 0123 0200     		.2byte	0x2
+ 2392 0125 30       		.byte	0x30
+ 2393 0126 9F       		.byte	0x9f
+ 2394 0127 06000000 		.4byte	.LVL9
+ 2395 012b 4A000000 		.4byte	.LVL20
+ 2396 012f 0100     		.2byte	0x1
+ 2397 0131 55       		.byte	0x55
+ 2398 0132 00000000 		.4byte	0
+ 2399 0136 00000000 		.4byte	0
+ 2400              	.LLST8:
+ 2401 013a 00000000 		.4byte	.LVL8
+ 2402 013e 06000000 		.4byte	.LVL9
+ 2403 0142 0400     		.2byte	0x4
+ 2404 0144 0A       		.byte	0xa
+ 2405 0145 7206     		.2byte	0x672
+ 2406 0147 9F       		.byte	0x9f
+ 2407 0148 06000000 		.4byte	.LVL9
+ 2408 014c 1E000000 		.4byte	.LVL11
+ 2409 0150 0100     		.2byte	0x1
+ 2410 0152 53       		.byte	0x53
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 48
+
+
+ 2411 0153 1E000000 		.4byte	.LVL11
+ 2412 0157 22000000 		.4byte	.LVL13
+ 2413 015b 0100     		.2byte	0x1
+ 2414 015d 52       		.byte	0x52
+ 2415 015e 22000000 		.4byte	.LVL13
+ 2416 0162 2E000000 		.4byte	.LVL17
+ 2417 0166 0100     		.2byte	0x1
+ 2418 0168 53       		.byte	0x53
+ 2419 0169 30000000 		.4byte	.LVL18
+ 2420 016d 70000000 		.4byte	.LVL24
+ 2421 0171 0100     		.2byte	0x1
+ 2422 0173 53       		.byte	0x53
+ 2423 0174 00000000 		.4byte	0
+ 2424 0178 00000000 		.4byte	0
+ 2425              		.section	.debug_aranges,"",%progbits
+ 2426 0000 24000000 		.4byte	0x24
+ 2427 0004 0200     		.2byte	0x2
+ 2428 0006 00000000 		.4byte	.Ldebug_info0
+ 2429 000a 04       		.byte	0x4
+ 2430 000b 00       		.byte	0
+ 2431 000c 0000     		.2byte	0
+ 2432 000e 0000     		.2byte	0
+ 2433 0010 00000000 		.4byte	.LFB1
+ 2434 0014 2C000000 		.4byte	.LFE1-.LFB1
+ 2435 0018 00000000 		.4byte	.LFB2
+ 2436 001c 88000000 		.4byte	.LFE2-.LFB2
+ 2437 0020 00000000 		.4byte	0
+ 2438 0024 00000000 		.4byte	0
+ 2439              		.section	.debug_ranges,"",%progbits
+ 2440              	.Ldebug_ranges0:
+ 2441 0000 00000000 		.4byte	.LFB1
+ 2442 0004 2C000000 		.4byte	.LFE1
+ 2443 0008 00000000 		.4byte	.LFB2
+ 2444 000c 88000000 		.4byte	.LFE2
+ 2445 0010 00000000 		.4byte	0
+ 2446 0014 00000000 		.4byte	0
+ 2447              		.section	.debug_line,"",%progbits
+ 2448              	.Ldebug_line0:
+ 2449 0000 BA000000 		.section	.debug_str,"MS",%progbits,1
+ 2449      02004700 
+ 2449      00000201 
+ 2449      FB0E0D00 
+ 2449      01010101 
+ 2450              	.LASF24:
+ 2451 0000 54686572 		.ascii	"Thermistor_LUT\000"
+ 2451      6D697374 
+ 2451      6F725F4C 
+ 2451      555400
+ 2452              	.LASF17:
+ 2453 000f 76526566 		.ascii	"vReference\000"
+ 2453      6572656E 
+ 2453      636500
+ 2454              	.LASF3:
+ 2455 001a 73686F72 		.ascii	"short unsigned int\000"
+ 2455      7420756E 
+ 2455      7369676E 
+ 2455      65642069 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 49
+
+
+ 2455      6E7400
+ 2456              	.LASF27:
+ 2457 002d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2457      4320342E 
+ 2457      392E3320 
+ 2457      32303135 
+ 2457      30333033 
+ 2458 0060 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 2458      20726576 
+ 2458      6973696F 
+ 2458      6E203232 
+ 2458      31323230 
+ 2459 0093 67202D4F 		.ascii	"g -Os -ffunction-sections -ffat-lto-objects\000"
+ 2459      73202D66 
+ 2459      66756E63 
+ 2459      74696F6E 
+ 2459      2D736563 
+ 2460              	.LASF25:
+ 2461 00bf 66697273 		.ascii	"first\000"
+ 2461      7400
+ 2462              	.LASF28:
+ 2463 00c5 47656E65 		.ascii	"Generated_Source\\PSoC4\\Thermistor.c\000"
+ 2463      72617465 
+ 2463      645F536F 
+ 2463      75726365 
+ 2463      5C50536F 
+ 2464              	.LASF13:
+ 2465 00e9 666C6F61 		.ascii	"float\000"
+ 2465      7400
+ 2466              	.LASF1:
+ 2467 00ef 756E7369 		.ascii	"unsigned char\000"
+ 2467      676E6564 
+ 2467      20636861 
+ 2467      7200
+ 2468              	.LASF11:
+ 2469 00fd 696E7431 		.ascii	"int16\000"
+ 2469      3600
+ 2470              	.LASF5:
+ 2471 0103 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2471      20756E73 
+ 2471      69676E65 
+ 2471      6420696E 
+ 2471      7400
+ 2472              	.LASF20:
+ 2473 0115 74656D70 		.ascii	"temp\000"
+ 2473      00
+ 2474              	.LASF12:
+ 2475 011a 696E7433 		.ascii	"int32\000"
+ 2475      3200
+ 2476              	.LASF22:
+ 2477 0120 54686572 		.ascii	"Thermistor_GetTemperature\000"
+ 2477      6D697374 
+ 2477      6F725F47 
+ 2477      65745465 
+ 2477      6D706572 
+ 2478              	.LASF23:
+ 2479 013a 74656D70 		.ascii	"tempTR\000"
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 50
+
+
+ 2479      545200
+ 2480              	.LASF14:
+ 2481 0141 646F7562 		.ascii	"double\000"
+ 2481      6C6500
+ 2482              	.LASF9:
+ 2483 0148 75696E74 		.ascii	"uint16\000"
+ 2483      313600
+ 2484              	.LASF10:
+ 2485 014f 75696E74 		.ascii	"uint32\000"
+ 2485      333200
+ 2486              	.LASF8:
+ 2487 0156 756E7369 		.ascii	"unsigned int\000"
+ 2487      676E6564 
+ 2487      20696E74 
+ 2487      00
+ 2488              	.LASF7:
+ 2489 0163 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2489      206C6F6E 
+ 2489      6720756E 
+ 2489      7369676E 
+ 2489      65642069 
+ 2490              	.LASF18:
+ 2491 017a 76546865 		.ascii	"vThermistor\000"
+ 2491      726D6973 
+ 2491      746F7200 
+ 2492              	.LASF16:
+ 2493 0186 73697A65 		.ascii	"sizetype\000"
+ 2493      74797065 
+ 2493      00
+ 2494              	.LASF6:
+ 2495 018f 6C6F6E67 		.ascii	"long long int\000"
+ 2495      206C6F6E 
+ 2495      6720696E 
+ 2495      7400
+ 2496              	.LASF15:
+ 2497 019d 63686172 		.ascii	"char\000"
+ 2497      00
+ 2498              	.LASF2:
+ 2499 01a2 73686F72 		.ascii	"short int\000"
+ 2499      7420696E 
+ 2499      7400
+ 2500              	.LASF21:
+ 2501 01ac 54686572 		.ascii	"Thermistor_GetResistance\000"
+ 2501      6D697374 
+ 2501      6F725F47 
+ 2501      65745265 
+ 2501      73697374 
+ 2502              	.LASF4:
+ 2503 01c5 6C6F6E67 		.ascii	"long int\000"
+ 2503      20696E74 
+ 2503      00
+ 2504              	.LASF19:
+ 2505 01ce 72657354 		.ascii	"resT\000"
+ 2505      00
+ 2506              	.LASF0:
+ 2507 01d3 7369676E 		.ascii	"signed char\000"
+ 2507      65642063 
+ARM GAS  C:\Users\Jerry\AppData\Local\Temp\cc9Duur2.s 			page 51
+
+
+ 2507      68617200 
+ 2508              	.LASF26:
+ 2509 01df 6C617374 		.ascii	"last\000"
+ 2509      00
+ 2510              	.LASF29:
+ 2511 01e4 433A5C63 		.ascii	"C:\\cypress\\TalkingClock\\Talking_Clock.cydsn\000"
+ 2511      79707265 
+ 2511      73735C54 
+ 2511      616C6B69 
+ 2511      6E67436C 
+ 2512              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
